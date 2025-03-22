@@ -130,6 +130,7 @@ export default function FeatureDishes() {
               onClick={() => setActiveTab(category.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-label={`categories`}
             >
               {category.name}
             </motion.button>
@@ -161,7 +162,7 @@ export default function FeatureDishes() {
                 />
                 <div className={styles.price}>${dish.price.toFixed(2)}</div>
                 {dish.isNew && <div className={styles.newBadge}>New</div>}
-                <button className={styles.favoriteBtn}>
+                <button className={styles.favoriteBtn}    aria-label={`Add ${dish.name} to favorites`}>
                   <FaHeart />
                 </button>
               </div>
@@ -174,7 +175,7 @@ export default function FeatureDishes() {
                   <span>{dish.rating}</span>
                 </div>
                 
-                <h3>{dish.name}</h3>
+                <h3 className={styles.dishTitle}>{dish.name}</h3>
                 <p>{dish.description}</p>
                 
                 <div className={styles.ingredients}>
@@ -187,6 +188,7 @@ export default function FeatureDishes() {
                   className={styles.orderBtn}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  aria-label={`Order ${dish.name}`}
                 >
                   Order Now
                 </motion.button>
