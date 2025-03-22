@@ -37,7 +37,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href={"/tables"} className={styles.tableBtn}>
+              <Link href={"/"} className={styles.tableBtn}>
                 Book a Table
               </Link>
             </motion.div>
@@ -45,7 +45,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href={"/menu"} className={styles.menuBtn}>
+              <Link href={"/"} className={styles.menuBtn}>
                 View Menu
               </Link>
             </motion.div>

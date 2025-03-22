@@ -82,7 +82,7 @@ export default function Offers() {
 
         <div className={styles.subscriptionBanner}>
           <div className={styles.bannerContent}>
-            <h3>Get Exclusive Offers</h3>
+            <h4>Get Exclusive Offers</h4>
             <p>Subscribe to our newsletter and receive special deals directly to your inbox</p>
             <div className={styles.subscriptionForm}>
               <input type="email" name='email' placeholder="Your email address" autoComplete="email" className={styles.emailInput} />
