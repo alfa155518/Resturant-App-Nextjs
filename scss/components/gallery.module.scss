@@ -1,0 +1,117 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+.gallerySection {
+  padding: 100px 0;
+  background: linear-gradient(135deg, rgba(35, 35, 35, 0.9) 0%, rgba(25, 25, 25, 0.8) 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.galleryFilter {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  background: transparent;
+  border: 2px solid $primary-color;
+  color: $nature-light-color;
+  padding: 10px 20px;
+  @include radius(30px);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    background: rgba(230, 185, 128, 0.1);
+  }
+
+  &.active {
+    background: linear-gradient(to right, $light-color, $accent-tow-color);
+    color: $white-color;
+  }
+}
+
+.galleryGrid {
+  @include gridItems(300px) {
+    gap: 25px;
+  };
+
+  @media (max-width: 992px) {
+    @include gridItems(250px);
+  }
+
+  @media (max-width: 576px) {
+    @include gridItems(200px);
+  }
+}
+
+.galleryItem {
+  @include radius(12px);
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  @include transition(0.3s);
+}
+
+.imageWrapper {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+
+  &:hover .imageOverlay {
+    opacity: 1;
+  }
+
+  &:hover .galleryImage {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+  }
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  @include transition(0.5s);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  @include transition(0.3s);
+  padding: 20px;
+  text-align: center;
+
+  h3 {
+    color: $white-color;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+  }
+}

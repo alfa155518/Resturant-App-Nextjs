@@ -1,0 +1,173 @@
+.loginContainer {
+  color: #FFFFFF;
+  max-width: 450px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+.loginContainer h3 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.formGroup input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+.formGroup input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.formGroup input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.formGroup input:focus {
+  border-color: #9f643c;
+  outline: none;
+}
+
+.fileInput {
+  padding: 0.5rem !important;
+  background: transparent !important;
+  cursor: pointer;
+}
+
+.profilePreview {
+  margin-top: 0.5rem;
+}
+
+.profileImage {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.rememberForgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+}
+.remember input[type=checkbox] {
+  margin-right: 0.5rem;
+}
+.remember label {
+  font-size: 1.2rem;
+}
+
+.forgotLink {
+  font-size: 1.2rem;
+  color: #3c829f;
+}
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
+.submitButton {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+}
+
+.socialLogin {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.socialLogin {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divider {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  line-height: 0.1em;
+  margin: 2rem 0;
+}
+.divider span {
+  background: #FFFFFF;
+  padding: 0 1rem;
+  color: #9f643c;
+  font-size: 1.4rem;
+}
+
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.googleButton:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.googleButton svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.buttonLoader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.buttonDisabled {
+  opacity: 0.7;
+  cursor: not-allowed !important;
+}
+.buttonDisabled:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
+}

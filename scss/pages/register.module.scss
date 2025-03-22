@@ -1,0 +1,104 @@
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+.register {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5rem;
+  margin: 2rem;
+  padding: 1rem;
+  //**** Right side ****
+  .right_side {
+    flex: 1;
+    background-image: url('../../public/images/register.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+
+    .text {
+      position: absolute;
+      color: $white-color;
+      font-weight: bold;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 10%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+
+      h2 {
+        font-size: 3rem;
+        margin: .8rem 0;
+      }
+
+      p {
+        padding: .5rem 0;
+        color: $nature-light-color;
+        font-size: 2rem;
+        letter-spacing: .2rem;
+      }
+    }
+  }
+
+  // Left side
+  .left_side {
+    flex: 1;
+    border: .1rem solid $nature-dark-color;
+    padding: 1.5rem;
+    @include radius(.8rem);
+    h1 {
+      color: $primary-color;
+      font-size: 3rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      margin: 2rem 0;
+      @include radius(.5rem);
+      overflow: hidden;
+      background-color: $nature-dark-color;
+      justify-content: center;
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        
+        li {
+          padding: 1.2rem 3rem;
+          font-size: 1.6rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: $white-color;
+          @include radius(.5rem);
+          
+          &.active {
+            background-color: $primary-color;
+            color: $white-color;
+            font-weight: 600;
+          }
+          
+          &:hover:not(.active) {
+            background-color: rgba($primary-color, 0.2);
+          }
+        }
+      }
+    }
+  }
+
+  // ! Responsive
+  @media (width <= 992px) {
+    .right_side {
+      display: none;
+    }
+    .left_side h1 {
+      text-align: center;
+    }
+  }
+}

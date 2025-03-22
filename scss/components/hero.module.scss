@@ -1,0 +1,98 @@
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../public/images/hero.webp');
+  background-size: cover;
+  background-position: center;
+  color: $white-color;
+  text-align: center;
+
+  .text {
+    max-width: 800px;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px $light-dark-color;
+    }
+
+    p {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px $light-dark-color;
+    }
+  }
+
+  .action {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    a {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      @include radius(5rem);
+      text-decoration: none;
+      @include transition(.3s)
+    }
+
+    .tableBtn {
+      background-color: $primary-color;
+      color: $white-color;
+      border: 2px solid $primary-color;
+
+      &:hover {
+        background-color: $light-color;
+        border-color: $light-color;
+      }
+    }
+
+    .menuBtn {
+      background-color: transparent;
+      color: $white-color;
+      border: 2px solid $white-color;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+
+@media (width <= 768px) {
+  .text {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  .action {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+
+    a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+}

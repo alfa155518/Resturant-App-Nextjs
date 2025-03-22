@@ -1,0 +1,280 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+.offersSection {
+  padding: 100px 0;
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(40, 40, 40, 0.8) 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.offersTabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 15px;
+  
+  @media (width <= 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.tabButton {
+  background: transparent;
+  border: 2px solid  $nature-dark-color;
+  color: $white-color;
+  padding: 12px 25px;
+  @include radius(30px);
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  @include transition(.3s);
+  
+  &:hover {
+    background: rgba(230, 185, 128, 0.1);
+  }
+  
+  &.active {
+    background: linear-gradient(to right, $primary-color, $nature-dark-color);
+    color: $white-color;
+  }
+}
+
+.offersGrid {
+  @include gridItems(300px) {
+    gap: 30px;
+    margin-bottom: 60px;
+  };
+  @media (width <= 768px) {
+    @include gridItems(200px);
+  }
+}
+
+.offerCard {
+  background-color: #2a2a2a;
+  @include radius(15px);
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  @include transition(0.3s);
+  &:hover 
+  {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.offerImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.offerImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  @include transition(.5s);
+  
+  &:hover {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+}
+
+.discountBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(to right, $light-color, $gold-color);
+  color: $white-color;
+  padding: 8px 12px;
+  @include radius(20px);
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.offerContent {
+  padding: 25px;
+}
+
+.offerTitle {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: $primary-color;
+  font-family: 'Playfair Display', serif;
+}
+
+.offerDescription {
+  font-size: 1rem;
+  color: $nature-light-color;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+.offerPricing {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.oldPrice {
+  font-size: 1rem;
+  color: $accent-tow-color;
+  text-decoration: line-through;
+}
+
+.currentPrice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $gold-color;
+}
+
+.orderButton {
+  background: linear-gradient(to right, $light-color, $accent-tow-color);
+  border: none;
+  color: $white-color;
+  padding: 12px 25px;
+  @include radius(30px);
+  font-size: 1.3rem;
+  font-weight: 800;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(230, 185, 128, 0.3);
+  @include transition(.3s);
+  
+  &:hover {
+    box-shadow: 0 8px 20px rgba(230, 185, 128, 0.4);
+  }
+}
+
+.subscriptionBanner {
+  background: linear-gradient(to right, #2c3e50, $secondary-color);
+  @include radius(15px);
+  padding: 50px;
+  color: $white-color;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  
+  @media (width <= 768px) {
+    padding: 30px 20px;
+  }
+}
+
+.bannerContent {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  
+  h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    opacity: 0.9;
+  }
+}
+
+.subscriptionForm {
+  display: flex;
+  gap: 10px;
+  
+  @media (width <= 576px) {
+    flex-direction: column;
+  }
+}
+
+.emailInput {
+  flex: 1;
+  padding: 15px 20px;
+  @include radius(30px);
+  border: none;
+  font-size: 1.5rem;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+    color: $nature-light-color;
+    
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(230, 185, 128, 0.5);
+  }
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.subscribeButton {
+  background: linear-gradient(to right, $light-color, $accent-tow-color);
+  border: none;
+  color: $white-color;
+  padding: 15px 30px;
+  @include radius(30px);
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(230, 185, 128, 0.3);
+  @include transition(.3s);
+  &:hover {
+    box-shadow: 0 8px 20px rgba(230, 185, 128, 0.4);
+    @include translateY(-3px);
+  }
+  
+  &:active {
+    @include translateY(1px);
+  }
+}
+
+// Animation keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    @include translateY(20px);
+    opacity: 0;
+  }
+  to {
+    @include translateY(0px);
+    opacity: 1;
+  }
+}
+
+// Additional responsive styles
+@media (width <= 576px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .offerTitle {
+    font-size: 1.2rem;
+  }
+  
+  .subscriptionBanner {
+    padding: 25px 15px;
+  }
+  
+  .bannerContent h3 {
+    font-size: 1.5rem;
+  }
+}

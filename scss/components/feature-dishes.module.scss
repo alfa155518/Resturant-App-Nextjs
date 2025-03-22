@@ -1,0 +1,238 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+.featured {
+  padding: 5rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid $primary-color;
+  @include radius(3rem);
+  color: $primary-color;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  @include transition(.3s);
+  
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+  }
+  
+  &.active {
+    background-color: $primary-color;
+    color: $white-color;
+  }
+}
+
+.dishesGrid {
+  @include gridItems(350px){
+    gap: 2.5rem;
+  }
+}
+
+.dishCard {
+  background: linear-gradient(145deg, rgba($nature-dark-color, 0.95), rgba($nature-dark-color, 0.85));
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba($gold-color, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.15),
+    inset 0 0 50px rgba($primary-color, 0.1);
+  transition: all 0.4s ease;
+  
+  &:hover {
+    box-shadow: 
+      0 10px 25px rgba($gold-color, 0.15),
+      inset 0 0 70px rgba($primary-color, 0.2);
+    transform: translateY(-5px);
+    border-color: rgba($gold-color, 0.2);
+  }
+}
+
+.imageContainer {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  
+  .dishImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @include transition(.5s);
+  }
+  
+  &:hover .dishImage {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+  
+  .price {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: $primary-color;
+    color: $white-color;
+    padding: 0.5rem 1rem;
+    @include radius(2rem);
+    font-weight: bold;
+    box-shadow: 0 2px 5px $light-dark-color;
+  }
+  
+  .newBadge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: $secondary-color;
+    color: $nature-light-color;
+    padding: 0.3rem 0.8rem;
+    @include radius(2rem);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .favoriteBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: $white-color;
+    color: $nature-dark-color;
+    width: 40px;
+    height: 40px;
+    @include radius(50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    @include transition(.3s);
+    box-shadow: 0 2px 5px $light-dark-color;
+    
+    &:hover {
+      color: $light-color;
+      transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -o-transform: scale(1.1);
+}
+  }
+}
+
+.content {
+  padding: 1.5rem;
+  
+  h3 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: $light-color;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: $white-color;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  
+  .filled {
+    color: $gold-color;
+  }
+  
+  .empty {
+    color: $nature-light-color;
+  }
+  
+  span {
+    margin-left: 0.5rem;
+    font-weight: bold;
+  }
+}
+
+.ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  
+  .ingredient {
+    background-color: $light-color;
+    padding: 0.3rem 0.8rem;
+    @include radius(2rem);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: $white-color;
+  }
+}
+
+.orderBtn {
+  width: 100%;
+  padding: 0.75rem 0;
+  font-size: 1.3rem;
+  background-color: $primary-color;
+  color: $white-color;
+  border: none;
+  @include radius(.8rem);
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(.3s);
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+@media (width <= 768px) {
+  .header h2 {
+    font-size: 2rem;
+  }
+  
+  .dishesGrid {
+    @include gridItems(280px);
+  }
+  
+  @media (width <= 372px) {
+    .dishesGrid {
+      @include gridItems(150px);
+    }
+    
+  }
+}
+
+@media (width <= 480px) {
+  .tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .content h3 {
+    font-size: 1.3rem;
+  }
+}
