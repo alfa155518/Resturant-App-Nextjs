@@ -22,7 +22,7 @@ export default function Signup() {
     animate="visible"
     variants={containerVariants}
   >
-    <motion.h3 variants={itemVariants}>Signup to Your Account</motion.h3>
+    <motion.h1 variants={itemVariants}>Signup to Your Account</motion.h1>
       <form onSubmit={handleSubmit}>
         <motion.div className={styles.formGroup} variants={itemVariants}>
           <label htmlFor="name">Username</label>
