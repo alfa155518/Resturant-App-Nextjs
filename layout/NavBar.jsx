@@ -31,13 +31,13 @@ export default function NavBar() {
   
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Menu", path: "/menu" },
-    { name: "Tables", path: "/tables" },
-    { name: "Team", path: "/team" },
-    { name: "Services", path: "/services" },
-    { name: "Blog", path: "/blog" },
-    { name: "Contact", path: "/contact" },
+    { name: "About", path: "/" },
+    { name: "Menu", path: "/" },
+    { name: "Tables", path: "/" },
+    { name: "Team", path: "/" },
+    { name: "Services", path: "/" },
+    { name: "Blog", path: "/" },
+    { name: "Contact", path: "/" },
   ];
 
   const toggleMenu = () => {
@@ -100,7 +100,7 @@ export default function NavBar() {
           whileTap={{ scale: 0.9 }}
           className={styles.iconContainer}
         >
-          <Link href="/cart">
+          <Link href="/">
             <strong className={styles.number}>0</strong>
             <BsCart4 />
           </Link>
@@ -111,7 +111,7 @@ export default function NavBar() {
           whileTap={{ scale: 0.9 }}
           className={styles.iconContainer}
         >
-          <Link href="/favorite">
+          <Link href="/">
             <strong className={styles.number}>0</strong>
             <FaRegHeart />
           </Link>
