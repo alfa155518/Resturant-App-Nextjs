@@ -24,7 +24,7 @@ export default function OurStory() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3>A Culinary Journey</h3>
+              <h2>A Culinary Journey</h2>
               <p>
                 Founded in 2010, our restaurant began as a small family kitchen with a big dream. 
                 What started as a passion for authentic flavors has evolved into a culinary 
@@ -92,7 +92,7 @@ export default function OurStory() {
                       />
                     </div>
                     <div className={styles.authorInfo}>
-                      <h4>{testimonial.name}</h4>
+                      <h3>{testimonial.name}</h3>
                       <p>{testimonial.title}</p>
                     </div>
                   </div>

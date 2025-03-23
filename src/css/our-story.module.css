@@ -22,7 +22,7 @@
   }
 }
 
-.storyText h3 {
+.storyText h2 {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 20px;
@@ -155,7 +155,7 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-.testimonialAuthor .authorInfo h4 {
+.testimonialAuthor .authorInfo h3 {
   margin: 0;
   font-size: 1.1rem;
   color: #f5f0e9;
