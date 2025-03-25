@@ -196,6 +196,7 @@ export default function Menu() {
                   onClick={() => toggleFavorite(item.id)}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label='Favorite'
                 >
                   <FaHeart />
                 </motion.button>
@@ -231,6 +232,7 @@ export default function Menu() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => openItemDetails(item)}
+                    aria-label='View Details'
                   >
                     View Details
                   </motion.button>
@@ -240,6 +242,7 @@ export default function Menu() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleAddToCart(item)}
+                    aria-label='Add to Order'
                   >
                     Add to Order
                   </motion.button>
@@ -274,6 +277,7 @@ export default function Menu() {
                 onClick={closeItemDetails}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label='Close'
               >
                 &times;
               </motion.button>
@@ -292,6 +296,7 @@ export default function Menu() {
                   onClick={() => toggleFavorite(selectedItem.id)}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label='Favorite'
                 >
                   <FaHeart />
                 </motion.button>
