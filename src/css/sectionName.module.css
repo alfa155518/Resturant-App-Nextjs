@@ -55,6 +55,14 @@
     height: 50px;
   }
 }
+@media (max-width: 768px) and (width <= 372px) {
+  .title .title {
+    font-size: 10px;
+  }
+  .title .title:hover::before, .title .title:hover::after {
+    height: 35px;
+  }
+}
 
 .description {
   font-size: 15px;

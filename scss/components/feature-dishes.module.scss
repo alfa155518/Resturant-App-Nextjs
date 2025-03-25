@@ -47,7 +47,7 @@
 }
 
 .dishCard {
-  background: linear-gradient(145deg, rgba($nature-dark-color, 0.95), rgba($nature-dark-color, 0.85));
+  background-color: $card-color;
   backdrop-filter: blur(8px);
   border: 1px solid rgba($gold-color, 0.1);
   border-radius: 12px;

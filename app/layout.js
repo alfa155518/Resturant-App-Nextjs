@@ -1,9 +1,11 @@
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import NotificationContainer from "@/components/ui/NotificationContainer";
-import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
+import NavBar from "@/layout/NavBar";
+import Footer from "@/layout/Footer";
+
 
 const roboto = Roboto({
   variable: "--font-roboto-sans",
@@ -24,11 +26,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+        <NavBar/>
         <main>
           {children}
           <NotificationContainer/>
           <ScrollToTopButton/>
         </main>
+        <Footer/>
       </body>
     </html>
   );

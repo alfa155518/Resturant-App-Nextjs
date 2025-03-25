@@ -1,0 +1,856 @@
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+.menuPage {
+  color: $nature-light-color;
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+
+// Hero Section
+.hero {
+  text-align: center;
+  padding: 10rem 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../public/images/hero.webp');
+  background-size: cover;
+  background-position: center;
+  color: $white-color;
+
+  h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    color: $light-color;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    max-width: 600px;
+    color: $nature-light-color;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+}
+
+
+// Popular Items Section
+.popularSection {
+  @include section-padding;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    color: $light-color;
+  }
+}
+
+.popularItems {
+  @include gridItems(300px) {
+    gap: 2rem;
+  };
+  @media (width <= 372px) {
+    @include gridItems(200px);
+  }
+}
+
+.popularItem {
+  @include dark-card;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    @include translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .imageContainer {
+    height: 180px;
+    position: relative;
+
+    .itemImage {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .itemInfo {
+    padding: 2rem;
+
+    h3 {
+      margin: 0;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: $light-color;
+    }
+
+    .price {
+      color: $primary-color;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 0.8rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Popular badge
+.popularBadge,
+.popularTag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $optional-color;
+  color: $white-color;
+  padding: 4px 8px;
+  @include radius(4px);
+  font-size: 1rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+// Favorite button
+.favoriteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: $white-color;
+  border: none;
+  @include radius(50%);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+
+  &.favorited {
+    color: $light-color;
+  }
+}
+
+// Item meta information
+.itemMeta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  color: $nature-light-color;
+  font-size: 1.2rem;
+
+  .rating {
+    display: flex;
+    align-items: center;
+
+    .starIcon {
+      color: $gold-color;
+      margin-right: 4px;
+    }
+  }
+
+  .prepTime,
+  .calories {
+    display: flex;
+    align-items: center;
+  }
+}
+
+// Menu Categories
+.menuSection {
+  @include section-padding;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.categoryButton {
+  background-color: transparent;
+  border: 1px solid $nature-light-color;
+  color: $nature-light-color;
+  padding: .3rem .7rem;
+  @include radius(30px);
+  cursor: pointer;
+  font-size: 1.2rem;
+  @include transition(0.3s);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .categoryIcon {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    background-color: rgba($primary-color, 0.2);;
+  }
+
+  &.active {
+    background-color: $light-color;
+    color: $white-color;
+    border-color: $light-color;
+  }
+}
+
+// Menu Items
+.menuItems {
+  @include gridItems(250px) {
+    gap: 2rem;
+  };
+  @media (width <= 372px) {
+    @include gridItems(200px);
+  }
+}
+
+.menuItem {
+  @include dark-card;
+  display: flex;
+  flex-direction: column;
+
+  .imageContainer {
+    height: 220px;
+    position: relative;
+
+    .itemImage {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .itemContent {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .itemHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: $light-color;
+    }
+
+    .price {
+      color: $primary-color;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+  }
+
+  .description {
+    color: $nature-light-color;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+}
+
+// Dietary tags
+.dietaryTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+
+  .dietaryTag {
+    background-color: rgba($accent-one-color, 0.3);
+    color: lighten($white-color, 20%);
+    padding: 4px 8px;
+    @include radius(4px);
+    font-size: 1.2rem;
+  }
+}
+
+// Action buttons
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.3rem;
+
+  .detailsButton {
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    padding: .7rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    @include transition(0.3s);
+
+    &:hover {
+      background-color: rgba($primary-color, 0.2);
+    }
+  }
+
+  .orderButton {
+    background-color: $primary-color;
+    color: $white-color;
+    border: none;
+    padding: .7rem 1.5rem;
+    @include radius(4px);
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
+      background-color: lighten($primary-color, 5%);
+    }
+  }
+}
+
+// Special Offers Section
+.specialsSection {
+  @include section-padding;
+  background-color: rgba($nature-dark-color, 0.7);
+  margin: 4rem 0;
+  @include radius(8px);
+}
+
+.specialsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  @media (width <= 672px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.specialCard {
+  @include dark-card;
+  padding: 0.8rem;
+  border-left: 4px solid $secondary-color;
+  position: relative;
+
+  .specialBadge {
+    position: absolute;
+    top: 10px;
+    right: 1.5rem;
+    background-color: $accent-tow-color;
+    color: $white-color;
+    padding: 4px 12px;
+    @include radius(20px);
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+  }
+
+  h3 {
+    color: $light-color;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: $nature-light-color;
+    line-height: 1.5;
+    margin-bottom: .8rem;
+  }
+
+  .specialTime {
+    color: $secondary-color;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .learnMoreButton {
+    background-color: transparent;
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
+    padding: 0.8rem 1.5rem;
+    @include radius(4px);
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 2rem;
+    @include transition(0.3s);
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.2);
+    }
+  }
+}
+
+// Modal styles
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($light-dark-color, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 3rem;
+}
+
+.modalContent {
+  background-color: $card-color;
+  @include radius(12px);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $light-color;
+    border-radius: 10px;
+
+    &:hover {
+      background: $primary-color;
+    }
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: $white-color;
+  border: none;
+  @include radius(50%);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 700;
+  z-index: 10;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.modalImageContainer {
+  position: relative;
+  height: 30rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 40%;
+    height: auto;
+  }
+
+  .modalImage {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .favoriteButton {
+    top: 5rem;
+    right: 0.4rem;
+  }
+}
+
+.modalDetails {
+  padding: 3rem;
+  flex: 1;
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: $light-color;
+    }
+
+    .modalPrice {
+      color: $gold-color;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+  }
+
+  .modalMeta {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 2rem;
+    color: $white-color;
+
+    .rating,
+    .prepTime,
+    .calories {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+
+      svg {
+        margin-right: 4px;
+        color: $primary-color;
+      }
+    }
+
+    .starIcon {
+      color: $gold-color;
+    }
+  }
+
+  .modalDescription {
+    color: $white-color;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .modalSection {
+    margin-bottom: 2rem;
+
+    h3 {
+      color: $light-color;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .ingredientsList {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .ingredientItem {
+      background-color: $primary-color;
+      color: $white-color;
+      padding: 6px 12px;
+      @include radius(20px);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+  .customizeOptions {
+    margin-bottom: .5rem;
+
+    .customizeOption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .8rem 0;
+      border-bottom: 1px solid $nature-light-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        cursor: pointer;
+        color: $white-color;
+
+        input[type="checkbox"] {
+          accent-color: $primary-color;
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      span {
+        color: $secondary-color;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .specialInstructions {
+    width: 100%;
+    background-color: rgba($nature-dark-color, 0.5);
+    border: 1px solid $light-color;
+    @include radius(4px);
+    padding: 1rem;
+    color: $white-color;
+    resize: vertical;
+    min-height: 80px;
+    margin-top: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  .addToCartButton {
+    background-color: $secondary-color;
+    color: $white-color;
+    border: none;
+    padding: 1rem 1.8rem;
+    @include radius(4px);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 100%;
+    @include transition(0.3s);
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+// Chef's Recommendations Section
+.recommendationsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (width >=768px) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.chefProfile {
+  @include dark-card;
+  padding: 2rem;
+  text-align: center;
+
+  .chefImageContainer {
+    width: 120px;
+    height: 120px;
+    @include radius(50%);
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    border: 3px solid $primary-color;
+  }
+
+  .chefImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  h3 {
+    color: $light-color;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  p {
+    color: $nature-light-color;
+    margin-top: .8rem;
+    font-size: 1.1rem;
+
+    &.chefQuote {
+      font-style: italic;
+      margin-top: 1.5rem;
+      line-height: 1.6;
+      position: relative;
+      padding: 0 0.5rem;
+
+      &::before,
+      &::after {
+        content: '"';
+        font-size: 2rem;
+        color: $primary-color;
+        position: absolute;
+      }
+
+      &::before {
+        left: 0;
+        top: -5px;
+      }
+
+      &::after {
+        right: 0;
+        bottom: -15px;
+      }
+    }
+  }
+}
+
+.weeklySpecial {
+  @include dark-card;
+  padding: 2rem;
+
+  h3 {
+    color: $light-color;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .specialDish {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .specialDishImage {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      @include radius(8px);
+      margin-bottom: 2rem;
+
+      @media (width >=768px) {
+        width: 40%;
+        height: auto;
+        margin-bottom: 0;
+      }
+    }
+
+    .specialDishInfo {
+      flex: 1;
+
+      h4 {
+        color: $primary-color;
+        margin-top: 0;
+        margin-bottom: 1.2rem;
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: $white-color;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .specialPrice {
+        color: $gold-color;
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .orderSpecialButton {
+        background-color: $primary-color;
+        color: $white-color;
+        border: none;
+        padding: .7rem 1.5rem;
+        @include radius(4px);
+        cursor: pointer;
+        font-weight: bold;
+
+        &:hover {
+          background-color: rgba($primary-color, .6);
+        }
+      }
+    }
+  }
+}
+
+// Newsletter Section
+.newsletterSection {
+  @include section-padding;
+  background-color: $card-color;
+  margin-top: 2rem;
+  color: $white-color;
+  text-align: center;
+}
+
+.newsletterContent {
+  max-width: 600px;
+  margin: 0 auto;
+
+  h2 {
+    color: $light-color;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+  }
+
+  p {
+    color: $white-color;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+}
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (width >=768px) {
+    flex-direction: row;
+  }
+
+  .emailInput {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    @include radius(4px);
+    font-size: 1.5rem;
+    background-color: rgba($white-color, 0.1);
+    color: $white-color;
+
+    &::placeholder {
+      color: rgba($white-color, 0.7);
+    }
+
+    &:focus {
+      outline: none;
+      background-color: rgba($white-color, 0.2);
+    }
+  }
+
+  .subscribeButton {
+    background-color: $accent-tow-color;
+    color: $white-color;
+    border: none;
+    padding: .7rem 1.5rem;
+    @include radius(4px);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    @media (width <=767px) {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: lighten($accent-tow-color, 5%);
+    }
+  }
+}

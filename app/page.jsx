@@ -7,13 +7,12 @@ import Offers from "@/components/Offers";
 import OurStory from "@/components/OurStory";
 import Footer from "@/layout/Footer";
 import NavBar from "@/layout/NavBar";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="home-container">
     {/* NavBar */}
-    <NavBar/>
+    {/* <NavBar/> */}
     {/* Hero Section */}
     <Hero/>
     {/* Feature Section */}
@@ -25,7 +24,7 @@ export default function Home() {
     {/* Gallery Section */}
     <Gallery/>
     {/* Footer Section */}
-    <Footer/>
+    {/* <Footer/> */}
     </div>
   );
 }
