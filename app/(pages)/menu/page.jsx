@@ -361,7 +361,7 @@ export default function Menu() {
                         <input type="checkbox" name='instructions'/> Special instructions
                       </label>
                     </div>
-                    <textarea 
+                    <textarea  
                       className={styles.specialInstructions}
                       placeholder="Any special requests or allergies we should know about?"
                       rows={3}
