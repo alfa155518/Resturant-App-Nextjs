@@ -38,6 +38,7 @@ export default function PopularProducts({styles,motion,popularItems,containerVar
               className={styles.itemImage}
             />
             <motion.button
+            aria-label="Favorite"
               className={`${styles.favoriteButton} ${favorites.includes(item.id) ? styles.favorited : ''}`}
               onClick={(e) => {
                 e.stopPropagation();
@@ -45,6 +46,7 @@ export default function PopularProducts({styles,motion,popularItems,containerVar
               }}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
+              
             >
               <FaHeart />
             </motion.button>
