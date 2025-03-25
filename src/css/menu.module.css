@@ -190,6 +190,8 @@
 .categoryButton {
   background-color: rgba(31, 31, 31, 0.8);
   border: 1px solid #f5f0e9;
+  background-color: rgba(159, 100, 60, 0.95);
+  border: 2px solid #ff7e5f;
   color: #FFFFFF;
   padding: 0.3rem 0.7rem;
   border-radius: 30px;
@@ -212,12 +214,14 @@
   font-size: 1.1rem;
 }
 .categoryButton:hover {
-  background-color: rgba(159, 100, 60, 0.2);
+  background-color: #9f643c;
+  border-color: #9f643c;
+  color: #FFFFFF;
 }
 .categoryButton.active {
-  background-color: #ff7e5f;
+  background-color: #9f643c;
   color: #FFFFFF;
-  border-color: #ff7e5f;
+  border-color: #9f643c;
 }
 
 .menuItems {
@@ -248,6 +252,9 @@
   -o-border-radius: 12px;
   display: flex;
   flex-direction: column;
+  background-color: rgba(159, 100, 60, 0.95);
+  border: 1px solid rgba(255, 126, 95, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 .menuItem .imageContainer {
   height: 220px;
@@ -264,6 +271,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to bottom, rgba(159, 100, 60, 0.98), #9f643c);
 }
 .menuItem .itemHeader {
   display: flex;
@@ -285,7 +293,9 @@
 .menuItem .description {
   color: #FFFFFF;
   margin-bottom: 1.2rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  font-weight: 500;
   flex-grow: 1;
 }
 
@@ -314,7 +324,7 @@
   margin-top: 1.3rem;
 }
 .actionButtons .detailsButton {
-  background-color: rgba(159, 100, 60, 0.2);
+  background-color: rgba(159, 100, 60, 0.7);
   border: 2px solid #9f643c;
   color: #FFFFFF;
   padding: 0.7rem 1.5rem;
@@ -328,7 +338,8 @@
   -o-transition: all 0.3s ease-in-out;
 }
 .actionButtons .detailsButton:hover {
-  background-color: rgba(159, 100, 60, 0.2);
+  background-color: #9f643c;
+  color: #FFFFFF;
 }
 .actionButtons .orderButton {
   background-color: #9f643c;

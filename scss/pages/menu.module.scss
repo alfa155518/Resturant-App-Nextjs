@@ -177,8 +177,13 @@
 }
 
 .categoryButton {
+
   background-color: rgba($card-color, 0.8);
   border: 1px solid $nature-light-color;
+
+  background-color: rgba($primary-color, 0.95); 
+  border: 2px solid $light-color; 
+
   color: $white-color;
   padding: .3rem .7rem;
   @include radius(30px);
@@ -194,13 +199,15 @@
   }
 
   &:hover {
-    background-color: rgba($primary-color, 0.2);;
+    background-color: $primary-color; 
+    border-color: $primary-color;
+    color: $white-color;
   }
 
   &.active {
-    background-color: $light-color;
+    background-color: $primary-color; 
     color: $white-color;
-    border-color: $light-color;
+    border-color: $primary-color;
   }
 }
 
@@ -218,7 +225,9 @@
   @include dark-card;
   display: flex;
   flex-direction: column;
-
+  background-color: rgba($primary-color, 0.95); 
+  border: 1px solid rgba($light-color, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
   .imageContainer {
     height: 220px;
     position: relative;
@@ -235,6 +244,11 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(
+      to bottom,
+      rgba($primary-color, 0.98),
+      rgba($primary-color, 1)
+    ); 
   }
 
   .itemHeader {
@@ -260,7 +274,9 @@
   .description {
     color: $white-color;
     margin-bottom: 1.2rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    font-weight: 500;
     flex-grow: 1;
   }
 }
@@ -289,7 +305,7 @@
   margin-top: 1.3rem;
 
   .detailsButton {
-    background-color: rgba($primary-color, 0.2);
+    background-color: rgba($primary-color, 0.7);
     border: 2px solid $primary-color;
     color: $white-color;
     padding: .7rem 1.5rem;
@@ -298,7 +314,8 @@
     font-weight: bold;
     @include transition(0.3s);
     &:hover {
-      background-color: rgba($primary-color, 0.2);
+      background-color: $primary-color;
+      color: $white-color;
     }
   }
 
