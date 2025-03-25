@@ -379,10 +379,7 @@ export default function Menu() {
                     handleAddToCart(selectedItem);
                     closeItemDetails();
                   }}
-<<<<<<< HEAD
-=======
                   aria-label='Add to Order'
->>>>>>> performance
                 >
                   Add to Order - ${selectedItem.price.toFixed(2)}
                 </motion.button>
