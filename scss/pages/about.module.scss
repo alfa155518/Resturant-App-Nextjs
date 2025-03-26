@@ -1,0 +1,230 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+// About Page Styles with Dark Mode as Default
+.aboutContainer {
+  min-height: 100vh;
+  color: $nature-light-color;
+  padding: 4rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+// Hero Section
+.heroSection {
+  text-align: center;
+  margin-bottom: 5rem;
+  
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, $primary-color, $gold-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    @media (width <= 768px) {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: $white-color;
+}
+
+// Hero Image
+.heroImage {
+  position: relative;
+  height: 60vh;
+  width: 100%;
+  @include radius(10px);
+  overflow: hidden;
+  margin-bottom: 5rem;
+  box-shadow: 0 8px 30px $nature-dark-color;
+}
+
+// Section Title
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: $primary-color;
+  }
+}
+
+// Philosophy Section
+.philosophySection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 5rem;
+  
+  @media (width <= 768px) {
+    grid-template-columns: 1fr;
+  }
+  
+  .content {
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      font-size: 1.3rem;
+    }
+  }
+  
+  .imageWrapper {
+    position: relative;
+    height: 400px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 30px $light-dark-color;
+  }
+}
+
+// Team Section
+.teamSection {
+  margin-bottom: 5rem;
+  
+  .teamGrid {
+    @include gridItems(280px) {
+      gap: 2rem;
+    }
+      @media (width <= 576px) {
+      @include gridItems(200px);
+    }
+  }
+  
+  .teamCard {
+    background-color: $card-color;
+    @include radius(10px);
+    padding: 1.5rem;
+    box-shadow: 0 8px 30px $card-color;
+    @include transition(0.3s);
+    
+    .memberImage {
+      position: relative;
+      height: 280px;
+      width: 100%;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    
+    .memberName {
+      color: $light-color;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .memberRole {
+      color: $white-color;
+      font-size: 1rem;
+    }
+  }
+}
+
+// Testimonial Section
+.testimonialSection {
+  margin-bottom: 5rem;
+  
+  .testimonialGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    @media (width <= 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .testimonialCard {
+    background-color: $card-color;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0px 15px $nature-dark-color;
+    position: relative;
+    
+    &:before {
+      content: '"';
+      position: absolute;
+      top: 0.1rem;
+      left: 1.5rem;
+      font-size: 5rem;
+      color: rgba($primary-color, 0.2);
+      font-family: serif;
+      line-height: 1;
+    }
+    
+    .quote {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .author {
+      font-weight: 500;
+      color: $primary-color;
+    }
+  }
+}
+
+// Visit Section
+.visitSection {
+  text-align: center;
+  
+  .address {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hours {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: $light-color;
+  }
+  
+  .reserveButton {
+    background-color: $primary-color;
+    color: $nature-light-color;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+    @include radius(20px);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+    
+    &:hover {
+      background-color: lighten($primary-color, 10%);
+      @include translateY(-3px);
+      box-shadow: 0 6px 20px rgba($primary-color, 0.4);
+    }
+    
+    &:active {
+      @include translateY(0px);
+    }
+  }
+}

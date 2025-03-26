@@ -1,0 +1,230 @@
+.aboutContainer {
+  min-height: 100vh;
+  color: #f5f0e9;
+  padding: 4rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.heroSection {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.heroSection h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #9f643c, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (width <= 768px) {
+  .heroSection h1 {
+    font-size: 2.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #FFFFFF;
+}
+
+.heroImage {
+  position: relative;
+  height: 60vh;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 5rem;
+  box-shadow: 0 8px 30px #4a3f35;
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+.sectionTitle:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #9f643c;
+}
+
+.philosophySection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+@media (width <= 768px) {
+  .philosophySection {
+    grid-template-columns: 1fr;
+  }
+}
+.philosophySection .content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  font-size: 1.3rem;
+}
+.philosophySection .imageWrapper {
+  position: relative;
+  height: 400px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.teamSection {
+  margin-bottom: 5rem;
+}
+.teamSection .teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+@media (width <= 576px) {
+  .teamSection .teamGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+.teamSection .teamCard {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px #1f1f1f;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.teamSection .teamCard .memberImage {
+  position: relative;
+  height: 280px;
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.teamSection .teamCard .memberName {
+  color: #ff7e5f;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.teamSection .teamCard .memberRole {
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+.testimonialSection {
+  margin-bottom: 5rem;
+}
+.testimonialSection .testimonialGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+@media (width <= 768px) {
+  .testimonialSection .testimonialGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.testimonialSection .testimonialCard {
+  background-color: #1f1f1f;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0px 15px #4a3f35;
+  position: relative;
+}
+.testimonialSection .testimonialCard:before {
+  content: '"';
+  position: absolute;
+  top: 0.1rem;
+  left: 1.5rem;
+  font-size: 5rem;
+  color: rgba(159, 100, 60, 0.2);
+  font-family: serif;
+  line-height: 1;
+}
+.testimonialSection .testimonialCard .quote {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
+}
+.testimonialSection .testimonialCard .author {
+  font-weight: 500;
+  color: #9f643c;
+}
+
+.visitSection {
+  text-align: center;
+}
+.visitSection .address {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.visitSection .hours {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #ff7e5f;
+}
+.visitSection .reserveButton {
+  background-color: #9f643c;
+  color: #f5f0e9;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(159, 100, 60, 0.3);
+}
+.visitSection .reserveButton:hover {
+  background-color: #bd7d51;
+  transform: translateY(-3px);
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(159, 100, 60, 0.4);
+}
+.visitSection .reserveButton:active {
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+}

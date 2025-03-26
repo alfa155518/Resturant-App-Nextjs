@@ -19,12 +19,12 @@
 }
 
 .footerGrid {
-  @include gridItems(250px) {
+  @include gridItems(280px) {
     gap: 40px;
   }
   
   @media (width <= 576px) {
-    @include gridItems(200px);
+    @include gridItems(180px);
   }
 }
 

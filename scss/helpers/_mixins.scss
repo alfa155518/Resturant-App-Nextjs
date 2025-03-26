@@ -48,6 +48,7 @@
   -o-transform: rotate($deg);
 }
 
+// Grid Items to responsive
 @mixin gridItems($value) {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax($value, 1fr));
@@ -77,5 +78,23 @@
   padding: 2rem 1.5rem;
   @media (width >= 768px) {
     padding: 3rem 2rem;
+  }
+}
+
+// Section Title
+@mixin sectionTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: $white-color;
+  
+  &:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: $primary-color;
+    margin: 1rem auto 0;
   }
 }
