@@ -53,6 +53,8 @@ export default function About() {
             alt="Restaurant Interior"
             fill
             priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
           />
         </motion.div>
 
@@ -74,10 +76,12 @@ export default function About() {
             </p>
           </motion.div>
           <motion.div variants={fadeIn} className={styles.imageWrapper}>
-            <Image
+          <Image
               src="/images/chief.png"
               alt="Our Chef"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              style={{ objectFit: "cover" }}
             />
           </motion.div>
         </motion.section>
@@ -107,10 +111,12 @@ export default function About() {
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
                 <div className={styles.memberImage}>
-                  <Image
+                <Image
                     src={member.image}
                     alt={member.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
                 <h3 className={styles.memberName}>{member.name}</h3>
