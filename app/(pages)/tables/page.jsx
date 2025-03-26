@@ -258,7 +258,7 @@ export default function Tables() {
               </button>
             </div>
             <div className={styles.tableInfo}>
-              <h3 className={styles.tableName}>{table.name}</h3>
+              <h2 className={styles.tableName}>{table.name}</h2>
               <p className={styles.tableDescription}>{table.description}</p>
               <div className={styles.tableFeatures}>
                 {table.features.map((feature, index) => (
@@ -329,9 +329,9 @@ export default function Tables() {
               <FaTimes />
             </button>
             
-            <h2 className={styles.reservationTitle}>
+            <h3 className={styles.reservationTitle}>
               Reserve {selectedTable.name}
-            </h2>
+            </h3>
             <form onSubmit={handleSubmit} className={styles.reservationForm}>
               <div className={styles.formGroup}>
                 <label htmlFor="data">
