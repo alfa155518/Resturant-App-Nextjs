@@ -71,6 +71,7 @@
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  @content;
 }
 
 // Padding Of Every Section
@@ -97,4 +98,11 @@
     background-color: $primary-color;
     margin: 1rem auto 0;
   }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @content;
 }

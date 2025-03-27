@@ -1,0 +1,339 @@
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+
+.teamContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  color: $nature-light-color;
+
+  @media (width <=768px) {
+    padding: 2rem 1rem;
+  }
+}
+
+.teamHeader {
+  @include sectionTitle;
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: $light-color;
+    position: relative;
+    display: inline-block;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: $nature-light-color;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.teamGrid {
+  @include gridItems(350px) {
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (width <=768px) {
+    @include gridItems(280px) {
+      gap: 1.5rem;
+    }
+
+    @media (width <=480px) {
+      @include gridItems(200px)
+    }
+  }
+}
+
+.teamCard {
+  @include dark-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px $light-dark-color;
+    border: 1px solid rgba($primary-color, 0.2);
+  }
+
+  &:hover {
+    box-shadow: 0 15px 40px rgba($primary-color, 0.3);
+    @include translateY(-5px);
+    border-color: $primary-color;
+
+    .memberInfo h2 {
+      color: $gold-color;
+      text-shadow: 0 0 5px rgba($gold-color, 0.3);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.imageContainer {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba($nature-dark-color, 0.8), transparent);
+    z-index: 1;
+  }
+}
+
+.memberImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  @include transition(0.5s);
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+
+  .teamCard:hover & {
+    transform: scale(1.05);
+    filter: brightness(1);
+    -webkit-filter: brightness(1);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+  }
+}
+
+.memberInfo {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    color: $white-color;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: $light-color;
+    margin: 0 0 1rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: $nature-light-color;
+    margin: 0;
+    flex-grow: 1;
+  }
+}
+
+.joinTeam {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba($card-color, 0.9) 0%, rgba($nature-dark-color, 0.9) 100%);
+  @include radius(12px);
+  margin-top: 3rem;
+  border: 1px solid rgba($secondary-color, 0.3);
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $light-color;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: $nature-light-color;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Join Button
+.joinButton {
+  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+  color: $white-color;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  @include radius(50px);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+  @include transition(0.3s);
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba($gold-color, 0.3);
+    background: linear-gradient(90deg, $accent-tow-color, $primary-color);
+    @include translateY(-2px);
+  }
+
+  &:active {
+    @include translateY(1px);
+  }
+}
+
+// Modal Styles
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($nature-dark-color, 0.8);
+  z-index: 1000;
+  @include flex-center;
+}
+
+.modal {
+  background-color: $card-color;
+  @include radius(12px);
+  width: 90%;
+  max-width: 70%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1001;
+  position: fixed;
+  top: 11%;
+  left: 25%;
+  @include translate(-50%, -50%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($light-color, 0.3);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($light-color, 0.1);
+    @include radius(10px);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $light-color;
+    @include radius(10px);
+  }
+}
+
+.modalHeader {
+  text-align: center;
+  margin: 1rem auto;
+
+  h2 {
+    margin: 0;
+    color: $nature-light-color;
+    font-size: 1.5rem;
+  }
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.applicationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 500;
+    color: $light-color;
+    font-size: 1.1rem;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba($primary-color, 0.3);
+    background-color: rgba($card-color, 0.8);
+    color: $nature-light-color;
+    font-size: 1.3rem;
+    @include transition(0.3s);
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (width <= 480px) {
+    flex-direction: column;
+  }
+}
+
+.submitButton {
+  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+  color: $white-color;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  @include radius(50px);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+  @include transition(0.3s);
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba($primary-color, 0.4);
+    @include translateY(-2px);
+  }
+
+  &:active {
+    @include translateY(1px);
+  }
+}
+
+.cancelButton {
+  background: transparent;
+  color: $nature-light-color;
+  border: 1px solid rgba($primary-color, 0.5);
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  @include radius(50px);
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+    @include translateY(-2px);
+  }
+
+  &:active {
+    @include translateY(1px);
+  }
+}

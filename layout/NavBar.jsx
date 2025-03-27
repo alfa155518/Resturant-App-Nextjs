@@ -34,7 +34,7 @@ export default function NavBar() {
     { name: "About", path: "/about" },
     { name: "Menu", path: "/menu" },
     { name: "Tables", path: "/tables" },
-    { name: "Team", path: "/" },
+    { name: "Team", path: "/team" },
     { name: "Services", path: "/" },
     { name: "Blog", path: "/" },
     { name: "Contact", path: "/" },

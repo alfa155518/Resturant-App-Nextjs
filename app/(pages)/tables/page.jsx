@@ -1,10 +1,19 @@
 "use client";
-
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCalendarAlt, FaUsers, FaClock, FaUtensils, FaTimes, FaInfoCircle, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from "../../../src/css/tables.module.css";
+
 
 export default function Tables() {
   // Add pagination state
@@ -276,45 +285,30 @@ export default function Tables() {
         ))}
       </motion.div>
 {/* Add Pagination Component */}
-{totalPages > 1 && (
-        <motion.div 
-          className={styles.pagination}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <button 
-            className={`${styles.paginationButton} ${currentPage === 1 ? styles.disabled : ''}`}
-            onClick={() => paginate(currentPage - 1)}
-            disabled={currentPage === 1}
-            aria-label="Previous page"
-          >
-            <FaChevronLeft />
-          </button>
-          
-          <div className={styles.pageNumbers}>
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button
-                key={i + 1}
-                className={`${styles.pageNumber} ${currentPage === i + 1 ? styles.activePage : ''}`}
-                onClick={() => paginate(i + 1)}
-                aria-label={`Page ${i + 1}`}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
-          
-          <button 
-            className={`${styles.paginationButton} ${currentPage === totalPages ? styles.disabled : ''}`}
-            onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            aria-label="Next page"
-          >
-            <FaChevronRight />
-          </button>
-        </motion.div>
-      )}
+<Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
       {/* Reservation Form */}
       <motion.div 
         id="reservationForm"
