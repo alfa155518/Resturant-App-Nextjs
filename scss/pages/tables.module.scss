@@ -231,44 +231,8 @@
 }
 
 .formGroup {
-  display: flex;
-  flex-direction: column;
-  
-  &:last-of-type {
-    grid-column: span 2;
-    
-    @media (width <= 768px) {
-      grid-column: span 1;
-    }
-  }
-  
-  label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: rgba($white-color, 0.8);
-  }
-  
-  input,select {
-    background-color: rgba($white-color, 0.05);
-    border: 1px solid rgba($white-color, 0.1);
-    padding: 0.75rem 1rem;
-    @include radius(0.5rem);
-    color: $white-color;
-    font-size: 1rem;
-    
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-    }
-  }
-  select {
-    color: $light-color;
-    font-size: 1.2rem;
-  }
+  padding: 1.5rem;
+  @include formGroup;
 }
 
 .inputIcon {
@@ -379,19 +343,7 @@
     flex-direction: row;
   }
   
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: rgba($white-color, 0.05);
-    border-radius: 10px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: $primary-color;
-    border-radius: 10px;
-  }
+  @include scrollbar($white-color,$primary-color);
 }
 
 .closeButton {
@@ -443,19 +395,7 @@
   @media (width >= 768px) {
     max-height: 600px;
     overflow-y: auto;
-    
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    &::-webkit-scrollbar-track {
-      background: rgba($white-color, 0.05);
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background: $primary-color;
-      border-radius: 10px;
-    }
+    @include scrollbar($white-color,$primary-color);
   }
 }
 

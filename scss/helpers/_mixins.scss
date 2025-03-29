@@ -77,7 +77,8 @@
 // Padding Of Every Section
 @mixin section-padding {
   padding: 2rem 1.5rem;
-  @media (width >= 768px) {
+
+  @media (width >=768px) {
     padding: 3rem 2rem;
   }
 }
@@ -89,7 +90,7 @@
   margin-bottom: 2rem;
   text-align: center;
   color: $white-color;
-  
+
   &:after {
     content: '';
     display: block;
@@ -98,6 +99,8 @@
     background-color: $primary-color;
     margin: 1rem auto 0;
   }
+
+  @content;
 }
 
 @mixin flex-center {
@@ -105,4 +108,150 @@
   justify-content: center;
   align-items: center;
   @content;
+}
+
+// Custom Scrollbar
+@mixin scrollbar($track, $thumb) {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($track, 0.1);
+    @include radius(10px);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb;
+    @include radius(10px);
+  }
+}
+
+// Custom Form Group
+@mixin formGroup {
+
+  .formGroup,
+  & {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    &:last-of-type {
+      grid-column: span 2;
+
+      @media (width <=768px) {
+        grid-column: span 1;
+      }
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: rgba($light-color, 0.8);
+    }
+
+    input,
+    select,
+    textarea {
+      background-color: rgba($white-color, 0.05);
+      border: 1px solid rgba($white-color, 0.1);
+      padding: 0.75rem 1rem;
+      @include radius(0.5rem);
+      color: $white-color;
+      font-size: 1.2rem;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+    }
+
+    select {
+      color: $light-color;
+      font-size: 1.2rem;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+// Custom Modal
+@mixin modal($width, $max-width, $max-height) {
+  background-color: $card-color;
+  @include radius(15px);
+  width: $width;
+  max-width: $max-width;
+  max-height: $max-height;
+  overflow-y: auto;
+  z-index: 1001;
+  position: fixed;
+  top: 15%;
+  left: 30%;
+  @include translate(-50%, -50%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($primary-color, 0.3);
+  @include scrollbar($primary-color, $primary-color);
+  @content;
+}
+
+@mixin modalButton {
+  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+  color: $white-color;
+  border: none;
+  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  @include transition(0.3s);
+  @include radius(50px);
+  padding: 0.8rem 2rem;
+  @content;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba($primary-color, 0.5);
+  }
+  
+    &:active {
+    @include translateY(1px);
+  }
+}
+
+// Custom Cancel Modal Button
+@mixin cancelModalButton {
+  background: transparent;
+  color: $nature-light-color;
+  border: 1px solid rgba($primary-color, 0.5);
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  @include radius(50px);
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+    @include translateY(-2px);
+  }
+
+  &:active {
+    @include translateY(1px);
+  }
+}
+
+// Custom Modal Overlay
+@mixin modalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba($card-color, 0.8), rgba($nature-dark-color, 0.8));
+  z-index: 1;
 }

@@ -1,0 +1,259 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+.servicesContainer {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  color: $nature-light-color;
+
+  @media (width <= 768px) {
+    padding: 2rem 1rem;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: $light-color;
+    position: relative;
+    display: inline-block;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      @include translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: $nature-light-color;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.servicesGrid {
+  @include gridItems(300px) {
+    gap: 2rem;
+  }
+  max-width: 1200px;
+  margin: 0 auto;
+  @media (width <= 480px) {
+    // @include gridItems(200px) {
+    //   gap: 1rem;
+    // }
+    grid-template-columns: 1fr;
+  }
+}
+
+.serviceCard {
+  position: relative;
+  height: 300px;
+  @include radius(15px);
+  overflow: hidden;
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    .serviceContent {
+      @include translateY(0);
+    }
+  }
+}
+
+.serviceIcon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  font-size: 2rem;
+  color: $gold-color;
+  background: rgba($card-color, 0.8);
+  padding: 1rem;
+  @include radius(50%);
+  border: 2px solid $primary-color;
+}
+
+.serviceContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba($card-color, 0.95), transparent);
+  @include translateY(250px);
+  @include transition(0.3s);
+  z-index: 2;
+
+  h3 {
+    color: $light-color;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $white-color;
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+}
+
+.serviceImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.overlay {
+  @include modalOverlay;
+}
+
+.ctaSection {
+  text-align: center;
+  margin-top: 6rem;
+  padding: 3rem;
+  border-radius: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba($card-color, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($primary-color, 0.2);
+  h2 {
+    color: $white-color;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $nature-light-color;
+    margin-bottom: 2rem;
+  }
+}
+
+.ctaButton {
+  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+  color: $white-color;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  @include radius(50px);
+  cursor: pointer;
+  @include transition(0.3s);
+  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba($primary-color, 0.5);
+    @include translateY(-2px);
+  }
+
+  &:active {
+    @include translateY(1px);
+  }
+}
+
+// Responsive adjustments
+@media (width <=480px) {
+  .header {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .serviceCard {
+    height: 250px;
+  }
+
+  .ctaSection {
+    padding: 2rem 1rem;
+  }
+}
+
+// Contact Modal Styles
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($nature-dark-color, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  @include flex-center;
+}
+
+.contactModal {
+  @include modal(90%, 600px, 90vh) {
+    @media (width <= 992px) {
+      left: 20% ;
+    }
+    @media (width <= 772px) {
+      left: 10% ;
+    }
+  }
+}
+
+.modalHeader {
+  @include flex-center {
+    padding: 1.5rem;
+  }
+
+  border-bottom: 1px solid rgba($primary-color, 0.2);
+
+  h2 {
+    margin: 0;
+    color: $light-color;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+}
+
+
+.contactForm {
+  padding: 1.5rem;
+  @include formGroup;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (width <=480px) {
+    flex-direction: column;
+  }
+}
+
+.submitButton,
+.cancelButton {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  @include radius(50px);
+  cursor: pointer;
+  @include transition(0.3s);
+}
+
+.submitButton {
+  @include modalButton;
+}
+
+.cancelButton {
+  @include cancelModalButton;
+}

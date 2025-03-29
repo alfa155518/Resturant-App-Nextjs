@@ -15,6 +15,7 @@
 
 .teamHeader {
   @include sectionTitle;
+
   h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -164,25 +165,10 @@
 
 // Join Button
 .joinButton {
-  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
-  color: $white-color;
-  border: none;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  @include radius(50px);
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
-  @include transition(0.3s);
-
-  &:hover {
-    box-shadow: 0 8px 20px rgba($gold-color, 0.3);
-    background: linear-gradient(90deg, $accent-tow-color, $primary-color);
-    @include translateY(-2px);
-  }
-
-  &:active {
-    @include translateY(1px);
+  @include modalButton {
+    &:active {
+      @include translateY(1px);
+    }
   }
 }
 
@@ -199,33 +185,13 @@
 }
 
 .modal {
-  background-color: $card-color;
-  @include radius(12px);
-  width: 90%;
-  max-width: 70%;
-  max-height: 90vh;
-  overflow-y: auto;
-  z-index: 1001;
-  position: fixed;
-  top: 11%;
-  left: 25%;
-  @include translate(-50%, -50%);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba($light-color, 0.3);
 
-  &::-webkit-scrollbar {
-    width: 8px;
+  @include modal(90%, 70%, 90vh) {
+    left: 20%;
+    top: 5%;
   }
 
-  &::-webkit-scrollbar-track {
-    background: rgba($light-color, 0.1);
-    @include radius(10px);
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: $light-color;
-    @include radius(10px);
-  }
+  @include scrollbar($light-color, $light-color);
 }
 
 .modalHeader {
@@ -250,38 +216,7 @@
 }
 
 .formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  label {
-    font-weight: 500;
-    color: $light-color;
-    font-size: 1.1rem;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 0.8rem;
-    border-radius: 6px;
-    border: 1px solid rgba($primary-color, 0.3);
-    background-color: rgba($card-color, 0.8);
-    color: $nature-light-color;
-    font-size: 1.3rem;
-    @include transition(0.3s);
-
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
-    }
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
+  @include formGroup;
 }
 
 .formActions {
@@ -290,50 +225,15 @@
   gap: 1rem;
   margin-top: 1rem;
 
-  @media (width <= 480px) {
+  @media (width <=480px) {
     flex-direction: column;
   }
 }
 
 .submitButton {
-  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
-  color: $white-color;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  @include radius(50px);
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
-  @include transition(0.3s);
-
-  &:hover {
-    box-shadow: 0 8px 20px rgba($primary-color, 0.4);
-    @include translateY(-2px);
-  }
-
-  &:active {
-    @include translateY(1px);
-  }
+  @include modalButton;
 }
 
 .cancelButton {
-  background: transparent;
-  color: $nature-light-color;
-  border: 1px solid rgba($primary-color, 0.5);
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  @include radius(50px);
-  cursor: pointer;
-  @include transition(0.3s);
-
-  &:hover {
-    background-color: rgba($primary-color, 0.1);
-    @include translateY(-2px);
-  }
-
-  &:active {
-    @include translateY(1px);
-  }
+  @include cancelModalButton;
 }

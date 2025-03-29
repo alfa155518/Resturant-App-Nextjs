@@ -10,11 +10,7 @@
 
 // Hero Section
 .hero {
-
   text-align: center;
-
-  text-align: center;
-
   padding: 10rem 0;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../public/images/hero.webp');
   background-size: cover;
@@ -215,9 +211,7 @@
 .menuItems {
   @include gridItems(250px) {
     gap: 2rem;
-  }
-
-  ;
+  };
 
   @media (width <=372px) {
     @include gridItems(200px);
@@ -248,9 +242,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to bottom,
-        rgba($primary-color, 0.98),
-        rgba($primary-color, 1));
+    @include dark-card;
   }
 
   .itemHeader {
@@ -441,23 +433,7 @@
     flex-direction: row;
   }
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: $light-color;
-    border-radius: 10px;
-
-    &:hover {
-      background: $primary-color;
-    }
-  }
+  @include scrollbar($light-color, $primary-color);
 }
 
 .closeButton {
