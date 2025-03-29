@@ -115,7 +115,7 @@
   -o-transition: all 0.3s ease-in-out;
   z-index: 2;
 }
-.serviceContent h3 {
+.serviceContent h2 {
   color: #ff7e5f;
   font-size: 2rem;
   margin-bottom: 0.5rem;

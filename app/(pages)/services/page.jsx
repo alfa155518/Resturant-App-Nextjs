@@ -140,7 +140,7 @@ export default function Services() {
               {service.icon}
             </div>
             <div className={styles.serviceContent}>
-              <h3>{service.title}</h3>
+              <h2>{service.title}</h2>
               <p>{service.description}</p>
             </div>
             <motion.div 
