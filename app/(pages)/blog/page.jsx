@@ -245,7 +245,7 @@ export default function Blog() {
                         </span>
                       ))}
                     </div>
-                    <Link href={`/blog/${post.id}`} className={styles.readMoreLink}>
+                    <Link href={`/blog/${post.id}`} className={styles.readMoreLink} aria-label={`Read more about ${post.title}`}>
                       Read More
                     </Link>
                   </div>

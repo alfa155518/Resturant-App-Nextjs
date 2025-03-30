@@ -263,8 +263,8 @@
 
 .readMoreLink {
   align-self: flex-start;
-  color: #9f643c;
-  font-weight: 600;
+  color: #1a8fe3;
+  font-weight: 700;
   position: relative;
   padding-bottom: 2px;
 }
@@ -275,7 +275,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #9f643c;
+  background-color: #1a8fe3;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -284,6 +284,9 @@
 }
 .readMoreLink:hover:after {
   width: 100%;
+}
+.readMoreLink:hover {
+  color: #3ba9ff;
 }
 
 .loadMoreContainer {
