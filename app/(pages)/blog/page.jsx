@@ -246,7 +246,7 @@ export default function Blog() {
                       ))}
                     </div>
                     <Link href={`/blog/${post.id}`} className={styles.readMoreLink} aria-label={`Read more about ${post.title}`}>
-                      Read More
+                      Read More about "{post.title.substring(0, 25)}{post.title.length > 25 ? '...' : ''}"
                     </Link>
                   </div>
                 </motion.article>
