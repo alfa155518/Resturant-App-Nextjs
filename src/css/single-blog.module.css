@@ -330,7 +330,7 @@
   gap: 0.3rem;
   padding: 0.3rem 0.8rem;
   background-color: #3c829f;
-  color: #f5f0e9;
+  color: #FFFFFF;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -535,8 +535,9 @@
 }
 .commentsSection h3 {
   font-size: 1.4rem;
-  color: #3c829f;
+  color: #FFFFFF;
   margin-bottom: 1.5rem;
+  font-weight: 600;
   position: relative;
 }
 .commentsSection h3:after {
@@ -574,7 +575,7 @@
 }
 .commentItem .commentHeader span {
   font-size: 1.1rem;
-  color: #f5f0e9;
+  color: #FFFFFF;
 }
 @media (width <= 480px) {
   .commentItem .commentHeader {
@@ -584,7 +585,7 @@
   }
 }
 .commentItem p {
-  color: #f5f0e9;
+  color: #FFFFFF;
   line-height: 1.6;
 }
 
