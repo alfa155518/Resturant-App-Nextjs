@@ -1,0 +1,706 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+
+.singleBlogContainer {
+  min-height: 100vh;
+  background:$card-color ;
+  color: $nature-light-color;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (width <= 768px) {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.loadingContainer {
+  min-height: 60vh;
+  @include flex-center;
+  flex-direction: column;
+  gap: 1rem;
+  background-color:$card-color;
+  color: $white-color;
+  
+  .loadingSpinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid $light-color;
+    @include radius(50%);
+    border-top-color: $primary-color;
+  }
+}
+
+.backButton {
+  margin-bottom: 2rem;
+  
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $nature-light-color;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    @include transition(0.3s);
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.blogHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: $light-color;
+    line-height: 1.3;
+    
+    @media (width <= 768px) {
+      font-size: 2rem;
+    }
+  }
+}
+
+.blogMeta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: $nature-light-color;
+  
+  span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+.featuredImage {
+  margin-bottom: 2.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  
+  .mainImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.blogContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.contentWrapper {
+  background-color: $card-color;
+  padding: 2.5rem;
+  @include radius(12px);
+  @include card-shadow;
+  
+  @media (width <= 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.blogText {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: rgba($nature-light-color, 0.9);
+  
+  h2 {
+    font-size: 1.8rem;
+    color: $white-color;
+    margin: 2rem 0 1rem;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+    color: $white-color;
+    margin: 1.5rem 0 1rem;
+  }
+  
+  p {
+    margin-bottom: 1.5rem;
+  }
+  
+  ul, ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  strong {
+    color: $white-color;
+  }
+  
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    border-bottom: 1px dotted $primary-color;
+    transition: border-bottom 0.3s ease;
+    
+    &:hover {
+      border-bottom: 1px solid $primary-color;
+    }
+  }
+  
+  blockquote {
+    border-left: 4px solid $primary-color;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: rgba($nature-light-color, 0.8);
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    @include radius(8px);
+    margin: 1.5rem 0;
+  }
+  
+  @media (width <= 768px) {
+    font-size: 1rem;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.imageGallery {
+  margin: 2.5rem 0;
+  
+  h3 {
+    font-size: 2rem;
+    color: $light-color;
+    margin-bottom: 1rem;
+  }
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  
+  @media (width <= 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (width <= 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.galleryItem {
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  @include transition(0.3s);
+  
+  &.active {
+    border-color: $light-color;
+  }
+  
+  .galleryImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.galleryLightbox {
+  background-color: rgba($nature-dark-color, 0.9);
+  @include radius(12px);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  
+  .lightboxImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 70vh;
+    @include radius(8px);
+  }
+}
+
+.galleryNavigation {
+  @include flex-between;
+  margin-top: 1rem;
+  
+  button {
+    background: none;
+    border: none;
+    color: $white-color;
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem;
+    @include radius(50%);
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+    background-color: rgba($primary-color, 0.2);
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.4);
+    }
+  }
+  
+  span {
+    color: $nature-light-color;
+    font-size: 1.2rem;
+  }
+}
+
+.tagShare {
+  @include flex-between;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba($nature-light-color, 0.1);
+  
+  @media (width <= 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.8rem;
+    background-color: $secondary-color;
+    color: $nature-light-color;
+    @include radius(4px);
+    font-size: 0.9rem;
+    @include transition(0.3s);
+    font-size: 1.1rem;
+    &:hover 
+    {
+      background-color: rgba($primary-color, 0.2);
+    }
+  }
+}
+
+.shareContainer {
+  position: relative;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba($secondary-color, 0.1);
+  color: $nature-light-color;
+  border: none;
+  padding: 0.5rem 1rem;
+  @include radius(50px);
+  cursor: pointer;
+  @include transition(0.3s);
+  
+  &:hover {
+    background-color: rgba($secondary-color, 0.5);
+  }
+}
+
+.shareOptions {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.5rem;
+  background-color: $card-color;
+  @include radius(8px);
+  padding: 0.8rem;
+  display: flex;
+  gap: 0.8rem;
+  box-shadow: 0 5px 20px $light-dark-color;
+  z-index: 10;
+  button {
+    width: 36px;
+    height: 36px;
+    @include radius(50%);
+    @include flex-center;
+    border: none;
+    color: $white-color;
+    cursor: pointer;
+    @include transition(0.3s);
+    
+    &:nth-child(1) {
+      background-color: #3b5998;
+    }
+    
+    &:nth-child(2) {
+      background-color: #1da1f2;
+    }
+    
+    &:nth-child(3) {
+      background-color: #0077b5;
+    }
+    
+    &:nth-child(4) {
+      background-color: #e60023;
+    }
+    
+    &:hover {
+      @include translateY(-3px);
+    }
+  }
+}
+
+.authorBox {
+  background-color: $card-color;
+  padding: 2rem;
+  @include radius(12px);
+  @include card-shadow;
+  
+  h3 {
+    color: $light-color;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    }
+  }
+}
+
+.authorContent {
+  display: flex;
+  gap: 1.5rem;
+  
+  @media (width <= 480px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    h3:after {
+      left: 50%;
+      @include translateX(-50%);
+    }
+  }
+}
+
+.authorImage {
+  flex-shrink: 0;
+  
+  img {
+    width: 100px;
+    height: auto;
+    @include radius(50%);
+    object-fit: cover;
+    border: 3px solid $primary-color;
+  }
+}
+
+.authorInfo {
+  h4 {
+    font-size: 1.3rem;
+    color: $light-color;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: $nature-light-color;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+.commentsSection {
+  background-color: $card-color;
+  @include radius(12px);
+  padding: 2rem;
+  @include card-shadow;
+  
+  h3 {
+    font-size: 1.4rem;
+    color: $secondary-color;
+    margin-bottom: 1.5rem;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    }
+  }
+}
+
+.commentsList {
+  margin-bottom: 2.5rem;
+}
+
+.commentItem {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: rgba($secondary-color, 0.3);
+  margin-bottom: 1rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  .commentHeader {
+    @include flex-between;
+    margin-bottom: 0.8rem;
+    
+    h4 {
+      font-size: 1.5rem;
+      color: $white-color;
+    }
+    
+    span {
+      font-size: 1.1rem;
+      color: $nature-light-color;
+    }
+    
+    @media (width <= 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+    }
+  }
+  
+  p {
+    color: $nature-light-color;
+    line-height: 1.6;
+  }
+}
+
+.commentForm {
+  h5 {
+    font-size: 1.5rem;
+    color: $white-color;
+    margin-bottom: 1.2rem;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  
+  @media (width <= 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  label {
+    font-size: 1.2rem;
+    color: $white-color;
+  }
+  
+  input, textarea {
+    padding: 0.8rem;
+    @include radius(8px);
+    border: 1px solid rgba($primary-color, 0.3);
+    background-color: rgba($nature-dark-color, 0.3);
+    color: $nature-light-color;
+    font-size: 1rem;
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.submitButton {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+  color: $white-color;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  @include radius(50px);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(0.3s);
+  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+  
+  &:hover {
+    box-shadow: 0 6px 20px rgba($primary-color, 0.5);
+  }
+}
+
+.relatedPosts {
+  margin-top: 3rem;
+  
+  h2 {
+    font-size: 1.8rem;
+    color: $white-color;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    }
+  }
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.relatedCard {
+  background-color: $card-color;
+  border-radius: 12px;
+  overflow: hidden;
+  @include card-shadow;
+  transition: transform 0.3s ease;
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.relatedImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  
+  .relatedImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    
+    .relatedCard:hover & {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.relatedInfo {
+  padding: 1.2rem;
+  
+  .relatedCategory {
+    display: inline-block;
+    background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    color: $white-color;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+    color: $white-color;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .relatedMeta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: $nature-light-color;
+    
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .relatedPosts {
+    h2 {
+      font-size: 1.5rem;
+      display: block;
+      text-align: center;
+      
+      &:after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

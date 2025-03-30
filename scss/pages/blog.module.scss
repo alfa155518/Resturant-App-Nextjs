@@ -1,0 +1,438 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.blogContainer {
+  min-height: 100vh;
+  color: $nature-light-color;
+  padding: 4rem 2rem;
+  
+  @media (width <= 768px) {
+    padding: 2rem 1rem;
+  }
+}
+
+.blogHeader {
+  @include sectionHeader;
+}
+
+.blogContent {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (width <= 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.searchBar {
+  position: relative;
+  margin-bottom: 1rem;
+  
+  input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    @include radius(50px);
+    border: none;
+    background-color: rgba($card-color, 0.8);
+    color: $nature-light-color;
+    font-size: 1.2rem;
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.5);
+    }
+    
+    &::placeholder {
+      color: rgba($nature-light-color, 0.6);
+    }
+  }
+  
+  .searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    @include translateY(-50%);
+    color: $primary-color;
+    font-size: 1.2rem;
+  }
+}
+
+.categoryFilter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  
+  .categoryButton {
+    padding: 0.5rem 1rem;
+    @include radius(50px);
+    border: 1px solid rgba($primary-color, 0.3);
+    background-color: transparent;
+    color: $nature-light-color;
+    cursor: pointer;
+    @include transition(0.3s);
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.1);
+    }
+    
+    &.active {
+      background-color: $primary-color;
+      color: $white-color;
+      border-color: $primary-color;
+    }
+  }
+}
+
+.blogGrid {
+  @include gridItems(300px) {
+    gap: 2rem;
+  }
+  @media (width <= 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blogCard {
+  background-color: $card-color;
+  @include radius(12px);
+  overflow: hidden;
+  @include card-shadow;
+  border: 1px solid rgba($primary-color, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.blogImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.blogImage {
+  object-fit: cover;
+  @include transition(0.3s);
+  
+  .blogCard:hover & {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+}
+
+.blogCategory {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  
+  span {
+    background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    color: $white-color;
+    padding: 0.3rem 0.8rem;
+    @include radius(50px);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+.blogInfo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  
+  h2 {
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    color: $light-color;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.4;
+  }
+  
+  p {
+    color: $nature-light-color;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+}
+
+.blogMeta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: rgba($nature-light-color, 0.6);
+  margin-bottom: 0.5rem;
+  
+  span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1.1rem;
+  }
+}
+
+.blogTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  
+  .tag {
+    font-size: 1.1rem;
+    padding: 0.2rem 0.5rem;
+    @include radius(50px);
+    background-color: rgba($primary-color, 0.1);
+    color: rgba($nature-light-color, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+}
+
+.readMoreLink {
+  align-self: flex-start;
+  color: $primary-color;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 2px;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $primary-color;
+    @include transition(0.3s);
+  }
+  
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+.loadMoreContainer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.loadMoreButton {
+  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+  color: $white-color;
+  border: none;
+  padding: 0.8rem 2rem;
+  @include radius(50px);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(0.3s);
+  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+  
+  &:hover {
+    box-shadow: 0 6px 20px rgba($primary-color, 0.5);
+  }
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background-color: rgba($card-color, 0.5);
+  border-radius: 12px;
+  
+  h3 {
+    color: $light-color;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: $nature-light-color;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+.sidebar {
+  @media (width <= 1024px) {
+    @include gridItems(300px) {
+      gap: 2rem;
+    }
+  }
+}
+
+.sidebarSection {
+  background-color: $card-color;
+  @include radius(12px);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba($primary-color, 0.1);
+  
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    color: $white-color;
+    position: relative;
+    padding-bottom: 0.5rem;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    }
+  }
+}
+
+.popularPosts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.popularPost {
+  display: flex;
+  gap: 1rem;
+  
+  .popularPostImage {
+    flex-shrink: 0;
+    
+    img {
+      @include radius(8px);
+    }
+  }
+  
+  .popularPostInfo {
+    h4 {
+      font-size: 1.3rem;
+      margin: 0 0 0.3rem;
+      color: $white-color;
+      line-height: 1.4;
+    }
+    
+    span {
+      font-size: 1.1rem;
+      color: rgba($nature-light-color,0.8);
+    }
+  }
+}
+
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  li {
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-bottom: 1px solid rgba($light-color, 0.1);
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0.8rem 0;
+      background: transparent;
+      border: none;
+      color: $nature-light-color;
+      text-align: left;
+      cursor: pointer;
+      @include transition(0.3s);
+      
+      &:hover {
+        color: $primary-color;
+      }
+      
+      span {
+        background-color: rgba($primary-color, 0.1);
+        color: $primary-color;
+        padding: 0.2rem 0.5rem;
+        @include radius(50px);
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+  input {
+    color: $nature-light-color;
+    font-size: 1.2rem;
+    padding: 0.8rem 1rem;
+    @include radius(8px);
+    border: 1px solid rgba($primary-color, 0.3);
+    background-color: rgba($card-color, 0.5);
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+  
+  button {
+    background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+    color: $white-color;
+    border: none;
+    padding: 0.8rem;
+    @include radius(8px);
+    font-weight: 600;
+    cursor: pointer;
+    @include transition(0.3s);
+    
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+@media (width <= 480px) {
+  .blogHeader {
+    h1 {
+      font-size: 2.2rem;
+    }
+  }
+  
+  .blogMeta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

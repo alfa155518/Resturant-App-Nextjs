@@ -36,8 +36,8 @@ export default function NavBar() {
     { name: "Tables", path: "/tables" },
     { name: "Team", path: "/team" },
     { name: "Services", path: "/services" },
-    { name: "Blog", path: "/" },
-    { name: "Contact", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/c" },
   ];
 
   const toggleMenu = () => {
