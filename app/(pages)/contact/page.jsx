@@ -14,7 +14,7 @@ export default function Contact() {
     subject: '',
     message: ''
   });
-  
+
   const [formStatus, setFormStatus] = useState({
     submitted: false,
     success: false,
@@ -37,7 +37,7 @@ export default function Contact() {
       success: true,
       message: 'Thank you for your message! We will get back to you soon.'
     });
-    
+
     // Reset form after successful submission
     setTimeout(() => {
       setFormData({
@@ -80,15 +80,15 @@ export default function Contact() {
 
   return (
     <div className={styles.contactContainer}>
-  <motion.div 
+      <motion.div
         className={styles.contactHeader}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <div className={styles.headerImageContainer}>
-          <Image 
-            src="/images/contact-us.webp" 
+          <Image
+            src="/images/contact-us.webp"
             alt="Contact Us"
             priority
             fill
@@ -102,7 +102,7 @@ export default function Contact() {
       </motion.div>
 
       <div className={styles.contactContent}>
-        <motion.div 
+        <motion.div
           className={styles.contactFormSection}
           variants={containerVariants}
           initial="hidden"
@@ -114,25 +114,25 @@ export default function Contact() {
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label htmlFor="name">Your Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    required 
+                    required
                     autoComplete="name"
                   />
                 </div>
                 <div className={styles.formGroup}>
                   <label htmlFor="email">Email Address</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    required 
+                    required
                     autoComplete="email"
                   />
                 </div>
@@ -140,10 +140,10 @@ export default function Contact() {
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label htmlFor="phone">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
                     value={formData.phone}
                     onChange={handleChange}
                     autoComplete="tel"
@@ -151,10 +151,10 @@ export default function Contact() {
                 </div>
                 <div className={styles.formGroup}>
                   <label htmlFor="subject">Subject</label>
-                  <input 
-                    type="text" 
-                    id="subject" 
-                    name="subject" 
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
                     value={formData.subject}
                     onChange={handleChange}
                     required
@@ -163,26 +163,26 @@ export default function Contact() {
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="message">Your Message</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  rows="6" 
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
                   value={formData.message}
                   onChange={handleChange}
                   required
                 ></textarea>
               </div>
-              <motion.button 
-                type="submit" 
+              <motion.button
+                type="submit"
                 className={styles.submitButton}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Send Message
               </motion.button>
-              
+
               {formStatus.submitted && (
-                <motion.div 
+                <motion.div
                   className={`${styles.formMessage} ${formStatus.success ? styles.success : styles.error}`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -195,31 +195,31 @@ export default function Contact() {
           </motion.div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className={styles.contactInfoSection}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-        <motion.div className={styles.infoCard} variants={itemVariants}>
-        <div className={styles.infoIcon}>
-          <FaMapMarkerAlt />
-        </div>
-        <div className={styles.infoContent}>
-          <h3>Our Location</h3>
-          <p>123 Gourmet Street, Culinary District</p>
-          <p>Foodville, FC 12345</p>
-          <div className={styles.locationImageContainer}>
-            <Image 
-              src="/images/restaurant-exterio.webp" 
-              alt="Restaurant Exterior" 
-              width={280} 
-              height={160} 
-              className={styles.locationImage}
-            />
-          </div>
-        </div>
-      </motion.div>
+          <motion.div className={styles.infoCard} variants={itemVariants}>
+            <div className={styles.infoIcon}>
+              <FaMapMarkerAlt />
+            </div>
+            <div className={styles.infoContent}>
+              <h3>Our Location</h3>
+              <p>123 Gourmet Street, Culinary District</p>
+              <p>Foodville, FC 12345</p>
+              <div className={styles.locationImageContainer}>
+                <Image
+                  src="/images/restaurant-exterio.webp"
+                  alt="Restaurant Exterior"
+                  width={280}
+                  height={160}
+                  className={styles.locationImage}
+                />
+              </div>
+            </div>
+          </motion.div>
 
           <motion.div className={styles.infoCard} variants={itemVariants}>
             <div className={styles.infoIcon}>
@@ -257,35 +257,39 @@ export default function Contact() {
           <motion.div className={styles.socialLinks} variants={itemVariants}>
             <h3>Connect With Us</h3>
             <div className={styles.socialIcons}>
-              <motion.a 
-                href="https://facebook.com" 
-                target="_blank" 
+              <motion.a
+                href="https://facebook.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -5, color: '#3b5998' }}
+                aria-label="Visit our Facebook page"
               >
                 <FaFacebookF />
               </motion.a>
-              <motion.a 
-                href="https://twitter.com" 
-                target="_blank" 
+              <motion.a
+                href="https://twitter.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -5, color: '#1da1f2' }}
+                aria-label="Visit our Twitter profile"
               >
                 <FaTwitter />
               </motion.a>
-              <motion.a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <motion.a
+                href="https://instagram.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -5, color: '#e1306c' }}
+                aria-label="Visit our Instagram page"
               >
                 <FaInstagram />
               </motion.a>
-              <motion.a 
-                href="https://linkedin.com" 
-                target="_blank" 
+              <motion.a
+                href="https://linkedin.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -5, color: '#0077b5' }}
+                aria-label="Visit our LinkedIn profile"
               >
                 <FaLinkedinIn />
               </motion.a>
@@ -294,7 +298,7 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      <motion.div 
+      <motion.div
         className={styles.mapSection}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -302,30 +306,30 @@ export default function Contact() {
       >
         <h2>Find Us on the Map</h2>
         <div className={styles.mapContainer}>
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55611.045857631936!2d31.217264623773602!3d30.059556316911856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sEl%20Cairo%2C%20Gobernaci%C3%B3n%20de%20El%20Cairo!5e1!3m2!1ses!2seg!4v1743378852726!5m2!1ses!2seg" 
-            width="100%" 
-            height="450" 
-            style={{ border: 0 }} 
-            allowFullScreen="" 
-            loading="lazy" 
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55611.045857631936!2d31.217264623773602!3d30.059556316911856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sEl%20Cairo%2C%20Gobernaci%C3%B3n%20de%20El%20Cairo!5e1!3m2!1ses!2seg!4v1743378852726!5m2!1ses!2seg"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Restaurant Location"
           ></iframe>
         </div>
       </motion.div>
 
-   
-      <motion.div 
+
+      <motion.div
         className={styles.ctaSection}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
         <div className={styles.ctaImageContainer}>
-          <Image 
-            src="/images/dining-experience.webp" 
-            alt="Dining Experience" 
+          <Image
+            src="/images/dining-experience.webp"
+            alt="Dining Experience"
             fill
             className={styles.ctaImage}
           />
@@ -334,14 +338,14 @@ export default function Contact() {
           <h2>Ready to Experience Our Cuisine?</h2>
           <p>Make a reservation today and enjoy a memorable dining experience.</p>
           <Link href={"/tables"}>
-          <motion.button 
-            className={styles.ctaButton}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            <motion.button
+              className={styles.ctaButton}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-            Book a Table
-          </motion.button>
-            </Link>
+              Book a Table
+            </motion.button>
+          </Link>
         </div>
       </motion.div>
     </div>
