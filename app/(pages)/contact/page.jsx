@@ -92,7 +92,6 @@ export default function Contact() {
             alt="Contact Us"
             priority
             fill
-            style={{ objectFit: 'cover' }}
             className={styles.headerImage}
           />
         </div>
