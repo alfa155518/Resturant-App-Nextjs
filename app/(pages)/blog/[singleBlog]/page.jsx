@@ -1,27 +1,12 @@
 "use client";
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../../../src/css/single-blog.module.css';
 import { FaCalendarAlt, FaUser, FaTag, FaArrowLeft, FaShare, FaFacebookF, FaTwitter, FaLinkedinIn, FaPinterestP, FaComment } from 'react-icons/fa';
 
-// Optimize data fetching
-const fetchBlogPost = (id, blogPosts) => {
-  const currentPostId = parseInt(id);
-  return blogPosts.find(post => post.id === currentPostId);
-};
-
-const fetchRelatedPosts = (currentPost, blogPosts) => {
-  if (!currentPost) return [];
-  
-  return blogPosts.filter(post => {
-    if (post.id === currentPost.id) return false;
-    return post.category === currentPost.category ||
-      post.tags.some(tag => currentPost.tags.includes(tag));
-  }).slice(0, 3);
-};
 export default function SingleBlog() {
   const params = useParams();
   const [blogPost, setBlogPost] = useState(null);
@@ -329,29 +314,24 @@ export default function SingleBlog() {
 
   useEffect(() => {
     // Find the current blog post based on the URL parameter
-    // const currentPostId = parseInt(params.singleBlog);
-    // const currentPost = blogPosts.find(post => post.id === currentPostId);
+    const currentPostId = parseInt(params.singleBlog);
+    const currentPost = blogPosts.find(post => post.id === currentPostId);
 
-    // if (currentPost) {
-    //   setBlogPost(currentPost);
-
-    //   // Find related posts (same category or shared tags)
-    //   const related = blogPosts.filter(post => {
-    //     if (post.id === currentPostId) return false; // Exclude current post
-
-    //     // Include posts with same category or at least one shared tag
-    //     return post.category === currentPost.category ||
-    //       post.tags.some(tag => currentPost.tags.includes(tag));
-    //   }).slice(0, 3); // Limit to 3 related posts
-
-    //   setRelatedPosts(related);
-    // }
-    const currentPost = fetchBlogPost(params.singleBlog, blogPosts);
-  
     if (currentPost) {
       setBlogPost(currentPost);
-      setRelatedPosts(fetchRelatedPosts(currentPost, blogPosts));
+
+      // Find related posts (same category or shared tags)
+      const related = blogPosts.filter(post => {
+        if (post.id === currentPostId) return false; // Exclude current post
+
+        // Include posts with same category or at least one shared tag
+        return post.category === currentPost.category ||
+          post.tags.some(tag => currentPost.tags.includes(tag));
+      }).slice(0, 3); // Limit to 3 related posts
+
+      setRelatedPosts(related);
     }
+
     // Simulate loading delay
     setTimeout(() => {
       setIsLoaded(true);
@@ -621,7 +601,7 @@ export default function SingleBlog() {
                       width={350}
                       height={200}
                       className={styles.relatedImage}
-
+                    priority
                     />
                   </div>
                   <div className={styles.relatedInfo}>

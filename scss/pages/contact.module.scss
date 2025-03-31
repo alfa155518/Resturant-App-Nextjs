@@ -1,0 +1,481 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+@mixin transition($duration: 0.3s) {
+  transition: all $duration ease;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+// Contact Container
+.contactContainer {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $card-color;
+  color: $nature-light-color;
+  padding: 2rem 0;
+
+  @media (width <=768px) {
+    padding: 1rem 0;
+  }
+}
+
+// Header Section
+.contactHeader {
+  position: relative;
+  text-align: center;
+  padding: 6rem 1rem;
+  margin-bottom: 4rem;
+  overflow: hidden;
+
+  .headerImageContainer {
+    // padding: 5rem 0;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(#1f1f1f, 0.8);
+    }
+
+    .headerImage {
+      object-fit: cover;
+    }
+  }
+
+  .headerContent {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      color: $light-color;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+      @media (width <=768px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: $nature-light-color;
+
+      @media (width <=768px) {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+// Contact Content Grid
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+
+  @media (width <=992px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+// Form Section
+.contactFormSection {
+  @include dark-card {
+    border: 1px solid rgba($primary-color, 0.2);
+  }
+}
+
+.formContainer {
+  padding: 2.5rem;
+
+  @media (width <=768px) {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+    color: $light-color;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, $primary-color, $accent-tow-color);
+    }
+  }
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (width <=768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.formGroup {
+  margin-bottom: 1.8rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-weight: 500;
+    color: $nature-light-color;
+    font-size: 1.2rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba($nature-light-color, 0.2);
+    @include radius(8px);
+    background-color: rgba($nature-dark-color, 0.3);
+    color: $white-color;
+    font-size: 1.3rem;
+    @include transition(0.3s);
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+    }
+
+    &::placeholder {
+      color: rgba($nature-light-color, 0.5);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+}
+
+.submitButton {
+  @include modalButton {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+}
+
+.formMessage {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+
+  &.success {
+    background-color: rgba(#4caf50, 0.1);
+    color: #4caf50;
+    border: 1px solid rgba(#4caf50, 0.3);
+  }
+
+  &.error {
+    background-color: rgba(#f44336, 0.1);
+    color: #f44336;
+    border: 1px solid rgba(#f44336, 0.3);
+  }
+}
+
+// Contact Info Section
+.contactInfoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.infoCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.8rem;
+  background-color: $card-color;
+  @include radius(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  ;
+  @include transition(0.3s);
+  border: 1px solid rgba($primary-color, 0.2);
+
+  &:hover {
+    @include translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba($primary-color, 0.4);
+  }
+
+  .infoIcon {
+    width: 55px;
+    height: 55px;
+    @include radius(50%);
+    background: linear-gradient(135deg, $primary-color, $accent-tow-color);
+    @include flex-center;
+    font-size: 1.8rem;
+    color: $white-color;
+    flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba($primary-color, 0.3);
+  }
+
+  .infoContent {
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: $light-color;
+    }
+
+    p {
+      color: $nature-light-color;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+.locationImageContainer {
+  margin-top: 1.2rem;
+  // border-radius: 8px;
+  @include radius(12px);
+  overflow: hidden;
+
+  .locationImage {
+    width: 100%;
+    height: auto;
+    @include transition(0.5s);
+
+    &:hover {
+      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      -o-transform: scale(1.05);
+    }
+  }
+}
+
+.socialLinks {
+  padding: 1.8rem;
+  background-color: $card-color;
+  @include radius(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);;
+  border: 1px solid rgba($primary-color, 0.2);
+
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+    color: $light-color;
+    position: relative;
+    padding-bottom: 0.8rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, $primary-color, $accent-tow-color);
+    }
+  }
+
+  .socialIcons {
+    display: flex;
+    gap: 1.2rem;
+
+    a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: rgba($nature-dark-color, 0.3);
+      @include flex-center;
+      color: $nature-light-color;
+      font-size: 1.3rem;
+      @include transition;
+
+      &:hover {
+        @include translateY(-5px);
+      }
+
+      &:nth-child(1):hover {
+        background-color: #3b5998;
+        color: $white-color !important;
+      }
+
+      &:nth-child(2):hover {
+        background-color: #1da1f2;
+        color: $white-color !important;
+      }
+
+      &:nth-child(3):hover {
+        background-color: #e1306c;
+        color: $white-color !important;
+      }
+
+      &:nth-child(4):hover {
+        background-color: #0077b5;
+        color: $white-color !important;
+      }
+    }
+  }
+}
+
+// Map Section
+.mapSection {
+  max-width: 1200px;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
+
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: $light-color;
+    position: relative;
+    padding-bottom: 1rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      @include translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, $primary-color, $accent-tow-color);
+    }
+  }
+
+  .mapContainer {
+    @include radius(12px);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);;
+    border: 5px solid $card-color;
+  }
+}
+
+// CTA Section
+.ctaSection {
+  position: relative;
+  padding: 5rem 2rem;
+  overflow: hidden;
+  margin: 0 auto 3rem;
+  max-width: 1200px;
+  border-radius: 12px;
+
+  .ctaImageContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba($nature-dark-color, 0.7), rgba($card-color, 0.9));
+    }
+
+    .ctaImage {
+      object-fit: cover;
+    }
+  }
+
+  .ctaContent {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: $white-color;
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      color: $light-color;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+      @media (width <= 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: $nature-light-color;
+
+      @media (width <= 768px) {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .ctaButton {
+    @include modalButton {
+      font-size: 1.2rem;
+      padding: 1.2rem 3rem;
+      margin-top: 1rem;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (width <= 480px) {
+  .contactHeader .headerContent h1 {
+    font-size: 2rem;
+  }
+
+  .formContainer {
+    padding: 1.2rem;
+  }
+
+  .infoCard {
+    padding: 1.2rem;
+  }
+
+  .ctaSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .ctaContent h2 {
+    font-size: 1.8rem;
+  }
+}

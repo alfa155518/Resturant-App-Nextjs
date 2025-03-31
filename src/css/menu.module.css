@@ -57,17 +57,17 @@
 .popularItem {
   background-color: #1f1f1f;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
   position: relative;
   cursor: pointer;
 }
@@ -238,17 +238,17 @@
 .menuItem {
   background-color: #1f1f1f;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   background-color: rgba(159, 100, 60, 0.95);
@@ -272,17 +272,17 @@
   flex-direction: column;
   background-color: #1f1f1f;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
 }
 .menuItem .itemHeader {
   display: flex;
@@ -399,17 +399,17 @@
 .specialCard {
   background-color: #1f1f1f;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
   padding: 0.8rem;
   border-left: 4px solid #3c829f;
   position: relative;
@@ -734,17 +734,17 @@
 .chefProfile {
   background-color: #1f1f1f;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
   padding: 2rem;
   text-align: center;
 }
@@ -802,17 +802,17 @@
 .weeklySpecial {
   background-color: #1f1f1f;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
   padding: 2rem;
 }
 .weeklySpecial h3 {

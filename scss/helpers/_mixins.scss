@@ -59,18 +59,10 @@
 // Dark card
 @mixin dark-card {
   background-color: $card-color;
-  border-radius: 12px;
+  @include radius(12px);
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
+  @include transition(0.3s);
   @content;
 }
 
@@ -99,6 +91,7 @@
     background-color: $primary-color;
     margin: 1rem auto 0;
   }
+
   @content;
 }
 
@@ -106,14 +99,14 @@
 @mixin sectionHeader {
   text-align: center;
   margin-bottom: 3rem;
-  
+
   h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: $light-color;
     position: relative;
     display: inline-block;
-    
+
     &:after {
       content: '';
       position: absolute;
@@ -125,7 +118,7 @@
       background: linear-gradient(90deg, $primary-color, $accent-tow-color);
     }
   }
-  
+
   p {
     font-size: 1.2rem;
     color: $nature-light-color;
@@ -138,7 +131,7 @@
 @mixin card-shadow {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   @include transition(0.3s);
-  
+
   &:hover {
     box-shadow: 0 15px 40px rgba($primary-color, 0.2);
   }
@@ -266,8 +259,8 @@
   &:hover {
     box-shadow: 0 6px 20px rgba($primary-color, 0.5);
   }
-  
-    &:active {
+
+  &:active {
     @include translateY(1px);
   }
 }
