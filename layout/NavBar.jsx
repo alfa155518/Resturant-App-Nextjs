@@ -111,7 +111,7 @@ export default function NavBar() {
           whileTap={{ scale: 0.9 }}
           className={styles.iconContainer}
         >
-          <Link href="/">
+          <Link href="/favorite">
             <strong className={styles.number}>0</strong>
             <FaRegHeart />
           </Link>
