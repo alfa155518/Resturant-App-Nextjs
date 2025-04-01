@@ -236,7 +236,7 @@
 .favoriteItem .favoriteDetails {
   padding: 1.5rem;
 }
-.favoriteItem .favoriteDetails h3 {
+.favoriteItem .favoriteDetails h2 {
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
   color: #ff7e5f;
@@ -314,7 +314,7 @@
   margin: 4rem auto 0;
   padding: 0 2rem;
 }
-.recommendedSection h2 {
+.recommendedSection h3 {
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #ff7e5f;
@@ -322,7 +322,7 @@
   position: relative;
   padding-bottom: 1rem;
 }
-.recommendedSection h2::after {
+.recommendedSection h3::after {
   content: "";
   position: absolute;
   bottom: 0;

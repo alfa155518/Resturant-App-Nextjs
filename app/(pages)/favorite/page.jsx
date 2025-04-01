@@ -185,6 +185,7 @@ export default function Favorites() {
                       onClick={() => handleRemoveFavorite(item.id)}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
+                      aria-label='Remove from Favorites'
                     >
                       <FaTrash />
                     </motion.button>
@@ -194,7 +195,7 @@ export default function Favorites() {
                   </div>
                   
                   <div className={styles.favoriteDetails}>
-                    <h3>{item.name}</h3>
+                    <h2>{item.name}</h2>
                     <p className={styles.favoriteDescription}>{item.description}</p>
                     
                     <div className={styles.ratingContainer}>
@@ -237,7 +238,7 @@ export default function Favorites() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <h2>You Might Also Like</h2>
+          <h3>You Might Also Like</h3>
           <div className={styles.recommendedItems}>
             {[1, 2, 3, 4].map(id => (
               <motion.div 
@@ -261,6 +262,7 @@ export default function Favorites() {
                     className={styles.recommendedFavoriteBtn}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    aria-label='Add to Favorites'
                   >
                     <FaHeart />
                   </motion.button>
@@ -268,6 +270,7 @@ export default function Favorites() {
                     className={styles.recommendedCartBtn}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    aria-label='Add to Cart'
                   >
                     <FaShoppingCart />
                   </motion.button>
