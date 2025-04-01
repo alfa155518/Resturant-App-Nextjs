@@ -198,6 +198,7 @@ export default function Cart() {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         disabled={item.quantity <= 1}
+                        aria-label='Decrease quantity'
                       >
                         <FaMinus />
                       </motion.button>
@@ -206,6 +207,7 @@ export default function Cart() {
                         onClick={() => handleQuantityChange(item.id, 1)}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        aria-label='Increase quantity'
                       >
                         <FaPlus />
                       </motion.button>
@@ -218,6 +220,7 @@ export default function Cart() {
                       onClick={() => handleRemoveItem(item.id)}
                       whileHover={{ scale: 1.1, color: '#f44336' }}
                       whileTap={{ scale: 0.9 }}
+                      aria-label='Remove item'
                     >
                       <FaTrash />
                     </motion.button>
