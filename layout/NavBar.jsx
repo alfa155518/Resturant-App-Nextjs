@@ -100,7 +100,7 @@ export default function NavBar() {
           whileTap={{ scale: 0.9 }}
           className={styles.iconContainer}
         >
-          <Link href="/">
+          <Link href="/cart">
             <strong className={styles.number}>0</strong>
             <BsCart4 />
           </Link>
