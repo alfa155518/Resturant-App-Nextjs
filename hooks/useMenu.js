@@ -1,5 +1,5 @@
 "use client"
-import { getMenu } from "@/actions/menu";
+// import { getMenu } from "@/actions/menu";
 import { useEffect, useState } from "react";
 
 export default function useMenu() {
@@ -9,6 +9,21 @@ export default function useMenu() {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
 
+
+  async function getMenu(pageNumber = 1) {
+    try {
+      const res = await fetch(`http://localhost:8000/api/v1/menu?page=${pageNumber}`, {
+        method: 'GET',
+        cache: 'no-store',
+        headers: { 'Accept': 'application/json' },
+      });
+      if (!res.ok) throw new Error(`Failed to fetch menu: ${res.status} - ${res.statusText}`);
+      return await res.json();
+    } catch (error) {
+      console.error('Error fetching menu:', error);
+      throw error;
+    }
+  }
 
   // get menu dishes
   useEffect(() => {
