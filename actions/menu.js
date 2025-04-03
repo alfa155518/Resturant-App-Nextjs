@@ -26,6 +26,6 @@ export async function getMenu(dishesNumber = 1) {
     return data;
   } catch (error) {
     console.error('Menu fetch error:', error);
-    return { data: { dishes: [] }, error: error.message };
+    return { data: { dishes: [] }, error: error };
   }
 }
