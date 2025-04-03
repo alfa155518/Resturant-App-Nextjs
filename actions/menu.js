@@ -1,4 +1,4 @@
-// "use server"
+"use server"
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 // menu Dishes
 export async function getMenu(pageNumber = 1) {
