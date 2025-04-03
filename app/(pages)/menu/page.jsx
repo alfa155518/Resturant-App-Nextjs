@@ -30,10 +30,12 @@ export default function Menu() {
     handleAddToCart,
     containerVariants,
     itemVariants] = useMenu();
-  console.log(menuDishes);
+
 
   // Add the same properties to the rest of your menu items
-  menuDishes?.data?.dishes.forEach(item => {
+  const processedDishes = menuDishes?.data?.dishes || [];
+  processedDishes
+  processedDishes?.data?.dishes.forEach(item => {
     if (!item.rating) item.rating = (4 + Math.random()).toFixed(1);
     if (!item.prepTime) item.prepTime = `${Math.floor(Math.random() * 20) + 10} min`;
     if (!item.calories) item.calories = Math.floor(Math.random() * 500) + 200;
