@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import NewsLetter from '@/components/NewsLetter';
 import MenuOffers from '@/components/MenuOffers';
@@ -33,24 +33,29 @@ export default function Menu() {
 
     console.log(menuDishes);
   // Add the same properties to the rest of your menu items
-  const processedDishes = menuDishes?.data?.dishes || [];
-  processedDishes
-  processedDishes?.data?.dishes.forEach(item => {
-    if (!item.rating) item.rating = (4 + Math.random()).toFixed(1);
-    if (!item.prepTime) item.prepTime = `${Math.floor(Math.random() * 20) + 10} min`;
-    if (!item.calories) item.calories = Math.floor(Math.random() * 500) + 200;
-    if (!item.dietary) item.dietary = [];
-    if (!item.ingredients) item.ingredients = [];
-  });
+ // Process menu items safely
+ const dishes = menuDishes?.data?.dishes || [];
+  
+ // Process dish properties
+ useEffect(() => {
+   if (dishes.length > 0) {
+     dishes.forEach(item => {
+       if (!item.rating) item.rating = (4 + Math.random()).toFixed(1);
+       if (!item.prepTime) item.prepTime = `${Math.floor(Math.random() * 20) + 10} min`;
+       if (!item.calories) item.calories = Math.floor(Math.random() * 500) + 200;
+       if (!item.dietary) item.dietary = [];
+       if (!item.ingredients) item.ingredients = [];
+     });
+   }
+ }, [dishes]);
 
-  // Filtered Dishes
+  // Filtered Dishes with safe fallback
   const filteredItems = selectedCategory === 'all'
-    ? menuDishes?.data?.dishes
-    : menuDishes?.data?.dishes.filter(item => item.category === selectedCategory);
+    ? dishes
+    : dishes.filter(item => item.category === selectedCategory);
 
-    // Popular Dishes Data
-  const popularItems = menuDishes?.data?.dishes.filter(item => item.popular);
-
+  // Popular Dishes Data with safe fallback
+  const popularItems = dishes.filter(item => item.popular);
   return (
     <section className={styles.menuPage}>
 
