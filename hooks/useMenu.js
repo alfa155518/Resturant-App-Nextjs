@@ -1,3 +1,4 @@
+"use client"
 import { getMenu } from "@/actions/menu";
 import { useEffect, useState } from "react";
 
