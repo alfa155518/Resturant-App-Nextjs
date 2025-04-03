@@ -1,127 +1,77 @@
-import * as React from "react"
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from "lucide-react"
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button";
-
-function Pagination({
-  className,
-  ...props
+import { motion } from 'framer-motion';
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+export default function Pagination({
+  styles,
+  pageNumber,
+  setPageNumber,
+  menuDishes,
 }) {
+
+  const paginate = (pageNumber) => setPageNumber(pageNumber);
+
+  const handelPreviousPage = () => {
+    setPageNumber(pageNumber - 1);
+  }
+
+  const handelNextPage = () => {
+    setPageNumber(pageNumber + 1);
+  }
+
   return (
-    <nav
-      role="navigation"
-      aria-label="pagination"
-      data-slot="pagination"
-      className={cn("mx-auto flex w-full justify-center font-sans", className)}
-      {...props} />
-  );
-}
+    <motion.div
+      className={styles.pagination}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+    >
+      <button
+        onClick={handelPreviousPage}
+        disabled={menuDishes?.data.current_page === 1}
+        className={`${styles.paginationButton} ${menuDishes?.data?.current_page === 1 ? styles.disabled : ''}`}
+        aria-label="Previous page"
+      >
+        <IoIosArrowBack />
+      </button>
 
-function PaginationContent({
-  className,
-  ...props
-}) {
-  return (
-    <ul
-      data-slot="pagination-content"
-      className={cn("flex flex-row items-center gap-2", className)}
-      {...props} />
-  );
-}
+      <div className={styles.pageNumbers}>
+        {[...Array(menuDishes?.data.last_page)].map((_, index) => {
+          const pageNumber = index + 1;
+          // Show limited page numbers with ellipsis for better UX
+          if (
+            pageNumber === 1 ||
+            pageNumber === menuDishes?.data.last_page ||
+            (pageNumber >= menuDishes?.data.current_page - 1 && pageNumber <= menuDishes?.data.current_page + 1)
+          ) {
+            return (
+              <button
+                key={pageNumber}
+                onClick={() => paginate(pageNumber)}
+                className={`${styles.pageNumber} ${menuDishes?.data.current_page === pageNumber ? styles.activePage : ''}`}
+                aria-label={`Page ${pageNumber}`}
+                aria-current={menuDishes?.data.current_page === pageNumber ? "page" : undefined}
+              >
+                {pageNumber}
+              </button>
+            );
+          } else if (
+            (pageNumber === menuDishes?.data.current_page - 2 && pageNumber > 1) ||
+            (pageNumber === menuDishes?.data.current_page + 2 && pageNumber < menuDishes?.data.total)
+          ) {
+            return <span key={pageNumber} className={styles.ellipsis}>...</span>;
+          }
+          return null;
+        })}
+      </div>
 
-function PaginationItem({
-  className,
-  ...props
-}) {
-  return <li data-slot="pagination-item"
-   className={cn("text-base font-medium", className)}
-   {...props} 
-   />;
-}
-
-function PaginationLink({
-  className,
-  isActive,
-  size = "icon",
-  ...props
-}) {
-  return (
-    <a
-      aria-current={isActive ? "page" : undefined}
-      data-slot="pagination-link"
-      data-active={isActive}
-      className={cn(buttonVariants({
-        variant: isActive ? "outline" : "ghost",
-        size,
-      }), 
-      "transition-colors duration-200",
-      isActive ? 
-        "bg-primary text-2xl text-[#ff7e5f] border-primary " : 
-        "text-[#FFFFF] text-[1rem] hover:bg-gray-100 hover:text-primary",
-      className)}
-      {...props} />
-  );
-}
-
-function PaginationPrevious({
-  className,
-  ...props
-}) {
-  return (
-    <PaginationLink
-      aria-label="Go to previous page"
-      size="default"
-      className={cn("gap-1 px-2.5 sm:pl-2.5 text-[#9f643c] hover:text-primary", className)}
-      {...props}>
-      <ChevronLeftIcon className="h-4 w-4" />
-      <span className="hidden sm:block font-medium text-2xl">Previous</span>
-    </PaginationLink>
-  );
-}
-
-function PaginationNext({
-  className,
-  ...props
-}) {
-  return (
-    <PaginationLink
-      aria-label="Go to next page"
-      size="default"
-      className={cn("gap-1 px-2.5 sm:pr-2.5 text-[#9f643c] hover:text-primary", className)}
-      {...props}>
-      <span className="hidden sm:block font-medium text-2xl">Next</span>
-      <ChevronRightIcon className="h-4 w-4" />
-    </PaginationLink>
-  );
-}
-
-function PaginationEllipsis({
-  className,
-  ...props
-}) {
-  return (
-    <span
-      aria-hidden
-      data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center text-3xl text-[#FFFFF]", className)}
-      {...props}>
-      <MoreHorizontalIcon className="h-4 w-4 " />
-      <span className="sr-only">More pages</span>
-    </span>
-  );
-}
-
-export {
-  Pagination,
-  PaginationContent,
-  PaginationLink,
-  PaginationItem,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationEllipsis,
+      <button
+        onClick={handelNextPage}
+        disabled={menuDishes?.data.current_page === menuDishes?.data.last_page}
+        className={`${styles.paginationButton} ${menuDishes?.data.current_page === menuDishes?.data.last_page ? styles.disabled : ''}`}
+        aria-label="Next page"
+      >
+        <IoIosArrowForward />
+      </button>
+    </motion.div>
+  )
 }

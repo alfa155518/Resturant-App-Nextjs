@@ -1,13 +1,13 @@
 "use client";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination"
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationEllipsis,
+//   PaginationItem,
+//   PaginationLink,
+//   PaginationNext,
+//   PaginationPrevious,
+// } from "@/components/ui/pagination"
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -285,7 +285,7 @@ export default function Tables() {
         ))}
       </motion.div>
 {/* Add Pagination Component */}
-<Pagination>
+{/* <Pagination>
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious href="#" />
@@ -308,7 +308,7 @@ export default function Tables() {
           <PaginationNext href="#" />
         </PaginationItem>
       </PaginationContent>
-    </Pagination>
+    </Pagination> */}
       {/* Reservation Form */}
       <motion.div 
         id="reservationForm"

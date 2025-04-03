@@ -7,7 +7,11 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {colors: {
+      primary: {
+        500: '#FF6B6B', // Adjust to match your primary color
+      },
+    },},
   },
   plugins: [require("tailwindcss-animate")],
 }

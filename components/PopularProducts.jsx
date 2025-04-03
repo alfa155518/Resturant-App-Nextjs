@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaStar, FaHeart } from 'react-icons/fa';
-export default function PopularProducts({styles,motion,popularItems,containerVariants,itemVariants,favorites}) {
+export default function PopularProducts({styles,motion,popularItems,containerVariants,itemVariants,favorites,toggleFavorite,openItemDetails}) {
   return (
     <section className={styles.popularSection}>
     <motion.h2 
@@ -16,7 +16,7 @@ export default function PopularProducts({styles,motion,popularItems,containerVar
       initial="hidden"
       animate="visible"
     >
-      {popularItems.map((item) => (
+      {popularItems?.map((item) => (
         <motion.div 
           key={item.id} 
           className={styles.popularItem}
