@@ -30,6 +30,9 @@ export default function Menu() {
     handleAddToCart,
     containerVariants,
     itemVariants] = useMenu();
+    if (!menuDishes) {
+      return <div>Failed to load menu. Please try again later.</div>;
+    }
 
     console.log(menuDishes);
   // Add the same properties to the rest of your menu items
