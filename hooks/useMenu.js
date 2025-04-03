@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function useMenu() {
   const [menuDishes, setMenuDishes] = useState([]);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
   const [selectedItem, setSelectedItem] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);

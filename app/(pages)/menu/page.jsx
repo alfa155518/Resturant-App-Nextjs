@@ -31,7 +31,7 @@ export default function Menu() {
     containerVariants,
     itemVariants] = useMenu();
 
-
+    console.log(menuDishes);
   // Add the same properties to the rest of your menu items
   const processedDishes = menuDishes?.data?.dishes || [];
   processedDishes
