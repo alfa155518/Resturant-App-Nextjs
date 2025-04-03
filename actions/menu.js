@@ -6,9 +6,9 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export async function getMenu(dishesNumber = 1) {
   try {
     const res = await fetch(`${apiUrl}/menu?page=${dishesNumber}`, {
-      next: { 
-        revalidate: 5 // Revalidate cache every minute
-      }
+      // next: { 
+      //   revalidate: 5 // Revalidate cache every minute
+      // }
     });
     
     if (!res.ok) {

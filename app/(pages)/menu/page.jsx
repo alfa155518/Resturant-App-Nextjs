@@ -73,9 +73,9 @@ export default function Menu() {
       <section className={styles.menuSection}>
         <Categories styles={styles} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         {/* Menu Items */}
-        {!menuDishes || !menuDishes.data || !menuDishes.data.dishes ? (
+        {/* {!menuDishes || !menuDishes.data || !menuDishes.data.dishes ? (
           <LoadingSpinner />
-        ) : (
+        ) : ( */}
           <Suspense fallback={<LoadingSpinner />}>
             <motion.div
               className={styles.menuItems}
@@ -94,7 +94,7 @@ export default function Menu() {
               <Pagination styles={styles} pageNumber={pageNumber} setPageNumber={setPageNumber} menuDishes={menuDishes} />
             )}
           </Suspense>
-        )}
+        {/* )} */}
       </section>
 
       {/* Special Offers Section */}
