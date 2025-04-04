@@ -1,4 +1,4 @@
-"use server"
+// "use server"
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getMenu(pageNumber = 1) {
