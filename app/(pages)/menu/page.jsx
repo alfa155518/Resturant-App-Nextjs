@@ -14,7 +14,8 @@ import useMenu from '@/hooks/useMenu';
 import styles from '../../../src/css/menu.module.css';
 
 
-export default function Menu() {
+
+export default  function Menu() {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Custom Hook for Menu Data
@@ -30,9 +31,9 @@ export default function Menu() {
     handleAddToCart,
     containerVariants,
     itemVariants] = useMenu();
-  if (!menuDishes) {
-    return <div>Failed to load menu. Please try again later.</div>;
-  }
+  // if (!menuDishes) {
+  //   return <div>Failed to load menu. Please try again later.</div>;
+  // }
 
   console.log(menuDishes);
   // Add the same properties to the rest of your menu items
