@@ -3,8 +3,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getMenu(pageNumber = 1) {
   try {
-    if (!apiUrl) throw new Error('API URL is not defined');
-    const res = await fetch(`http://localhost:8000/api/v1/menu?page=${pageNumber}`, {
+    const res = await fetch(`${apiUrl}/menu?page=${pageNumber}`, {
       method: 'GET',
       cache: 'no-store',
       headers: { 'Accept': 'application/json' },

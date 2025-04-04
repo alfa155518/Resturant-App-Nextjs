@@ -30,27 +30,25 @@ export default function Menu() {
     handleAddToCart,
     containerVariants,
     itemVariants] = useMenu();
-    if (!menuDishes) {
-      return <div>Failed to load menu. Please try again later.</div>;
-    }
+  if (!menuDishes) {
+    return <div>Failed to load menu. Please try again later.</div>;
+  }
 
-    console.log(menuDishes);
+  console.log(menuDishes);
   // Add the same properties to the rest of your menu items
- // Process menu items safely
- const dishes = menuDishes?.data?.dishes || [];
-  
- // Process dish properties
- useEffect(() => {
-   if (dishes.length > 0) {
-     dishes.forEach(item => {
-       if (!item.rating) item.rating = (4 + Math.random()).toFixed(1);
-       if (!item.prepTime) item.prepTime = `${Math.floor(Math.random() * 20) + 10} min`;
-       if (!item.calories) item.calories = Math.floor(Math.random() * 500) + 200;
-       if (!item.dietary) item.dietary = [];
-       if (!item.ingredients) item.ingredients = [];
-     });
-   }
- }, [dishes]);
+  // Process menu items safely
+  const dishes = menuDishes?.data?.dishes || [];
+
+  if (dishes.length > 0) {
+    dishes.forEach(item => {
+      if (!item.rating) item.rating = (4 + Math.random()).toFixed(1);
+      if (!item.prepTime) item.prepTime = `${Math.floor(Math.random() * 20) + 10} min`;
+      if (!item.calories) item.calories = Math.floor(Math.random() * 500) + 200;
+      if (!item.dietary) item.dietary = [];
+      if (!item.ingredients) item.ingredients = [];
+    });
+  }
+
 
   // Filtered Dishes with safe fallback
   const filteredItems = selectedCategory === 'all'
@@ -73,36 +71,36 @@ export default function Menu() {
       </motion.div>
 
       {/* Popular Items Section */}
-      <Suspense fallback={<LoadingSpinner/>}>
-      <PopularProducts styles={styles} motion={motion} popularItems={popularItems} containerVariants={containerVariants} itemVariants={itemVariants} favorites={favorites} openItemDetails={openItemDetails} toggleFavorite={toggleFavorite}/>
+      <Suspense fallback={<LoadingSpinner />}>
+        <PopularProducts styles={styles} motion={motion} popularItems={popularItems} containerVariants={containerVariants} itemVariants={itemVariants} favorites={favorites} openItemDetails={openItemDetails} toggleFavorite={toggleFavorite} />
       </Suspense>
 
       {/* Menu Categories */}
       <section className={styles.menuSection}>
         <Categories styles={styles} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         {/* Menu Items */}
-        {/* {!menuDishes || !menuDishes.data || !menuDishes.data.dishes ? (
+        {!menuDishes || !menuDishes.data || !menuDishes.data.dishes ? (
           <LoadingSpinner />
-        ) : ( */}
-          <Suspense fallback={<LoadingSpinner />}>
-            <motion.div
-              className={styles.menuItems}
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              key={selectedCategory}
-            >
-              {filteredItems?.map((item) => (
-                <Dish key={item.id} styles={styles} item={item} favorites={favorites} openItemDetails={openItemDetails} itemVariants={itemVariants} />
-              ))}
-            </motion.div>
-            
-            {/* Pagination */}
-            {menuDishes?.data?.total > 1 && (
-              <Pagination styles={styles} pageNumber={pageNumber} setPageNumber={setPageNumber} menuDishes={menuDishes} />
-            )}
-          </Suspense>
-        {/* )} */}
+        ) : (
+        <Suspense fallback={<LoadingSpinner />}>
+          <motion.div
+            className={styles.menuItems}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            key={selectedCategory}
+          >
+            {filteredItems?.map((item) => (
+              <Dish key={item.id} styles={styles} item={item} favorites={favorites} openItemDetails={openItemDetails} itemVariants={itemVariants} />
+            ))}
+          </motion.div>
+
+          {/* Pagination */}
+          {menuDishes?.data?.total > 1 && (
+            <Pagination styles={styles} pageNumber={pageNumber} setPageNumber={setPageNumber} menuDishes={menuDishes} />
+          )}
+        </Suspense>
+        )} 
       </section>
 
       {/* Special Offers Section */}
