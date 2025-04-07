@@ -1,0 +1,149 @@
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($nature-dark-color, 0.8);
+  z-index: 1000;
+  @include flex-center;
+}
+
+.modal {
+  @include modal(100%, 70%, 90vh) {
+    left: 20%;
+    top: 5%;
+    padding: 2rem;
+  }
+
+  @include scrollbar($light-color, $light-color);
+}
+
+.joinForm {
+  h2 {
+    color: $light-color;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+}
+
+.formGroup {
+  @include formGroup;
+  select {
+    cursor: pointer;
+    option {
+      background: $card-color;
+      color: $white-color;
+      padding: 0.5rem;
+    }
+  }
+  input[type="file"] {
+    padding: 0.5rem;
+    cursor: pointer;
+    &::file-selector-button {
+      padding: 0.5rem 1rem;
+      margin-right: 1rem;
+      border: none;
+      background: $primary-color;
+      color: $white-color;
+      cursor: pointer;
+      @include radius(6px);
+      @include transition(0.3s);
+
+      &:hover {
+        background: lighten($primary-color, 10%);
+      }
+    }
+  }
+}
+
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    @include radius(50px);
+    cursor: pointer;
+    @include transition(0.3s);
+  }
+
+  @media (width <=480px) {
+    flex-direction: column;
+  }
+}
+
+.submitButton {
+  @include modalButton;
+}
+
+.cancelButton {
+  background: rgba($white-color, 0.1);
+  color: $nature-light-color;
+  border: 1px solid rgba($white-color, 0.2) !important;
+
+  &:hover {
+    background: rgba($white-color, 0.15);
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .modal {
+    padding: 1.5rem;
+  }
+
+  .joinForm {
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  .formActions {
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 1.25rem;
+  }
+
+  .joinForm {
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+
+    label {
+      font-size: 0.9rem;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 0.7rem;
+      font-size: 0.9rem;
+    }
+  }
+}

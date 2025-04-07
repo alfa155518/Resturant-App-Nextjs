@@ -1,77 +1,76 @@
+"use client"
 
-import { motion } from 'framer-motion';
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-export default function Pagination({
-  styles,
-  pageNumber,
-  setPageNumber,
-  menuDishes,
-}) {
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import styles from '../../src/css/pagination.module.css';
 
-  const paginate = (pageNumber) => setPageNumber(pageNumber);
-
-  const handelPreviousPage = () => {
-    setPageNumber(pageNumber - 1);
-  }
-
-  const handelNextPage = () => {
-    setPageNumber(pageNumber + 1);
-  }
+export default function Pagination({ currentPage, totalPages, onPageChange }) {
+  const maxVisiblePages = 5;
+  
+  const getPageNumbers = () => {
+    let pages = [];
+    if (totalPages <= maxVisiblePages) {
+      // Show all pages if total is less than max visible
+      pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    } else {
+      // Calculate visible page range
+      let start = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      let end = Math.min(totalPages, start + maxVisiblePages - 1);
+      
+      // Adjust start if end is at max
+      if (end === totalPages) {
+        start = Math.max(1, end - maxVisiblePages + 1);
+      }
+      
+      pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+      
+      // Add ellipsis and edge pages
+      if (start > 1) {
+        pages = [1, '...', ...pages];
+      }
+      if (end < totalPages) {
+        pages = [...pages, '...', totalPages];
+      }
+    }
+    return pages;
+  };
 
   return (
-    <motion.div
-      className={styles.pagination}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
-    >
+    <div className={styles.pagination}>
       <button
-        onClick={handelPreviousPage}
-        disabled={menuDishes?.data.current_page === 1}
-        className={`${styles.paginationButton} ${menuDishes?.data?.current_page === 1 ? styles.disabled : ''}`}
+        className={`${styles.paginationButton} ${currentPage === 1 ? styles.disabled : ''}`}
+        onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
         aria-label="Previous page"
       >
-        <IoIosArrowBack />
+        <FiChevronLeft />
       </button>
 
       <div className={styles.pageNumbers}>
-        {[...Array(menuDishes?.data.last_page)].map((_, index) => {
-          const pageNumber = index + 1;
-          // Show limited page numbers with ellipsis for better UX
-          if (
-            pageNumber === 1 ||
-            pageNumber === menuDishes?.data.last_page ||
-            (pageNumber >= menuDishes?.data.current_page - 1 && pageNumber <= menuDishes?.data.current_page + 1)
-          ) {
-            return (
-              <button
-                key={pageNumber}
-                onClick={() => paginate(pageNumber)}
-                className={`${styles.pageNumber} ${menuDishes?.data.current_page === pageNumber ? styles.activePage : ''}`}
-                aria-label={`Page ${pageNumber}`}
-                aria-current={menuDishes?.data.current_page === pageNumber ? "page" : undefined}
-              >
-                {pageNumber}
-              </button>
-            );
-          } else if (
-            (pageNumber === menuDishes?.data.current_page - 2 && pageNumber > 1) ||
-            (pageNumber === menuDishes?.data.current_page + 2 && pageNumber < menuDishes?.data.total)
-          ) {
-            return <span key={pageNumber} className={styles.ellipsis}>...</span>;
-          }
-          return null;
-        })}
+        {getPageNumbers().map((page, index) => (
+          page === '...' ? (
+            <span key={`ellipsis-${index}`} className={styles.ellipsis}>...</span>
+          ) : (
+            <button
+              key={page}
+              className={`${styles.pageNumber} ${currentPage === page ? styles.activePage : ''}`}
+              onClick={() => onPageChange(page)}
+              aria-label={`Page ${page}`}
+              aria-current={currentPage === page ? 'page' : undefined}
+            >
+              {page}
+            </button>
+          )
+        ))}
       </div>
 
       <button
-        onClick={handelNextPage}
-        disabled={menuDishes?.data.current_page === menuDishes?.data.last_page}
-        className={`${styles.paginationButton} ${menuDishes?.data.current_page === menuDishes?.data.last_page ? styles.disabled : ''}`}
+        className={`${styles.paginationButton} ${currentPage === totalPages ? styles.disabled : ''}`}
+        onClick={() => currentPage < totalPages && onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
         aria-label="Next page"
       >
-        <IoIosArrowForward />
+        <FiChevronRight />
       </button>
-    </motion.div>
-  )
+    </div>
+  );
 }

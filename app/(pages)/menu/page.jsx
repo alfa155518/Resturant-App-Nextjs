@@ -1,19 +1,17 @@
 "use client";
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
 import NewsLetter from '@/components/NewsLetter';
 import MenuOffers from '@/components/MenuOffers';
 import ChefRecommendations from '@/components/ChefRecommendations';
 import PopularProducts from '@/components/PopularProducts';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
-import Pagination from '@/components/ui/pagination';
 import Categories from '@/components/Categories';
 import DishDetails from '@/components/DishDetails';
 import Dish from '@/components/Dish';
 import useMenu from '@/hooks/useMenu';
 import styles from '../../../src/css/menu.module.css';
-
-
+import Pagination from '@/components/ui/pagination';
 
 export default  function Menu() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -21,7 +19,6 @@ export default  function Menu() {
   // Custom Hook for Menu Data
   const [
     menuDishes,
-    pageNumber,
     setPageNumber,
     selectedItem,
     openItemDetails,
@@ -31,25 +28,9 @@ export default  function Menu() {
     handleAddToCart,
     containerVariants,
     itemVariants] = useMenu();
-  // if (!menuDishes) {
-  //   return <div>Failed to load menu. Please try again later.</div>;
-  // }
 
-  console.log(menuDishes);
-  // Add the same properties to the rest of your menu items
-  // Process menu items safely
+  
   const dishes = menuDishes?.data?.dishes || [];
-
-  if (dishes.length > 0) {
-    dishes.forEach(item => {
-      if (!item.rating) item.rating = (4 + Math.random()).toFixed(1);
-      if (!item.prepTime) item.prepTime = `${Math.floor(Math.random() * 20) + 10} min`;
-      if (!item.calories) item.calories = Math.floor(Math.random() * 500) + 200;
-      if (!item.dietary) item.dietary = [];
-      if (!item.ingredients) item.ingredients = [];
-    });
-  }
-
 
   // Filtered Dishes with safe fallback
   const filteredItems = selectedCategory === 'all'
@@ -97,9 +78,11 @@ export default  function Menu() {
           </motion.div>
 
           {/* Pagination */}
-          {menuDishes?.data?.total > 1 && (
-            <Pagination styles={styles} pageNumber={pageNumber} setPageNumber={setPageNumber} menuDishes={menuDishes} />
-          )}
+          <Pagination
+          currentPage={menuDishes?.data.current_page}
+          totalPages={menuDishes?.data.last_page}
+          onPageChange={setPageNumber}
+          />
         </Suspense>
         )} 
       </section>

@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 import NavBar from "@/layout/NavBar";
 import Footer from "@/layout/Footer";
+import { MenuProvider } from "@/store/MenuProvider";
+import { TeamProvider } from "@/store/TeamProvider";
 
 
 const roboto = Roboto({
@@ -28,7 +30,11 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <NavBar/>
         <main>
+          <MenuProvider>
+            <TeamProvider>
           {children}
+            </TeamProvider>
+          </MenuProvider>
           <NotificationContainer/>
           <ScrollToTopButton/>
         </main>

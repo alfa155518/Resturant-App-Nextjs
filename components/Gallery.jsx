@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styles from '../src/css/gallery.module.css';
 import SectionName from './ui/SectionName';
-
+import galleryData from '@/json/gallery.json';
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('all');
   
@@ -12,8 +12,8 @@ export default function Gallery() {
   };
 
   const filteredImages = activeCategory === 'all' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeCategory);
+    ? galleryData 
+    : galleryData.filter(img => img.category === activeCategory);
 
   return (
     <section className={styles.gallerySection}>
@@ -78,49 +78,3 @@ export default function Gallery() {
     </section>
   );
 }
-
-// Gallery images data
-const galleryImages = [
-  {
-    src: "/images/feature/create-grilled-salmon-dish.png",
-    alt: "Restaurant Interior",
-    title: "Elegant Dining Area",
-    description: "Our main dining space with ambient lighting",
-    category: "interior"
-  },
-  {
-    src: "/images/feature/create-grilled-salmon-dish.png",
-    alt: "Signature Dish",
-    title: "Chef's Special",
-    description: "Our award-winning signature dish",
-    category: "food"
-  },
-  {
-    src: "/images/feature/create-grilled-salmon-dish.png",
-    alt: "Private Event",
-    title: "Private Celebrations",
-    description: "Perfect venue for your special occasions",
-    category: "events"
-  },
-  {
-    src: "/images/feature/create-grilled-salmon-dish.png",
-    alt: "Dessert Platter",
-    title: "Sweet Endings",
-    description: "Handcrafted desserts to complete your meal",
-    category: "food"
-  },
-  {
-    src: "/images/feature/create-grilled-salmon-dish.png",
-    alt: "Bar Area",
-    title: "Sophisticated Bar",
-    description: "Enjoy our selection of fine wines and cocktails",
-    category: "interior"
-  },
-  {
-    src: "/images/feature/create-grilled-salmon-dish.png",
-    alt: "Corporate Event",
-    title: "Business Gatherings",
-    description: "Professional setting for corporate events",
-    category: "events"
-  }
-];

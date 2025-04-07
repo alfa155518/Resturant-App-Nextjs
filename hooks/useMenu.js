@@ -1,27 +1,12 @@
 "use client"
-import { getMenu } from "@/actions/menu";
-import { useEffect, useState } from "react";
+import { MenuContext } from "@/store/MenuProvider";
+import { useContext, useState } from "react";
 
 export default function useMenu() {
-  const [menuDishes, setMenuDishes] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  const {menuDishes,setPageNumber} = useContext(MenuContext);
   const [selectedItem, setSelectedItem] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
-
-  // get menu dishes
-  useEffect(() => {
-    async function handleMenu() {
-      try {
-        let data = await getMenu(pageNumber);
-        setMenuDishes(data);
-      } catch (err) {
-        console.error('Failed to fetch menu:', err);
-        setMenuDishes(null);
-      }
-    }
-    handleMenu();
-  }, [pageNumber]);
 
 
   // Open & Close Dish Info
@@ -74,7 +59,6 @@ export default function useMenu() {
 
   return [
     menuDishes,
-    pageNumber,
     setPageNumber,
     selectedItem,
     openItemDetails,

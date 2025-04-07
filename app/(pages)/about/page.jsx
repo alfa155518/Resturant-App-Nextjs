@@ -3,8 +3,13 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "../../../src/css/about.module.css";
+import useTeam from "@/hooks/useTeam";
 
 export default function About() {
+
+
+  const [teamMembers] = useTeam()
+
   // Animation variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -49,7 +54,7 @@ export default function About() {
           variants={fadeIn}
         >
           <Image
-            src="/images/about.png"
+            src="/images/about.webp"
             alt="Restaurant Interior"
             fill
             priority
@@ -77,7 +82,7 @@ export default function About() {
           </motion.div>
           <motion.div variants={fadeIn} className={styles.imageWrapper}>
           <Image
-              src="/images/chief.png"
+              src="/images/chief.webp"
               alt="Our Chef"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -99,11 +104,7 @@ export default function About() {
           </motion.h2>
           
           <div className={styles.teamGrid}>
-            {[
-              { name: "Chef Michael", role: "Executive Chef", image: "/images/person-1.png" },
-              { name: "Sarah Johnson", role: "Pastry Chef", image: "/images/person-2.png" },
-              { name: "David Lee", role: "Sous Chef", image: "/images/person-3.png" }
-            ].map((member, index) => (
+            {teamMembers?.team?.slice(1,4).map((member, index) => (
               <motion.div 
                 key={index} 
                 variants={fadeIn}

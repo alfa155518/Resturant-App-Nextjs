@@ -162,31 +162,6 @@
   color: #ffd700;
 }
 
-.orderButton {
-  background: linear-gradient(to right, #ff7e5f, #9f8b3c);
-  border: none;
-  color: #FFFFFF;
-  padding: 12px 25px;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-  font-size: 1.3rem;
-  font-weight: 800;
-  cursor: pointer;
-  width: 100%;
-  box-shadow: 0 4px 15px rgba(230, 185, 128, 0.3);
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-}
-.orderButton:hover {
-  box-shadow: 0 8px 20px rgba(230, 185, 128, 0.4);
-}
-
 .subscriptionBanner {
   background: linear-gradient(to right, #2c3e50, #3c829f);
   border-radius: 15px;

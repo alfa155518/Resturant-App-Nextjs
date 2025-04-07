@@ -124,7 +124,6 @@ export default function Signup() {
       </div>
        {/* Social login options */}
        <motion.div className={styles.socialLogin} variants={itemVariants}>
-
           <GoogleLogin/>
        </motion.div>
       </form>

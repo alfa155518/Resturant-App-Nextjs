@@ -16,7 +16,7 @@ export default function ChefRecommendations({styles,motion}) {
       <div className={styles.chefProfile}>
         <div className={styles.chefImageContainer}>
           <Image 
-            src="/images/reviewer.webp" 
+            src="/images/team/chef-michael-executive-chef.webp" 
             alt="Head Chef" 
             width={150} 
             height={150} 
@@ -33,7 +33,7 @@ export default function ChefRecommendations({styles,motion}) {
         <h3>Weekly Special</h3>
         <div className={styles.specialDish}>
           <Image 
-            src="/images/feature/create-grilled-salmon-dish.png" 
+            src="/images/recommended-truffle-risotto.webp" 
             alt="Weekly Special" 
             width={300} 
             height={200} 

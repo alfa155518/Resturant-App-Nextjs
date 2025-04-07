@@ -8,41 +8,6 @@
   padding: 0 1.5rem;
 }
 
-.tabs {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-
-.tab {
-  padding: 0.75rem 1.5rem;
-  background-color: transparent;
-  border: 2px solid #9f643c;
-  border-radius: 3rem;
-  -webkit-border-radius: 3rem;
-  -moz-border-radius: 3rem;
-  -ms-border-radius: 3rem;
-  -o-border-radius: 3rem;
-  color: #9f643c;
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-}
-.tab:hover {
-  background-color: rgba(159, 100, 60, 0.1);
-}
-.tab.active {
-  background-color: #9f643c;
-  color: #FFFFFF;
-}
-
 .dishesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -244,10 +209,6 @@
   }
 }
 @media (width <= 480px) {
-  .tab {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
   .content h3 {
     font-size: 1.3rem;
   }

@@ -5,14 +5,10 @@ import Gallery from "@/components/Gallery";
 import Hero from "@/components/Hero";
 import Offers from "@/components/Offers";
 import OurStory from "@/components/OurStory";
-import Footer from "@/layout/Footer";
-import NavBar from "@/layout/NavBar";
 
 export default function Home() {
   return (
     <div className="home-container">
-    {/* NavBar */}
-    {/* <NavBar/> */}
     {/* Hero Section */}
     <Hero/>
     {/* Feature Section */}
@@ -23,8 +19,6 @@ export default function Home() {
     <Offers/>
     {/* Gallery Section */}
     <Gallery/>
-    {/* Footer Section */}
-    {/* <Footer/> */}
     </div>
   );
 }

@@ -139,25 +139,6 @@
   font-weight: bold;
   color: $gold-color;
 }
-
-.orderButton {
-  background: linear-gradient(to right, $light-color, $accent-tow-color);
-  border: none;
-  color: $white-color;
-  padding: 12px 25px;
-  @include radius(30px);
-  font-size: 1.3rem;
-  font-weight: 800;
-  cursor: pointer;
-  width: 100%;
-  box-shadow: 0 4px 15px rgba(230, 185, 128, 0.3);
-  @include transition(.3s);
-  
-  &:hover {
-    box-shadow: 0 8px 20px rgba(230, 185, 128, 0.4);
-  }
-}
-
 .subscriptionBanner {
   background: linear-gradient(to right, #2c3e50, $secondary-color);
   @include radius(15px);

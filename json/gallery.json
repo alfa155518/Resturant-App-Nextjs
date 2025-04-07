@@ -1,0 +1,44 @@
+[
+  {
+    "src": "/images/gallery/restaurant-interior.webp",
+    "alt": "Restaurant Interior",
+    "title": "Elegant Dining Area",
+    "description": "Our main dining space with ambient lighting",
+    "category": "interior"
+  },
+  {
+    "src": "/images/gallery/signature-dish.webp",
+    "alt": "Signature Dish",
+    "title": "Chef's Special",
+    "description": "Our award-winning signature dish",
+    "category": "food"
+  },
+  {
+    "src": "/images/gallery/private-event.webp",
+    "alt": "Private Event",
+    "title": "Private Celebrations",
+    "description": "Perfect venue for your special occasions",
+    "category": "events"
+  },
+  {
+    "src": "/images/gallery/dessert-platter.webp",
+    "alt": "Dessert Platter",
+    "title": "Sweet Endings",
+    "description": "Handcrafted desserts to complete your meal",
+    "category": "food"
+  },
+  {
+    "src": "/images/gallery/bar-area.webp",
+    "alt": "Bar Area",
+    "title": "Sophisticated Bar",
+    "description": "Enjoy our selection of fine wines and cocktails",
+    "category": "interior"
+  },
+  {
+    "src": "/images/gallery/corporate-event.webp",
+    "alt": "Corporate Event",
+    "title": "Business Gatherings",
+    "description": "Professional setting for corporate events",
+    "category": "events"
+  }
+]
