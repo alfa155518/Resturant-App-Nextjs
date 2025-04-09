@@ -297,3 +297,17 @@
   background: linear-gradient(45deg, rgba($card-color, 0.8), rgba($nature-dark-color, 0.8));
   z-index: 1;
 }
+
+
+// Button Status Styles
+@mixin status-button($color) {
+  background: linear-gradient(135deg, $color, darken($color, 15%));
+  color: $white-color;
+  @include transition(0.3s);
+  box-shadow: 0 4px 15px rgba($color, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, lighten($color, 5%), $color);
+    box-shadow: 0 6px 20px rgba($color, 0.4);
+  }
+}

@@ -181,8 +181,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  
-  &:hover {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  &:hover 
+{
     background-color: darken($primary-color, 10%);
   }
   
@@ -233,10 +237,19 @@
 .formGroup {
   padding: 1.5rem;
   @include formGroup;
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) sepia(100%) saturate(1000%) hue-rotate(290deg);
+    cursor: pointer;
+    font-size: 1.5rem;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 .inputIcon {
   color: $primary-color;
+  font-size: 1.8rem;
 }
 
 .capacityNote {
@@ -522,4 +535,97 @@
 
 .formCloseButton svg {
   font-size: 1.2rem;
+}
+
+.statusBadge {
+  position: absolute;
+  top: 1.5rem;
+  right: 5rem;
+  padding: 0.5rem 1rem;
+  @include radius(2rem);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba($nature-dark-color, 0.2);
+
+  svg {
+    font-size: 1.3rem;
+  }
+}
+
+.active {
+  background: linear-gradient(135deg, rgba($accent-one-color, 0.9), rgba(darken($accent-one-color, 10%), 0.9));
+  color: $white-color;
+}
+
+.inactive {
+  background: linear-gradient(135deg, rgba($nature-dark-color, 0.9), rgba(darken($nature-dark-color, 10%), 0.9));
+  color: $white-color;
+}
+
+.maintenance {
+  background: linear-gradient(135deg, rgba($accent-tow-color, 0.9), rgba(darken($accent-tow-color, 10%), 0.9));
+  color: $white-color;
+}
+
+.reserved {
+  background: linear-gradient(135deg, rgba($secondary-color, 0.9), rgba(darken($secondary-color, 10%), 0.9));
+  color: $white-color;
+}
+
+
+
+.buttonactive {
+  @include status-button($primary-color);
+}
+
+.buttoninactive {
+  @include status-button($nature-dark-color);
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.buttonmaintenance {
+  @include status-button($accent-tow-color);
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.buttonreserved {
+  @include status-button($secondary-color);
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+// Status-specific table card styles
+.tableCard {
+  &.statusactive {
+    border: 2px solid rgba($accent-one-color, 0.3);
+  }
+
+  &.statusinactive {
+    border: 2px solid rgba($nature-dark-color, 0.3);
+    .tableImage {
+      filter: grayscale(0.7) brightness(0.8);
+    }
+  }
+
+  &.statusmaintenance {
+    border: 2px solid rgba($accent-tow-color, 0.3);
+    .tableImage {
+      filter: sepia(0.3) brightness(0.9);
+    }
+  }
+
+  &.statusreserved {
+    border: 2px solid rgba($secondary-color, 0.3);
+    .tableImage {
+      filter: brightness(0.85);
+    }
+  }
 }

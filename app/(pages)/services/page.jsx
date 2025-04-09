@@ -1,10 +1,10 @@
 "use client";
 import { motion ,AnimatePresence} from 'framer-motion';
-import { useState,lazy } from 'react';
+import { useState,Suspense } from 'react';
 import Image from 'next/image';
 import styles from '../../../src/css/services.module.css';
 import { FaUtensils, FaGlassCheers, FaBirthdayCake, FaUsers } from 'react-icons/fa';
-import { IoClose } from "react-icons/io5";
+
 import { MdDeliveryDining, MdEventAvailable } from 'react-icons/md';
 
 export default function Services() {
