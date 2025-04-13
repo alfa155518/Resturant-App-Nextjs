@@ -224,6 +224,19 @@
   }
 }
 
+
+@mixin fixedOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  @include flex-center;
+  z-index: 1000;
+  padding: 1rem; 
+}
+
 // Custom Modal
 @mixin modal($width, $max-width, $max-height) {
   background-color: $card-color;
@@ -263,6 +276,27 @@
   &:active {
     @include translateY(1px);
   }
+}
+
+@mixin close-button-top-model {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba($white-color, 0.1);
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  @include radius(50%);
+  @include flex-center;
+  color: $white-color;
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    background: rgba($danger-color, 0.2);
+    color: $danger-color;
+  }
+  @content;
 }
 
 // Custom Cancel Modal Button
@@ -311,3 +345,67 @@
     box-shadow: 0 6px 20px rgba($color, 0.4);
   }
 }
+
+// Loading Spinner
+@mixin spinnerLoading {
+  @include flex-center {
+    flex-direction: column;
+    height: 300px;
+  }
+    
+    .spinner {
+      font-size: 2rem;
+      color: $primary-color;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+      -webkit-animation: spin 1s linear infinite;
+  }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg); -o-transform: rotate(360deg); }
+    }
+    
+    p {
+      color: $nature-light-color;
+      font-size: 1.1rem;
+    }
+  } 
+
+  // heading section
+  @mixin heading-section {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: $white-color;
+    border-bottom: 2px solid rgba($primary-color, 0.3);
+    padding-bottom: 0.5rem;
+  }
+
+  // filters Buttons 
+  @mixin filter-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    
+.filterButton {
+  padding: 0.6rem 1.2rem;
+  background: $card-color;
+  border: 1px solid rgba($primary-color, 0.3);
+  @include radius(2rem);
+  color: $nature-light-color;
+  font-size: 1.2rem;
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    background: lighten($card-color, 5%);
+  }
+
+  &.active {
+    background: $primary-color;
+    color: $white-color;
+    border-color: $primary-color;
+  }
+}
+  }

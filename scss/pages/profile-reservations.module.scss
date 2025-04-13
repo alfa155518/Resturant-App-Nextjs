@@ -1,0 +1,358 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+
+.loadingContainer {
+  @include spinnerLoading;
+}
+
+.emptyState {
+  @include flex-center {
+    flex-direction: column;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .emptyIcon {
+    font-size: 3rem;
+    color: rgba($primary-color, 0.5);
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: $white-color;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $nature-light-color;
+    font-size: 1.1rem;
+  }
+}
+
+// Reservations Component Styles
+.reservationsContainer {
+  h2 {
+    @include heading-section;
+  }
+}
+
+.filterButtons {
+  @include filter-buttons;
+}
+
+.reservationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reservationCard {
+  @include dark-card {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.reservationHeader {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba($primary-color, 0.1) 0%, rgba($primary-color, 0.2) 100%);
+
+  @media (width <=768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.tableImage {
+  margin-right: 1.5rem;
+
+  img {
+    @include radius(0.5rem);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  @media (width <=768px) {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.reservationInfo {
+  flex: 1;
+
+  h3 {
+    font-size: 1.6rem;
+    color: $white-color;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.reservationMeta {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  span {
+    display: flex;
+    align-items: center;
+    color: $nature-light-color;
+
+    svg {
+      margin-right: 0.4rem;
+      color: $primary-color;
+    }
+  }
+}
+
+.reservationStatus {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  @include radius(2rem);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: auto;
+
+  svg {
+    margin-right: 0.4rem;
+  }
+
+  &.confirmed {
+    background-color: rgba($accent-one-color, 0.2);
+    color: $accent-one-color;
+  }
+
+  &.pending {
+    background-color: rgba($warning-color, 0.2);
+    color: $warning-color;
+  }
+
+  &.cancelled {
+    background-color: rgba($danger-color, 0.2);
+    color: $danger-color;
+  }
+
+  @media (width <=768px) {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+}
+
+.reservationDetails {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid rgba($nature-light-color, 0.1);
+
+  .detailItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    svg {
+      color: $primary-color;
+      margin-right: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    span {
+      color: $nature-light-color;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.reservationActions {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  gap: 1rem;
+
+  @media (width <=576px) {
+    flex-direction: column;
+  }
+}
+
+.cancelButton,
+.viewButton {
+  padding: 0.8rem 1.5rem;
+  @include radius(0.5rem);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  @include transition(0.3s);
+
+  @media (width <=576px) {
+    width: 100%;
+  }
+}
+
+.cancelButton {
+  background-color: transparent;
+  border: 1px solid $danger-color;
+  color: $danger-color;
+
+  &:hover {
+    background-color: rgba($danger-color, 0.1);
+  }
+}
+
+.viewButton {
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  color: $white-color;
+
+  &:hover {
+    background-color: darken($primary-color, 5%);
+  }
+}
+
+.confirmedIcon {
+  color: $accent-one-color;
+}
+
+.pendingIcon {
+  color: $warning-color;
+  animation: spin 1.5s linear infinite;
+}
+
+.cancelledIcon {
+  color: $danger-color;
+}
+
+// Modal styles
+.modalOverlay {
+  @include fixedOverlay;
+}
+
+.modalContent {
+  @include modal(100%, 700px, 90vh) {
+    position: relative;
+    top: 45%;
+
+    @media (width <= 992px) {
+      left: 50%;
+    }
+  }
+}
+
+.closeButton {
+  @include close-button-top-model;
+}
+
+.modalHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba($white-color, 0.1);
+
+  h3 {
+    font-size: 2rem;
+    color: $white-color;
+    margin: 0;
+  }
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.modalImageContainer {
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.modalImage {
+  border-radius: 0.5rem;
+}
+
+.reservationDetailGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.detailGridItem {
+  h4 {
+    font-size: 1.2rem;
+    color: $nature-light-color;
+    margin-bottom: 0.3rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: $white-color;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .confirmed {
+    color: $success-color;
+  }
+
+  .pending {
+    color: $warning-color;
+  }
+
+  .cancelled {
+    color: $danger-color;
+  }
+}
+
+.tableDescription,
+.additionalInfo {
+  margin-bottom: 1.5rem;
+
+  h4 {
+    font-size: 1.4rem;
+    color: $white-color;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $nature-light-color;
+    line-height: 1.6;
+  }
+
+  ul {
+    color: $nature-light-color;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+.modalFooter {
+  padding: 1.5rem;
+  border-top: 1px solid rgba($white-color, 0.1);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  @media (width <= 576px) {
+    flex-direction: column;
+  }
+}

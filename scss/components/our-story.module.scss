@@ -83,20 +83,6 @@
   margin-top: 100px;
 }
 
-.testimonialGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  
-  @media (max-width: 992px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-}
-
 .testimonialCard {
   background-color: #2a2a2a;
   @include radius(15px);
@@ -149,10 +135,16 @@
       color: $nature-light-color;
     }
     
-    p {
-      margin: 5px 0 0;
+    .starIcon {
+      color: $gold-color;
       font-size: 1.2rem;
-      color: $light-color;
+      margin-right: 2px;
+    }
+    
+    .rating {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
     }
   }
 }

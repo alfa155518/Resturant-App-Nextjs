@@ -1,0 +1,221 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+.settingsContainer {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: $white-color;
+    border-bottom: 2px solid rgba($primary-color, 0.3);
+    padding-bottom: 0.5rem;
+  }
+}
+
+.settingsTabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  
+  @media (width <= 768px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba($card-color, 0.5);
+  border: 1px solid rgba($primary-color, 0.3);
+  @include radius(0.5rem);
+  color: $nature-light-color;
+  font-size: 1rem;
+  cursor: pointer;
+  @include transition(0.3s);
+  
+  svg {
+    font-size: 1.1rem;
+  }
+  
+  &:hover {
+    background: rgba($card-color, 0.7);
+  }
+  
+  &.active {
+    background: $primary-color;
+    color: $white-color;
+    border-color: $primary-color;
+  }
+}
+
+.successMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba($success-color, 0.1);
+  border: 1px solid rgba($success-color, 0.3);
+  @include radius(0.5rem);
+  color: $success-color;
+  margin-bottom: 1.5rem;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba($danger-color, 0.1);
+  border: 1px solid rgba($danger-color, 0.3);
+  @include radius(0.5rem);
+  color: $danger-color;
+  margin-bottom: 1.5rem;
+}
+
+.settingsForm {
+  @include dark-card {
+    background: rgba($card-color, 0.5);
+    padding: 2rem; 
+    box-shadow: none;
+    @media (width <= 576px) {
+        padding: 1.5rem;
+      }
+  };
+}
+
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.avatarContainer {
+  position: relative;
+  margin-bottom: 1rem;
+  
+  .avatarImage {
+    width: 100px;
+    height: 100px;
+    @include radius(50%);
+    object-fit: cover;
+    border: 2px solid $primary-color;
+  }
+  
+  .avatarUpload {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background: $primary-color;
+    @include radius(50%);
+    @include flex-center;
+    cursor: pointer;
+    @include transition(0.3s);
+    
+    &:hover {
+      background: darken($primary-color, 10%);
+    }
+    
+    svg {
+      color: $white-color;
+      font-size: 1rem;
+    }
+    
+    .fileInput {
+      display: none;
+    }
+  }
+}
+
+.avatarHint {
+  font-size: 1.1rem;
+  color: $nature-light-color;
+  text-align: center;
+}
+
+.formGroup {
+  @include formGroup;
+
+  input, textarea {
+    &.inputError {
+      border-color: $danger-color;
+    }
+  }
+  
+}
+
+.errorText {
+  display: block;
+  color: $danger-color;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.saveButton {
+  padding: 0.8rem 1.5rem;
+  background: $primary-color;
+  border: none;
+  @include radius(0.5rem);
+  color: $white-color;
+  font-size: 1rem;
+  cursor: pointer;
+  @include transition(0.3s);
+  
+  &:hover {
+    background: darken($primary-color, 5%);
+  }
+  
+  &:disabled {
+    background: rgba($primary-color, 0.5);
+    cursor: not-allowed;
+  }
+}
+
+
+// Notifications Settings
+.notificationGroup {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba($white-color, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.8rem;
+    accent-color: $primary-color;
+    cursor: pointer;
+  }
+  
+  label {
+    color: $white-color;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+}
+
+.notificationDescription {
+  color: $nature-light-color;
+  font-size: 0.9rem;
+  margin-left: 2.6rem;
+}

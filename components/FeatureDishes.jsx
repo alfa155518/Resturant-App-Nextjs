@@ -6,6 +6,7 @@ import { FaStar, FaHeart } from 'react-icons/fa';
 import styles from '../src/css/feature-dishes.module.css';
 import SectionName from './ui/SectionName';
 import { MenuContext } from '@/store/MenuProvider';
+import LoadingSpinner from './ui/LoadingSpinner';
 
 
 export default function FeatureDishes() {
@@ -29,6 +30,10 @@ export default function FeatureDishes() {
       transition: { duration: 0.5 }
     }
   };
+
+  if (!featuredDishes) {
+    return <LoadingSpinner />; 
+  }
 
   return (
     <section className={styles.featured}>

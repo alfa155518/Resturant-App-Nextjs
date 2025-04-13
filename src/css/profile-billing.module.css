@@ -1,0 +1,512 @@
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+.loadingContainer .spinner {
+  font-size: 2rem;
+  color: #9f643c;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loadingContainer p {
+  color: #f5f0e9;
+  font-size: 1.1rem;
+}
+
+.billingContainer h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #FFFFFF;
+  border-bottom: 2px solid rgba(159, 100, 60, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.tabsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: #f5f0e9;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+.tabButton svg {
+  font-size: 1.1rem;
+}
+.tabButton:hover {
+  color: #FFFFFF;
+}
+.tabButton.active {
+  color: #9f643c;
+  border-bottom: 2px solid #9f643c;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.sectionHeader h3 {
+  font-size: 1.3rem;
+  color: #FFFFFF;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: #9f643c;
+  border: none;
+  border-radius: 0.5rem;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.addButton:hover {
+  background: #8c5835;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  text-align: center;
+}
+.emptyState .emptyIcon {
+  font-size: 3rem;
+  color: rgba(159, 100, 60, 0.5);
+  margin-bottom: 1rem;
+}
+.emptyState h3 {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+.emptyState p {
+  color: #f5f0e9;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.addFirstButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: #9f643c;
+  border: none;
+  border-radius: 0.5rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.addFirstButton:hover {
+  background: #8c5835;
+}
+
+.addCardForm {
+  background: rgba(31, 31, 31, 0.7);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(159, 100, 60, 0.2);
+}
+.addCardForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .formRow {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}
+
+.formGroup {
+  flex: 1;
+}
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f5f0e9;
+  font-size: 0.9rem;
+}
+.formGroup input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.formGroup input:focus {
+  outline: none;
+  border-color: #9f643c;
+  background: rgba(255, 255, 255, 0.15);
+}
+.formGroup input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.formGroup input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cardNumberInput {
+  position: relative;
+}
+.cardNumberInput svg {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9f643c;
+}
+.cardNumberInput input {
+  padding-left: 2.5rem;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.saveButton {
+  padding: 0.8rem 1.5rem;
+  background: #9f643c;
+  border: none;
+  border-radius: 0.5rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.saveButton:hover {
+  background: #8c5835;
+}
+
+.cardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cardItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(31, 31, 31, 0.5);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+.cardItem:hover {
+  background: rgba(31, 31, 31, 0.7);
+}
+@media (max-width: 768px) {
+  .cardItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.cardInfo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.cardBrand {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardDetails h4 {
+  font-size: 1.1rem;
+  color: #FFFFFF;
+  margin-bottom: 0.3rem;
+}
+
+.cardMeta {
+  display: flex;
+  gap: 1.5rem;
+  color: #f5f0e9;
+  font-size: 0.9rem;
+}
+@media (max-width: 576px) {
+  .cardMeta {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}
+
+.defaultBadge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background: #2ecc71;
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+@media (max-width: 768px) {
+  .cardActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.setDefaultButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid #9f643c;
+  border-radius: 0.5rem;
+  color: #9f643c;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.setDefaultButton:hover {
+  background: rgba(159, 100, 60, 0.1);
+}
+
+.editButton, .deleteButton {
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.editButton svg, .deleteButton svg {
+  font-size: 0.9rem;
+}
+
+.editButton {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+}
+.editButton:hover {
+  background: rgba(52, 152, 219, 0.3);
+}
+
+.deleteButton {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+}
+.deleteButton:hover {
+  background: rgba(231, 76, 60, 0.3);
+}
+
+.billingTable {
+  background: rgba(31, 31, 31, 0.5);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr;
+  padding: 1rem 1.5rem;
+  background: rgba(159, 100, 60, 0.2);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+@media (max-width: 992px) {
+  .tableHeader {
+    display: none;
+  }
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+}
+.tableRow:last-child {
+  border-bottom: none;
+}
+@media (max-width: 992px) {
+  .tableRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.5rem;
+  }
+  .tableRow .invoiceId, .tableRow .invoiceDate, .tableRow .invoiceDesc, .tableRow .invoiceAmount, .tableRow .invoiceStatus {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .tableRow .invoiceId::before, .tableRow .invoiceDate::before, .tableRow .invoiceDesc::before, .tableRow .invoiceAmount::before, .tableRow .invoiceStatus::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+  .tableRow .invoiceActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .tableRow .invoiceActions button {
+    flex: 1;
+  }
+}
+
+.invoiceId {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+@media (max-width: 992px) {
+  .invoiceId::before {
+    content: "Invoice ID";
+  }
+}
+
+.invoiceDate {
+  color: #f5f0e9;
+}
+@media (max-width: 992px) {
+  .invoiceDate::before {
+    content: "Date";
+  }
+}
+
+.invoiceDesc {
+  color: #FFFFFF;
+}
+.invoiceDesc .paymentMethod {
+  font-size: 0.85rem;
+  color: #f5f0e9;
+  margin-top: 0.3rem;
+}
+@media (max-width: 992px) {
+  .invoiceDesc::before {
+    content: "Description";
+  }
+}
+
+.invoiceAmount {
+  font-weight: 600;
+  color: #9f643c;
+}
+@media (max-width: 992px) {
+  .invoiceAmount::before {
+    content: "Amount";
+  }
+}
+
+@media (max-width: 992px) {
+  .invoiceStatus::before {
+    content: "Status";
+  }
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.statusBadge.paid {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+.statusBadge.pending {
+  background-color: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+}
+.statusBadge.pending svg {
+  animation: spin 1.5s linear infinite;
+}
+.statusBadge.refunded {
+  background-color: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+}
+
+.invoiceActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.viewButton, .downloadButton {
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewButton {
+  background: rgba(159, 100, 60, 0.2);
+  color: #9f643c;
+}
+.viewButton:hover {
+  background: rgba(159, 100, 60, 0.3);
+}
+
+.downloadButton {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+}
+.downloadButton:hover {
+  background: rgba(52, 152, 219, 0.3);
+}

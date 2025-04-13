@@ -1,0 +1,576 @@
+@import "../helpers/mixins";
+@import "../helpers/variables";
+
+.loadingContainer {
+  @include spinnerLoading;
+}
+
+.ordersContainer {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: $white-color;
+    border-bottom: 2px solid rgba($primary-color, 0.3);
+    padding-bottom: 0.5rem;
+  }
+}
+
+.orderControls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  background: rgba($white-color, 0.1);
+  @include radius(0.5rem);
+  padding: 0.8rem 1.2rem;
+  width: 100%;
+  
+  svg {
+    color: $primary-color;
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+  }
+  
+  input {
+    background: transparent;
+    border: none;
+    color: $white-color;
+    font-size: 1.3rem;
+    width: 100%;
+    outline: none;
+    
+    &::placeholder {
+      color: rgba($white-color, 0.5);
+    }
+  }
+}
+
+.filterButtons {
+  @include filter-buttons;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  text-align: center;
+  
+  .emptyIcon {
+    font-size: 3rem;
+    color: rgba($primary-color, 0.5);
+    margin-bottom: 1rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    color: $white-color;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: $nature-light-color;
+    font-size: 1.1rem;
+  }
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.orderCard {
+  @include dark-card {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba($primary-color, 0.1) 0%, rgba($primary-color, 0.2) 100%);
+  border-bottom: 1px solid rgba($white-color, 0.1);
+  
+  @media (width <= 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.orderInfo {
+  h3 {
+    font-size: 1.3rem;
+    color: $white-color;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.orderMeta {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  
+  span {
+    display: flex;
+    align-items: center;
+    color: $nature-light-color;
+    font-size: 1.2rem;
+    
+    svg {
+      margin-right: 0.4rem;
+      color: $primary-color;
+    }
+  }
+}
+
+.orderStatus {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  
+  svg {
+    margin-right: 0.4rem;
+  }
+  
+  &.delivered {
+    background-color: rgba($success-color, 0.2);
+    color: $success-color;
+  }
+  
+  &.processing {
+    background-color: rgba($warning-color, 0.2);
+    color: $warning-color;
+  }
+  
+  &.out-for-delivery {
+    background-color: rgba($info-color, 0.2);
+    color: $info-color;
+  }
+  
+  &.cancelled {
+    background-color: rgba($danger-color, 0.2);
+    color: $danger-color;
+  }
+  
+  @media (width <= 768px) {
+    margin-top: 1rem;
+    align-self: flex-start;
+  }
+}
+
+.orderItems {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba($white-color, 0.1);
+}
+
+.orderItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba($white-color, 0.05);
+  
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  &:first-child {
+    padding-top: 0;
+  }
+  
+  @media (width <= 576px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.itemImage {
+  margin-right: 1.2rem;
+  
+  @media (width <= 576px) {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.foodImg {
+  @include radius(0.5rem);
+  object-fit: cover;
+}
+
+.itemDetails {
+  flex: 1;
+  
+  h4 {
+    color: $light-color;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+  }
+}
+
+.itemMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $nature-light-color;
+  font-size: 1.2rem;
+}
+
+.itemTotal {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $gold-color;
+  
+  @media (width <= 576px) {
+    margin-top: 0.5rem;
+    align-self: flex-end;
+  }
+}
+
+.orderFooter {
+  @include flex-between {
+    padding: 1.5rem;
+  }
+  
+  @media (width <= 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.orderPayment {
+  color: $nature-light-color;
+  font-size: 1.2rem;;
+  span {
+    margin-right: 0.5rem;
+  }
+  
+  strong {
+    color: $success-color;
+  }
+}
+
+.orderActions {
+  display: flex;
+  gap: 1rem;
+  
+  @media (width <= 768px) {
+    width: 100%;
+  }
+}
+
+.viewDetailsButton, .reorderButton {
+  padding: 0.7rem 1.2rem;
+  @include radius(0.5rem);
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  @include transition(0.3s);
+  
+  @media (width <= 768px) {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.viewDetailsButton {
+  background-color: transparent;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+  }
+}
+
+.reorderButton {
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  color: $white-color;
+  
+  &:hover {
+    background-color: darken($primary-color, 5%);
+  }
+}
+
+.deliveredIcon {
+  color: $success-color;
+}
+
+.processingIcon {
+  color: $warning-color;
+  animation: spin 1.5s linear infinite;
+  -webkit-animation: spin 1.5s linear infinite;
+}
+
+.deliveryIcon {
+  color: $info-color;
+}
+
+.cancelledIcon {
+  color: $danger-color;
+}
+
+// Modal styles
+.modalOverlay {
+  @include fixedOverlay;
+}
+
+.modalContent {
+  @include modal(100%, 800px, 90vh) {
+    position: relative;
+    top: 45%;
+
+    @media (width <= 992px) {
+      left: 50%;
+    }
+  }
+}
+
+.closeButton {
+  @include close-button-top-model;
+}
+
+.modalHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba($white-color, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+  h3 {
+    font-size: 1.5rem;
+    color: $white-color;
+    margin: 0;
+  }
+  
+  .orderStatus {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    @include radius(2rem);
+    font-size: 0.9rem;
+    
+    &.delivered {
+      background-color: rgba($success-color, 0.1);
+      color: $success-color;
+    }
+    
+    &.processing {
+      background-color: rgba($warning-color, 0.1);
+      color: $warning-color;
+      
+      svg {
+        animation: spin 1.5s linear infinite;
+        -webkit-animation: spin 1.5s linear infinite;
+}
+    }
+    
+    &.out-for-delivery {
+      background-color: rgba($info-color, 0.1);
+      color: $info-color;
+    }
+    
+    &.cancelled {
+      background-color: rgba($danger-color, 0.1);
+      color: $danger-color;
+    }
+  }
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.orderSummary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  
+  @media (width <= 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  
+  .summaryLabel {
+    font-size: 1.2rem;
+    color: $nature-light-color;
+    margin-bottom: 0.3rem;
+  }
+  
+  .summaryValue {
+    font-size: 1.3rem;
+    color: $white-color;
+    font-weight: 500;
+  }
+}
+
+.orderItemsDetailed {
+  margin-bottom: 2rem;
+  
+  h4 {
+    font-size: 1.4rem;
+    color: $white-color;
+    margin-bottom: 1rem;
+  }
+}
+
+.itemsTable {
+  @include radius(0.5rem);
+  overflow: hidden;
+  background: rgba($white-color, 0.05);
+}
+
+.itemsTableHeader {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  padding: 1rem;
+  background: rgba($primary-color, 0.1);
+  color: $white-color;
+  font-weight: 600;
+  font-size: 0.9rem;
+  
+  @media (width <= 768px) {
+    display: none;
+  }
+}
+
+.itemsTableRow {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  padding: 1rem;
+  border-bottom: 1px solid rgba($white-color, 0.05);
+  align-items: center;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  @media (width <= 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+    .priceCol, .qtyCol, .totalCol {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 1rem;
+      
+      &::before {
+        content: attr(data-label);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.itemCol {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  .itemImageLarge {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .foodImgLarge {
+    border-radius: 0.5rem;
+  }
+  
+  .itemInfo {
+    h5 {
+      font-size: 1.1rem;
+      color: $white-color;
+      margin: 0;
+    }
+  }
+}
+
+.priceCol, .qtyCol, .totalCol {
+  color: $light-color;
+  font-size: 1.2rem;
+  
+  @media (width <= 768px) {
+    &::before {
+      content: attr(data-label);
+    }
+  }
+}
+
+.totalCol {
+  font-weight: 600;
+  color: $white-color;
+}
+
+.orderTotals {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba($white-color, 0.05);
+  border-radius: 0.5rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: $nature-light-color;
+  
+  &.grandTotal {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba($white-color, 0.1);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: $white-color;
+  }
+}
+
+.deliveryInfo {
+  h4 {
+    font-size: 1.2rem;
+    color: $white-color;
+    margin-bottom: 1rem;
+  }
+  
+  .deliveryAddress, .deliveryTime, .estimatedDelivery {
+    color: $nature-light-color;
+    line-height: 1.6;
+    
+    p {
+      margin: 0.3rem 0;
+    }
+  }
+  
+  .estimatedDelivery {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: rgba($info-color, 0.1);
+    border-radius: 0.5rem;
+    color: $info-color;
+  }
+}
+
