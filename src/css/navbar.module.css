@@ -149,6 +149,45 @@
   font-weight: bold;
 }
 
+.userProfile {
+  margin-left: 15px;
+  cursor: pointer;
+}
+.userProfile .userAvatar {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.registerButton {
+  margin-left: 15px;
+}
+.registerButton a.registerLink {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background-color: #f39c12;
+  color: white;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
 .menuToggle {
   display: none;
   cursor: pointer;
@@ -285,6 +324,13 @@
   }
   .actions {
     gap: 1.5rem;
+  }
+  .userProfile, .registerButton {
+    margin-right: 10px;
+  }
+  .registerLink {
+    padding: 3px 5px;
+    font-size: 1rem;
   }
 }
 @media (width >= 769px) {

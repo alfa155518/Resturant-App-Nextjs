@@ -22,10 +22,6 @@ export function TeamProvider({ children }) {
     fetchTeamMembers();
   }, [pageNumber])
   
- 
-
-
-
   // Context value
   const value = {
     teamMembers,

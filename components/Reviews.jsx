@@ -26,20 +26,23 @@ export default function Reviews({ styles }) {
     }
     getReviews();
   }, [apiUrl])
-  console.log(reviews);
+
 
   if (!reviews) return <LoadingSpinner/>;
 
+  const reviewsData = reviews?.data?.reviews || [];
+  const hasEnoughReviews = reviewsData.length > 4;
+
   return (
     <div className={styles.testimonialsSection}>
-       <SectionName title={"Our Clients Say"} />
+      <SectionName title={"Our Clients Say"} />
     <div className={styles.testimonialGrid}>
       <Swiper
         modules={[Autoplay]}
         slidesPerView="auto"
         centeredSlides={false}
         spaceBetween={30}
-        loop={true}
+        loop={hasEnoughReviews}
         speed={1000}
         autoplay={{
           delay: 0,
@@ -67,7 +70,7 @@ export default function Reviews({ styles }) {
         }}
         className="mySwiper"
       >
-        {reviews.data?.reviews?.map((reviewer, index) => (
+        {reviewsData.map((reviewer, index) => (
           <SwiperSlide key={reviewer.id || index}>
             <motion.div
               className={styles.testimonialCard}
@@ -86,7 +89,7 @@ export default function Reviews({ styles }) {
                 <div className={styles.testimonialAuthor}>
                   <div className={styles.authorImage}>
                     <Image
-                      src={reviewer.user?.avatar || "/images/default-reviewer.webp"}
+                      src={ "/images/default-reviewer.webp"}
                       alt={`${reviewer.client_name}'s review`}
                       width={60}
                       height={60}

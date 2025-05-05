@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 //* Signup user *//
 export async function signupUser(formData) {
-  
   const serverFormData = new FormData();
   serverFormData.append('name', formData['name']);
   serverFormData.append('email', formData['email']);
@@ -55,9 +54,6 @@ export async function loginUser(formData) {
     const data = await response.json();
     
     if (response.ok) {
-      const cookieStore = await cookies();
-      cookieStore.set('user', JSON.stringify(data.user));
-      cookieStore.set('userToken', data.token);
       return  data ;
     } else {
       return { 
@@ -129,5 +125,40 @@ export async function resetPasswordAction(formData){
     } 
   } catch (error) {
     return { error: error.message };
+  }
+}
+
+
+//* Logout User *//
+
+export async function logoutUser() {
+  const cookieStore = await cookies();
+  const userToken = cookieStore.get("userToken").value;
+  try {
+
+    let response = await fetch(`${apiUrl}/logout/user`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    if (!userToken) {
+      return data;
+    }
+
+    if (!response.ok) {
+      return data;
+    }
+
+    if (response.ok) {
+      cookieStore.delete('user');
+      cookieStore.delete('userToken');
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
   }
 }

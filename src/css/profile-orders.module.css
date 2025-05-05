@@ -203,7 +203,7 @@
 .orderStatus svg {
   margin-right: 0.4rem;
 }
-.orderStatus.delivered {
+.orderStatus.paid {
   background-color: rgba(46, 204, 113, 0.2);
   color: #2ecc71;
 }
@@ -335,7 +335,8 @@
   }
 }
 
-.viewDetailsButton, .reorderButton {
+.viewDetailsButton,
+.reorderButton {
   padding: 0.7rem 1.2rem;
   border-radius: 0.5rem;
   -webkit-border-radius: 0.5rem;
@@ -352,7 +353,8 @@
   -o-transition: all 0.3s ease-in-out;
 }
 @media (width <= 768px) {
-  .viewDetailsButton, .reorderButton {
+  .viewDetailsButton,
+  .reorderButton {
     flex: 1;
     text-align: center;
   }
@@ -613,13 +615,17 @@
     flex-direction: column;
     gap: 0.5rem;
   }
-  .itemsTableRow .priceCol, .itemsTableRow .qtyCol, .itemsTableRow .totalCol {
+  .itemsTableRow .priceCol,
+  .itemsTableRow .qtyCol,
+  .itemsTableRow .totalCol {
     display: flex;
     justify-content: space-between;
     width: 100%;
     padding-left: 1rem;
   }
-  .itemsTableRow .priceCol::before, .itemsTableRow .qtyCol::before, .itemsTableRow .totalCol::before {
+  .itemsTableRow .priceCol::before,
+  .itemsTableRow .qtyCol::before,
+  .itemsTableRow .totalCol::before {
     content: attr(data-label);
     font-weight: 600;
   }
@@ -643,12 +649,16 @@
   margin: 0;
 }
 
-.priceCol, .qtyCol, .totalCol {
+.priceCol,
+.qtyCol,
+.totalCol {
   color: #ff7e5f;
   font-size: 1.2rem;
 }
 @media (width <= 768px) {
-  .priceCol::before, .qtyCol::before, .totalCol::before {
+  .priceCol::before,
+  .qtyCol::before,
+  .totalCol::before {
     content: attr(data-label);
   }
 }
@@ -685,11 +695,15 @@
   color: #FFFFFF;
   margin-bottom: 1rem;
 }
-.deliveryInfo .deliveryAddress, .deliveryInfo .deliveryTime, .deliveryInfo .estimatedDelivery {
+.deliveryInfo .deliveryAddress,
+.deliveryInfo .deliveryTime,
+.deliveryInfo .estimatedDelivery {
   color: #f5f0e9;
   line-height: 1.6;
 }
-.deliveryInfo .deliveryAddress p, .deliveryInfo .deliveryTime p, .deliveryInfo .estimatedDelivery p {
+.deliveryInfo .deliveryAddress p,
+.deliveryInfo .deliveryTime p,
+.deliveryInfo .estimatedDelivery p {
   margin: 0.3rem 0;
 }
 .deliveryInfo .estimatedDelivery {

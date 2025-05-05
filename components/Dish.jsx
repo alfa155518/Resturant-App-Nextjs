@@ -1,19 +1,33 @@
+import Image from "next/image";
+import { FaStar, FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useContext, useState } from "react";
+import { CartContext } from "@/store/CartProvider";
 
+export default function Dish({
+  styles,
+  item,
+  favorites,
+  openItemDetails,
+  itemVariants,
+}) {
+  const { handleAddToCart } = useContext(CartContext);
+  const [isItemLoading, setIsItemLoading] = useState(false);
 
-import Image from 'next/image';
-import { FaStar, FaHeart } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+  const addToCart = async (item) => {
+    setIsItemLoading(true);
+    await handleAddToCart(item);
+    setIsItemLoading(false);
+  };
 
-export default function Dish({ styles, item, favorites, openItemDetails, itemVariants }) {
   return (
     <motion.div
       className={styles.menuItem}
       variants={itemVariants}
       whileHover={{
         scale: 1.03,
-        boxShadow: '0 10px 20px rgba(0,0,0,0.2)'
-      }}
-    >
+        boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
+      }}>
       <div className={styles.imageContainer}>
         <Image
           src={item.image}
@@ -24,12 +38,13 @@ export default function Dish({ styles, item, favorites, openItemDetails, itemVar
           className={styles.itemImage}
         />
         <motion.button
-          className={`${styles.favoriteButton} ${favorites.includes(item.id) ? styles.favorited : ''}`}
+          className={`${styles.favoriteButton} ${
+            favorites.includes(item.id) ? styles.favorited : ""
+          }`}
           onClick={() => toggleFavorite(item.id)}
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
-          aria-label='Favorite'
-        >
+          aria-label="Favorite">
           <FaHeart />
         </motion.button>
         {item.popular && <div className={styles.popularTag}>Popular</div>}
@@ -52,8 +67,10 @@ export default function Dish({ styles, item, favorites, openItemDetails, itemVar
 
         {item.dietary && item.dietary.length > 0 && (
           <div className={styles.dietaryTags}>
-            {item.dietary.map(tag => (
-              <span key={tag} className={styles.dietaryTag}>{tag}</span>
+            {item.dietary.map((tag) => (
+              <span key={tag} className={styles.dietaryTag}>
+                {tag}
+              </span>
             ))}
           </div>
         )}
@@ -64,8 +81,7 @@ export default function Dish({ styles, item, favorites, openItemDetails, itemVar
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => openItemDetails(item)}
-            aria-label='View Details'
-          >
+            aria-label="View Details">
             View Details
           </motion.button>
 
@@ -73,14 +89,13 @@ export default function Dish({ styles, item, favorites, openItemDetails, itemVar
             className={styles.orderButton}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => handleAddToCart(item)}
-            aria-label='Add to Order'
-          >
-            Add to Order
+            onClick={() => addToCart(item)}
+            aria-label="Add to Order"
+            disabled={isItemLoading}>
+            {isItemLoading ? "Adding..." : "Add to Cart"}
           </motion.button>
         </div>
       </div>
     </motion.div>
-
-  )
+  );
 }

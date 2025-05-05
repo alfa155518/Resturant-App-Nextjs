@@ -104,6 +104,7 @@
 .testimonialContent {
   padding: 30px;
   position: relative;
+  cursor: grab;
 }
 .testimonialContent .quoteIcon {
   font-size: 4rem;

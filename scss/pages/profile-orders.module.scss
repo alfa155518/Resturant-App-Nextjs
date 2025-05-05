@@ -29,13 +29,13 @@
   @include radius(0.5rem);
   padding: 0.8rem 1.2rem;
   width: 100%;
-  
+
   svg {
     color: $primary-color;
     margin-right: 0.8rem;
     font-size: 1.2rem;
   }
-  
+
   input {
     background: transparent;
     border: none;
@@ -43,7 +43,7 @@
     font-size: 1.3rem;
     width: 100%;
     outline: none;
-    
+
     &::placeholder {
       color: rgba($white-color, 0.5);
     }
@@ -61,19 +61,19 @@
   justify-content: center;
   padding: 3rem 0;
   text-align: center;
-  
+
   .emptyIcon {
     font-size: 3rem;
     color: rgba($primary-color, 0.5);
     margin-bottom: 1rem;
   }
-  
+
   h3 {
     font-size: 1.5rem;
     color: $white-color;
     margin-bottom: 0.5rem;
   }
-  
+
   p {
     color: $nature-light-color;
     font-size: 1.1rem;
@@ -100,9 +100,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba($primary-color, 0.1) 0%, rgba($primary-color, 0.2) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba($primary-color, 0.1) 0%,
+    rgba($primary-color, 0.2) 100%
+  );
   border-bottom: 1px solid rgba($white-color, 0.1);
-  
+
   @media (width <= 768px) {
     flex-direction: column;
     align-items: flex-start;
@@ -121,13 +125,13 @@
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
-  
+
   span {
     display: flex;
     align-items: center;
     color: $nature-light-color;
     font-size: 1.2rem;
-    
+
     svg {
       margin-right: 0.4rem;
       color: $primary-color;
@@ -142,31 +146,31 @@
   border-radius: 2rem;
   font-size: 1.2rem;
   font-weight: 800;
-  
+
   svg {
     margin-right: 0.4rem;
   }
-  
-  &.delivered {
+
+  &.paid {
     background-color: rgba($success-color, 0.2);
     color: $success-color;
   }
-  
+
   &.processing {
     background-color: rgba($warning-color, 0.2);
     color: $warning-color;
   }
-  
+
   &.out-for-delivery {
     background-color: rgba($info-color, 0.2);
     color: $info-color;
   }
-  
+
   &.cancelled {
     background-color: rgba($danger-color, 0.2);
     color: $danger-color;
   }
-  
+
   @media (width <= 768px) {
     margin-top: 1rem;
     align-self: flex-start;
@@ -183,16 +187,16 @@
   align-items: center;
   padding: 1rem 0;
   border-bottom: 1px solid rgba($white-color, 0.05);
-  
+
   &:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
-  
+
   &:first-child {
     padding-top: 0;
   }
-  
+
   @media (width <= 576px) {
     flex-direction: column;
     align-items: flex-start;
@@ -201,7 +205,7 @@
 
 .itemImage {
   margin-right: 1.2rem;
-  
+
   @media (width <= 576px) {
     margin-right: 0;
     margin-bottom: 1rem;
@@ -215,7 +219,7 @@
 
 .itemDetails {
   flex: 1;
-  
+
   h4 {
     color: $light-color;
     font-size: 1.5rem;
@@ -236,7 +240,7 @@
   font-size: 1.1rem;
   font-weight: 600;
   color: $gold-color;
-  
+
   @media (width <= 576px) {
     margin-top: 0.5rem;
     align-self: flex-end;
@@ -247,7 +251,7 @@
   @include flex-between {
     padding: 1.5rem;
   }
-  
+
   @media (width <= 768px) {
     flex-direction: column;
     gap: 1rem;
@@ -256,11 +260,11 @@
 
 .orderPayment {
   color: $nature-light-color;
-  font-size: 1.2rem;;
+  font-size: 1.2rem;
   span {
     margin-right: 0.5rem;
   }
-  
+
   strong {
     color: $success-color;
   }
@@ -269,20 +273,21 @@
 .orderActions {
   display: flex;
   gap: 1rem;
-  
+
   @media (width <= 768px) {
     width: 100%;
   }
 }
 
-.viewDetailsButton, .reorderButton {
+.viewDetailsButton,
+.reorderButton {
   padding: 0.7rem 1.2rem;
   @include radius(0.5rem);
   font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
   @include transition(0.3s);
-  
+
   @media (width <= 768px) {
     flex: 1;
     text-align: center;
@@ -293,7 +298,7 @@
   background-color: transparent;
   border: 1px solid $primary-color;
   color: $primary-color;
-  
+
   &:hover {
     background-color: rgba($primary-color, 0.1);
   }
@@ -303,7 +308,7 @@
   background-color: $primary-color;
   border: 1px solid $primary-color;
   color: $white-color;
-  
+
   &:hover {
     background-color: darken($primary-color, 5%);
   }
@@ -353,13 +358,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
+
   h3 {
     font-size: 1.5rem;
     color: $white-color;
     margin: 0;
   }
-  
+
   .orderStatus {
     display: flex;
     align-items: center;
@@ -367,27 +372,27 @@
     padding: 0.5rem 1rem;
     @include radius(2rem);
     font-size: 0.9rem;
-    
+
     &.delivered {
       background-color: rgba($success-color, 0.1);
       color: $success-color;
     }
-    
+
     &.processing {
       background-color: rgba($warning-color, 0.1);
       color: $warning-color;
-      
+
       svg {
         animation: spin 1.5s linear infinite;
         -webkit-animation: spin 1.5s linear infinite;
-}
+      }
     }
-    
+
     &.out-for-delivery {
       background-color: rgba($info-color, 0.1);
       color: $info-color;
     }
-    
+
     &.cancelled {
       background-color: rgba($danger-color, 0.1);
       color: $danger-color;
@@ -404,7 +409,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
-  
+
   @media (width <= 576px) {
     grid-template-columns: 1fr;
   }
@@ -413,13 +418,13 @@
 .summaryItem {
   display: flex;
   flex-direction: column;
-  
+
   .summaryLabel {
     font-size: 1.2rem;
     color: $nature-light-color;
     margin-bottom: 0.3rem;
   }
-  
+
   .summaryValue {
     font-size: 1.3rem;
     color: $white-color;
@@ -429,7 +434,7 @@
 
 .orderItemsDetailed {
   margin-bottom: 2rem;
-  
+
   h4 {
     font-size: 1.4rem;
     color: $white-color;
@@ -451,7 +456,7 @@
   color: $white-color;
   font-weight: 600;
   font-size: 0.9rem;
-  
+
   @media (width <= 768px) {
     display: none;
   }
@@ -463,22 +468,24 @@
   padding: 1rem;
   border-bottom: 1px solid rgba($white-color, 0.05);
   align-items: center;
-  
+
   &:last-child {
     border-bottom: none;
   }
-  
+
   @media (width <= 768px) {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    
-    .priceCol, .qtyCol, .totalCol {
+
+    .priceCol,
+    .qtyCol,
+    .totalCol {
       display: flex;
       justify-content: space-between;
       width: 100%;
       padding-left: 1rem;
-      
+
       &::before {
         content: attr(data-label);
         font-weight: 600;
@@ -491,16 +498,16 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  
+
   .itemImageLarge {
     border-radius: 0.5rem;
     overflow: hidden;
   }
-  
+
   .foodImgLarge {
     border-radius: 0.5rem;
   }
-  
+
   .itemInfo {
     h5 {
       font-size: 1.1rem;
@@ -510,10 +517,12 @@
   }
 }
 
-.priceCol, .qtyCol, .totalCol {
+.priceCol,
+.qtyCol,
+.totalCol {
   color: $light-color;
   font-size: 1.2rem;
-  
+
   @media (width <= 768px) {
     &::before {
       content: attr(data-label);
@@ -538,7 +547,7 @@
   justify-content: space-between;
   padding: 0.5rem 0;
   color: $nature-light-color;
-  
+
   &.grandTotal {
     margin-top: 0.5rem;
     padding-top: 1rem;
@@ -555,16 +564,18 @@
     color: $white-color;
     margin-bottom: 1rem;
   }
-  
-  .deliveryAddress, .deliveryTime, .estimatedDelivery {
+
+  .deliveryAddress,
+  .deliveryTime,
+  .estimatedDelivery {
     color: $nature-light-color;
     line-height: 1.6;
-    
+
     p {
       margin: 0.3rem 0;
     }
   }
-  
+
   .estimatedDelivery {
     margin-top: 1rem;
     padding: 0.8rem;
@@ -573,4 +584,3 @@
     color: $info-color;
   }
 }
-

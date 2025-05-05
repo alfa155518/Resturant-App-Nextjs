@@ -9,34 +9,6 @@
   }
 }
 
-.loadingContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 300px;
-}
-.loadingContainer .spinner {
-  font-size: 2rem;
-  color: #9f643c;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
-  -webkit-animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-  }
-}
-.loadingContainer p {
-  color: #f5f0e9;
-  font-size: 1.1rem;
-}
-
 .profileHeader {
   display: flex;
   align-items: center;
@@ -237,6 +209,11 @@
 }
 .logoutButton:hover {
   background: #e74c3c;
+}
+.logoutButton.loading {
+  background: rgba(231, 76, 60, 0.8);
+  cursor: not-allowed;
+  pointer-events: none;
 }
 @media (width <= 992px) {
   .logoutButton {

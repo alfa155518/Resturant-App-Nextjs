@@ -1,7 +1,9 @@
+"use client"
 import { useState } from "react";
 import { loginUser } from "@/actions/user";
 import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
 const UseLogin = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -32,7 +34,14 @@ const UseLogin = () => {
         email: "",
         password: "",
       });
-      router.push('/home');
+        // Set cookies
+        Cookies.set('user', JSON.stringify(data.user),{
+          expires:360,
+        });
+        Cookies.set('userToken', data.token,{
+          expires:360,
+        });
+      router.push('/');
     }
   };
 

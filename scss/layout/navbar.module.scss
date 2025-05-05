@@ -130,6 +130,34 @@
   }
 }
 
+.userProfile {
+  margin-left: 15px;
+  cursor: pointer;
+  .userAvatar {
+    @include radius(50%);
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+.registerButton {
+  margin-left: 15px;
+  a.registerLink {
+    display: inline-block;
+    padding: .3rem 1rem;
+    background-color: $warning-color;
+    color: white;
+    @include radius(4px);
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-decoration: none;
+    @include transition(.3s);
+  }
+}
+
+
 // Menu toggle for mobile
 .menuToggle {
   display: none;
@@ -287,6 +315,14 @@
   
   .actions {
     gap: 1.5rem;
+  }
+  .userProfile, .registerButton {
+    margin-right: 10px;
+  }
+  
+  .registerLink {
+    padding: 3px 5px;
+    font-size: 1rem;
   }
 }
 

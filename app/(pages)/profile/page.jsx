@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState,useContext } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaUser, FaCalendarAlt, FaHeart, FaCreditCard, FaCog, FaSignOutAlt, FaHistory, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
@@ -11,52 +10,15 @@ import ProfileOrders from './ProfileOrders/page';
 import ProfileFavorites from './ProfileFavorites/page';
 import ProfileBilling from './ProfileBilling/page';
 import ProfileSettings from './ProfileSettings/page';
+import { UserContext } from '@/store/UserProvider';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const {user,submitLogout,isLoading} = useContext(UserContext);
   const [activeTab, setActiveTab] = useState('profile');
-  const router = useRouter();
   
-  // Static user data
-  const staticUser = {
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-    phone: "+1 (555) 123-4567",
-    role: "customer",
-    is_active: true,
-    avatar: "/images/default-reviewer.webp",
-    address: "123 Restaurant Street, Foodville, CA 94123",
-    created_at: "2022-06-15T10:30:00.000Z"
-  };
-  
-  useEffect(() => {
-    // Simulate API loading delay
-    const timer = setTimeout(() => {
-      setUser(staticUser);
-      setLoading(false);
-    }, 1000);
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
-  const handleLogout = () => {
-    // Simulate logout
-    if (confirm('Are you sure you want to logout?')) {
-      router.push('/login');
-    }
-  };
-  
-  if (loading) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.spinner}></div>
-        <p>Loading your profile...</p>
-      </div>
-    );
-  }
+
   
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -74,6 +36,11 @@ export default function Profile() {
   };
   
   return (
+    <>
+    {
+     !user || Object.keys(user).length === 0 ? (
+      <LoadingSpinner/>
+     ) :
     <div className={styles.profileContainer}>
       <motion.div 
         className={styles.profileHeader}
@@ -84,7 +51,7 @@ export default function Profile() {
         <div className={styles.profileImageContainer}>
           <Image 
             src={user.avatar || '/images/default-avatar.png'} 
-            alt={user.name} 
+            alt={"user"} 
             width={150} 
             height={150}
             className={styles.profileImage}
@@ -154,13 +121,14 @@ export default function Profile() {
             <FaCog /> Account Settings
           </motion.button>
           <motion.button 
-            className={styles.logoutButton}
-            onClick={handleLogout}
+            className={styles.logoutButton + " " + (isLoading? styles.loading : "") }
+            onClick={(e) => submitLogout(e)}
             variants={fadeIn}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            disabled={isLoading}
           >
-            <FaSignOutAlt /> Logout
+            <FaSignOutAlt /> {isLoading ? "Deleting..." :"Logout"}
           </motion.button>
         </motion.div>
         
@@ -229,9 +197,11 @@ export default function Profile() {
           {activeTab === 'orders' && <ProfileOrders />}
           {activeTab === 'favorites' && <ProfileFavorites />}
           {activeTab === 'billing' && <ProfileBilling />}
-          {activeTab === 'settings' && <ProfileSettings user={user} setUser={setUser} />}
+          {activeTab === 'settings' && <ProfileSettings user={user}  />}
         </motion.div>
       </div>
     </div>
+  }
+    </>
   );
 }

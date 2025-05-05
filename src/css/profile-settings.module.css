@@ -52,38 +52,6 @@
   border-color: #9f643c;
 }
 
-.successMessage {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: rgba(46, 204, 113, 0.1);
-  border: 1px solid rgba(46, 204, 113, 0.3);
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
-  -moz-border-radius: 0.5rem;
-  -ms-border-radius: 0.5rem;
-  -o-border-radius: 0.5rem;
-  color: #2ecc71;
-  margin-bottom: 1.5rem;
-}
-
-.errorMessage {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: rgba(231, 76, 60, 0.1);
-  border: 1px solid rgba(231, 76, 60, 0.3);
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
-  -moz-border-radius: 0.5rem;
-  -ms-border-radius: 0.5rem;
-  -o-border-radius: 0.5rem;
-  color: #e74c3c;
-  margin-bottom: 1.5rem;
-}
-
 .settingsForm {
   background-color: #1f1f1f;
   border-radius: 12px;
@@ -223,48 +191,6 @@
 .formGroup textarea {
   resize: vertical;
   min-height: 100px;
-}
-.formGroup input.inputError, .formGroup textarea.inputError {
-  border-color: #e74c3c;
-}
-
-.errorText {
-  display: block;
-  color: #e74c3c;
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
-}
-
-.formActions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 2rem;
-}
-
-.saveButton {
-  padding: 0.8rem 1.5rem;
-  background: #9f643c;
-  border: none;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
-  -moz-border-radius: 0.5rem;
-  -ms-border-radius: 0.5rem;
-  -o-border-radius: 0.5rem;
-  color: #FFFFFF;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-}
-.saveButton:hover {
-  background: #8c5835;
-}
-.saveButton:disabled {
-  background: rgba(159, 100, 60, 0.5);
-  cursor: not-allowed;
 }
 
 .notificationGroup {

@@ -51,29 +51,6 @@
   }
 }
 
-.successMessage {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: rgba($success-color, 0.1);
-  border: 1px solid rgba($success-color, 0.3);
-  @include radius(0.5rem);
-  color: $success-color;
-  margin-bottom: 1.5rem;
-}
-
-.errorMessage {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: rgba($danger-color, 0.1);
-  border: 1px solid rgba($danger-color, 0.3);
-  @include radius(0.5rem);
-  color: $danger-color;
-  margin-bottom: 1.5rem;
-}
 
 .settingsForm {
   @include dark-card {
@@ -140,47 +117,8 @@
 
 .formGroup {
   @include formGroup;
-
-  input, textarea {
-    &.inputError {
-      border-color: $danger-color;
-    }
-  }
-  
 }
 
-.errorText {
-  display: block;
-  color: $danger-color;
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
-}
-
-.formActions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 2rem;
-}
-
-.saveButton {
-  padding: 0.8rem 1.5rem;
-  background: $primary-color;
-  border: none;
-  @include radius(0.5rem);
-  color: $white-color;
-  font-size: 1rem;
-  cursor: pointer;
-  @include transition(0.3s);
-  
-  &:hover {
-    background: darken($primary-color, 5%);
-  }
-  
-  &:disabled {
-    background: rgba($primary-color, 0.5);
-    cursor: not-allowed;
-  }
-}
 
 
 // Notifications Settings

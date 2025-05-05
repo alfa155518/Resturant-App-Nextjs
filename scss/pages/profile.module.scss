@@ -11,9 +11,6 @@
   }
 }
 
-.loadingContainer {
-  @include spinnerLoading;
-}
 // ********** Profile Header ***********
 .profileHeader {
   display: flex;
@@ -193,6 +190,11 @@
     background: $danger-color;
   }
   
+  &.loading {
+    background: rgba($danger-color, 0.8);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
   @media (width <= 992px) {
     margin-top: 0.5rem;
   }
