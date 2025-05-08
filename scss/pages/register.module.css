@@ -1,0 +1,101 @@
+.register {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5rem;
+  margin: 2rem;
+  padding: 1rem;
+}
+.register .right_side {
+  flex: 1;
+  background-image: url("../../public/images/register.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+}
+.register .right_side .text {
+  position: absolute;
+  color: #FFFFFF;
+  font-weight: bold;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 10%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+.register .right_side .text h2 {
+  font-size: 3rem;
+  margin: 0.8rem 0;
+}
+.register .right_side .text p {
+  padding: 0.5rem 0;
+  color: #f5f0e9;
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+}
+.register .left_side {
+  flex: 1;
+  border: 0.1rem solid #4a3f35;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  -webkit-border-radius: 0.8rem;
+  -moz-border-radius: 0.8rem;
+  -ms-border-radius: 0.8rem;
+  -o-border-radius: 0.8rem;
+}
+.register .left_side h1 {
+  color: #9f643c;
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+}
+.register .left_side nav {
+  display: flex;
+  margin: 2rem 0;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #4a3f35;
+  justify-content: center;
+}
+.register .left_side nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.register .left_side nav ul li {
+  padding: 1.2rem 3rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #FFFFFF;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+.register .left_side nav ul li.active {
+  background-color: #9f643c;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+.register .left_side nav ul li:hover:not(.active) {
+  background-color: rgba(159, 100, 60, 0.2);
+}
+@media (width <= 992px) {
+  .register .right_side {
+    display: none;
+  }
+  .register .left_side h1 {
+    text-align: center;
+  }
+}/*# sourceMappingURL=register.module.css.map */

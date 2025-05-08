@@ -1,0 +1,11 @@
+// Revenue Chart module styles
+.revenueChartContainer {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+
+  .revenueChartCanvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

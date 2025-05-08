@@ -1,6 +1,6 @@
 "use client";
 
-import { userCheckoutProducts } from "@/actions/profile";
+import { cancelReservation, reservations, userCheckoutProducts } from "@/actions/profile";
 import { logoutUser } from "@/actions/user";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
@@ -21,11 +21,18 @@ export function UserProvider({ children }) {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [userReservations, setUserReservations] = useState([]);
+  const [needsRefresh, setNeedsRefresh] = useState(false);
+  const [activeFilterReservation, setActiveFilterReservation] = useState("all");
+  const [selectedReservation, setSelectedReservation] = useState(null);
+  const [showDetailsReservationModal, setShowDetailsReservationModal] = useState(false);
+
+
+
   const router = useRouter();
   const userData = Cookies.get("user");
   const userToken = Cookies.get("userToken");
   const pathname = usePathname();
-
   // Set User By Token
   useEffect(() => {
     if (userData) {
@@ -69,7 +76,8 @@ export function UserProvider({ children }) {
       setCheckoutHistory(data);
     }
     getCheckoutProducts();
-  }, [pathname]);
+    router.refresh()
+  }, [pathname, needsRefresh]);
 
   // Open Order Details function
   const openOrderDetails = (order) => {
@@ -131,6 +139,96 @@ export function UserProvider({ children }) {
     return true;
   });
 
+  // Get user Reservations
+  useEffect(() => {
+    async function getUserReservations() {
+      const data = await reservations();
+      setUserReservations(data);
+    }
+    getUserReservations();
+    router.refresh()
+  }, [pathname, needsRefresh]);
+
+  // Filter Reservations
+  const filteredReservations = userReservations.filter((reservation) => {
+    if (activeFilterReservation === "all") return true;
+    return reservation.status === activeFilterReservation;
+  });
+
+
+  // Show a warning toast for cancellation confirmation
+  const handelCancelReservation = async (id) => {
+    const toastId = toast.warn(
+      <div>
+        <p>Are you sure you want to cancel this reservation?</p>
+        <div>
+          <button
+            onClick={() => {
+              toast.dismiss(toastId);
+              confirmCancelReservation(id);
+            }}
+            style={{
+              marginRight: '10px',
+              padding: '5px 10px',
+              backgroundColor: '#dc3545',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px'
+            }}
+          >
+            Yes, Cancel
+          </button>
+          <button
+            onClick={() => toast.dismiss(toastId)}
+            style={{
+              padding: '5px 10px',
+              backgroundColor: '#6c757d',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px'
+            }}
+          >
+            No, Keep
+          </button>
+        </div>
+      </div>,
+      {
+        position: 'top-center',
+        autoClose: false,
+        closeOnClick: false,
+        draggable: false,
+      }
+    );
+  };
+
+
+  // Confirm Cancellation
+  const confirmCancelReservation = async (id) => {
+    const data = await cancelReservation(id);
+
+    if (data.status === "success") {
+      toast.success(data.message);
+    }
+
+    if (data.status === "error") {
+      toast.error(data.message);
+    }
+
+    setNeedsRefresh(!needsRefresh);
+  }
+
+  // Open Reservation Details function
+  const openDetailsReservationModal = (reservation) => {
+    setSelectedReservation(reservation);
+    setShowDetailsReservationModal(true);
+  };
+
+  // Close Reservation Details function
+  const closeDetailsReservationModal = () => {
+    setShowDetailsReservationModal(false);
+  };
+
+
   // Context value
   const value = {
     user,
@@ -141,7 +239,19 @@ export function UserProvider({ children }) {
     userToken,
     submitLogout,
     isLoading,
-    searchTerm,
+    userReservations,
+    setUserReservations,
+    setNeedsRefresh,
+    setActiveFilterReservation,
+    activeFilterReservation,
+    filteredReservations,
+    selectedReservation,
+    setSelectedReservation,
+    showDetailsReservationModal,
+    setShowDetailsReservationModal,
+    handelCancelReservation,
+    openDetailsReservationModal,
+    closeDetailsReservationModal,
     setSearchTerm,
     showDetailsModal,
     openOrderDetails,

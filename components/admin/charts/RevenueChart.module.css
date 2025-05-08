@@ -1,0 +1,9 @@
+.revenueChartContainer {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+.revenueChartContainer .revenueChartCanvas {
+  width: 100% !important;
+  height: 100% !important;
+}/*# sourceMappingURL=RevenueChart.module.css.map */

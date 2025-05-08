@@ -1,31 +1,64 @@
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { FaCalendarAlt, FaUsers, FaClock, FaTimes } from "react-icons/fa";
-export default function ReservationTableForm({ styles, setIsFormVisible, isFormVisible, fadeInAndHover, selectedTable,
-  setSelectedTable }) {
+import {
+  FaCalendarAlt,
+  FaUsers,
+  FaClock,
+  FaTimes,
+  FaCalendarDay,
+} from "react-icons/fa";
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [guests, setGuests] = useState(2);
+import useTables from "@/hooks/useTables";
 
-  const closeReservationForm = () => {
-    setIsFormVisible(false);
-    setSelectedTable(null);
-  };
+const DAYS_OF_WEEK = [
+  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+];
+
+const RESERVATION_TIMES = [
+  { value: "17:00", label: "5:00 PM" },
+  { value: "17:30", label: "5:30 PM" },
+  { value: "18:00", label: "6:00 PM" },
+  { value: "18:30", label: "6:30 PM" },
+  { value: "19:00", label: "7:00 PM" },
+  { value: "19:30", label: "7:30 PM" },
+  { value: "20:00", label: "8:00 PM" },
+  { value: "20:30", label: "8:30 PM" },
+  { value: "21:00", label: "9:00 PM" }
+];
+
+export default function ReservationTableForm({
+  styles,
+  setIsFormVisible,
+  isFormVisible,
+  fadeInAndHover,
+  selectedTable,
+  setSelectedTable,
+}) {
+
+  const [
+    , , , , , , , , , , ,
+    reservationFormState,
+    handleInputChange,
+    handleReserveTable,
+    closeReservationForm
+  ] = useTables(setIsFormVisible, setSelectedTable);
+
+
 
   return (
-
     <motion.div
       id="reservationForm"
-      className={`${styles.reservationSection} ${isFormVisible ? styles.visible : ''}`}
+      className={`${styles.reservationSection} ${isFormVisible ? styles.visible : ""
+        }`}
       initial="hidden"
       animate={isFormVisible ? "visible" : "hidden"}
-      variants={fadeInAndHover}
-    >
+      variants={fadeInAndHover}>
       {selectedTable && (
         <>
-          <button className={styles.closeButton} onClick={closeReservationForm} aria-label="Close reservation form">
+          <button
+            className={styles.closeButton}
+            onClick={closeReservationForm}
+            aria-label="Close reservation form">
             <FaTimes />
           </button>
 
@@ -41,12 +74,33 @@ export default function ReservationTableForm({ styles, setIsFormVisible, isFormV
               <input
                 type="date"
                 id="data"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+                value={reservationFormState.date}
+                onChange={handleInputChange}
                 required
                 name="date"
-                min={new Date().toISOString().split('T')[0]}
+                min={new Date().toISOString().split("T")[0]}
               />
+            </div>
+
+            {/* Day of the Week Selector */}
+            <div className={styles.formGroup}>
+              <label htmlFor="day">
+                <FaCalendarDay className={styles.inputIcon} />
+                Day of the Week
+              </label>
+              <select
+                value={reservationFormState.day}
+                id="day"
+                onChange={handleInputChange}
+                required
+                name="day">
+                <option value="">Select a day</option>
+                {DAYS_OF_WEEK.map((dayOption) => (
+                  <option key={dayOption} value={dayOption}>
+                    {dayOption}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className={styles.formGroup}>
@@ -55,22 +109,17 @@ export default function ReservationTableForm({ styles, setIsFormVisible, isFormV
                 Time
               </label>
               <select
-                value={time}
+                value={reservationFormState.time}
                 id="time"
-                onChange={(e) => setTime(e.target.value)}
+                onChange={handleInputChange}
                 required
-                name="time"
-              >
+                name="time">
                 <option value="">Select a time</option>
-                <option value="17:00">5:00 PM</option>
-                <option value="17:30">5:30 PM</option>
-                <option value="18:00">6:00 PM</option>
-                <option value="18:30">6:30 PM</option>
-                <option value="19:00">7:00 PM</option>
-                <option value="19:30">7:30 PM</option>
-                <option value="20:00">8:00 PM</option>
-                <option value="20:30">8:30 PM</option>
-                <option value="21:00">9:00 PM</option>
+                {RESERVATION_TIMES.map(({ value, label }) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -84,9 +133,9 @@ export default function ReservationTableForm({ styles, setIsFormVisible, isFormV
                 min="1"
                 id="guests"
                 max={selectedTable.capacity}
-                value={guests}
+                value={reservationFormState.guests}
                 name="guests"
-                onChange={(e) => setGuests(parseInt(e.target.value))}
+                onChange={handleInputChange}
                 required
               />
               <span className={styles.capacityNote}>
@@ -100,6 +149,7 @@ export default function ReservationTableForm({ styles, setIsFormVisible, isFormV
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Confirm reservation"
+              onClick={(e) => handleReserveTable(e, selectedTable.id)}
             >
               Confirm Reservation
             </motion.button>
@@ -108,5 +158,4 @@ export default function ReservationTableForm({ styles, setIsFormVisible, isFormV
       )}
     </motion.div>
   );
-
 }

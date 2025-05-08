@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaUsers, FaUtensils, FaTimes, FaInfoCircle, FaTimesCircle, FaTools, FaLock, FaRegCheckCircle } from "react-icons/fa";
+import { FaUsers, FaUtensils, FaInfoCircle, FaTimesCircle, FaTools, FaLock, FaRegCheckCircle } from "react-icons/fa";
 import styles from "../../../src/css/tables.module.css";
 import Pagination from "@/components/ui/pagination";
 import useTables from "@/hooks/useTables";
@@ -25,7 +25,8 @@ export default function Tables() {
     setModalTable,
     fadeInAndHover,
     staggerContainer,
-    modalVariants,] = useTables();
+    modalVariants, needsRefresh,
+    setNeedsRefresh,] = useTables();
 
 
   const handleTableSelect = (table) => {
@@ -69,83 +70,83 @@ export default function Tables() {
       {/* Tables Grid */}
       {
         tables < 1 ? <LoadingSpinner /> :
-        <>
-      <motion.div
-      id="tablesGrid"
-        className={styles.tablesGrid}
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-      >
-        { tables.tables?.map((table, index) => (
-          <motion.div
-            key={table.id}
-            className={`${styles.tableCard} ${selectedTable?.id === table.id ? styles.selected : ''}`}
-            variants={fadeInAndHover}
-            initial="rest"
-            whileHover="hover"
-            animate={selectedTable?.id === table.id ? "hover" : "rest"}
-            onClick={() => handleTableSelect(table)}
-          >
-            <div className={styles.tableImageContainer}>
-              <Image
-                src={table.image}
-                alt={table.name}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={index < 3}
-                className={styles.tableImage}
-              />
-              <div className={styles.tableCapacity}>
-                <FaUsers /> <span>{table.capacity}</span>
-              </div>
-              <button
-                className={styles.infoButton}
-                onClick={(e) => handleInfoClick(e, table)}
-                aria-label="View table details"
-              >
-                <FaInfoCircle />
-              </button>
-              <div className={`${styles.statusBadge} ${styles[table.status]}`}>
-                {table.status === 'active' && <FaRegCheckCircle />}
-                {table.status === 'inactive' && <FaTimesCircle />}
-                {table.status === 'maintenance' && <FaTools />}
-                {table.status === 'reserved' && <FaLock />}
-                <span>{table.status}</span>
-              </div>
-            </div>
-            <div className={styles.tableInfo}>
-              <h2 className={styles.tableName}>{table.name}</h2>
-              <p className={styles.tableDescription}>{table.description}</p>
-              <div className={styles.tableFeatures}>
-                {table.features.map((feature, index) => (
-                  <span key={index} className={styles.feature}>
-                    <FaUtensils className={styles.featureIcon} />
-                    {feature}
-                  </span>
-                ))}
-              </div>
-              <button
-                className={`${styles.selectButton} ${styles[`button${table.status}`]}`}
-                disabled={table.status !== 'active'}
+          <>
+            <motion.div
+              id="tablesGrid"
+              className={styles.tablesGrid}
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+            >
+              {tables.tables?.map((table, index) => (
+                <motion.div
+                  key={table.id}
+                  className={`${styles.tableCard} ${selectedTable?.id === table.id ? styles.selected : ''}`}
+                  variants={fadeInAndHover}
+                  initial="rest"
+                  whileHover="hover"
+                  animate={selectedTable?.id === table.id ? "hover" : "rest"}
+                  onClick={() => handleTableSelect(table)}
                 >
-                {table.status === 'active' && (selectedTable?.id === table.id ? 'Selected' : 'Select Table')}
-                {table.status === 'inactive' && 'Not Available'}
-                {table.status === 'maintenance' && 'Under Maintenance'}
-                {table.status === 'reserved' && 'Reserved'}
-              </button>
-            </div>
-          </motion.div>
-        ))
-         
-        }
-      </motion.div>
-      {/* Pagination */}
-      <Pagination
-        currentPage={tables.current_page} totalPages={tables.last_page} onPageChange={setCurrentPage}
-      />
-      </>
-    }
+                  <div className={styles.tableImageContainer}>
+                    <Image
+                      src={table.image}
+                      alt={table.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={index < 3}
+                      className={styles.tableImage}
+                    />
+                    <div className={styles.tableCapacity}>
+                      <FaUsers /> <span>{table.capacity}</span>
+                    </div>
+                    <button
+                      className={styles.infoButton}
+                      onClick={(e) => handleInfoClick(e, table)}
+                      aria-label="View table details"
+                    >
+                      <FaInfoCircle />
+                    </button>
+                    <div className={`${styles.statusBadge} ${styles[table.status]}`}>
+                      {table.status === 'active' && <FaRegCheckCircle />}
+                      {table.status === 'inactive' && <FaTimesCircle />}
+                      {table.status === 'maintenance' && <FaTools />}
+                      {table.status === 'reserved' && <FaLock />}
+                      <span>{table.status}</span>
+                    </div>
+                  </div>
+                  <div className={styles.tableInfo}>
+                    <h2 className={styles.tableName}>{table.name}</h2>
+                    <p className={styles.tableDescription}>{table.description}</p>
+                    <div className={styles.tableFeatures}>
+                      {table.features.map((feature, index) => (
+                        <span key={index} className={styles.feature}>
+                          <FaUtensils className={styles.featureIcon} />
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      className={`${styles.selectButton} ${styles[`button${table.status}`]}`}
+                      disabled={table.status !== 'active'}
+                    >
+                      {table.status === 'active' && (selectedTable?.id === table.id ? 'Selected' : 'Select Table')}
+                      {table.status === 'inactive' && 'Not Available'}
+                      {table.status === 'maintenance' && 'Under Maintenance'}
+                      {table.status === 'reserved' && 'Reserved'}
+                    </button>
+                  </div>
+                </motion.div>
+              ))
+
+              }
+            </motion.div>
+            {/* Pagination */}
+            <Pagination
+              currentPage={tables.current_page} totalPages={tables.last_page} onPageChange={setCurrentPage}
+            />
+          </>
+      }
       {/* Reservation Form */}
       {
         selectedTable && <ReservationTableForm styles={styles} isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} fadeInAndHover={fadeInAndHover} selectedTable={selectedTable} setSelectedTable={setSelectedTable} />

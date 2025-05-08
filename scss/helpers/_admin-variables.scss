@@ -1,0 +1,28 @@
+@use 'sass:color';
+
+// Admin Dashboard Color Variables
+$primary-color: #9f643c;
+$secondary-color: #3c829f;
+$accent-one-color: #3c9f64;
+$accent-tow-color: #9f8b3c;
+$nature-light-color: #f5f0e9;
+$white-color: #FFFFFF;
+$nature-dark-color: #4a3f35;
+$optional-color: #643c9f;
+$light-color: #ff7e5f;
+$light-dark-color: rgba(0, 0, 0, 0.5);
+$gold-color: #ffd700;
+$card-color: #1f1f1f;
+$success-color: #2ecc71;
+$warning-color: #f39c12;
+$danger-color: #e74c3c;
+$info-color: #3498db;
+
+// Dark Mode Colors
+$dark-bg-primary: #121212;
+$dark-bg-secondary: #1e1e1e;
+$dark-bg-card: $card-color;
+$dark-text-primary: #e0e0e0;
+$dark-text-secondary: #a0a0a0;
+$dark-border-color: #333333;
+$dark-hover-color: #2c2c2c;

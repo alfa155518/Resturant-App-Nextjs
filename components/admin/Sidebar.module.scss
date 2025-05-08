@@ -1,0 +1,132 @@
+// Sidebar module styles
+
+.adminSidebar {
+  width: 250px;
+  background-color: #4a3f35;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+
+  &.collapsed {
+    width: 70px;
+  }
+
+  .sidebarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid #333333;
+    background-color: #403731;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      color: #9f643c;
+    }
+
+    .toggleBtn {
+      background: transparent;
+      border: none;
+      color: #e0e0e0;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: #9f643c;
+      }
+    }
+  }
+
+  .sidebarContent {
+    padding: 1rem 0;
+  }
+
+  .sidebarMenu {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        color: #a0a0a0;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-radius: 0.25rem;
+        margin: 0 0.5rem;
+
+        &:hover {
+          background-color: #2c2c2c;
+          color: #9f643c;
+        }
+
+        .menuIcon {
+          font-size: 1.25rem;
+          margin-right: 0.75rem;
+          color: #a0a0a0;
+        }
+      }
+
+      &.active a {
+        background-color: rgba(159, 100, 60, 0.2);
+        color: #9f643c;
+        border-left: 3px solid #9f643c;
+
+        .menuIcon {
+          color: #9f643c;
+        }
+
+        &:hover {
+          background-color: rgba(159, 100, 60, 0.3);
+        }
+      }
+    }
+  }
+
+  .sidebarFooter {
+    padding: 1rem;
+    border-top: 1px solid #333333;
+    margin-top: auto;
+    background-color: #403731;
+
+    .logoutBtn {
+      a {
+        display: flex;
+        align-items: center;
+        color: #a0a0a0;
+        text-decoration: none;
+        padding: 0.75rem 1rem;
+        border-radius: 0.25rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: rgba(231, 76, 60, 0.1);
+          color: #e74c3c;
+          
+          .menuIcon {
+            color: #e74c3c;
+          }
+        }
+
+        .menuIcon {
+          font-size: 1.25rem;
+          margin-right: 0.75rem;
+          color: #a0a0a0;
+        }
+      }
+    }
+  }
+}

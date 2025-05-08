@@ -1,0 +1,81 @@
+// Customer Reviews module styles
+.customerReviews {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .reviewCard {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .reviewHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .customerName {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0;
+      }
+
+      .reviewDate {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+    }
+
+    .rating {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 0.5rem;
+
+      .star {
+        color: #e2e8f0;
+        font-size: 1rem;
+
+        &.filled {
+          color: #f59e0b;
+        }
+      }
+    }
+
+    .reviewComment {
+      font-size: 0.875rem;
+      color: #334155;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  .viewAllReviews {
+    margin-top: 0.5rem;
+    text-align: center;
+
+    button {
+      background-color: transparent;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.375rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      color: #3b82f6;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #3b82f6;
+        border-color: #3b82f6;
+        color: #ffffff;
+      }
+    }
+  }
+}

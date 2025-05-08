@@ -1,0 +1,96 @@
+// Stat Cards module styles
+
+.statCards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .statCard {
+    background-color: #1f1f1f;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #333333;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      border-color: rgba(159, 100, 60, 0.5);
+    }
+
+    .cardIcon {
+      width: 48px;
+      height: 48px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .cardContent {
+      flex: 1;
+    }
+
+    .cardTitle {
+      font-size: 0.875rem;
+      color: #a0a0a0;
+      margin: 0 0 0.5rem;
+    }
+
+    .cardValue {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #e0e0e0;
+      margin: 0 0 0.25rem;
+    }
+
+    .cardTrend {
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+
+      &.up {
+        color: #2ecc71;
+      }
+
+      &.down {
+        color: #e74c3c;
+      }
+    }
+  }
+
+  .blue .cardIcon {
+    background-color: rgba(60, 130, 159, 0.1);
+    color: #3c829f;
+  }
+
+  .green .cardIcon {
+    background-color: rgba(60, 159, 100, 0.1);
+    color: #3c9f64;
+  }
+
+  .purple .cardIcon {
+    background-color: rgba(100, 60, 159, 0.1);
+    color: #643c9f;
+  }
+
+  .orange .cardIcon {
+    background-color: rgba(159, 100, 60, 0.1);
+    color: #9f643c;
+  }
+}

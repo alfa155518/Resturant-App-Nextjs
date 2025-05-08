@@ -16,13 +16,13 @@
 
 .formGroup {
   margin-bottom: 1.5rem;
-  
+
   label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
   }
-  
+
   input {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -30,11 +30,11 @@
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    
+
     &::placeholder {
       color: rgba(255, 255, 255, 0.5);
     }
-    
+
     &:focus {
       border-color: $primary-color;
       outline: none;
@@ -71,11 +71,11 @@
 .remember {
   display: flex;
   align-items: center;
-  
+
   input[type="checkbox"] {
     margin-right: 0.5rem;
   }
-  
+
   label {
     font-size: 1.2rem;
   }
@@ -93,7 +93,6 @@
   margin: 0 auto;
   display: flex;
 }
-
 
 .socialLogin {
   margin-top: 2rem;
@@ -117,9 +116,9 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   line-height: 0.1em;
   margin: 2rem 0;
-  
+
   span {
-    background:$white-color;
+    background: $white-color;
     padding: 0 1rem;
     color: $primary-color;
     font-size: 1.4rem;
@@ -140,12 +139,12 @@
   color: $white-color;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
   }
-  
+
   svg {
     width: 2rem;
     height: 2rem;
@@ -175,5 +174,5 @@
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
-}
+  }
 }

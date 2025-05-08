@@ -1,0 +1,11 @@
+// Orders Chart module styles
+.ordersChartContainer {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+
+  .ordersChartCanvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

@@ -1,0 +1,94 @@
+.adminSidebar {
+  width: 250px;
+  background-color: #1e293b;
+  color: #f8fafc;
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.adminSidebar.collapsed {
+  width: 70px;
+}
+.adminSidebar .sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.adminSidebar .sidebarHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+.adminSidebar .sidebarHeader .toggleBtn {
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adminSidebar .sidebarHeader .toggleBtn:hover {
+  color: #3b82f6;
+}
+.adminSidebar .sidebarContent {
+  padding: 1rem 0;
+}
+.adminSidebar .sidebarMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.adminSidebar .sidebarMenu li {
+  margin-bottom: 0.25rem;
+}
+.adminSidebar .sidebarMenu li a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 0.25rem;
+  margin: 0 0.5rem;
+}
+.adminSidebar .sidebarMenu li a:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+.adminSidebar .sidebarMenu li a .menuIcon {
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+}
+.adminSidebar .sidebarMenu li.active a {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+.adminSidebar .sidebarMenu li.active a:hover {
+  background-color: #2563eb;
+}
+.adminSidebar .sidebarFooter {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+.adminSidebar .sidebarFooter .logoutBtn a {
+  display: flex;
+  align-items: center;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+.adminSidebar .sidebarFooter .logoutBtn a:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+.adminSidebar .sidebarFooter .logoutBtn a .menuIcon {
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+}/*# sourceMappingURL=Sidebar.module.css.map */
