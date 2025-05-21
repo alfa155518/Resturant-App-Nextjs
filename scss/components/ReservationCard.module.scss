@@ -1,0 +1,54 @@
+@import '../helpers/variables';
+@import '../helpers/mixins';
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  svg {
+    color: $gold-color;
+    font-size: 1.2rem;
+    @include transition(0.3s);
+  }
+}
+
+.downloadLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: $info-color;
+  font-weight: 500;
+  border-radius: 6px;
+  background: rgba($info-color, 0.1);
+  border: 1px solid rgba($info-color, 0.2);
+  @include transition(0.3s);
+
+  svg {
+    font-size: 1.2rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  &:hover {
+    background: rgba($info-color, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($info-color, 0.15);
+
+    svg {
+      transform: scale(1.1) rotate(8deg);
+      filter: drop-shadow(0 0 8px rgba($info-color, 0.4));
+    }
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}

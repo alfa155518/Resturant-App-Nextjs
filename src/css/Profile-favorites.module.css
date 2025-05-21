@@ -29,7 +29,7 @@
 .favoritesContainer h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid rgba(159, 100, 60, 0.3);
   padding-bottom: 0.5rem;
 }
@@ -61,7 +61,7 @@
 .searchBox input {
   background: transparent;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.3rem;
   width: 100%;
   outline: none;
@@ -102,7 +102,7 @@
 }
 .filterButtons .filterButton.active {
   background: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border-color: #9f643c;
 }
 
@@ -121,7 +121,7 @@
 }
 .emptyState h3 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .emptyState p {
@@ -192,7 +192,7 @@
   top: 1rem;
   left: 1rem;
   background: rgba(159, 100, 60, 0.9);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0.3rem 0.8rem;
   border-radius: 2rem;
   -webkit-border-radius: 2rem;
@@ -208,7 +208,7 @@
   top: 1rem;
   right: 1rem;
   background: rgba(231, 76, 60, 0.9);
-  color: #FFFFFF;
+  color: #ffffff;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -241,7 +241,7 @@
 }
 .favoriteContent h3 {
   font-size: 1.3rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
@@ -276,7 +276,7 @@
 }
 .favoriteRating .stars span {
   margin-left: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 .favoriteRating .reviews {
@@ -308,7 +308,7 @@
   -moz-border-radius: 0.5rem;
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;

@@ -3,13 +3,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import styles from './PopularItems.module.scss';
+import styles from '../../src/css/admin-popularItems.module.css';
 
 export default function PopularItems({ items }) {
   return (
     <div className={styles.popularItems}>
       {items.map((item, index) => (
-        <motion.div 
+        <motion.div
           key={item.id}
           className={styles.popularItem}
           initial={{ opacity: 0, y: 10 }}
@@ -17,12 +17,13 @@ export default function PopularItems({ items }) {
           transition={{ duration: 0.3, delay: index * 0.1 }}
         >
           <div className={styles.itemImage}>
-            <Image 
-              src={item.image} 
+            <Image
+              src={item.image}
               alt={item.name}
               width={60}
               height={60}
               className={styles.roundedImage}
+              priority
             />
           </div>
           <div className={styles.itemDetails}>

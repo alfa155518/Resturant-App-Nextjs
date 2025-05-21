@@ -41,7 +41,7 @@
 }
 .emptyState h3 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .emptyState p {
@@ -52,7 +52,7 @@
 .reservationsContainer h2 {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid rgba(159, 100, 60, 0.3);
   padding-bottom: 0.5rem;
 }
@@ -86,7 +86,7 @@
 }
 .filterButtons .filterButton.active {
   background: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border-color: #9f643c;
 }
 
@@ -155,7 +155,7 @@
 }
 .reservationInfo h3 {
   font-size: 1.6rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
@@ -246,7 +246,8 @@
 }
 
 .cancelButton,
-.viewButton {
+.viewButton,
+.payButton {
   padding: 0.8rem 1.5rem;
   border-radius: 0.5rem;
   -webkit-border-radius: 0.5rem;
@@ -264,11 +265,67 @@
 }
 @media (width <= 576px) {
   .cancelButton,
-  .viewButton {
+  .viewButton,
+  .payButton {
     width: 100%;
   }
 }
 
+.payButton {
+  background-color: rgba(60, 159, 100, 0.9);
+  color: #ffffff;
+  border: none;
+  outline: none;
+}
+.payButton:hover {
+  background-color: #3c9f64;
+  transform: translateY(-2px);
+  -webkit-transform: translateY(-2px);
+  -moz-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  -o-transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(60, 159, 100, 0.3);
+}
+.payButton:active {
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(60, 159, 100, 0.2);
+}
+.payButton:disabled {
+  background-color: #205535;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.payingButton {
+  background-color: #205535;
+  cursor: wait;
+  position: relative;
+  overflow: hidden;
+}
+.payingButton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: loading 1.5s infinite;
+  -webkit-animation: loading 1.5s infinite;
+  -moz-animation: loading 1.5s infinite;
+  -ms-animation: loading 1.5s infinite;
+  -o-animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  100% {
+    left: 100%;
+  }
+}
 .cancelButton {
   background-color: transparent;
   border: 1px solid #e74c3c;
@@ -281,7 +338,7 @@
 .viewButton {
   background-color: #9f643c;
   border: 1px solid #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .viewButton:hover {
   background-color: #8c5835;
@@ -380,7 +437,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -399,7 +456,7 @@
 }
 .modalHeader h3 {
   font-size: 2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -436,7 +493,7 @@
 }
 .detailGridItem p {
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   align-items: center;
 }
@@ -460,7 +517,7 @@
 .tableDescription h4,
 .additionalInfo h4 {
   font-size: 1.4rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .tableDescription p,

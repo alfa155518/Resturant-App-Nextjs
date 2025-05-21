@@ -1,7 +1,8 @@
 import React from 'react';
 import SettingsPage from '../../../../components/admin/pages/Settings';
 import { Metadata } from 'next';
-import styles from '../admin.module.css';
+import styles from '../../../../src/css/about.module.css';
+
 
 export const metadata = {
   title: 'Settings | Gourmet Haven Restaurant',

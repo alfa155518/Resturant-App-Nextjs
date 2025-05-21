@@ -1,0 +1,71 @@
+@import '../../../helpers/mixins';
+@import '../../../helpers/variables';
+
+// Popular Items module styles
+.popularItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .popularItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    @include transition(0.3s);
+
+    &:nth-child(odd) {
+      background-color: $dark-text-primary;
+    }
+
+    &:nth-child(even) {
+      background-color: $nature-light-color;
+    }
+
+    &:hover {
+      @include translateX(4px);
+    }
+
+    .itemImage {
+      flex-shrink: 0;
+
+      .roundedImage {
+        @include radius(8px);
+        object-fit: cover;
+      }
+    }
+
+    .itemDetails {
+      flex: 1;
+
+      .itemName {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: $light-color;
+        margin: 0 0 0.25rem;
+      }
+
+      .itemStats {
+        display: flex;
+        justify-content: space-between;
+
+        .stat {
+          font-size: 1rem;
+          font-weight: 700;
+          .statLabel {
+            color: $warning-color;
+            margin-right: 0.25rem;
+          }
+
+          .statValue {
+            font-weight: 800;
+            color: $nature-dark-color;
+          }
+        }
+      }
+    }
+  }
+}

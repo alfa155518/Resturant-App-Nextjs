@@ -7,10 +7,11 @@ export default function DishDetails({
   styles,
   selectedItem,
   closeItemDetails,
-  favorites,
-  toggleFavorite,
+  favoriteProducts,
+  handelAddFavoriteProduct,
 }) {
   const { handleAddToCart, setAttributes } = useContext(CartContext);
+  console.log(favoriteProducts);
 
   return (
     <AnimatePresence>
@@ -46,10 +47,8 @@ export default function DishDetails({
                 className={styles.modalImage}
               />
               <motion.button
-                className={`${styles.favoriteButton} ${
-                  favorites.includes(selectedItem.id) ? styles.favorited : ""
-                }`}
-                onClick={() => toggleFavorite(selectedItem.id)}
+                className={styles.favoriteButton}
+                onClick={() => handelAddFavoriteProduct(selectedItem.id)}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Favorite">

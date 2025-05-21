@@ -1,5 +1,5 @@
 "use client"
-import {  useContext } from 'react';
+import { useContext } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaStar, FaHeart } from 'react-icons/fa';
@@ -10,7 +10,7 @@ import LoadingSpinner from './ui/LoadingSpinner';
 
 
 export default function FeatureDishes() {
-  const {menuDishes} = useContext(MenuContext);
+  const { menuDishes } = useContext(MenuContext) || [];
   const featuredDishes = menuDishes?.data?.dishes.slice(0, 6);
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -32,14 +32,14 @@ export default function FeatureDishes() {
   };
 
   if (!featuredDishes) {
-    return <LoadingSpinner />; 
+    return <LoadingSpinner />;
   }
 
   return (
     <section className={styles.featured}>
       <div className={styles.container}>
-          <SectionName title={"Feature Dishes"} description={"Discover our chef's carefully crafted selection of signature dishes"}/>
-        <motion.div 
+        <SectionName title={"Feature Dishes"} description={"Discover our chef's carefully crafted selection of signature dishes"} />
+        <motion.div
           className={styles.dishesGrid}
           variants={containerVariants}
           initial="hidden"
@@ -47,28 +47,28 @@ export default function FeatureDishes() {
           viewport={{ once: true }}
         >
           {featuredDishes?.map(dish => (
-            <motion.div 
-              key={dish.id} 
+            <motion.div
+              key={dish.id}
               className={styles.dishCard}
               variants={itemVariants}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
               <div className={styles.imageContainer}>
-                <Image 
-                  src={dish.image} 
-                  alt={dish.name} 
-                  width={400} 
+                <Image
+                  src={dish.image}
+                  alt={dish.name}
+                  width={400}
                   height={300}
                   priority
                   className={styles.dishImage}
                 />
                 <div className={styles.price}>${dish.price.toFixed(2)}</div>
                 {dish.isNew && <div className={styles.newBadge}>New</div>}
-                <button className={styles.favoriteBtn}    aria-label={`Add ${dish.name} to favorites`}>
+                <button className={styles.favoriteBtn} aria-label={`Add ${dish.name} to favorites`}>
                   <FaHeart />
                 </button>
               </div>
-              
+
               <div className={styles.content}>
                 <div className={styles.rating}>
                   {[...Array(5)].map((_, i) => (
@@ -76,17 +76,17 @@ export default function FeatureDishes() {
                   ))}
                   <span>{dish.rating}</span>
                 </div>
-                
+
                 <h3 className={styles.dishTitle}>{dish.name}</h3>
                 <p>{dish.description}</p>
-                
+
                 <div className={styles.ingredients}>
                   {dish.ingredients.map((ingredient, index) => (
                     <span key={index} className={styles.ingredient}>{ingredient}</span>
                   ))}
                 </div>
-                
-                <motion.button 
+
+                <motion.button
                   className={styles.orderBtn}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

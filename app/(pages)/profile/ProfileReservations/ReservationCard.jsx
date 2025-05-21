@@ -9,9 +9,45 @@ import {
     FaUsers,
     FaUtensils
 } from "react-icons/fa";
+import { checkReservationSession } from "@/actions/profile";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 
 export default function ReservationCard({ styles, filteredReservations, handelCancelReservation, openDetailsReservationModal, getStatusIcon }) {
+
+    const [payingReservationId, setPayingReservationId] = useState(null);
+    async function handelCheckReservationSession(id, name, description, image, reservationId, time, guests) {
+
+        try {
+
+            setPayingReservationId(reservationId);
+            const formData = {
+                id: id,
+                name: name,
+                description: description,
+                price: 220,
+                image_url: image,
+                reservationId: reservationId,
+                reservationTime: time,
+                guest_count: guests,
+            }
+            const reservationSession = await checkReservationSession(formData);
+
+            if (reservationSession.status === "error") {
+                toast.error(reservationSession.message);
+            }
+
+            if (reservationSession.status === "success") {
+                window.location.href = reservationSession.url;
+            }
+        } finally {
+            setPayingReservationId(null);
+        }
+    }
+
+
+
     return (
         <div className={styles.reservationsList}>
             {filteredReservations.map((reservation, index) => (
@@ -71,11 +107,19 @@ export default function ReservationCard({ styles, filteredReservations, handelCa
                     </div>
 
                     <div className={styles.reservationActions}>
-                        {reservation.status !== "cancelled" && (
+                        {reservation.status !== "cancelled" && reservation.status !== "confirmed" && (
                             <button
                                 className={styles.cancelButton}
                                 onClick={() => handelCancelReservation(reservation.id)}>
                                 Cancel Reservation
+                            </button>
+                        )}
+                        {reservation.status === "pending" && (
+                            <button
+                                disabled={payingReservationId === reservation.id}
+                                className={`${styles.payButton} ${payingReservationId === reservation.id ? styles.payingButton : ''}`}
+                                onClick={() => handelCheckReservationSession(reservation.table_id, reservation.table.name, reservation.table.description, reservation.table.image, reservation.id, reservation.time, reservation.guests)}>
+                                {payingReservationId === reservation.id ? "Processing..." : "Pay Now"}
                             </button>
                         )}
                         <button

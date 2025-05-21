@@ -1,10 +1,12 @@
-"use client";
-
-import React from 'react';
 import { motion } from 'framer-motion';
-import styles from './RecentOrders.module.scss';
+import { useState } from 'react';
+import styles from '../../src/css/admin-recent-orders.module.css';
 
 export default function RecentOrders({ orders }) {
+  const [showAll, setShowAll] = useState(false);
+  const initialDisplayCount = 4;
+  const displayedOrders = showAll ? orders : orders.slice(0, initialDisplayCount);
+
   const getStatusClass = (status) => {
     switch (status.toLowerCase()) {
       case 'completed':
@@ -20,6 +22,10 @@ export default function RecentOrders({ orders }) {
     }
   };
 
+  const toggleView = () => {
+    setShowAll(!showAll);
+  };
+
   return (
     <div className={styles.recentOrders}>
       <table>
@@ -33,9 +39,13 @@ export default function RecentOrders({ orders }) {
             <th>Time</th>
           </tr>
         </thead>
-        <tbody>
-          {orders.map((order, index) => (
-            <motion.tr 
+        <motion.tbody
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          {displayedOrders.map((order, index) => (
+            <motion.tr
               key={order.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -53,11 +63,15 @@ export default function RecentOrders({ orders }) {
               <td className={styles.orderTime}>{order.time}</td>
             </motion.tr>
           ))}
-        </tbody>
+        </motion.tbody>
       </table>
-      <div className={styles.viewAllOrders}>
-        <button>View All Orders</button>
-      </div>
+      {orders.length > initialDisplayCount && (
+        <div className={styles.viewAll}>
+          <button onClick={toggleView}>
+            {showAll ? 'View Less Orders' : 'View All Orders'}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

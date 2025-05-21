@@ -13,6 +13,7 @@ import useMenu from "@/hooks/useMenu";
 import styles from "../../../src/css/menu.module.css";
 import Pagination from "@/components/ui/pagination";
 
+
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -23,11 +24,10 @@ export default function Menu() {
     selectedItem,
     openItemDetails,
     closeItemDetails,
-    favorites,
-    toggleFavorite,
-    // handleAddToCart,
+    favoriteProducts,
+    handelAddFavoriteProduct,
     containerVariants,
-    itemVariants,
+    itemVariants
   ] = useMenu();
 
   const dishes = menuDishes?.data?.dishes || [];
@@ -59,9 +59,9 @@ export default function Menu() {
           popularItems={popularItems}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
-          favorites={favorites}
+          favoriteProducts={favoriteProducts}
           openItemDetails={openItemDetails}
-          toggleFavorite={toggleFavorite}
+          handelAddFavoriteProduct={handelAddFavoriteProduct}
         />
       </Suspense>
 
@@ -88,9 +88,9 @@ export default function Menu() {
                   key={item.id}
                   styles={styles}
                   item={item}
-                  favorites={favorites}
                   openItemDetails={openItemDetails}
                   itemVariants={itemVariants}
+                  handelAddFavoriteProduct={handelAddFavoriteProduct}
                 />
               ))}
             </motion.div>
@@ -112,8 +112,8 @@ export default function Menu() {
         styles={styles}
         selectedItem={selectedItem}
         closeItemDetails={closeItemDetails}
-        favorites={favorites}
-        toggleFavorite={toggleFavorite}
+        favoriteProducts={favoriteProducts}
+        handelAddFavoriteProduct={handelAddFavoriteProduct}
       />
 
       {/* Chef's Recommendations Section */}

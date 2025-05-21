@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiDollarSign, FiShoppingBag, FiUsers, FiStar } from 'react-icons/fi';
-import styles from './StatCards.module.scss';
+import styles from '../../src/css/admin-stat-cards.module.css';
 
 export default function StatCards({ stats }) {
   const formatCurrency = (value) => {
@@ -46,14 +46,14 @@ export default function StatCards({ stats }) {
       icon: <FiStar />,
       color: 'orange',
       percentage: '+0.3',
-      trend: 'up'
+      trend: 'down'
     }
   ];
 
   return (
     <div className={styles.statCards}>
       {cards.map((card, index) => (
-        <motion.div 
+        <motion.div
           key={card.title}
           className={`${styles.statCard} ${styles[card.color]}`}
           initial={{ opacity: 0, y: 20 }}

@@ -10,10 +10,12 @@ import {
 
 import useTables from "@/hooks/useTables";
 
+// Days of the week
 const DAYS_OF_WEEK = [
   "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
 ];
 
+// Reservation times
 const RESERVATION_TIMES = [
   { value: "17:00", label: "5:00 PM" },
   { value: "17:30", label: "5:30 PM" },
@@ -35,6 +37,7 @@ export default function ReservationTableForm({
   setSelectedTable,
 }) {
 
+  // Custom hook
   const [
     , , , , , , , , , , ,
     reservationFormState,
@@ -42,8 +45,6 @@ export default function ReservationTableForm({
     handleReserveTable,
     closeReservationForm
   ] = useTables(setIsFormVisible, setSelectedTable);
-
-
 
   return (
     <motion.div

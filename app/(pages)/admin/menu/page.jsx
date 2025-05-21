@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuItemsPage from '@/components/admin/pages/MenuItems';
 import { Metadata } from 'next';
-import styles from '../admin.module.css';
+import styles from '../../../../src/css/about.module.css';
 
 export const metadata = {
   title: 'Menu Management | Gourmet Haven Restaurant',

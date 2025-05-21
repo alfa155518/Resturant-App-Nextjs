@@ -1,7 +1,7 @@
 .settingsContainer h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid rgba(159, 100, 60, 0.3);
   padding-bottom: 0.5rem;
 }
@@ -48,7 +48,7 @@
 }
 .tabButton.active {
   background: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border-color: #9f643c;
 }
 
@@ -125,7 +125,7 @@
   background: #7a4d2e;
 }
 .avatarContainer .avatarUpload svg {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1rem;
 }
 .avatarContainer .avatarUpload .fileInput {
@@ -173,7 +173,7 @@
   -moz-border-radius: 0.5rem;
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.2rem;
 }
 .formGroup .formGroup input:focus,
@@ -215,7 +215,7 @@
   cursor: pointer;
 }
 .checkboxContainer label {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.1rem;
   cursor: pointer;
 }

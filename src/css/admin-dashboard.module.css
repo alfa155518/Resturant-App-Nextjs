@@ -1,0 +1,81 @@
+.dashboardContent {
+  flex: 1;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.dashboardMain {
+  padding: 1.5rem;
+}
+
+@media (width >= 768px) {
+  .dashboardMain {
+    padding: 2rem;
+  }
+}
+.chartsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 5rem 0;
+}
+
+@media (width >= 1024px) {
+  .chartsContainer {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+.dashboardBottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (width >= 1024px) {
+  .dashboardBottom {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+.dashboardSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chartCard,
+.recentOrdersContainer,
+.popularItemsContainer,
+.customerReviewsContainer {
+  background-color: #1f1f1f;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border: 1px solid #333333;
+}
+
+.sectionName {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #e0e0e0;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  position: relative;
+  cursor: default;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+.sectionName::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff7e5f 0%, #ffd700 100%);
+  border-radius: 2px;
+}

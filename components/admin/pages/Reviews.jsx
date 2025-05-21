@@ -3,9 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiStar, FiEdit2, FiTrash2, FiX, FiCheck, FiMessageSquare, FiUser, FiCalendar } from 'react-icons/fi';
-import Sidebar from '../Sidebar';
-import Header from '../Header';
-import styles from './Reviews.module.scss';
+import styles from '../../../src/css/admin-reviews.module.css';
 
 export default function Reviews() {
   // Sample reviews data
@@ -30,14 +28,14 @@ export default function Reviews() {
 
   // Filter reviews based on search term, rating and status filters
   const filteredReviews = reviews.filter(review => {
-    const matchesSearch = 
+    const matchesSearch =
       review.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
       review.comment.toLowerCase().includes(searchTerm.toLowerCase()) ||
       review.email.toLowerCase().includes(searchTerm.toLowerCase());
-    
+
     const matchesRating = ratingFilter === 'All' || review.rating === parseInt(ratingFilter);
     const matchesStatus = statusFilter === 'All' || review.status === statusFilter;
-    
+
     return matchesSearch && matchesRating && matchesStatus;
   });
 
@@ -53,9 +51,9 @@ export default function Reviews() {
 
   // Toggle review status (Published/Hidden)
   const toggleReviewStatus = (reviewId) => {
-    setReviews(reviews.map(review => 
-      review.id === reviewId ? 
-        { ...review, status: review.status === 'Published' ? 'Hidden' : 'Published' } : 
+    setReviews(reviews.map(review =>
+      review.id === reviewId ?
+        { ...review, status: review.status === 'Published' ? 'Hidden' : 'Published' } :
         review
     ));
   };
@@ -68,9 +66,9 @@ export default function Reviews() {
 
   // Save reply
   const saveReply = () => {
-    setReviews(reviews.map(review => 
-      review.id === selectedReview.id ? 
-        { ...review, reply: replyText } : 
+    setReviews(reviews.map(review =>
+      review.id === selectedReview.id ?
+        { ...review, reply: replyText } :
         review
     ));
     setSelectedReview(null);
@@ -78,8 +76,8 @@ export default function Reviews() {
   };
 
   // Calculate average rating
-  const averageRating = reviews.length > 0 ? 
-    (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1) : 
+  const averageRating = reviews.length > 0 ?
+    (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1) :
     0;
 
   // Count reviews by rating
@@ -91,19 +89,19 @@ export default function Reviews() {
   // Generate star rating display
   const renderStars = (rating) => {
     return Array(5).fill(0).map((_, index) => (
-      <FiStar 
-        key={index} 
-        className={`${styles.star} ${index < rating ? styles.filled : ''}`} 
+      <FiStar
+        key={index}
+        className={`${styles.star} ${index < rating ? styles.filled : ''}`}
       />
     ));
   };
 
   return (
     <div className={styles.adminDashboard}>
-      <Sidebar />
+
 
       <div className={styles.dashboardContent}>
-        <Header />
+
 
         <motion.div
           className={styles.reviewsContainer}
@@ -116,18 +114,18 @@ export default function Reviews() {
             <div className={styles.reviewActions}>
               <div className={styles.searchBar}>
                 <FiSearch className={styles.searchIcon} />
-                <input 
-                  type="text" 
-                  placeholder="Search reviews..." 
+                <input
+                  type="text"
+                  placeholder="Search reviews..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              
+
               <div className={styles.filterContainer}>
                 <FiStar className={styles.filterIcon} />
-                <select 
-                  value={ratingFilter} 
+                <select
+                  value={ratingFilter}
                   onChange={(e) => setRatingFilter(e.target.value)}
                 >
                   <option value="All">All Ratings</option>
@@ -138,11 +136,11 @@ export default function Reviews() {
                   <option value="1">1 Star</option>
                 </select>
               </div>
-              
+
               <div className={styles.filterContainer}>
                 <FiFilter className={styles.filterIcon} />
-                <select 
-                  value={statusFilter} 
+                <select
+                  value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
                 >
                   <option value="All">All Status</option>
@@ -161,16 +159,16 @@ export default function Reviews() {
                 <p>{reviews.length} reviews</p>
               </div>
             </div>
-            
+
             <div className={styles.ratingDistribution}>
               {[5, 4, 3, 2, 1].map(rating => (
                 <div key={rating} className={styles.ratingBar}>
                   <div className={styles.ratingLabel}>{rating} star</div>
                   <div className={styles.ratingBarContainer}>
-                    <div 
+                    <div
                       className={styles.ratingBarFill}
-                      style={{ 
-                        width: `${reviews.length > 0 ? (ratingCounts[rating] || 0) / reviews.length * 100 : 0}%` 
+                      style={{
+                        width: `${reviews.length > 0 ? (ratingCounts[rating] || 0) / reviews.length * 100 : 0}%`
                       }}
                     ></div>
                   </div>
@@ -182,7 +180,7 @@ export default function Reviews() {
 
           <div className={styles.reviewsGrid}>
             {filteredReviews.map(review => (
-              <motion.div 
+              <motion.div
                 key={review.id}
                 className={styles.reviewCard}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -208,44 +206,44 @@ export default function Reviews() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.reviewContent}>
                   <p>{review.comment}</p>
                 </div>
-                
+
                 {review.reply && (
                   <div className={styles.reviewReply}>
                     <h5>Our Reply:</h5>
                     <p>{review.reply}</p>
                   </div>
                 )}
-                
+
                 <div className={styles.reviewActions}>
                   <div className={styles.reviewStatus}>
                     <span className={`${styles.statusBadge} ${styles[review.status.toLowerCase()]}`}>
                       {review.status}
                     </span>
                   </div>
-                  
+
                   <div className={styles.actionBtns}>
-                    <button 
-                      className={styles.replyBtn} 
+                    <button
+                      className={styles.replyBtn}
                       onClick={() => openReplyModal(review)}
                       title={review.reply ? "Edit Reply" : "Reply"}
                     >
                       <FiMessageSquare />
                       {review.reply ? "Edit Reply" : "Reply"}
                     </button>
-                    <button 
-                      className={`${styles.toggleBtn} ${review.status === 'Hidden' ? styles.publishBtn : styles.hideBtn}`} 
+                    <button
+                      className={`${styles.toggleBtn} ${review.status === 'Hidden' ? styles.publishBtn : styles.hideBtn}`}
                       onClick={() => toggleReviewStatus(review.id)}
                       title={review.status === 'Hidden' ? "Publish" : "Hide"}
                     >
                       {review.status === 'Hidden' ? <FiCheck /> : <FiX />}
                       {review.status === 'Hidden' ? "Publish" : "Hide"}
                     </button>
-                    <button 
-                      className={styles.deleteBtn} 
+                    <button
+                      className={styles.deleteBtn}
                       onClick={() => deleteReview(review.id)}
                       title="Delete Review"
                     >
@@ -259,13 +257,13 @@ export default function Reviews() {
 
           {/* Reply Modal */}
           {selectedReview && (
-            <motion.div 
+            <motion.div
               className={styles.modalOverlay}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.replyModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -273,14 +271,14 @@ export default function Reviews() {
               >
                 <div className={styles.modalHeader}>
                   <h3>Reply to Review</h3>
-                  <button 
+                  <button
                     className={styles.closeBtn}
                     onClick={() => setSelectedReview(null)}
                   >
                     <FiX />
                   </button>
                 </div>
-                
+
                 <div className={styles.modalContent}>
                   <div className={styles.reviewPreview}>
                     <div className={styles.previewHeader}>
@@ -294,10 +292,10 @@ export default function Reviews() {
                     </div>
                     <p className={styles.previewComment}>{selectedReview.comment}</p>
                   </div>
-                  
+
                   <div className={styles.replyForm}>
                     <label>Your Reply</label>
-                    <textarea 
+                    <textarea
                       value={replyText}
                       onChange={(e) => setReplyText(e.target.value)}
                       placeholder="Write your reply here..."
@@ -305,15 +303,15 @@ export default function Reviews() {
                     ></textarea>
                   </div>
                 </div>
-                
+
                 <div className={styles.modalFooter}>
-                  <button 
+                  <button
                     className={styles.cancelBtn}
                     onClick={() => setSelectedReview(null)}
                   >
                     Cancel
                   </button>
-                  <button 
+                  <button
                     className={styles.saveBtn}
                     onClick={saveReply}
                   >

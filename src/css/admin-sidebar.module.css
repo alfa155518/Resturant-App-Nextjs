@@ -1,0 +1,133 @@
+.adminSidebar {
+  width: 250px;
+  background-color: #4a3f35;
+  color: #e0e0e0;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  z-index: 100;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+.adminSidebar.collapsed {
+  width: 70px;
+}
+.adminSidebar .sidebarHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #1f1f1f;
+  background-color: #4a3f35;
+}
+.adminSidebar .sidebarHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ff7e5f;
+}
+.adminSidebar .sidebarHeader .toggleBtn {
+  background: transparent;
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+.adminSidebar .sidebarHeader .toggleBtn:hover {
+  color: #e74c3c;
+}
+.adminSidebar .sidebarContent {
+  padding: 1rem 0;
+}
+.adminSidebar .sidebarMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.adminSidebar .sidebarMenu li {
+  margin-bottom: 0.25rem;
+}
+.adminSidebar .sidebarMenu li a {
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #a0a0a0;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+  margin: 0 0.5rem;
+}
+.adminSidebar .sidebarMenu li a:hover {
+  background-color: #1f1f1f;
+  color: #9f643c;
+}
+.adminSidebar .sidebarMenu li a .menuIcon {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-right: 0.75rem;
+  color: #a0a0a0;
+}
+.adminSidebar .sidebarMenu li.active a {
+  background-color: #1f1f1f;
+  color: #9f643c;
+}
+.adminSidebar .sidebarMenu li.active a .menuIcon {
+  color: #9f643c;
+}
+.adminSidebar .sidebarFooter {
+  padding: 1rem;
+  border-top: 1px solid #1f1f1f;
+  margin-top: auto;
+  background-color: #4a3f35;
+}
+.adminSidebar .sidebarFooter .logoutBtn a {
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  color: #f5f0e9;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+.adminSidebar .sidebarFooter .logoutBtn a:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+.adminSidebar .sidebarFooter .logoutBtn a:hover .menuIcon {
+  color: #e74c3c;
+}
+.adminSidebar .sidebarFooter .logoutBtn a .menuIcon {
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+  color: #f5f0e9;
+}

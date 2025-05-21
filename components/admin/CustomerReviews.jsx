@@ -1,11 +1,14 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiStar } from 'react-icons/fi';
-import styles from './CustomerReviews.module.scss';
+import styles from '../../src/css/admin-customer-reviews.module.css';
 
 export default function CustomerReviews({ reviews }) {
+  const [showAll, setShowAll] = useState(false);
+  const initialDisplayCount = 2;
+  const displayedOrders = showAll ? reviews : reviews.slice(0, initialDisplayCount);
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -18,9 +21,13 @@ export default function CustomerReviews({ reviews }) {
     return stars;
   };
 
+  const toggleView = () => {
+    setShowAll(!showAll);
+  };
+
   return (
     <div className={styles.customerReviews}>
-      {reviews.map((review, index) => (
+      {displayedOrders.map((review, index) => (
         <motion.div
           key={review.id}
           className={styles.reviewCard}
@@ -38,9 +45,11 @@ export default function CustomerReviews({ reviews }) {
           <p className={styles.reviewComment}>{review.comment}</p>
         </motion.div>
       ))}
-      <div className={styles.viewAllReviews}>
-        <button>View All Reviews</button>
-      </div>
+      {reviews.length > initialDisplayCount && (
+        <div className={styles.viewAllReviews}>
+          <button onClick={toggleView}>View All Reviews</button>
+        </div>
+      )}
     </div>
   );
 }

@@ -3,9 +3,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiCalendar, FiClock, FiUsers, FiInfo } from 'react-icons/fi';
-import Sidebar from '../Sidebar';
-import Header from '../Header';
-import styles from './Reservations.module.scss';
+
+import styles from '../../../src/css/admin-reservations.module.css';
 
 export default function Reservations() {
   // Sample reservations data
@@ -41,7 +40,7 @@ export default function Reservations() {
 
   // Available time slots
   const timeSlots = [
-    '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', 
+    '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
     '20:00', '20:30', '21:00', '21:30', '22:00'
   ];
 
@@ -53,14 +52,14 @@ export default function Reservations() {
 
   // Filter reservations based on search term, date and status filters
   const filteredReservations = reservations.filter(reservation => {
-    const matchesSearch = 
+    const matchesSearch =
       reservation.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
       reservation.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       reservation.phone.includes(searchTerm);
-    
+
     const matchesDate = !dateFilter || reservation.date === dateFilter;
     const matchesStatus = statusFilter === 'All' || reservation.status === statusFilter;
-    
+
     return matchesSearch && matchesDate && matchesStatus;
   });
 
@@ -93,7 +92,7 @@ export default function Reservations() {
 
   // Save edited reservation
   const saveEditedReservation = () => {
-    setReservations(reservations.map(reservation => 
+    setReservations(reservations.map(reservation =>
       reservation.id === editingReservation.id ? editingReservation : reservation
     ));
     setEditingReservation(null);
@@ -111,7 +110,7 @@ export default function Reservations() {
 
   // Update reservation status
   const updateReservationStatus = (reservationId, newStatus) => {
-    setReservations(reservations.map(reservation => 
+    setReservations(reservations.map(reservation =>
       reservation.id === reservationId ? { ...reservation, status: newStatus } : reservation
     ));
   };
@@ -128,10 +127,10 @@ export default function Reservations() {
 
   return (
     <div className={styles.adminDashboard}>
-      <Sidebar />
+
 
       <div className={styles.dashboardContent}>
-        <Header />
+
 
         <motion.div
           className={styles.reservationsContainer}
@@ -144,27 +143,27 @@ export default function Reservations() {
             <div className={styles.reservationActions}>
               <div className={styles.searchBar}>
                 <FiSearch className={styles.searchIcon} />
-                <input 
-                  type="text" 
-                  placeholder="Search reservations..." 
+                <input
+                  type="text"
+                  placeholder="Search reservations..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              
+
               <div className={styles.dateFilter}>
                 <FiCalendar className={styles.filterIcon} />
-                <input 
-                  type="date" 
+                <input
+                  type="date"
                   value={dateFilter}
                   onChange={(e) => setDateFilter(e.target.value)}
                 />
               </div>
-              
+
               <div className={styles.filterContainer}>
                 <FiFilter className={styles.filterIcon} />
-                <select 
-                  value={statusFilter} 
+                <select
+                  value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
                 >
                   <option value="All">All Status</option>
@@ -173,8 +172,8 @@ export default function Reservations() {
                   <option value="Cancelled">Cancelled</option>
                 </select>
               </div>
-              
-              <button 
+
+              <button
                 className={styles.addReservationBtn}
                 onClick={() => setShowAddReservationModal(true)}
               >
@@ -188,7 +187,7 @@ export default function Reservations() {
               {Object.entries(groupedReservations)
                 .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
                 .map(([date, reservations]) => (
-                  <motion.div 
+                  <motion.div
                     key={date}
                     className={styles.dateGroup}
                     initial={{ opacity: 0, y: 10 }}
@@ -197,12 +196,12 @@ export default function Reservations() {
                   >
                     <div className={styles.dateHeader}>
                       <h3>
-                        <FiCalendar /> 
-                        {new Date(date).toLocaleDateString('en-US', { 
-                          weekday: 'long', 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
+                        <FiCalendar />
+                        {new Date(date).toLocaleDateString('en-US', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
                         })}
                       </h3>
                       <span className={styles.reservationCount}>
@@ -228,7 +227,7 @@ export default function Reservations() {
                           {reservations
                             .sort((a, b) => a.time.localeCompare(b.time))
                             .map(reservation => (
-                              <motion.tr 
+                              <motion.tr
                                 key={reservation.id}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -262,15 +261,15 @@ export default function Reservations() {
                                 </td>
                                 <td>
                                   <div className={styles.actionBtns}>
-                                    <button 
-                                      className={styles.editBtn} 
+                                    <button
+                                      className={styles.editBtn}
                                       onClick={() => startEditingReservation(reservation)}
                                       title="Edit Reservation"
                                     >
                                       <FiEdit2 />
                                     </button>
-                                    <button 
-                                      className={styles.deleteBtn} 
+                                    <button
+                                      className={styles.deleteBtn}
                                       onClick={() => deleteReservation(reservation.id)}
                                       title="Delete Reservation"
                                     >
@@ -287,7 +286,7 @@ export default function Reservations() {
                 ))}
             </div>
           ) : (
-            <motion.div 
+            <motion.div
               className={styles.noReservations}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -297,7 +296,7 @@ export default function Reservations() {
               <h3>No reservations found</h3>
               <p>There are no reservations matching your search criteria.</p>
               {(searchTerm || dateFilter || statusFilter !== 'All') && (
-                <button 
+                <button
                   className={styles.clearFiltersBtn}
                   onClick={() => {
                     setSearchTerm('');
@@ -313,13 +312,13 @@ export default function Reservations() {
 
           {/* Add Reservation Modal */}
           {showAddReservationModal && (
-            <motion.div 
+            <motion.div
               className={styles.modalOverlay}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.reservationModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -327,62 +326,62 @@ export default function Reservations() {
               >
                 <div className={styles.modalHeader}>
                   <h3>Add New Reservation</h3>
-                  <button 
+                  <button
                     className={styles.closeBtn}
                     onClick={() => setShowAddReservationModal(false)}
                   >
                     <FiX />
                   </button>
                 </div>
-                
+
                 <div className={styles.modalContent}>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Customer Name</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={newReservation.customer}
-                        onChange={(e) => setNewReservation({...newReservation, customer: e.target.value})}
+                        onChange={(e) => setNewReservation({ ...newReservation, customer: e.target.value })}
                         placeholder="Enter customer name"
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Phone Number</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={newReservation.phone}
-                        onChange={(e) => setNewReservation({...newReservation, phone: e.target.value})}
+                        onChange={(e) => setNewReservation({ ...newReservation, phone: e.target.value })}
                         placeholder="Enter phone number"
                       />
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Email Address</label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       value={newReservation.email}
-                      onChange={(e) => setNewReservation({...newReservation, email: e.target.value})}
+                      onChange={(e) => setNewReservation({ ...newReservation, email: e.target.value })}
                       placeholder="Enter email address"
                     />
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Reservation Date</label>
-                      <input 
-                        type="date" 
+                      <input
+                        type="date"
                         value={newReservation.date}
-                        onChange={(e) => setNewReservation({...newReservation, date: e.target.value})}
+                        onChange={(e) => setNewReservation({ ...newReservation, date: e.target.value })}
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Reservation Time</label>
-                      <select 
+                      <select
                         value={newReservation.time}
-                        onChange={(e) => setNewReservation({...newReservation, time: e.target.value})}
+                        onChange={(e) => setNewReservation({ ...newReservation, time: e.target.value })}
                       >
                         <option value="" disabled>Select time</option>
                         {timeSlots.map(time => (
@@ -391,24 +390,24 @@ export default function Reservations() {
                       </select>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Number of Guests</label>
-                      <input 
-                        type="number" 
+                      <input
+                        type="number"
                         min="1"
                         max="20"
                         value={newReservation.guests}
-                        onChange={(e) => setNewReservation({...newReservation, guests: parseInt(e.target.value)})}
+                        onChange={(e) => setNewReservation({ ...newReservation, guests: parseInt(e.target.value) })}
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Table Number</label>
-                      <select 
+                      <select
                         value={newReservation.tableNo}
-                        onChange={(e) => setNewReservation({...newReservation, tableNo: e.target.value})}
+                        onChange={(e) => setNewReservation({ ...newReservation, tableNo: e.target.value })}
                       >
                         <option value="" disabled>Select table</option>
                         {availableTables.map(table => (
@@ -417,22 +416,22 @@ export default function Reservations() {
                       </select>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Special Requests</label>
-                    <textarea 
+                    <textarea
                       value={newReservation.specialRequests}
-                      onChange={(e) => setNewReservation({...newReservation, specialRequests: e.target.value})}
+                      onChange={(e) => setNewReservation({ ...newReservation, specialRequests: e.target.value })}
                       placeholder="Enter any special requests"
                       rows="3"
                     ></textarea>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Status</label>
-                    <select 
+                    <select
                       value={newReservation.status}
-                      onChange={(e) => setNewReservation({...newReservation, status: e.target.value})}
+                      onChange={(e) => setNewReservation({ ...newReservation, status: e.target.value })}
                     >
                       <option value="Pending">Pending</option>
                       <option value="Confirmed">Confirmed</option>
@@ -440,15 +439,15 @@ export default function Reservations() {
                     </select>
                   </div>
                 </div>
-                
+
                 <div className={styles.modalFooter}>
-                  <button 
+                  <button
                     className={styles.cancelBtn}
                     onClick={() => setShowAddReservationModal(false)}
                   >
                     Cancel
                   </button>
-                  <button 
+                  <button
                     className={styles.saveBtn}
                     onClick={handleAddReservation}
                     disabled={!newReservation.customer || !newReservation.phone || !newReservation.date || !newReservation.time || !newReservation.tableNo}
@@ -462,13 +461,13 @@ export default function Reservations() {
 
           {/* Edit Reservation Modal */}
           {editingReservation && (
-            <motion.div 
+            <motion.div
               className={styles.modalOverlay}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.reservationModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -476,59 +475,59 @@ export default function Reservations() {
               >
                 <div className={styles.modalHeader}>
                   <h3>Edit Reservation</h3>
-                  <button 
+                  <button
                     className={styles.closeBtn}
                     onClick={() => setEditingReservation(null)}
                   >
                     <FiX />
                   </button>
                 </div>
-                
+
                 <div className={styles.modalContent}>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Customer Name</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={editingReservation.customer}
-                        onChange={(e) => setEditingReservation({...editingReservation, customer: e.target.value})}
+                        onChange={(e) => setEditingReservation({ ...editingReservation, customer: e.target.value })}
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Phone Number</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={editingReservation.phone}
-                        onChange={(e) => setEditingReservation({...editingReservation, phone: e.target.value})}
+                        onChange={(e) => setEditingReservation({ ...editingReservation, phone: e.target.value })}
                       />
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Email Address</label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       value={editingReservation.email}
-                      onChange={(e) => setEditingReservation({...editingReservation, email: e.target.value})}
+                      onChange={(e) => setEditingReservation({ ...editingReservation, email: e.target.value })}
                     />
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Reservation Date</label>
-                      <input 
-                        type="date" 
+                      <input
+                        type="date"
                         value={editingReservation.date}
-                        onChange={(e) => setEditingReservation({...editingReservation, date: e.target.value})}
+                        onChange={(e) => setEditingReservation({ ...editingReservation, date: e.target.value })}
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Reservation Time</label>
-                      <select 
+                      <select
                         value={editingReservation.time}
-                        onChange={(e) => setEditingReservation({...editingReservation, time: e.target.value})}
+                        onChange={(e) => setEditingReservation({ ...editingReservation, time: e.target.value })}
                       >
                         {timeSlots.map(time => (
                           <option key={time} value={time}>{time}</option>
@@ -536,24 +535,24 @@ export default function Reservations() {
                       </select>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Number of Guests</label>
-                      <input 
-                        type="number" 
+                      <input
+                        type="number"
                         min="1"
                         max="20"
                         value={editingReservation.guests}
-                        onChange={(e) => setEditingReservation({...editingReservation, guests: parseInt(e.target.value)})}
+                        onChange={(e) => setEditingReservation({ ...editingReservation, guests: parseInt(e.target.value) })}
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Table Number</label>
-                      <select 
+                      <select
                         value={editingReservation.tableNo}
-                        onChange={(e) => setEditingReservation({...editingReservation, tableNo: e.target.value})}
+                        onChange={(e) => setEditingReservation({ ...editingReservation, tableNo: e.target.value })}
                       >
                         {availableTables.map(table => (
                           <option key={table} value={table}>{table}</option>
@@ -561,21 +560,21 @@ export default function Reservations() {
                       </select>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Special Requests</label>
-                    <textarea 
+                    <textarea
                       value={editingReservation.specialRequests}
-                      onChange={(e) => setEditingReservation({...editingReservation, specialRequests: e.target.value})}
+                      onChange={(e) => setEditingReservation({ ...editingReservation, specialRequests: e.target.value })}
                       rows="3"
                     ></textarea>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Status</label>
-                    <select 
+                    <select
                       value={editingReservation.status}
-                      onChange={(e) => setEditingReservation({...editingReservation, status: e.target.value})}
+                      onChange={(e) => setEditingReservation({ ...editingReservation, status: e.target.value })}
                     >
                       <option value="Pending">Pending</option>
                       <option value="Confirmed">Confirmed</option>
@@ -583,31 +582,31 @@ export default function Reservations() {
                     </select>
                   </div>
                 </div>
-                
+
                 <div className={styles.modalFooter}>
                   <div className={styles.statusActions}>
-                    <button 
+                    <button
                       className={`${styles.statusBtn} ${styles.confirmed}`}
-                      onClick={() => setEditingReservation({...editingReservation, status: 'Confirmed'})}
+                      onClick={() => setEditingReservation({ ...editingReservation, status: 'Confirmed' })}
                     >
                       Confirm
                     </button>
-                    <button 
+                    <button
                       className={`${styles.statusBtn} ${styles.cancelled}`}
-                      onClick={() => setEditingReservation({...editingReservation, status: 'Cancelled'})}
+                      onClick={() => setEditingReservation({ ...editingReservation, status: 'Cancelled' })}
                     >
                       Cancel
                     </button>
                   </div>
-                  
+
                   <div className={styles.modalButtons}>
-                    <button 
+                    <button
                       className={styles.cancelBtn}
                       onClick={() => setEditingReservation(null)}
                     >
                       Close
                     </button>
-                    <button 
+                    <button
                       className={styles.saveBtn}
                       onClick={saveEditedReservation}
                     >

@@ -121,7 +121,7 @@
   margin-bottom: 0.5rem;
 }
 .serviceContent p {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.2rem;
   line-height: 1.4;
 }
@@ -159,7 +159,7 @@
   border: 1px solid rgba(159, 100, 60, 0.2);
 }
 .ctaSection h2 {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
@@ -170,7 +170,7 @@
 
 .ctaButton {
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
@@ -335,7 +335,7 @@
   -moz-border-radius: 0.5rem;
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.2rem;
 }
 .contactForm .formGroup input:focus,
@@ -387,7 +387,7 @@
 
 .submitButton {
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   box-shadow: 0 4px 15px rgba(159, 100, 60, 0.3);
   cursor: pointer;

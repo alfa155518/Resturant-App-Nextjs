@@ -1,0 +1,132 @@
+@import '../../../helpers/mixins';
+@import '../../../helpers/variables';
+
+// Sidebar module styles
+.adminSidebar {
+  width: 250px;
+  background-color: $nature-dark-color;
+  color: #e0e0e0;
+  @include transition(0.3s);
+  z-index: 100;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+
+  &.collapsed {
+    width: 70px;
+  }
+
+  .sidebarHeader {
+    @include flex-center {
+      justify-content: space-between;
+    }
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid $card-color;
+    background-color: $nature-dark-color;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+      color: $light-color;
+    }
+
+    .toggleBtn {
+      background: transparent;
+      border: none;
+      color: #e0e0e0;
+      font-size: 1.5rem;
+      cursor: pointer;
+      @include flex-center;
+      @include transition(0.2s);
+
+      &:hover {
+        color: $danger-color;
+      }
+    }
+  }
+
+  .sidebarContent {
+    padding: 1rem 0;
+  }
+
+  .sidebarMenu {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+
+      a {
+        font-size: 1.2rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        color: #a0a0a0;
+        text-decoration: none;
+        @include transition(0.2s);
+        @include radius(0.25rem);
+        margin: 0 0.5rem;
+
+        &:hover {
+          background-color: $card-color;
+          color: $primary-color;
+        }
+
+        .menuIcon {
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin-right: 0.75rem;
+          color: #a0a0a0;
+        }
+      }
+
+      &.active a {
+        background-color: $card-color;
+        color: $primary-color;
+
+        .menuIcon {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .sidebarFooter {
+    padding: 1rem;
+    border-top: 1px solid $card-color;
+    margin-top: auto;
+    background-color: $nature-dark-color;
+
+    .logoutBtn {
+      a {
+        font-size: 1.2rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        color: $nature-light-color;
+        text-decoration: none;
+        padding: 0.75rem 1rem;
+        @include radius(0.25rem);
+        @include transition(0.2s);
+
+        &:hover {
+          background-color: rgba(231, 76, 60, 0.1);
+          color: $danger-color;
+
+          .menuIcon {
+            color: $danger-color;
+          }
+        }
+
+        .menuIcon {
+          font-size: 1.25rem;
+          margin-right: 0.75rem;
+          color: $nature-light-color;
+        }
+      }
+    }
+  }
+}

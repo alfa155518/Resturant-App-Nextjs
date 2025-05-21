@@ -1,0 +1,18 @@
+{
+    "indentRainbow.colors": [
+        "rgba(16,160,240,0.1)",
+        "rgba(240,80,40,0.1)",
+        "rgba(40,200,80,0.1)"
+    ],
+    "indentRainbow.errorColor": "rgba(255,0,0,0.2)",
+    "indentColorizer.colors": [
+        "rgba(255,255,64,0.1)",
+        "rgba(127,255,127,0.1)",
+        "rgba(255,127,255,0.1)",
+        "rgba(79,236,255,0.1)"
+    ],
+    "editor.guides.indentation": true,
+    "editor.guides.highlightActiveIndentation": true,
+    "editor.wordWrap": "on",
+    "editor.tabSize": 4
+}

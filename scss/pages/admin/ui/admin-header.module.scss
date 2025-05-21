@@ -1,0 +1,237 @@
+@import '../../../helpers/mixins';
+@import '../../../helpers/variables';
+// Header module styles
+.adminHeader {
+  @include flex-center {
+    justify-content: space-between;
+  }
+  padding: 1rem 1.5rem;
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #333333;
+  box-shadow: 0 1px 2px $light-dark-color;
+
+  @media (width >= 768px) {
+    padding: 1rem 2rem;
+  }
+
+  .headerLeft {
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: $light-color;
+      margin: 0;
+    }
+
+    .date {
+      font-size: 1.2rem;
+      color: $warning-color;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .headerRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .searchBar {
+    position: relative;
+    display: none;
+    font-size: 1.3rem;
+    @media (width >= 768px) {
+      display: flex;
+    }
+
+    .searchIcon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $nature-light-color;
+    }
+
+    input {
+      padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+      border: 1px solid #333333;
+      @include radius(8px);
+      font-size: 1rem;
+      width: 250px;
+      @include transition(0.3s);
+      background-color: rgba(31, 31, 31, 0.7);
+      color: $nature-light-color;
+
+      &::placeholder {
+        color: $nature-light-color;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba(159, 100, 60, 0.3);
+        background-color: rgba(31, 31, 31, 0.9);
+      }
+    }
+  }
+
+  // Add click outside handler for search results
+  .clickOutside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background: transparent;
+  }
+
+  .notifications {
+    position: relative;
+
+    .notificationBtn {
+      position: relative;
+      background: transparent;
+      border: none;
+      color: $nature-light-color;
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      @include radius(8px);
+      @include flex-center;
+      @include transition(0.3s);
+
+      &:hover {
+        background-color: #2c2c2c;
+        color: $primary-color;
+      }
+    }
+
+    .notificationBadge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: $primary-color;
+      color: $white-color;
+      font-size: 0.75rem;
+      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      @include radius(50%);
+      @include flex-center;
+    }
+
+    .notificationDropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: -0.5rem;
+      background-color: #1f1f1f;
+      @include radius(8px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      z-index: 50;
+      overflow: hidden;
+      border: 1px solid #333333;
+
+      h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        padding: 1rem;
+        margin: 0;
+        border-bottom: 1px solid #333333;
+        color: $primary-color;
+        background-color: #1c1c1c;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      li {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #333333;
+        @include transition(0.3s);
+
+        &:hover {
+          background-color: #2c2c2c;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .notificationMessage {
+          font-size: 1.1rem;
+          color: $nature-light-color;
+          margin: 0 0 0.25rem;
+        }
+
+        .notificationTime {
+          font-size: 1rem;
+          color: $info-color;
+          margin: 0;
+        }
+      }
+
+      .viewAll {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #1c1c1c;
+        border: none;
+        border-top: 1px solid #333333;
+        color: $primary-color;
+        font-size: 1.2rem;
+        font-weight: 800;
+        cursor: pointer;
+        @include transition(0.3s);
+
+        &:hover {
+          background-color: #2c2c2c;
+        }
+      }
+    }
+  }
+
+  .userProfile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      @include radius(50%);
+      background-color: $primary-color;
+      color: $white-color;
+      @include flex-center;
+      font-size: 1.25rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(159, 100, 60, 0.3);
+    }
+
+    .userInfo {
+      display: none;
+
+      @media (width >= 768px) {
+        display: block;
+      }
+
+      .userName {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $warning-color;
+        margin: 0;
+      }
+
+      .userRole {
+        font-size: 1rem;
+        color: $light-color;
+        margin: 0;
+      }
+    }
+  }
+}

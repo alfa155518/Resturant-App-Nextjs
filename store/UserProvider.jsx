@@ -1,6 +1,6 @@
 "use client";
 
-import { cancelReservation, reservations, userCheckoutProducts } from "@/actions/profile";
+import { addFavoriteProduct, cancelReservation, getFavoriteProducts, removeFavoriteProduct, reservations, userCheckoutProducts } from "@/actions/profile";
 import { logoutUser } from "@/actions/user";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
@@ -26,6 +26,7 @@ export function UserProvider({ children }) {
   const [activeFilterReservation, setActiveFilterReservation] = useState("all");
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [showDetailsReservationModal, setShowDetailsReservationModal] = useState(false);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
 
 
 
@@ -229,6 +230,48 @@ export function UserProvider({ children }) {
   };
 
 
+  // ###############################
+  // Get favorite products
+  useEffect(() => {
+    async function handelGetFavoriteProducts() {
+      const data = await getFavoriteProducts();
+      setFavoriteProducts(data);
+    }
+    handelGetFavoriteProducts();
+    router.refresh()
+  }, [pathname, needsRefresh]);
+
+  // Add favorite product
+  const handelAddFavoriteProduct = async (productId) => {
+    const data = await addFavoriteProduct(productId);
+    setFavoriteProducts(data);
+    if (data.status === "success") {
+      toast.success(data.message);
+    }
+    if (data.status === "info") {
+      toast.info(data.message);
+    }
+    if (data.status === "error") {
+      toast.error(data.message);
+    }
+    setNeedsRefresh(!needsRefresh);
+  }
+
+  // Remove favorite product
+  const handelRemoveFavoriteProduct = async (productId) => {
+    const data = await removeFavoriteProduct(productId);
+    if (data.status === "success") {
+      toast.success(data.message);
+    }
+    if (data.status === "info") {
+      toast.info(data.message);
+    }
+    if (data.status === "error") {
+      toast.error(data.message);
+    }
+    setNeedsRefresh(!needsRefresh);
+  }
+
   // Context value
   const value = {
     user,
@@ -264,6 +307,10 @@ export function UserProvider({ children }) {
     getStatusIcon,
     checkoutHistory,
     setCheckoutHistory,
+    favoriteProducts,
+    setFavoriteProducts,
+    handelAddFavoriteProduct,
+    handelRemoveFavoriteProduct,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

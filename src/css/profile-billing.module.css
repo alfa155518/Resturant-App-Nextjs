@@ -24,7 +24,7 @@
 .billingContainer h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid rgba(159, 100, 60, 0.3);
   padding-bottom: 0.5rem;
 }
@@ -54,7 +54,7 @@
   font-size: 1.1rem;
 }
 .tabButton:hover {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .tabButton.active {
   color: #9f643c;
@@ -69,7 +69,7 @@
 }
 .sectionHeader h3 {
   font-size: 1.3rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .addButton {
@@ -80,7 +80,7 @@
   background: #9f643c;
   border: none;
   border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -104,7 +104,7 @@
 }
 .emptyState h3 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .emptyState p {
@@ -121,7 +121,7 @@
   background: #9f643c;
   border: none;
   border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -169,7 +169,7 @@
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -210,7 +210,7 @@
   background: #9f643c;
   border: none;
   border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -263,7 +263,7 @@
 
 .cardDetails h4 {
   font-size: 1.1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.3rem;
 }
 
@@ -285,7 +285,7 @@
   top: -0.5rem;
   right: -0.5rem;
   background: #2ecc71;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
@@ -360,7 +360,7 @@
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr;
   padding: 1rem 1.5rem;
   background: rgba(159, 100, 60, 0.2);
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -395,7 +395,7 @@
   .tableRow .invoiceId::before, .tableRow .invoiceDate::before, .tableRow .invoiceDesc::before, .tableRow .invoiceAmount::before, .tableRow .invoiceStatus::before {
     content: attr(data-label);
     font-weight: 600;
-    color: #FFFFFF;
+    color: #ffffff;
   }
   .tableRow .invoiceActions {
     display: flex;
@@ -409,7 +409,7 @@
 
 .invoiceId {
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 @media (max-width: 992px) {
   .invoiceId::before {
@@ -427,7 +427,7 @@
 }
 
 .invoiceDesc {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .invoiceDesc .paymentMethod {
   font-size: 0.85rem;

@@ -11,26 +11,26 @@ export const TeamContext = createContext();
 // Provider component
 export function TeamProvider({ children }) {
 
-  const [teamMembers, setTeamMembers] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [pageNumber, setPageNumber] = useState(1);
 
-  useEffect(() => {
-    async function fetchTeamMembers() {
-      const { data } = await allTeamMember(pageNumber);
-      setTeamMembers(data);
-    }
-    fetchTeamMembers();
-  }, [pageNumber])
-  
-  // Context value
-  const value = {
-    teamMembers,
-    setPageNumber,
-  };
+    useEffect(() => {
+        async function fetchTeamMembers() {
+            const { data } = await allTeamMember(pageNumber);
+            setTeamMembers(data);
+        }
+        fetchTeamMembers();
+    }, [pageNumber])
 
-  return (
-    <TeamContext.Provider value={value}>
-      {children}
-    </TeamContext.Provider>
-  );
+    // Context value
+    const value = {
+        teamMembers,
+        setPageNumber,
+    };
+
+    return (
+        <TeamContext.Provider value={value}>
+            {children}
+        </TeamContext.Provider>
+    );
 }

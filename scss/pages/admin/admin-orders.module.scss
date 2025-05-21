@@ -1,0 +1,532 @@
+@import '../../helpers/mixins';
+@import '../../helpers/variables';
+
+// Orders Management Page Styles
+
+.adminDashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: $dark-hover-color;
+}
+
+.dashboardContent {
+  flex: 1;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.ordersContainer {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ordersHeader {
+  @include adminSectionHeader;
+}
+
+.ordersTableContainer {
+  background-color: white;
+  @include radius(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: $dark-text-primary;
+    color: $nature-dark-color;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  tr {
+    border-bottom: 1px solid $dark-border-color;
+    @include transition(0.2s);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $dark-text-primary;
+    }
+  }
+
+  td {
+    color: $dark-hover-color;
+    font-size: 1.1rem;
+  }
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  @include radius(20px);
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  min-width: 100px;
+
+  &.processing {
+    background-color: rgba($info-color, 0.15);
+    color: $info-color;
+  }
+
+  &.preparing {
+    background-color: rgba($warning-color, 0.15);
+    color: $warning-color;
+  }
+
+  &.delivered {
+    background-color: rgba($info-color, 0.15);
+    color: $info-color;
+  }
+
+  &.completed {
+    background-color: rgba($success-color, 0.15);
+    color: $success-color;
+  }
+
+  &.cancelled {
+    background-color: rgba($danger-color, 0.15);
+    color: $danger-color;
+  }
+}
+
+.actionBtns {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    @include radius(6px);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: none;
+    background-color: transparent;
+    color: $dark-hover-color;
+    cursor: pointer;
+    background-color: #f5f7fa;
+  }
+
+  .viewBtn {
+    color: $info-color;
+  }
+
+  .editBtn {
+    color: $warning-color;
+  }
+
+  .deleteBtn {
+    color: $danger-color;
+  }
+}
+
+// Modal styles
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.orderDetailsModal,
+.editOrderModal {
+  background-color: $nature-light-color;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  @include flex-center {
+    justify-content: space-between;
+  }
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+
+  h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $light-color;
+  }
+
+  .closeBtn {
+    background: transparent;
+    background-color: #f5f7fa;
+    color: #ef4444;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    @include flex-center;
+    padding: 0.25rem;
+    @include radius(4px);
+  }
+}
+
+.modalContent,
+.modalContentForm {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.infoRow {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.infoColumn {
+  flex: 1;
+  min-width: 250px;
+
+  h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $nature-dark-color;
+    margin: 0 0 0.75rem 0;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: $card-color;
+    line-height: 1.5;
+  }
+}
+
+.orderItems {
+  margin-top: 1.5rem;
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $light-color;
+    margin: 0 0 0.75rem 0;
+  }
+}
+
+.itemsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+
+  th,
+  td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid $dark-border-color;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+
+  th {
+    color: $dark-border-color;
+    font-size: 1.2rem;
+  }
+
+  td {
+    color: $dark-hover-color;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+.viewAll {
+  @include viewAllButton;
+}
+
+.orderSummary {
+  background-color: $dark-text-primary;
+  padding: 1rem 1.25rem;
+  @include radius(0.8rem);
+  margin-bottom: 1.5rem;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: $nature-dark-color;
+  font-size: 1.2rem;
+
+  &.totalRow {
+    border-top: 1px solid var(--border-color);
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    font-weight: 600;
+    color: $primary-color;
+    font-size: 1.3rem;
+  }
+}
+
+.orderNotes {
+  h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $dark-bg-primary;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    background-color: $white-color;
+    @include radius(0.8rem);
+    color: $dark-hover-color;
+    font-size: 1.1rem;
+  }
+}
+
+.modalFooter {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+
+  @include flex-center {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+.statusActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  span {
+    color: $dark-hover-color;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.statusButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.statusBtn {
+  padding: 0.4rem 0.75rem;
+  @include radius(0.8rem);
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  @include transition(0.2s);
+
+  &.processing {
+    background-color: rgba($info-color, 0.15);
+    color: $info-color;
+
+    &:hover {
+      background-color: rgba($info-color, 0.25);
+    }
+  }
+
+  &.preparing {
+    background-color: rgba($warning-color, 0.15);
+    color: $warning-color;
+
+    &:hover {
+      background-color: rgba($warning-color, 0.25);
+    }
+  }
+
+  &.delivered {
+    background-color: rgba($info-color, 0.15);
+    color: $info-color;
+
+    &:hover {
+      background-color: rgba($info-color, 0.25);
+    }
+  }
+
+  &.completed {
+    background-color: rgba($success-color, 0.15);
+    color: $success-color;
+
+    &:hover {
+      background-color: rgba($success-color, 0.25);
+    }
+  }
+
+  &.cancelled {
+    background-color: rgba($danger-color, 0.15);
+    color: $danger-color;
+
+    &:hover {
+      background-color: rgba($danger-color, 0.25);
+    }
+  }
+}
+
+.closeModalBtn {
+  padding: 0.6rem 1.2rem;
+  background-color: #f5f7fa;
+  color: #1e293b;
+  border: none;
+  @include radius(0.8rem);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  @include transition(0.3s);
+
+  &:hover {
+    background-color: #edf2f7;
+  }
+}
+
+// Edit Order Modal Styles
+.modalContentForm {
+  background-color: $dark-hover-color;
+}
+.formGroup {
+  @include formGroup;
+  input[type='date'],
+  input[type='time'] {
+    /* Change calendar/dropdown icon color */
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      opacity: 0.8;
+      cursor: pointer;
+      @include transition(0.2s);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    /* For Firefox */
+    &::-moz-calendar-picker-indicator {
+      filter: invert(1);
+      opacity: 0.8;
+      cursor: pointer;
+      @include transition(0.2s);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0;
+
+  .formGroup {
+    flex: 1;
+  }
+}
+
+.saveBtn,
+.cancelBtn {
+  padding: 0.6rem 1.2rem;
+  @include radius(0.8rem);
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  @include transition(0.3s);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.saveBtn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+
+  &:hover {
+    background-color: #2563eb;
+  }
+}
+
+.cancelBtn {
+  background-color: #f5f7fa;
+  color: #1e293b;
+  border: none;
+
+  &:hover {
+    background-color: #edf2f7;
+  }
+}
+
+// Responsive styles
+@media (width <= 768px) {
+  .ordersHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .orderActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .searchBar {
+    width: 100%;
+  }
+
+  .ordersTable {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .modalFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .statusActions {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .statusButtons {
+    width: 100%;
+  }
+
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+}

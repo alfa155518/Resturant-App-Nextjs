@@ -20,7 +20,7 @@
   flex-direction: column;
   gap: 1rem;
   background-color: #1f1f1f;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .loadingContainer .loadingSpinner {
   width: 50px;
@@ -136,7 +136,7 @@
 }
 .blogText h2 {
   font-size: 1.8rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 2rem 0 1rem;
 }
 .blogText h2:first-child {
@@ -144,7 +144,7 @@
 }
 .blogText h3 {
   font-size: 1.4rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 1.5rem 0 1rem;
 }
 .blogText p {
@@ -158,7 +158,7 @@
   margin-bottom: 0.5rem;
 }
 .blogText strong {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .blogText a {
   color: #9f643c;
@@ -277,7 +277,7 @@
 .galleryNavigation button {
   background: none;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 2rem;
   font-weight: 500;
   cursor: pointer;
@@ -330,7 +330,7 @@
   gap: 0.3rem;
   padding: 0.3rem 0.8rem;
   background-color: #3c829f;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -405,7 +405,7 @@
   justify-content: center;
   align-items: center;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -535,7 +535,7 @@
 }
 .commentsSection h3 {
   font-size: 1.4rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   font-weight: 600;
   position: relative;
@@ -571,11 +571,11 @@
 }
 .commentItem .commentHeader h4 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .commentItem .commentHeader span {
   font-size: 1.1rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 @media (width <= 480px) {
   .commentItem .commentHeader {
@@ -585,13 +585,13 @@
   }
 }
 .commentItem p {
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 1.6;
 }
 
 .commentForm h5 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1.2rem;
 }
 .commentForm form {
@@ -618,7 +618,7 @@
 }
 .formGroup label {
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .formGroup input, .formGroup textarea {
   padding: 0.8rem;
@@ -648,7 +648,7 @@
   align-items: center;
   gap: 0.5rem;
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 50px;
@@ -675,7 +675,7 @@
 }
 .relatedPosts h2 {
   font-size: 1.8rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   text-align: center;
   position: relative;
@@ -745,7 +745,7 @@
 .relatedInfo .relatedCategory {
   display: inline-block;
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0.3rem 0.8rem;
   border-radius: 50px;
   font-size: 0.8rem;
@@ -754,7 +754,7 @@
 }
 .relatedInfo h3 {
   font-size: 1.1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.8rem;
   line-height: 1.4;
 }

@@ -1,9 +1,6 @@
-"use client";
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Sidebar from './Sidebar';
-import Header from './Header';
 import StatCards from './StatCards';
 import RevenueChart from './charts/RevenueChart';
 import OrdersChart from './charts/OrdersChart';
@@ -12,7 +9,7 @@ import PopularItems from './PopularItems';
 import CustomerReviews from './CustomerReviews';
 
 // Import CSS Module
-import styles from './Dashboard.module.scss';
+import styles from '../../src/css/admin-dashboard.module.css';
 
 export default function Dashboard() {
   // Static data for the dashboard
@@ -54,10 +51,10 @@ export default function Dashboard() {
       { id: 'ORD-7833', customer: 'David Wilson', items: 4, total: 92.75, status: 'Preparing', time: '1.5 hours ago' },
     ],
     popularItems: [
-      { id: 1, name: 'Truffle Pasta', orders: 245, revenue: 4900, image: '/images/menu/pasta.jpg' },
-      { id: 2, name: 'Wagyu Steak', orders: 198, revenue: 7920, image: '/images/menu/steak.jpg' },
-      { id: 3, name: 'Seafood Paella', orders: 187, revenue: 5610, image: '/images/menu/paella.jpg' },
-      { id: 4, name: 'Chocolate Souffle', orders: 176, revenue: 2640, image: '/images/menu/dessert.jpg' },
+      { id: 1, name: 'Truffle Pasta', orders: 245, revenue: 4900, image: 'https://res.cloudinary.com/duumkzqwx/image/upload/f_auto,q_auto/v1/laravel-restaurant/menu/jhmch4eohzhltgoxv1bt' },
+      { id: 2, name: 'Wagyu Steak', orders: 198, revenue: 7920, image: 'https://res.cloudinary.com/duumkzqwx/image/upload/f_auto,q_auto/v1/laravel-restaurant/menu/jtsvnf8nes1d8td73um3' },
+      { id: 3, name: 'Seafood Paella', orders: 187, revenue: 5610, image: 'https://res.cloudinary.com/duumkzqwx/image/upload/f_auto,q_auto/v1/laravel-restaurant/menu/jh4cfim95czivqfnkxlx' },
+      { id: 4, name: 'Chocolate Souffle', orders: 176, revenue: 2640, image: 'https://res.cloudinary.com/duumkzqwx/image/upload/f_auto,q_auto/v1/laravel-restaurant/menu/gjcbirwv77cebshv4pso' },
     ],
     customerReviews: [
       { id: 1, customer: 'Jessica Miller', rating: 5, comment: 'Absolutely amazing experience! The food was exceptional and the service was impeccable.', date: '2 days ago' },
@@ -67,77 +64,105 @@ export default function Dashboard() {
   });
 
   return (
-    <div className={styles.adminDashboard}>
-      <Sidebar />
+    <motion.div
+      className={styles.dashboardMain}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <StatCards stats={dashboardData.stats} />
 
-      <div className={styles.dashboardContent}>
-        <Header />
+      <div className={styles.chartsContainer}>
+        <motion.div
+          className={`${styles.chartCard} ${styles.revenueChart}`}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <motion.h3
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className={styles.sectionName}
+          >
+            Revenue Overview
+          </motion.h3>
+          <RevenueChart data={dashboardData.revenueData} />
+        </motion.div>
 
         <motion.div
-          className={styles.dashboardMain}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          className={`${styles.chartCard} ${styles.ordersChart}`}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <StatCards stats={dashboardData.stats} />
+          <motion.h3
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
+            className={styles.sectionName}
 
-          <div className={styles.chartsContainer}>
-            <motion.div
-              className={`${styles.chartCard} ${styles.revenueChart}`}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3>Revenue Overview</h3>
-              <RevenueChart data={dashboardData.revenueData} />
-            </motion.div>
-
-            <motion.div
-              className={`${styles.chartCard} ${styles.ordersChart}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <h3>Weekly Orders</h3>
-              <OrdersChart data={dashboardData.ordersData} />
-            </motion.div>
-          </div>
-
-          <div className={styles.dashboardBottom}>
-            <motion.div
-              className={styles.recentOrdersContainer}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <h3>Recent Orders</h3>
-              <RecentOrders orders={dashboardData.recentOrders} />
-            </motion.div>
-
-            <div className={styles.dashboardSide}>
-              <motion.div
-                className={styles.popularItemsContainer}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <h3>Popular Menu Items</h3>
-                <PopularItems items={dashboardData.popularItems} />
-              </motion.div>
-
-              <motion.div
-                className={styles.customerReviewsContainer}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-              >
-                <h3>Recent Customer Reviews</h3>
-                <CustomerReviews reviews={dashboardData.customerReviews} />
-              </motion.div>
-            </div>
-          </div>
+          >
+            Weekly Orders
+          </motion.h3>
+          <OrdersChart data={dashboardData.ordersData} />
         </motion.div>
       </div>
-    </div>
+
+      <div className={styles.dashboardBottom}>
+        <motion.div
+          className={styles.recentOrdersContainer}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <motion.h3
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className={styles.sectionName}
+          >
+            Recent Orders
+          </motion.h3>
+          <RecentOrders orders={dashboardData.recentOrders} />
+        </motion.div>
+
+        <div className={styles.dashboardSide}>
+          <motion.div
+            className={styles.popularItemsContainer}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.25 }}
+              className={styles.sectionName}
+            >
+              Popular Menu Items
+            </motion.h3>
+            <PopularItems items={dashboardData.popularItems} />
+          </motion.div>
+
+          <motion.div
+            className={styles.customerReviewsContainer}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              className={styles.sectionName}
+            >
+              Recent Customer Reviews
+            </motion.h3>
+            <CustomerReviews reviews={dashboardData.customerReviews} />
+          </motion.div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

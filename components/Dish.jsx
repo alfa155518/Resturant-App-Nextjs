@@ -7,9 +7,9 @@ import { CartContext } from "@/store/CartProvider";
 export default function Dish({
   styles,
   item,
-  favorites,
   openItemDetails,
   itemVariants,
+  handelAddFavoriteProduct
 }) {
   const { handleAddToCart } = useContext(CartContext);
   const [isItemLoading, setIsItemLoading] = useState(false);
@@ -38,10 +38,8 @@ export default function Dish({
           className={styles.itemImage}
         />
         <motion.button
-          className={`${styles.favoriteButton} ${
-            favorites.includes(item.id) ? styles.favorited : ""
-          }`}
-          onClick={() => toggleFavorite(item.id)}
+          className={`${styles.favoriteButton}`}
+          onClick={() => handelAddFavoriteProduct(item.id)}
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           aria-label="Favorite">

@@ -9,7 +9,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../public/images/hero.webp");
   background-size: cover;
   background-position: center;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
 }
 .heroContainer .text {
@@ -55,7 +55,7 @@
 }
 .heroContainer .action .tableBtn {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 2px solid #9f643c;
 }
 .heroContainer .action .tableBtn:hover {
@@ -64,8 +64,8 @@
 }
 .heroContainer .action .menuBtn {
   background-color: transparent;
-  color: #FFFFFF;
-  border: 2px solid #FFFFFF;
+  color: #ffffff;
+  border: 2px solid #ffffff;
 }
 .heroContainer .action .menuBtn:hover {
   background-color: rgba(255, 255, 255, 0.1);

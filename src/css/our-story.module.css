@@ -32,14 +32,14 @@
 .storyText p {
   font-size: 1.3rem;
   line-height: 1.8;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
 .storyButton {
   background: linear-gradient(to right, #9f643c, #ff7e5f);
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 12px 30px;
   border-radius: 30px;
   font-size: 1rem;

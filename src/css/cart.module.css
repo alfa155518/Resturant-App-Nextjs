@@ -75,7 +75,7 @@
 
 .continueShoppingBtn {
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   box-shadow: 0 4px 15px rgba(159, 100, 60, 0.3);
   cursor: pointer;
@@ -199,7 +199,7 @@
 }
 .cartItem .itemDetails .itemDescription {
   font-size: 1.1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .cartItem .itemDetails .itemPrice {
@@ -402,7 +402,7 @@
   border-radius: 8px;
   background-color: rgba(74, 63, 53, 0.3);
   border: 1px solid rgba(245, 240, 233, 0.2);
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
@@ -454,7 +454,7 @@
   padding: 0.8rem 1.2rem;
   border-radius: 8px;
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -486,7 +486,7 @@
   margin-top: 2rem;
   border-radius: 8px;
   background: linear-gradient(to right, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   font-size: 1.2rem;
   font-weight: 600;
@@ -617,7 +617,7 @@
   padding: 0.7rem 1.5rem;
   border-radius: 50px;
   background-color: rgba(159, 100, 60, 0.2);
-  color: #FFFFFF;
+  color: #ffffff;
   border: 1px solid #9f643c;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -628,7 +628,7 @@
 }
 .recommendedSection .recommendedItem button:hover {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 @media (width <= 480px) {

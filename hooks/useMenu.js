@@ -1,13 +1,12 @@
 "use client"
 import { MenuContext } from "@/store/MenuProvider";
+import { UserContext } from "@/store/UserProvider";
 import { useContext, useState } from "react";
 
 export default function useMenu() {
-  const {menuDishes,setPageNumber} = useContext(MenuContext);
+  const { menuDishes, setPageNumber } = useContext(MenuContext);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [favorites, setFavorites] = useState([]);
-  const [cart, setCart] = useState([]);
-
+  const { favoriteProducts, handelAddFavoriteProduct } = useContext(UserContext);
 
   // Open & Close Dish Info
   const openItemDetails = (item) => {
@@ -19,39 +18,21 @@ export default function useMenu() {
   };
 
 
-  // Add to Cart
-  const handleAddToCart = (item) => {
-    setCart([...cart, item]);
-    // Show toast notification
-    alert(`Added ${item.name} to cart!`);
-  };
-  
-  // Add to favorites
-  const toggleFavorite = (itemId) => {
-    if (favorites.includes(itemId)) {
-      setFavorites(favorites.filter(id => id !== itemId));
-    } else {
-      setFavorites([...favorites, itemId]);
-    }
-  };
-
-
-  
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         staggerChildren: 0.1
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: { type: 'spring', stiffness: 100 }
     }
@@ -63,9 +44,8 @@ export default function useMenu() {
     selectedItem,
     openItemDetails,
     closeItemDetails,
-    favorites,
-    toggleFavorite,
-    handleAddToCart,
+    favoriteProducts,
+    handelAddFavoriteProduct,
     containerVariants,
     itemVariants
   ]

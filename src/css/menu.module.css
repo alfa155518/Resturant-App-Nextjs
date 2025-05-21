@@ -10,7 +10,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../public/images/hero.webp");
   background-size: cover;
   background-position: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .hero h1 {
   font-size: 5rem;
@@ -112,7 +112,7 @@
   top: 0;
   left: 0;
   background-color: #643c9f;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 4px 8px;
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -129,7 +129,7 @@
   top: 10px;
   right: 10px;
   background-color: rgba(0, 0, 0, 0.6);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -144,15 +144,12 @@
   cursor: pointer;
   z-index: 10;
 }
-.favoriteButton.favorited {
-  color: #ff7e5f;
-}
 
 .itemMeta {
   display: flex;
   gap: 2rem;
   margin-bottom: 1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.2rem;
 }
 .itemMeta .rating {
@@ -191,7 +188,7 @@
   border: 1px solid #f5f0e9;
   background-color: rgba(159, 100, 60, 0.95);
   border: 2px solid #ff7e5f;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0.3rem 0.7rem;
   border-radius: 30px;
   -webkit-border-radius: 30px;
@@ -215,11 +212,11 @@
 .categoryButton:hover {
   background-color: #9f643c;
   border-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .categoryButton.active {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border-color: #9f643c;
 }
 
@@ -302,7 +299,7 @@
   margin: 0;
 }
 .menuItem .description {
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1.2rem;
   line-height: 1.6;
   font-size: 1.1rem;
@@ -318,7 +315,7 @@
 }
 .dietaryTags .dietaryTag {
   background-color: rgba(159, 100, 60, 0.4);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 4px 8px;
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -337,7 +334,7 @@
 .actionButtons .detailsButton {
   background-color: rgba(159, 100, 60, 0.7);
   border: 2px solid #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0.7rem 1.5rem;
   border-radius: 4px;
   cursor: pointer;
@@ -350,11 +347,11 @@
 }
 .actionButtons .detailsButton:hover {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .actionButtons .orderButton {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   padding: 0.7rem 1.5rem;
   border-radius: 4px;
@@ -419,7 +416,7 @@
   top: 10px;
   right: 1.5rem;
   background-color: #9f8b3c;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 4px 12px;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -529,7 +526,7 @@
   top: 0.5rem;
   right: 0.5rem;
   background-color: rgba(0, 0, 0, 0.6);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -597,7 +594,7 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .modalDetails .modalMeta .rating,
 .modalDetails .modalMeta .prepTime,
@@ -616,7 +613,7 @@
   color: #ffd700;
 }
 .modalDetails .modalDescription {
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 1.6;
   margin-bottom: 2rem;
 }
@@ -637,7 +634,7 @@
 }
 .modalDetails .ingredientsList .ingredientItem {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 6px 12px;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -665,7 +662,7 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .modalDetails .customizeOptions .customizeOption label input[type=checkbox] {
   accent-color: #9f643c;
@@ -687,7 +684,7 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   padding: 1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   resize: vertical;
   min-height: 80px;
   margin-top: 1rem;
@@ -698,7 +695,7 @@
 }
 .modalDetails .addToCartButton {
   background-color: #3c829f;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   padding: 1rem 1.8rem;
   border-radius: 4px;
@@ -863,7 +860,7 @@
 }
 .weeklySpecial .specialDish .specialDishInfo p {
   font-size: 1.1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1rem;
   line-height: 1.5;
 }
@@ -875,7 +872,7 @@
 }
 .weeklySpecial .specialDish .specialDishInfo .orderSpecialButton {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   padding: 0.7rem 1.5rem;
   border-radius: 4px;
@@ -894,7 +891,7 @@
   padding: 2rem 1.5rem;
   background-color: #1f1f1f;
   margin-top: 2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
 }
 @media (width >= 768px) {
@@ -914,7 +911,7 @@
   margin-bottom: 1.2rem;
 }
 .newsletterContent p {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.1rem;
   opacity: 0.9;
   margin-bottom: 2rem;
@@ -941,7 +938,7 @@
   -o-border-radius: 4px;
   font-size: 1.5rem;
   background-color: rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .newsletterForm .emailInput::-moz-placeholder {
   color: rgba(255, 255, 255, 0.7);
@@ -955,7 +952,7 @@
 }
 .newsletterForm .subscribeButton {
   background-color: #9f8b3c;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   padding: 0.7rem 1.5rem;
   border-radius: 4px;

@@ -100,7 +100,7 @@
 }
 
 .subtitle {
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 2rem;
   font-size: 1.3rem;
   line-height: 1.6;
@@ -160,14 +160,14 @@
 }
 .button.primary {
   background-color: #e74c3c;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .button.primary:hover {
   background-color: #d62c1a;
 }
 .button.secondary {
   background-color: rgba(245, 240, 233, 0.1);
-  color: #FFFFFF;
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .button.secondary:hover {

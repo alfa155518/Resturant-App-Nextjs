@@ -57,7 +57,7 @@
   bottom: 0;
   right: 0;
   background: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0.3rem 0.8rem;
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
@@ -102,7 +102,7 @@
 }
 .profileInfo .memberSince {
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-style: italic;
 }
 
@@ -175,10 +175,10 @@
 }
 .navButton.active, .active.logoutButton {
   background: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .navButton.active svg, .active.logoutButton svg {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 @media (width <= 992px) {
   .navButton, .logoutButton {
@@ -202,10 +202,10 @@
 .logoutButton {
   margin-top: 1rem;
   background: rgba(231, 76, 60, 0.8);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .logoutButton svg {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .logoutButton:hover {
   background: #e74c3c;
@@ -235,7 +235,7 @@
 .mainContent h2 {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid rgba(159, 100, 60, 0.3);
   padding-bottom: 0.5rem;
 }
@@ -295,7 +295,7 @@
 .recentActivity h3 {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .activityList {
@@ -345,7 +345,7 @@
 }
 .activityIcon svg {
   font-size: 1.7rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .activityContent {
@@ -358,7 +358,7 @@
 }
 .activityContent p {
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .activityContent .activityTime {

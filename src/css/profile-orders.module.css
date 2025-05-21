@@ -29,7 +29,7 @@
 .ordersContainer h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid rgba(159, 100, 60, 0.3);
   padding-bottom: 0.5rem;
 }
@@ -61,7 +61,7 @@
 .searchBox input {
   background: transparent;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.3rem;
   width: 100%;
   outline: none;
@@ -102,7 +102,7 @@
 }
 .filterButtons .filterButton.active {
   background: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border-color: #9f643c;
 }
 
@@ -121,7 +121,7 @@
 }
 .emptyState h3 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .emptyState p {
@@ -172,7 +172,7 @@
 
 .orderInfo h3 {
   font-size: 1.3rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
@@ -372,7 +372,7 @@
 .reorderButton {
   background-color: #9f643c;
   border: 1px solid #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .reorderButton:hover {
   background-color: #8c5835;
@@ -476,7 +476,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -498,7 +498,7 @@
 }
 .modalHeader h3 {
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
 }
 .modalHeader .orderStatus {
@@ -561,7 +561,7 @@
 }
 .summaryItem .summaryValue {
   font-size: 1.3rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 500;
 }
 
@@ -570,7 +570,7 @@
 }
 .orderItemsDetailed h4 {
   font-size: 1.4rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
@@ -589,7 +589,7 @@
   grid-template-columns: 3fr 1fr 1fr 1fr;
   padding: 1rem;
   background: rgba(159, 100, 60, 0.1);
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -645,7 +645,7 @@
 }
 .itemCol .itemInfo h5 {
   font-size: 1.1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -665,7 +665,7 @@
 
 .totalCol {
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .orderTotals {
@@ -687,12 +687,12 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-weight: 600;
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .deliveryInfo h4 {
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 .deliveryInfo .deliveryAddress,

@@ -44,7 +44,7 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   background: linear-gradient(145deg, #1f1f1f, #060606);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -101,7 +101,7 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   background: linear-gradient(145deg, #1f1f1f, #060606);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -123,7 +123,7 @@
 }
 .pageNumber.activePage {
   background: linear-gradient(145deg, #9f643c, #7a4d2e);
-  color: #FFFFFF;
+  color: #ffffff;
   transform: scale(1.1);
   box-shadow: 0 6px 12px rgba(159, 100, 60, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   font-weight: 600;
@@ -139,7 +139,7 @@
   align-items: center;
   width: 30px;
   height: 60px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
   letter-spacing: 2px;
   opacity: 0.7;

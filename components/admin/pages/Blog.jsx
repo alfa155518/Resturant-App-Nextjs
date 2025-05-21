@@ -3,9 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiCalendar, FiUser, FiImage, FiEye, FiTag, FiSave } from 'react-icons/fi';
-import Sidebar from '../Sidebar';
-import Header from '../Header';
-import styles from './Blog.module.scss';
+import styles from '../../../src/css/admin-blog.module.css';
 
 export default function Blog() {
   // Sample blog posts data
@@ -174,10 +172,10 @@ export default function Blog() {
 
   return (
     <div className={styles.adminDashboard}>
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       <div className={styles.dashboardContent}>
-        <Header />
+        {/* <Header /> */}
 
         <motion.div
           className={styles.blogContainer}

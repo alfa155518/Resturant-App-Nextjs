@@ -14,6 +14,10 @@ import { CartContext } from "@/store/CartProvider";
 
 export default function NavBar() {
   const pathname = usePathname();
+  const isCurrentPathAdmin = pathname.startsWith('/admin');
+
+  // Return null if we're in the admin section
+  if (isCurrentPathAdmin) return null;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, userData, userToken } = useContext(UserContext);
@@ -39,6 +43,7 @@ export default function NavBar() {
     router.refresh();
   }, [needsRefresh]);
 
+  // Navigation items for non-admin sections
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -49,6 +54,9 @@ export default function NavBar() {
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
+
+  // Return null if we're in the admin section
+  if (isCurrentPathAdmin) return null;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -41,7 +41,7 @@
 }
 .filterButton.active {
   background: linear-gradient(to right, #ff7e5f, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .galleryGrid {
@@ -126,7 +126,7 @@
   text-align: center;
 }
 .imageOverlay h3 {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.3rem;
   margin-bottom: 10px;
   font-family: "Playfair Display", serif;

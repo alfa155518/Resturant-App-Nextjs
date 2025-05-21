@@ -58,7 +58,7 @@
   bottom: 15px;
   left: 15px;
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   -webkit-border-radius: 2rem;
@@ -88,7 +88,7 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   color: #4a3f35;
   width: 40px;
   height: 40px;
@@ -129,7 +129,7 @@
 }
 .content p {
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1rem;
   line-height: 1.6;
 }
@@ -166,7 +166,7 @@
   -o-border-radius: 2rem;
   font-size: 1.3rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .orderBtn {
@@ -174,7 +174,7 @@
   padding: 0.75rem 0;
   font-size: 1.3rem;
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   border-radius: 0.8rem;
   -webkit-border-radius: 0.8rem;

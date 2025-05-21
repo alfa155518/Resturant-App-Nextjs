@@ -16,7 +16,7 @@
 }
 .register .right_side .text {
   position: absolute;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -76,7 +76,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 0.5rem;
   -webkit-border-radius: 0.5rem;
   -moz-border-radius: 0.5rem;
@@ -85,7 +85,7 @@
 }
 .register .left_side nav ul li.active {
   background-color: #9f643c;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 .register .left_side nav ul li:hover:not(.active) {

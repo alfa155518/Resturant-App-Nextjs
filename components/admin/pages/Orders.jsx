@@ -3,9 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiDownload, FiEdit2, FiEye, FiTrash2, FiCheck, FiX } from 'react-icons/fi';
-import Sidebar from '../Sidebar';
-import Header from '../Header';
-import styles from './Orders.module.scss';
+import styles from '../../../src/css/admin-orders.module.css';
 
 export default function Orders() {
   // Sample order data
@@ -27,6 +25,13 @@ export default function Orders() {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const initialDisplayCount = 5;
+  const displayedOrders = showAll ? orders : orders.slice(0, initialDisplayCount);
+
+  const toggleView = () => {
+    setShowAll(!showAll);
+  };
 
   // Order details sample data
   const orderDetails = {
@@ -47,21 +52,21 @@ export default function Orders() {
 
   // Filter orders based on search term and status filter
   const filteredOrders = orders.filter(order => {
-    const matchesSearch = 
+    const matchesSearch =
       order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customer.toLowerCase().includes(searchTerm.toLowerCase());
-    
+
     const matchesStatus = statusFilter === 'All' || order.status === statusFilter;
-    
+
     return matchesSearch && matchesStatus;
   });
 
   // Handle order status change
   const handleStatusChange = (orderId, newStatus) => {
-    setOrders(orders.map(order => 
+    setOrders(orders.map(order =>
       order.id === orderId ? { ...order, status: newStatus } : order
     ));
-    
+
     if (editingOrder && editingOrder.id === orderId) {
       setEditingOrder({ ...editingOrder, status: newStatus });
     }
@@ -80,7 +85,7 @@ export default function Orders() {
 
   // Save edited order
   const saveEditedOrder = () => {
-    setOrders(orders.map(order => 
+    setOrders(orders.map(order =>
       order.id === editingOrder.id ? editingOrder : order
     ));
     setEditingOrder(null);
@@ -104,10 +109,8 @@ export default function Orders() {
 
   return (
     <div className={styles.adminDashboard}>
-      <Sidebar />
 
       <div className={styles.dashboardContent}>
-        <Header />
 
         <motion.div
           className={styles.ordersContainer}
@@ -116,23 +119,34 @@ export default function Orders() {
           transition={{ duration: 0.5 }}
         >
           <div className={styles.ordersHeader}>
-            <h2>Orders Management</h2>
-            <div className={styles.orderActions}>
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className={styles.sectionName}
+            >
+              Orders Management
+            </motion.h3>
+            <div className={styles.actions}>
               <div className={styles.searchBar}>
                 <FiSearch className={styles.searchIcon} />
-                <input 
-                  type="text" 
-                  placeholder="Search orders..." 
+                <input
+                  type="text"
+                  placeholder="Search orders..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  name="search"
+                  autoComplete='search'
                 />
               </div>
-              
+
               <div className={styles.filterContainer}>
                 <FiFilter className={styles.filterIcon} />
-                <select 
-                  value={statusFilter} 
+                <select
+                  value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
+                  name="status"
+                  autoComplete='status'
                 >
                   <option value="All">All Statuses</option>
                   <option value="Processing">Processing</option>
@@ -142,7 +156,7 @@ export default function Orders() {
                   <option value="Cancelled">Cancelled</option>
                 </select>
               </div>
-              
+
               <button className={styles.exportBtn} onClick={exportOrders}>
                 <FiDownload /> Export
               </button>
@@ -163,8 +177,8 @@ export default function Orders() {
                 </tr>
               </thead>
               <tbody>
-                {filteredOrders.map(order => (
-                  <motion.tr 
+                {displayedOrders.map(order => (
+                  <motion.tr
                     key={order.id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -182,22 +196,22 @@ export default function Orders() {
                     </td>
                     <td>
                       <div className={styles.actionBtns}>
-                        <button 
-                          className={styles.viewBtn} 
+                        <button
+                          className={styles.viewBtn}
                           onClick={() => viewOrderDetails(order)}
                           title="View Details"
                         >
                           <FiEye />
                         </button>
-                        <button 
-                          className={styles.editBtn} 
+                        <button
+                          className={styles.editBtn}
                           onClick={() => startEditingOrder(order)}
                           title="Edit Order"
                         >
                           <FiEdit2 />
                         </button>
-                        <button 
-                          className={styles.deleteBtn} 
+                        <button
+                          className={styles.deleteBtn}
                           onClick={() => deleteOrder(order.id)}
                           title="Delete Order"
                         >
@@ -209,17 +223,24 @@ export default function Orders() {
                 ))}
               </tbody>
             </table>
+            {orders.length > initialDisplayCount && (
+              <div className={styles.viewAll}>
+                <button onClick={toggleView}>
+                  {showAll ? 'View Less Orders' : 'View All Orders'}
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Order Details Modal */}
           {showOrderDetails && selectedOrder && (
-            <motion.div 
+            <motion.div
               className={styles.modalOverlay}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.orderDetailsModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -227,14 +248,14 @@ export default function Orders() {
               >
                 <div className={styles.modalHeader}>
                   <h3>Order Details - {selectedOrder.id}</h3>
-                  <button 
+                  <button
                     className={styles.closeBtn}
                     onClick={() => setShowOrderDetails(false)}
                   >
                     <FiX />
                   </button>
                 </div>
-                
+
                 <div className={styles.modalContent}>
                   <div className={styles.orderInfo}>
                     <div className={styles.infoRow}>
@@ -244,12 +265,12 @@ export default function Orders() {
                         <p><strong>Phone:</strong> {selectedOrder.phone}</p>
                         <p><strong>Address:</strong> {orderDetails.deliveryAddress}</p>
                       </div>
-                      
+
                       <div className={styles.infoColumn}>
                         <h4>Order Information</h4>
                         <p><strong>Date:</strong> {selectedOrder.date}</p>
                         <p><strong>Time:</strong> {selectedOrder.time}</p>
-                        <p><strong>Status:</strong> 
+                        <p><strong>Status:</strong>
                           <span className={`${styles.statusBadge} ${styles[selectedOrder.status.toLowerCase()]}`}>
                             {selectedOrder.status}
                           </span>
@@ -257,7 +278,7 @@ export default function Orders() {
                         <p><strong>Payment Method:</strong> {orderDetails.paymentMethod}</p>
                       </div>
                     </div>
-                    
+
                     <div className={styles.orderItems}>
                       <h4>Order Items</h4>
                       <table className={styles.itemsTable}>
@@ -281,7 +302,7 @@ export default function Orders() {
                         </tbody>
                       </table>
                     </div>
-                    
+
                     <div className={styles.orderSummary}>
                       <div className={styles.summaryRow}>
                         <span>Subtotal:</span>
@@ -306,7 +327,7 @@ export default function Orders() {
                         <span>${orderDetails.total.toFixed(2)}</span>
                       </div>
                     </div>
-                    
+
                     {orderDetails.notes && (
                       <div className={styles.orderNotes}>
                         <h4>Notes</h4>
@@ -315,36 +336,36 @@ export default function Orders() {
                     )}
                   </div>
                 </div>
-                
+
                 <div className={styles.modalFooter}>
                   <div className={styles.statusActions}>
                     <span>Update Status:</span>
                     <div className={styles.statusButtons}>
-                      <button 
+                      <button
                         className={`${styles.statusBtn} ${styles.processing}`}
                         onClick={() => handleStatusChange(selectedOrder.id, 'Processing')}
                       >
                         Processing
                       </button>
-                      <button 
+                      <button
                         className={`${styles.statusBtn} ${styles.preparing}`}
                         onClick={() => handleStatusChange(selectedOrder.id, 'Preparing')}
                       >
                         Preparing
                       </button>
-                      <button 
+                      <button
                         className={`${styles.statusBtn} ${styles.delivered}`}
                         onClick={() => handleStatusChange(selectedOrder.id, 'Delivered')}
                       >
                         Delivered
                       </button>
-                      <button 
+                      <button
                         className={`${styles.statusBtn} ${styles.completed}`}
                         onClick={() => handleStatusChange(selectedOrder.id, 'Completed')}
                       >
                         Completed
                       </button>
-                      <button 
+                      <button
                         className={`${styles.statusBtn} ${styles.cancelled}`}
                         onClick={() => handleStatusChange(selectedOrder.id, 'Cancelled')}
                       >
@@ -352,7 +373,7 @@ export default function Orders() {
                       </button>
                     </div>
                   </div>
-                  <button 
+                  <button
                     className={styles.closeModalBtn}
                     onClick={() => setShowOrderDetails(false)}
                   >
@@ -365,13 +386,13 @@ export default function Orders() {
 
           {/* Edit Order Modal */}
           {editingOrder && (
-            <motion.div 
+            <motion.div
               className={styles.modalOverlay}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.editOrderModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -379,59 +400,74 @@ export default function Orders() {
               >
                 <div className={styles.modalHeader}>
                   <h3>Edit Order - {editingOrder.id}</h3>
-                  <button 
+                  <button
                     className={styles.closeBtn}
                     onClick={() => setEditingOrder(null)}
                   >
                     <FiX />
                   </button>
                 </div>
-                
-                <div className={styles.modalContent}>
+
+                <form className={styles.modalContentForm}>
                   <div className={styles.formGroup}>
-                    <label>Customer Name</label>
-                    <input 
-                      type="text" 
+                    <label htmlFor="customer">Customer Name</label>
+                    <input
+                      type="text"
                       value={editingOrder.customer}
-                      onChange={(e) => setEditingOrder({...editingOrder, customer: e.target.value})}
+                      onChange={(e) => setEditingOrder({ ...editingOrder, customer: e.target.value })}
+                      name="customer"
+                      autoComplete='customer'
+                      id="customer"
                     />
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Date</label>
-                      <input 
-                        type="date" 
+                      <label htmlFor="date">Date</label>
+                      <input
+                        type="date"
                         value={editingOrder.date}
-                        onChange={(e) => setEditingOrder({...editingOrder, date: e.target.value})}
+                        onChange={(e) => setEditingOrder({ ...editingOrder, date: e.target.value })}
+                        name="date"
+                        autoComplete='date'
+                        id="date"
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
-                      <label>Time</label>
-                      <input 
-                        type="time" 
+                      <label htmlFor="time">Time</label>
+                      <input
+                        type="time"
                         value={editingOrder.time}
-                        onChange={(e) => setEditingOrder({...editingOrder, time: e.target.value})}
+                        onChange={(e) => setEditingOrder({ ...editingOrder, time: e.target.value })}
+                        name="time"
+                        id="time"
+                        autoComplete='time'
                       />
                     </div>
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Phone Number</label>
-                      <input 
-                        type="text" 
+                      <label htmlFor="phone">Phone Number</label>
+                      <input
+                        type="text"
                         value={editingOrder.phone}
-                        onChange={(e) => setEditingOrder({...editingOrder, phone: e.target.value})}
+                        onChange={(e) => setEditingOrder({ ...editingOrder, phone: e.target.value })}
+                        name="phone"
+                        id="phone"
+                        autoComplete='phone'
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
-                      <label>Status</label>
-                      <select 
+                      <label htmlFor="status">Status</label>
+                      <select
                         value={editingOrder.status}
-                        onChange={(e) => setEditingOrder({...editingOrder, status: e.target.value})}
+                        onChange={(e) => setEditingOrder({ ...editingOrder, status: e.target.value })}
+                        name="status"
+                        id="status"
+                        autoComplete='status'
                       >
                         <option value="Processing">Processing</option>
                         <option value="Preparing">Preparing</option>
@@ -441,37 +477,43 @@ export default function Orders() {
                       </select>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Items Count</label>
-                      <input 
-                        type="number" 
+                      <label htmlFor="items">Items Count</label>
+                      <input
+                        type="number"
                         value={editingOrder.items}
-                        onChange={(e) => setEditingOrder({...editingOrder, items: parseInt(e.target.value)})}
+                        onChange={(e) => setEditingOrder({ ...editingOrder, items: parseInt(e.target.value) })}
+                        name="items"
+                        id="items"
+                        autoComplete='items'
                       />
                     </div>
-                    
+
                     <div className={styles.formGroup}>
-                      <label>Total Amount</label>
-                      <input 
-                        type="number" 
+                      <label htmlFor="total">Total Amount</label>
+                      <input
+                        type="number"
                         step="0.01"
                         value={editingOrder.total}
-                        onChange={(e) => setEditingOrder({...editingOrder, total: parseFloat(e.target.value)})}
+                        onChange={(e) => setEditingOrder({ ...editingOrder, total: parseFloat(e.target.value) })}
+                        name="total"
+                        id="total"
+                        autoComplete='total'
                       />
                     </div>
                   </div>
-                </div>
-                
+                </form>
+
                 <div className={styles.modalFooter}>
-                  <button 
+                  <button
                     className={styles.cancelBtn}
                     onClick={() => setEditingOrder(null)}
                   >
                     Cancel
                   </button>
-                  <button 
+                  <button
                     className={styles.saveBtn}
                     onClick={saveEditedOrder}
                   >

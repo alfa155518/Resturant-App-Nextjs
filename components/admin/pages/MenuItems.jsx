@@ -3,9 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiImage, FiDollarSign, FiTag, FiInfo } from 'react-icons/fi';
-import Sidebar from '../Sidebar';
-import Header from '../Header';
-import styles from './MenuItems.module.scss';
+import styles from '../../../src/css/admin-menuItems.module.css';
 
 export default function MenuItems() {
   // Sample menu categories
@@ -48,12 +46,12 @@ export default function MenuItems() {
 
   // Filter menu items based on search term and category filter
   const filteredItems = menuItems.filter(item => {
-    const matchesSearch = 
+    const matchesSearch =
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.description.toLowerCase().includes(searchTerm.toLowerCase());
-    
+
     const matchesCategory = categoryFilter === 'All' || item.category === categoryFilter;
-    
+
     return matchesSearch && matchesCategory;
   });
 
@@ -85,7 +83,7 @@ export default function MenuItems() {
 
   // Save edited menu item
   const saveEditedItem = () => {
-    setMenuItems(menuItems.map(item => 
+    setMenuItems(menuItems.map(item =>
       item.id === editingItem.id ? editingItem : item
     ));
     setEditingItem(null);
@@ -103,24 +101,22 @@ export default function MenuItems() {
 
   // Toggle featured status
   const toggleFeatured = (itemId) => {
-    setMenuItems(menuItems.map(item => 
+    setMenuItems(menuItems.map(item =>
       item.id === itemId ? { ...item, featured: !item.featured } : item
     ));
   };
 
   // Toggle availability status
   const toggleAvailability = (itemId) => {
-    setMenuItems(menuItems.map(item => 
+    setMenuItems(menuItems.map(item =>
       item.id === itemId ? { ...item, available: !item.available } : item
     ));
   };
 
   return (
     <div className={styles.adminDashboard}>
-      <Sidebar />
 
       <div className={styles.dashboardContent}>
-        <Header />
 
         <motion.div
           className={styles.menuItemsContainer}
@@ -129,22 +125,29 @@ export default function MenuItems() {
           transition={{ duration: 0.5 }}
         >
           <div className={styles.menuItemsHeader}>
-            <h2>Menu Items</h2>
-            <div className={styles.menuActions}>
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className={styles.sectionName}
+            >
+              Menu Items
+            </motion.h3>
+            <div className={styles.actions}>
               <div className={styles.searchBar}>
                 <FiSearch className={styles.searchIcon} />
-                <input 
-                  type="text" 
-                  placeholder="Search menu items..." 
+                <input
+                  type="text"
+                  placeholder="Search menu items..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              
+
               <div className={styles.filterContainer}>
                 <FiFilter className={styles.filterIcon} />
-                <select 
-                  value={categoryFilter} 
+                <select
+                  value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
                 >
                   <option value="All">All Categories</option>
@@ -155,9 +158,9 @@ export default function MenuItems() {
                   ))}
                 </select>
               </div>
-              
-              <button 
-                className={styles.addItemBtn}
+
+              <button
+                className={styles.exportBtn}
                 onClick={() => setShowAddItemModal(true)}
               >
                 <FiPlus /> Add Item
@@ -167,7 +170,7 @@ export default function MenuItems() {
 
           <div className={styles.menuItemsGrid}>
             {filteredItems.map(item => (
-              <motion.div 
+              <motion.div
                 key={item.id}
                 className={styles.menuItemCard}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -194,14 +197,14 @@ export default function MenuItems() {
                   <p className={styles.description}>{item.description}</p>
                 </div>
                 <div className={styles.menuItemActions}>
-                  <button 
+                  <button
                     className={`${styles.toggleBtn} ${item.featured ? styles.active : ''}`}
                     onClick={() => toggleFeatured(item.id)}
                     title={item.featured ? "Remove from featured" : "Add to featured"}
                   >
                     <FiTag /> {item.featured ? "Featured" : "Feature"}
                   </button>
-                  <button 
+                  <button
                     className={`${styles.toggleBtn} ${item.available ? styles.available : styles.unavailable}`}
                     onClick={() => toggleAvailability(item.id)}
                     title={item.available ? "Mark as unavailable" : "Mark as available"}
@@ -209,14 +212,14 @@ export default function MenuItems() {
                     <FiInfo /> {item.available ? "Available" : "Unavailable"}
                   </button>
                   <div className={styles.actionButtons}>
-                    <button 
+                    <button
                       className={styles.editBtn}
                       onClick={() => startEditingItem(item)}
                       title="Edit Item"
                     >
                       <FiEdit2 />
                     </button>
-                    <button 
+                    <button
                       className={styles.deleteBtn}
                       onClick={() => deleteItem(item.id)}
                       title="Delete Item"
@@ -231,13 +234,13 @@ export default function MenuItems() {
 
           {/* Add New Item Modal */}
           {showAddItemModal && (
-            <motion.div 
+            <motion.div
               className={styles.modalOverlay}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.menuItemModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -245,31 +248,31 @@ export default function MenuItems() {
               >
                 <div className={styles.modalHeader}>
                   <h3>Add New Menu Item</h3>
-                  <button 
+                  <button
                     className={styles.closeBtn}
                     onClick={() => setShowAddItemModal(false)}
                   >
                     <FiX />
                   </button>
                 </div>
-                
+
                 <div className={styles.modalContent}>
                   <div className={styles.formGroup}>
                     <label>Item Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={newItem.name}
-                      onChange={(e) => setNewItem({...newItem, name: e.target.value})}
+                      onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
                       placeholder="Enter item name"
                     />
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Category</label>
-                      <select 
+                      <select
                         value={newItem.category}
-                        onChange={(e) => setNewItem({...newItem, category: e.target.value})}
+                        onChange={(e) => setNewItem({ ...newItem, category: e.target.value })}
                       >
                         <option value="" disabled>Select category</option>
                         {categories.map(category => (
@@ -279,82 +282,82 @@ export default function MenuItems() {
                         ))}
                       </select>
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Price ($)</label>
                       <div className={styles.priceInput}>
                         <FiDollarSign className={styles.inputIcon} />
-                        <input 
-                          type="number" 
+                        <input
+                          type="number"
                           step="0.01"
                           min="0"
                           value={newItem.price}
-                          onChange={(e) => setNewItem({...newItem, price: e.target.value})}
+                          onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
                           placeholder="0.00"
                         />
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Description</label>
-                    <textarea 
+                    <textarea
                       value={newItem.description}
-                      onChange={(e) => setNewItem({...newItem, description: e.target.value})}
+                      onChange={(e) => setNewItem({ ...newItem, description: e.target.value })}
                       placeholder="Enter item description"
                       rows="3"
                     ></textarea>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Image URL</label>
                     <div className={styles.imageInput}>
                       <FiImage className={styles.inputIcon} />
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={newItem.image}
-                        onChange={(e) => setNewItem({...newItem, image: e.target.value})}
+                        onChange={(e) => setNewItem({ ...newItem, image: e.target.value })}
                         placeholder="Enter image URL or upload"
                       />
                       <button className={styles.uploadBtn}>Upload</button>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <div className={styles.checkboxGroup}>
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           id="featured"
                           checked={newItem.featured}
-                          onChange={(e) => setNewItem({...newItem, featured: e.target.checked})}
+                          onChange={(e) => setNewItem({ ...newItem, featured: e.target.checked })}
                         />
                         <label htmlFor="featured">Featured Item</label>
                       </div>
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <div className={styles.checkboxGroup}>
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           id="available"
                           checked={newItem.available}
-                          onChange={(e) => setNewItem({...newItem, available: e.target.checked})}
+                          onChange={(e) => setNewItem({ ...newItem, available: e.target.checked })}
                         />
                         <label htmlFor="available">Available</label>
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.modalFooter}>
-                  <button 
+                  <button
                     className={styles.cancelBtn}
                     onClick={() => setShowAddItemModal(false)}
                   >
                     Cancel
                   </button>
-                  <button 
+                  <button
                     className={styles.saveBtn}
                     onClick={handleAddItem}
                     disabled={!newItem.name || !newItem.category || !newItem.price}
@@ -368,13 +371,13 @@ export default function MenuItems() {
 
           {/* Edit Item Modal */}
           {editingItem && (
-            <motion.div 
+            <motion.div
               className={styles.modalOverlay}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.menuItemModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -382,30 +385,30 @@ export default function MenuItems() {
               >
                 <div className={styles.modalHeader}>
                   <h3>Edit Menu Item</h3>
-                  <button 
+                  <button
                     className={styles.closeBtn}
                     onClick={() => setEditingItem(null)}
                   >
                     <FiX />
                   </button>
                 </div>
-                
+
                 <div className={styles.modalContent}>
                   <div className={styles.formGroup}>
                     <label>Item Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={editingItem.name}
-                      onChange={(e) => setEditingItem({...editingItem, name: e.target.value})}
+                      onChange={(e) => setEditingItem({ ...editingItem, name: e.target.value })}
                     />
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label>Category</label>
-                      <select 
+                      <select
                         value={editingItem.category}
-                        onChange={(e) => setEditingItem({...editingItem, category: e.target.value})}
+                        onChange={(e) => setEditingItem({ ...editingItem, category: e.target.value })}
                       >
                         {categories.map(category => (
                           <option key={category.id} value={category.name}>
@@ -414,39 +417,39 @@ export default function MenuItems() {
                         ))}
                       </select>
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <label>Price ($)</label>
                       <div className={styles.priceInput}>
                         <FiDollarSign className={styles.inputIcon} />
-                        <input 
-                          type="number" 
+                        <input
+                          type="number"
                           step="0.01"
                           min="0"
                           value={editingItem.price}
-                          onChange={(e) => setEditingItem({...editingItem, price: parseFloat(e.target.value)})}
+                          onChange={(e) => setEditingItem({ ...editingItem, price: parseFloat(e.target.value) })}
                         />
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Description</label>
-                    <textarea 
+                    <textarea
                       value={editingItem.description}
-                      onChange={(e) => setEditingItem({...editingItem, description: e.target.value})}
+                      onChange={(e) => setEditingItem({ ...editingItem, description: e.target.value })}
                       rows="3"
                     ></textarea>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <label>Image URL</label>
                     <div className={styles.imageInput}>
                       <FiImage className={styles.inputIcon} />
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={editingItem.image}
-                        onChange={(e) => setEditingItem({...editingItem, image: e.target.value})}
+                        onChange={(e) => setEditingItem({ ...editingItem, image: e.target.value })}
                       />
                       <button className={styles.uploadBtn}>Upload</button>
                     </div>
@@ -456,42 +459,42 @@ export default function MenuItems() {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <div className={styles.checkboxGroup}>
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           id="editFeatured"
                           checked={editingItem.featured}
-                          onChange={(e) => setEditingItem({...editingItem, featured: e.target.checked})}
+                          onChange={(e) => setEditingItem({ ...editingItem, featured: e.target.checked })}
                         />
                         <label htmlFor="editFeatured">Featured Item</label>
                       </div>
                     </div>
-                    
+
                     <div className={styles.formGroup}>
                       <div className={styles.checkboxGroup}>
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           id="editAvailable"
                           checked={editingItem.available}
-                          onChange={(e) => setEditingItem({...editingItem, available: e.target.checked})}
+                          onChange={(e) => setEditingItem({ ...editingItem, available: e.target.checked })}
                         />
                         <label htmlFor="editAvailable">Available</label>
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={styles.modalFooter}>
-                  <button 
+                  <button
                     className={styles.cancelBtn}
                     onClick={() => setEditingItem(null)}
                   >
                     Cancel
                   </button>
-                  <button 
+                  <button
                     className={styles.saveBtn}
                     onClick={saveEditedItem}
                   >

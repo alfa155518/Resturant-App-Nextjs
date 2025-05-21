@@ -156,7 +156,7 @@
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   background-color: rgba(74, 63, 53, 0.3);
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.3rem;
   transition: all 0.3s ease;
 }
@@ -180,7 +180,7 @@
 
 .submitButton {
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   box-shadow: 0 4px 15px rgba(159, 100, 60, 0.3);
   cursor: pointer;
@@ -269,7 +269,7 @@
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
-  color: #FFFFFF;
+  color: #ffffff;
   flex-shrink: 0;
   box-shadow: 0 5px 15px rgba(159, 100, 60, 0.3);
 }
@@ -360,19 +360,19 @@
 }
 .socialLinks .socialIcons a:nth-child(1):hover {
   background-color: #3b5998;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 .socialLinks .socialIcons a:nth-child(2):hover {
   background-color: #1da1f2;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 .socialLinks .socialIcons a:nth-child(3):hover {
   background-color: #e1306c;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 .socialLinks .socialIcons a:nth-child(4):hover {
   background-color: #0077b5;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .mapSection {
@@ -446,7 +446,7 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .ctaSection .ctaContent h2 {
   font-size: 2.8rem;
@@ -474,7 +474,7 @@
 }
 .ctaSection .ctaButton {
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   box-shadow: 0 4px 15px rgba(159, 100, 60, 0.3);
   cursor: pointer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import OrdersPage from '@/components/admin/pages/Orders';
 import { Metadata } from 'next';
-import styles from '../admin.module.css';
+import styles from '../../../../src/css/about.module.css';
 
 export const metadata = {
   title: 'Orders Management | Gourmet Haven Restaurant',

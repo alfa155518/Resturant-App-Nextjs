@@ -1,0 +1,33 @@
+// Admin Layout Module Styles
+
+.adminDashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+.dashboardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  transition: margin-left 0.3s ease;
+  background-color: var(--bg-secondary);
+  box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.pageContent {
+  padding: 1.5rem;
+  flex: 1;
+  color: var(--text-primary);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > * {
+    width: 100%;
+    max-width: 100%;
+  }
+}

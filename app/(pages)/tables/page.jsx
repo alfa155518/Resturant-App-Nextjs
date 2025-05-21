@@ -25,8 +25,7 @@ export default function Tables() {
     setModalTable,
     fadeInAndHover,
     staggerContainer,
-    modalVariants, needsRefresh,
-    setNeedsRefresh,] = useTables();
+    modalVariants] = useTables();
 
 
   const handleTableSelect = (table) => {

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .footer {
   background-color: #1a1a1a;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -71,7 +71,7 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.5rem;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -151,7 +151,7 @@
 }
 .openingHours .day {
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 5px;
 }
 .openingHours .hours {
@@ -172,7 +172,7 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.3rem;
 }
 .contactInfo .contactIcon {
@@ -203,7 +203,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
   padding: 12px 15px;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 4px 0 0 4px;
   -webkit-border-radius: 4px 0 0 4px;
   -moz-border-radius: 4px 0 0 4px;

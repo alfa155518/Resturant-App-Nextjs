@@ -1,0 +1,464 @@
+// Settings Page Styles
+
+.adminDashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.dashboardContent {
+  flex: 1;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.settingsContainer {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.settingsHeader {
+  margin-bottom: 1.5rem;
+}
+
+.settingsHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 1.5rem;
+}
+
+.settingsCard {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cardHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardHeader h3 svg {
+  color: #3b82f6;
+}
+
+.editBtn,
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editBtn {
+  background-color: #f1f5f9;
+  color: #3b82f6;
+}
+
+.editBtn:hover {
+  background-color: #e0f2fe;
+}
+
+.cancelBtn {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.cancelBtn:hover {
+  background-color: #f1f5f9;
+  color: #ef4444;
+}
+
+/* Info content styles */
+.infoContent,
+.userContent {
+  padding: 1.5rem;
+}
+
+.infoItem {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+
+.infoItem:last-child {
+  margin-bottom: 0;
+}
+
+.infoLabel {
+  width: 180px;
+  font-weight: 500;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.infoLabel svg {
+  color: #3b82f6;
+}
+
+.infoValue {
+  flex: 1;
+  color: #1e293b;
+}
+
+/* Hours content styles */
+.hoursContent {
+  padding: 1.5rem;
+}
+
+.hourRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.hourRow:last-child {
+  border-bottom: none;
+}
+
+.dayLabel {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.timeRange {
+  color: #475569;
+}
+
+.closedLabel {
+  color: #ef4444;
+  font-style: italic;
+}
+
+/* Payment methods styles */
+.paymentMethodsContent {
+  padding: 1.5rem;
+}
+
+.paymentMethod {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.paymentMethod:last-child {
+  border-bottom: none;
+}
+
+.paymentMethodName {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* Toggle switch styles */
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.toggleInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleInput:checked + .toggleLabel {
+  background-color: #3b82f6;
+}
+
+.toggleInput:checked + .toggleLabel:before {
+  transform: translateX(22px);
+}
+
+.toggleInput:focus + .toggleLabel {
+  box-shadow: 0 0 1px #3b82f6;
+}
+
+.toggleLabel {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.toggleLabel:before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Notification styles */
+.notificationContent {
+  padding: 1.5rem;
+}
+
+.notificationGroup {
+  margin-bottom: 1.5rem;
+}
+
+.notificationGroup:last-child {
+  margin-bottom: 0;
+}
+
+.notificationGroupTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 1rem 0;
+}
+
+.notificationSetting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.notificationLabel {
+  color: #475569;
+}
+
+/* Form styles */
+.formWrapper {
+  padding: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.25rem;
+}
+
+.formGroup:last-child {
+  margin-bottom: 0;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.formSelect {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.saveBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.saveBtn:hover {
+  background-color: #2563eb;
+}
+
+/* Hours edit form */
+.hourInputRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.hourInputRow:last-child {
+  margin-bottom: 0;
+}
+
+.hourInputs {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timeInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeInput {
+  width: 120px;
+}
+
+.timeSeparator {
+  color: #64748b;
+}
+
+.closedToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.closedCheckbox {
+  width: 16px;
+  height: 16px;
+}
+
+.closedLabel {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* Toggle option in form */
+.toggleOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status badge */
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.enabled {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.disabled {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .infoItem {
+    flex-direction: column;
+  }
+
+  .infoLabel {
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hourInputs {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .timeInputs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .closedToggle {
+    margin-top: 0.5rem;
+  }
+}

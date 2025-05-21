@@ -15,7 +15,7 @@
   font-weight: 600;
   margin-bottom: 2rem;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .teamHeader:after {
   content: "";
@@ -146,7 +146,7 @@
   font-size: 1.5rem;
   margin: 0 0 0.5rem;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .memberInfo h3 {
   font-size: 1.2rem;
@@ -190,7 +190,7 @@
 
 .joinButton {
   background: linear-gradient(90deg, #9f643c, #9f8b3c);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   box-shadow: 0 4px 15px rgba(159, 100, 60, 0.3);
   cursor: pointer;
