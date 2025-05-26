@@ -67,7 +67,7 @@ export default function AdminHeader() {
             <FiUser />
           </div>
           <div className={styles.userInfo}>
-            <p className={styles.userName}>Admin User</p>
+            <p className={styles.userName}>Admin</p>
             <p className={styles.userRole}>Restaurant Manager</p>
           </div>
         </div>

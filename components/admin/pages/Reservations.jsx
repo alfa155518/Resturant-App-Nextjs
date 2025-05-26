@@ -139,7 +139,14 @@ export default function Reservations() {
           transition={{ duration: 0.5 }}
         >
           <div className={styles.reservationsHeader}>
-            <h2>Reservations Management</h2>
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className={styles.sectionName}
+            >
+              Reservations Management
+            </motion.h3>
             <div className={styles.reservationActions}>
               <div className={styles.searchBar}>
                 <FiSearch className={styles.searchIcon} />
@@ -148,6 +155,8 @@ export default function Reservations() {
                   placeholder="Search reservations..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  name="search"
+                  autoComplete='search'
                 />
               </div>
 
@@ -157,6 +166,8 @@ export default function Reservations() {
                   type="date"
                   value={dateFilter}
                   onChange={(e) => setDateFilter(e.target.value)}
+                  name="date"
+                  autoComplete='date'
                 />
               </div>
 
@@ -165,6 +176,8 @@ export default function Reservations() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
+                  name="status"
+                  autoComplete='status'
                 >
                   <option value="All">All Status</option>
                   <option value="Confirmed">Confirmed</option>
@@ -174,7 +187,7 @@ export default function Reservations() {
               </div>
 
               <button
-                className={styles.addReservationBtn}
+                className={styles.exportBtn}
                 onClick={() => setShowAddReservationModal(true)}
               >
                 <FiPlus /> Add Reservation
@@ -335,53 +348,68 @@ export default function Reservations() {
                 </div>
 
                 <div className={styles.modalContent}>
-                  <div className={styles.formRow}>
+                  <form className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Customer Name</label>
+                      <label htmlFor="customer">Customer Name</label>
                       <input
                         type="text"
                         value={newReservation.customer}
                         onChange={(e) => setNewReservation({ ...newReservation, customer: e.target.value })}
                         placeholder="Enter customer name"
+                        name="customer"
+                        autoComplete='customer'
+                        id="customer"
                       />
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label>Phone Number</label>
+                      <label htmlFor="phone">Phone Number</label>
                       <input
                         type="text"
                         value={newReservation.phone}
                         onChange={(e) => setNewReservation({ ...newReservation, phone: e.target.value })}
                         placeholder="Enter phone number"
+                        name="phone"
+                        autoComplete='phone'
+                        id="phone"
                       />
                     </div>
-                  </div>
+                  </form>
 
                   <div className={styles.formGroup}>
-                    <label>Email Address</label>
+                    <label htmlFor="email">Email Address</label>
                     <input
                       type="email"
                       value={newReservation.email}
                       onChange={(e) => setNewReservation({ ...newReservation, email: e.target.value })}
                       placeholder="Enter email address"
+                      name="email"
+                      autoComplete='email'
+                      id="email"
                     />
                   </div>
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Reservation Date</label>
+                      <label htmlFor="date">Reservation Date</label>
                       <input
                         type="date"
                         value={newReservation.date}
                         onChange={(e) => setNewReservation({ ...newReservation, date: e.target.value })}
+                        name="date"
+                        autoComplete='date'
+                        id="date"
                       />
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label>Reservation Time</label>
+                      <label htmlFor="time">Reservation Time</label>
                       <select
                         value={newReservation.time}
                         onChange={(e) => setNewReservation({ ...newReservation, time: e.target.value })}
+                        name="time"
+                        autoComplete='time'
+                        id="time"
                       >
                         <option value="" disabled>Select time</option>
                         {timeSlots.map(time => (
@@ -393,21 +421,27 @@ export default function Reservations() {
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Number of Guests</label>
+                      <label htmlFor="guests">Number of Guests</label>
                       <input
                         type="number"
                         min="1"
                         max="20"
                         value={newReservation.guests}
                         onChange={(e) => setNewReservation({ ...newReservation, guests: parseInt(e.target.value) })}
+                        name="guests"
+                        autoComplete='guests'
+                        id="guests"
                       />
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label>Table Number</label>
+                      <label htmlFor="tableNo">Table Number</label>
                       <select
                         value={newReservation.tableNo}
                         onChange={(e) => setNewReservation({ ...newReservation, tableNo: e.target.value })}
+                        name="tableNo"
+                        autoComplete='tableNo'
+                        id="tableNo"
                       >
                         <option value="" disabled>Select table</option>
                         {availableTables.map(table => (
@@ -418,20 +452,26 @@ export default function Reservations() {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label>Special Requests</label>
+                    <label htmlFor="specialRequests">Special Requests</label>
                     <textarea
                       value={newReservation.specialRequests}
                       onChange={(e) => setNewReservation({ ...newReservation, specialRequests: e.target.value })}
                       placeholder="Enter any special requests"
                       rows="3"
+                      name="specialRequests"
+                      autoComplete='specialRequests'
+                      id="specialRequests"
                     ></textarea>
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label>Status</label>
+                    <label htmlFor="status">Status</label>
                     <select
                       value={newReservation.status}
                       onChange={(e) => setNewReservation({ ...newReservation, status: e.target.value })}
+                      name="status"
+                      autoComplete='status'
+                      id="status"
                     >
                       <option value="Pending">Pending</option>
                       <option value="Confirmed">Confirmed</option>
@@ -486,48 +526,63 @@ export default function Reservations() {
                 <div className={styles.modalContent}>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Customer Name</label>
+                      <label htmlFor="customer">Customer Name</label>
                       <input
                         type="text"
                         value={editingReservation.customer}
                         onChange={(e) => setEditingReservation({ ...editingReservation, customer: e.target.value })}
+                        name="customer"
+                        autoComplete='customer'
+                        id="customer"
                       />
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label>Phone Number</label>
+                      <label htmlFor="phone">Phone Number</label>
                       <input
                         type="text"
                         value={editingReservation.phone}
                         onChange={(e) => setEditingReservation({ ...editingReservation, phone: e.target.value })}
+                        name="phone"
+                        autoComplete='phone'
+                        id="phone"
                       />
                     </div>
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label>Email Address</label>
+                    <label htmlFor="email">Email Address</label>
                     <input
                       type="email"
                       value={editingReservation.email}
                       onChange={(e) => setEditingReservation({ ...editingReservation, email: e.target.value })}
+                      name="email"
+                      autoComplete='email'
+                      id="email"
                     />
                   </div>
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Reservation Date</label>
+                      <label htmlFor="date">Reservation Date</label>
                       <input
                         type="date"
                         value={editingReservation.date}
                         onChange={(e) => setEditingReservation({ ...editingReservation, date: e.target.value })}
+                        name="date"
+                        autoComplete='date'
+                        id="date"
                       />
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label>Reservation Time</label>
+                      <label htmlFor="time">Reservation Time</label>
                       <select
                         value={editingReservation.time}
                         onChange={(e) => setEditingReservation({ ...editingReservation, time: e.target.value })}
+                        name="time"
+                        autoComplete='time'
+                        id="time"
                       >
                         {timeSlots.map(time => (
                           <option key={time} value={time}>{time}</option>
@@ -538,21 +593,27 @@ export default function Reservations() {
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label>Number of Guests</label>
+                      <label htmlFor="guests">Number of Guests</label>
                       <input
                         type="number"
                         min="1"
                         max="20"
                         value={editingReservation.guests}
                         onChange={(e) => setEditingReservation({ ...editingReservation, guests: parseInt(e.target.value) })}
+                        name="guests"
+                        autoComplete='guests'
+                        id="guests"
                       />
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label>Table Number</label>
+                      <label htmlFor="tableNo">Table Number</label>
                       <select
                         value={editingReservation.tableNo}
                         onChange={(e) => setEditingReservation({ ...editingReservation, tableNo: e.target.value })}
+                        name="tableNo"
+                        autoComplete='tableNo'
+                        id="tableNo"
                       >
                         {availableTables.map(table => (
                           <option key={table} value={table}>{table}</option>
@@ -562,19 +623,25 @@ export default function Reservations() {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label>Special Requests</label>
+                    <label htmlFor="specialRequests">Special Requests</label>
                     <textarea
                       value={editingReservation.specialRequests}
                       onChange={(e) => setEditingReservation({ ...editingReservation, specialRequests: e.target.value })}
                       rows="3"
+                      name="specialRequests"
+                      autoComplete='specialRequests'
+                      id="specialRequests"
                     ></textarea>
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label>Status</label>
+                    <label htmlFor="status">Status</label>
                     <select
                       value={editingReservation.status}
                       onChange={(e) => setEditingReservation({ ...editingReservation, status: e.target.value })}
+                      name="status"
+                      autoComplete='status'
+                      id="status"
                     >
                       <option value="Pending">Pending</option>
                       <option value="Confirmed">Confirmed</option>
@@ -584,21 +651,6 @@ export default function Reservations() {
                 </div>
 
                 <div className={styles.modalFooter}>
-                  <div className={styles.statusActions}>
-                    <button
-                      className={`${styles.statusBtn} ${styles.confirmed}`}
-                      onClick={() => setEditingReservation({ ...editingReservation, status: 'Confirmed' })}
-                    >
-                      Confirm
-                    </button>
-                    <button
-                      className={`${styles.statusBtn} ${styles.cancelled}`}
-                      onClick={() => setEditingReservation({ ...editingReservation, status: 'Cancelled' })}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-
                   <div className={styles.modalButtons}>
                     <button
                       className={styles.cancelBtn}
