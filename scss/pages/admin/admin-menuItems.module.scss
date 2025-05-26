@@ -365,40 +365,15 @@
 
 .saveBtn,
 .cancelBtn {
-  padding: 0.6rem 1.2rem;
-  @include radius(6px);
-  font-size: 1.3rem;
-  font-weight: 600;
-  cursor: pointer;
-  @include transition(0.3s);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  @include actionModal;
 }
 
 .saveBtn {
-  background-color: $info-color;
-  color: $white-color;
-  border: none;
-
-  &:hover {
-    background-color: $secondary-color;
-  }
-
-  &:disabled {
-    background-color: $dark-hover-color;
-    cursor: not-allowed;
-  }
+  @include modalSaveBtn;
 }
 
 .cancelBtn {
-  background-color: $dark-hover-color;
-  color: $nature-light-color;
-  border: none;
-
-  &:hover {
-    background-color: $danger-color;
-  }
+  @include modalCancelBtn;
 }
 
 // Responsive styles

@@ -106,33 +106,18 @@
 }
 
 .actionBtns {
-  display: flex;
-  gap: 0.5rem;
+  @include actionTableBtns {
+    .viewBtn {
+      color: $info-color;
+    }
 
-  button {
-    @include flex-center;
-    width: 32px;
-    height: 32px;
-    @include radius(6px);
-    font-size: 1.5rem;
-    font-weight: 500;
-    border: none;
-    background-color: transparent;
-    color: $dark-hover-color;
-    cursor: pointer;
-    background-color: #f5f7fa;
-  }
+    .editBtn {
+      color: $warning-color;
+    }
 
-  .viewBtn {
-    color: $info-color;
-  }
-
-  .editBtn {
-    color: $warning-color;
-  }
-
-  .deleteBtn {
-    color: $danger-color;
+    .deleteBtn {
+      color: $danger-color;
+    }
   }
 }
 

@@ -34,6 +34,9 @@ export default function Customers() {
     status: 'Active'
   });
 
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Sample order history for customer details
   const orderHistory = [
     { id: 'ORD-7829', date: '2025-05-01', items: 3, total: 78.50, status: 'Completed' },
@@ -55,26 +58,70 @@ export default function Customers() {
     return matchesSearch && matchesStatus;
   });
 
-  // Add new customer
-  const handleAddCustomer = () => {
-    const customerToAdd = {
-      ...newCustomer,
-      id: customers.length + 1,
-      joinDate: new Date().toISOString().split('T')[0],
-      totalOrders: 0,
-      totalSpent: 0,
-      lastOrder: '-'
-    };
+  // Validate form
+  const validateForm = (customerData) => {
+    const errors = {};
 
-    setCustomers([...customers, customerToAdd]);
-    setShowAddCustomerModal(false);
-    setNewCustomer({
-      name: '',
-      email: '',
-      phone: '',
-      address: '',
-      status: 'Active'
-    });
+    if (!customerData.name.trim()) {
+      errors.name = 'Name is required';
+    }
+
+    if (!customerData.email) {
+      errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+
+    if (!customerData.phone) {
+      errors.phone = 'Phone number is required';
+    } else if (!/^\+?[\d\s-]+$/.test(customerData.phone)) {
+      errors.phone = 'Please enter a valid phone number';
+    }
+
+    if (!customerData.address) {
+      errors.address = 'Address is required';
+    }
+
+    return errors;
+  };
+
+  // Handle adding a new customer
+  const handleAddCustomer = (e) => {
+    e.preventDefault();
+
+    const errors = validateForm(newCustomer);
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      setIsSubmitting(true);
+
+      // Simulate API call
+      setTimeout(() => {
+        const newId = customers.length > 0 ? Math.max(...customers.map(c => c.id)) + 1 : 1;
+        const customerToAdd = {
+          id: newId,
+          ...newCustomer,
+          joinDate: new Date().toISOString().split('T')[0],
+          totalOrders: 0,
+          totalSpent: 0,
+          lastOrder: null
+        };
+
+        setCustomers([...customers, customerToAdd]);
+        setNewCustomer({
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+          status: 'Active'
+        });
+        setShowAddCustomerModal(false);
+        setIsSubmitting(false);
+
+        // Show success message
+        alert('Customer added successfully!');
+      }, 1000);
+    }
   };
 
   // View customer details
@@ -117,7 +164,14 @@ export default function Customers() {
       transition={{ duration: 0.5 }}
     >
       <div className={styles.customersHeader}>
-        <h2>Customer Management</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className={styles.sectionName}
+        >
+          Customer Management
+        </motion.h2>
         <div className={styles.customerActions}>
           <div className={styles.searchBar}>
             <FiSearch className={styles.searchIcon} />
@@ -126,6 +180,7 @@ export default function Customers() {
               placeholder="Search customers..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              name='search'
             />
           </div>
 
@@ -134,6 +189,7 @@ export default function Customers() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
+              name='status'
             >
               <option value="All">All Status</option>
               <option value="Active">Active</option>
@@ -142,7 +198,7 @@ export default function Customers() {
           </div>
 
           <button
-            className={styles.addCustomerBtn}
+            className={styles.exportBtn}
             onClick={() => setShowAddCustomerModal(true)}
           >
             <FiPlus /> Add Customer
@@ -229,103 +285,163 @@ export default function Customers() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onClick={(e) => e.target === e.currentTarget && setShowAddCustomerModal(false)}
         >
-          <motion.div
+          <motion.form
             className={styles.modal}
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            onSubmit={handleAddCustomer}
           >
             <div className={styles.modalHeader}>
               <h3>Add New Customer</h3>
               <button
+                type="button"
                 className={styles.closeBtn}
                 onClick={() => setShowAddCustomerModal(false)}
+                aria-label="Close"
               >
                 <FiX />
               </button>
             </div>
 
             <div className={styles.modalBody}>
-              <div className={styles.formGroup}>
-                <label>
+              <div className={`${styles.formGroup}`}>
+                <label htmlFor="customerName">
                   <FiUser className={styles.inputIcon} />
-                  Full Name
+                  Full Name <span className="required">*</span>
                 </label>
-                <input
-                  type="text"
-                  value={newCustomer.name}
-                  onChange={(e) => setNewCustomer({ ...newCustomer, name: e.target.value })}
-                  placeholder="Enter customer name"
-                />
+                <div className={styles.inputWithIcon}>
+                  <FiUser className={styles.inputIcon} />
+                  <input
+                    id="customerName"
+                    type="text"
+                    value={newCustomer.name}
+                    onChange={(e) => {
+                      setNewCustomer({ ...newCustomer, name: e.target.value });
+                    }}
+                    placeholder="Enter customer name"
+                    autoFocus
+                    name='name'
+                    required
+                    autoComplete='name'
+                  />
+                </div>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>
+              <div className={`${styles.formGroup}`}>
+                <label htmlFor="customerEmail">
                   <FiMail className={styles.inputIcon} />
-                  Email Address
+                  Email Address <span className="required">*</span>
                 </label>
-                <input
-                  type="email"
-                  value={newCustomer.email}
-                  onChange={(e) => setNewCustomer({ ...newCustomer, email: e.target.value })}
-                  placeholder="Enter email address"
-                />
+                <div className={styles.inputWithIcon}>
+                  <FiMail className={styles.inputIcon} />
+                  <input
+                    id="customerEmail"
+                    type="email"
+                    value={newCustomer.email}
+                    onChange={(e) => {
+                      setNewCustomer({ ...newCustomer, email: e.target.value });
+                    }}
+                    placeholder="Enter email address"
+                    name='email'
+                    required
+                    autoComplete='email'
+                  />
+                </div>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>
+              <div className={`${styles.formGroup}`}>
+                <label htmlFor="customerPhone">
                   <FiPhone className={styles.inputIcon} />
-                  Phone Number
+                  Phone Number <span className="required">*</span>
                 </label>
-                <input
-                  type="text"
-                  value={newCustomer.phone}
-                  onChange={(e) => setNewCustomer({ ...newCustomer, phone: e.target.value })}
-                  placeholder="Enter phone number"
-                />
+                <div className={styles.inputWithIcon}>
+                  <FiPhone className={styles.inputIcon} />
+                  <input
+                    id="customerPhone"
+                    type="tel"
+                    value={newCustomer.phone}
+                    onChange={(e) => {
+                      setNewCustomer({ ...newCustomer, phone: e.target.value });
+                    }}
+                    placeholder="Enter phone number"
+                    name='phone'
+                    required
+                    autoComplete='phone'
+                  />
+                </div>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>
+              <div className={`${styles.formGroup}`}>
+                <label htmlFor="customerAddress">
                   <FiMapPin className={styles.inputIcon} />
-                  Address
+                  Address <span className="required">*</span>
                 </label>
-                <input
-                  type="text"
-                  value={newCustomer.address}
-                  onChange={(e) => setNewCustomer({ ...newCustomer, address: e.target.value })}
-                  placeholder="Enter address"
-                />
+                <div className={styles.inputWithIcon}>
+                  <FiMapPin className={styles.inputIcon} />
+                  <input
+                    id="customerAddress"
+                    type="text"
+                    value={newCustomer.address}
+                    onChange={(e) => {
+                      setNewCustomer({ ...newCustomer, address: e.target.value });
+                    }}
+                    placeholder="Enter full address"
+                    name='address'
+                    required
+                    autoComplete='address'
+                  />
+                </div>
               </div>
 
               <div className={styles.formGroup}>
-                <label>Status</label>
-                <select
-                  value={newCustomer.status}
-                  onChange={(e) => setNewCustomer({ ...newCustomer, status: e.target.value })}
-                >
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
+                <label htmlFor="customerStatus">Status</label>
+                <div className={styles.inputWithIcon}>
+                  <select
+                    id="customerStatus"
+                    value={newCustomer.status}
+                    onChange={(e) => setNewCustomer({ ...newCustomer, status: e.target.value })}
+                    name='status'
+                    required
+                    autoComplete='status'
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
               </div>
             </div>
 
             <div className={styles.modalFooter}>
               <button
+                type="button"
                 className={styles.cancelBtn}
                 onClick={() => setShowAddCustomerModal(false)}
+                disabled={isSubmitting}
               >
                 Cancel
               </button>
               <button
+                type="submit"
                 className={styles.saveBtn}
-                onClick={handleAddCustomer}
+                disabled={isSubmitting}
               >
-                <FiPlus /> Add Customer
+                {isSubmitting ? (
+                  <>
+                    <span className={styles.spinner}></span>
+                    Adding...
+                  </>
+                ) : (
+                  <>
+                    <FiPlus /> Add Customer
+                  </>
+                )}
               </button>
             </div>
-          </motion.div>
+          </motion.form>
         </motion.div>
       )}
 
@@ -338,7 +454,7 @@ export default function Customers() {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className={styles.modal}
+            className={styles.customerDetailsModal}
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
@@ -482,7 +598,7 @@ export default function Customers() {
 
             <div className={styles.modalBody}>
               <div className={styles.formGroup}>
-                <label>
+                <label htmlFor="customerName">
                   <FiUser className={styles.inputIcon} />
                   Full Name
                 </label>
@@ -491,11 +607,15 @@ export default function Customers() {
                   value={editingCustomer.name}
                   onChange={(e) => setEditingCustomer({ ...editingCustomer, name: e.target.value })}
                   placeholder="Enter customer name"
+                  name='name'
+                  required
+                  autoComplete='name'
+                  id='customerName'
                 />
               </div>
 
               <div className={styles.formGroup}>
-                <label>
+                <label htmlFor="customerEmail">
                   <FiMail className={styles.inputIcon} />
                   Email Address
                 </label>
@@ -504,11 +624,15 @@ export default function Customers() {
                   value={editingCustomer.email}
                   onChange={(e) => setEditingCustomer({ ...editingCustomer, email: e.target.value })}
                   placeholder="Enter email address"
+                  name='email'
+                  required
+                  autoComplete='email'
+                  id='customerEmail'
                 />
               </div>
 
               <div className={styles.formGroup}>
-                <label>
+                <label htmlFor="customerPhone">
                   <FiPhone className={styles.inputIcon} />
                   Phone Number
                 </label>
@@ -517,11 +641,15 @@ export default function Customers() {
                   value={editingCustomer.phone}
                   onChange={(e) => setEditingCustomer({ ...editingCustomer, phone: e.target.value })}
                   placeholder="Enter phone number"
+                  name='phone'
+                  required
+                  autoComplete='phone'
+                  id='customerPhone'
                 />
               </div>
 
               <div className={styles.formGroup}>
-                <label>
+                <label htmlFor="customerAddress">
                   <FiMapPin className={styles.inputIcon} />
                   Address
                 </label>
@@ -530,14 +658,24 @@ export default function Customers() {
                   value={editingCustomer.address}
                   onChange={(e) => setEditingCustomer({ ...editingCustomer, address: e.target.value })}
                   placeholder="Enter address"
+                  name='address'
+                  required
+                  autoComplete='address'
+                  id='customerAddress'
                 />
               </div>
 
               <div className={styles.formGroup}>
-                <label>Status</label>
+                <label htmlFor="customerStatus" >
+                  Status
+                </label>
                 <select
                   value={editingCustomer.status}
                   onChange={(e) => setEditingCustomer({ ...editingCustomer, status: e.target.value })}
+                  name='status'
+                  required
+                  autoComplete='status'
+                  id='customerStatus'
                 >
                   <option value="Active">Active</option>
                   <option value="Inactive">Inactive</option>

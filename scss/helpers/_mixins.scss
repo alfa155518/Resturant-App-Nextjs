@@ -581,3 +581,64 @@
     }
   }
 }
+
+@mixin actionTableBtns {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    @include radius(6px);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: none;
+    background-color: transparent;
+    color: $dark-hover-color;
+    cursor: pointer;
+    background-color: #f5f7fa;
+    &:hover {
+      background-color: #edf2f7;
+    }
+  }
+  @content;
+}
+
+@mixin actionModal {
+  padding: 0.6rem 1.2rem;
+  @include radius(6px);
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(0.3s);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@mixin modalSaveBtn {
+  background-color: $info-color;
+  color: $white-color;
+  border: none;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+
+  &:disabled {
+    background-color: $dark-hover-color;
+    cursor: not-allowed;
+  }
+}
+
+@mixin modalCancelBtn {
+  background-color: $dark-hover-color;
+  color: $nature-light-color;
+  border: none;
+
+  &:hover {
+    background-color: $danger-color;
+  }
+  @content;
+}

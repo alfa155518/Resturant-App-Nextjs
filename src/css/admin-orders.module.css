@@ -276,6 +276,9 @@
   cursor: pointer;
   background-color: #f5f7fa;
 }
+.actionBtns button:hover {
+  background-color: #edf2f7;
+}
 .actionBtns .viewBtn {
   color: #3498db;
 }
