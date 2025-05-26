@@ -1,9 +1,12 @@
+@import '../../helpers/mixins';
+@import '../../helpers/variables';
+
 // Reviews Management Page Styles
 
 .adminDashboard {
   display: flex;
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background-color: $dark-bg-secondary;
 }
 
 .dashboardContent {
@@ -18,54 +21,14 @@
 }
 
 .reviewsHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin: 0;
-  }
+  @include adminSectionHeader;
 }
 
-.reviewActions {
+.reviewHeaderActions {
   display: flex;
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.searchBar {
-  position: relative;
-  width: 250px;
-
-  input {
-    width: 100%;
-    padding: 0.6rem 1rem 0.6rem 2.5rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-
-    &:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
-  }
-
-  .searchIcon {
-    position: absolute;
-    left: 0.8rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
-  }
 }
 
 .filterContainer {
@@ -73,51 +36,16 @@
   display: flex;
   align-items: center;
 
-  select {
-    padding: 0.6rem 1rem 0.6rem 2.5rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    background-color: white;
-    font-size: 0.9rem;
-    min-width: 160px;
-    appearance: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
-  }
-
-  .filterIcon {
-    position: absolute;
-    left: 0.8rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
-    pointer-events: none;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #94a3b8;
-    pointer-events: none;
+  .starFilter {
+    color: $gold-color !important;
   }
 }
 
 .reviewsStats {
   display: flex;
   gap: 2rem;
-  background-color: white;
-  border-radius: 12px;
+  background-color: $dark-border-color;
+  @include radius(12px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
@@ -135,7 +63,7 @@
 .ratingNumber {
   font-size: 3rem;
   font-weight: 700;
-  color: #1e293b;
+  color: $light-color;
   line-height: 1;
 }
 
@@ -146,8 +74,9 @@
 
   p {
     margin: 0;
-    font-size: 0.9rem;
-    color: #94a3b8;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: $info-color;
   }
 }
 
@@ -178,8 +107,8 @@
 
 .ratingLabel {
   width: 60px;
-  font-size: 0.9rem;
-  color: #475569;
+  font-size: 1rem;
+  color: $warning-color;
   text-align: right;
 }
 
@@ -187,37 +116,39 @@
   flex: 1;
   height: 8px;
   background-color: #f1f5f9;
-  border-radius: 4px;
+  @include radius(4px);
   overflow: hidden;
 }
 
 .ratingBarFill {
   height: 100%;
   background-color: #f59e0b;
-  border-radius: 4px;
-  transition: width 0.5s ease;
+  @include radius(4px);
+  @include transition(0.5s);
 }
 
 .ratingCount {
   width: 30px;
-  font-size: 0.9rem;
-  color: #475569;
+  font-size: 1rem;
+  color: $info-color;
 }
 
 .reviewsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 1.5rem;
+  @include gridItems(350px) {
+    gap: 1.5rem;
+  }
 }
 
 .reviewCard {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  @include dark-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 1px 5px 28px -11px rgba(130, 122, 122, 0.76);
+    -webkit-box-shadow: 1px 5px 28px -11px rgba(130, 122, 122, 0.76);
+    -moz-box-shadow: 1px 5px 28px -11px rgba(130, 122, 122, 0.76);
+  }
 }
 
 .reviewHeader {
@@ -233,34 +164,33 @@
 
   h4 {
     margin: 0 0 0.25rem 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: #1e293b;
+    color: $light-color;
   }
 }
 
 .reviewerAvatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background-color: #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #3b82f6;
-  font-size: 1.25rem;
+  @include radius(50%);
+  background-color: $nature-light-color;
+  @include flex-center;
+  color: $info-color;
+  font-size: 1.8rem;
+  font-weight: 800;
 }
 
 .reviewerEmail {
   margin: 0;
-  font-size: 0.85rem;
-  color: #94a3b8;
+  font-size: 1rem;
+  color: $nature-light-color;
 }
 
 .reviewMeta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-center {
+    justify-content: space-between;
+  }
 }
 
 .reviewRating {
@@ -272,64 +202,66 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
-  color: #94a3b8;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $info-color;
 }
 
 .reviewContent {
   p {
     margin: 0;
-    font-size: 0.95rem;
-    color: #475569;
+    font-size: 1.1rem;
+    color: $nature-light-color;
     line-height: 1.6;
   }
 }
 
 .reviewReply {
-  background-color: #f1f5f9;
+  background-color: $dark-text-primary;
   border-radius: 8px;
   padding: 1rem;
 
   h5 {
     margin: 0 0 0.5rem 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $light-color;
   }
 
   p {
     margin: 0;
-    font-size: 0.9rem;
-    color: #475569;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $secondary-color;
     line-height: 1.5;
   }
 }
 
 .reviewActions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-center {
+    justify-content: space-between;
+  }
   margin-top: auto;
   padding-top: 1rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid $dark-border-color;
 }
 
 .statusBadge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   text-align: center;
 
   &.published {
     background-color: rgba(34, 197, 94, 0.15);
-    color: #22c55e;
+    color: $success-color;
   }
 
   &.hidden {
     background-color: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
+    color: $danger-color;
   }
 }
 
@@ -342,12 +274,12 @@
     align-items: center;
     gap: 0.4rem;
     padding: 0.4rem 0.75rem;
-    border-radius: 6px;
+    @include radius(6px);
     border: none;
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    @include transition(0.2s);
     background-color: #f1f5f9;
     color: #475569;
 
@@ -357,22 +289,22 @@
   }
 
   .replyBtn:hover {
-    color: #3b82f6;
+    color: $info-color;
   }
 
   .publishBtn:hover {
-    color: #22c55e;
+    color: $success-color;
   }
 
   .hideBtn:hover {
-    color: #f59e0b;
+    color: $warning-color;
   }
 
   .deleteBtn {
     padding: 0.4rem;
-
+    font-size: 1.3rem;
     &:hover {
-      color: #ef4444;
+      color: $danger-color;
     }
   }
 }
@@ -384,17 +316,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: $light-dark-color;
+  backdrop-filter: blur(5px);
   z-index: 1000;
   padding: 1rem;
 }
 
 .replyModal {
-  background-color: white;
-  border-radius: 12px;
+  background-color: $dark-border-color;
+  @include radius(12px);
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
@@ -402,38 +332,29 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  margin: 20rem auto;
 }
 
 .modalHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-center {
+    justify-content: space-between;
+  }
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid #e2e8f0;
 
   h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: #1e293b;
+    color: $light-color;
   }
 
   .closeBtn {
-    background: transparent;
-    border: none;
-    color: #94a3b8;
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: #f5f7fa;
-      color: #ef4444;
+    @include close-button-top-model {
+      position: relative;
+      top: 0;
+      font-size: 1.2rem;
+      font-weight: 900;
     }
   }
 }
@@ -444,7 +365,7 @@
 }
 
 .reviewPreview {
-  background-color: #f5f7fa;
+  background-color: $nature-light-color;
   border-radius: 8px;
   padding: 1.25rem;
   margin-bottom: 1.5rem;
@@ -455,9 +376,9 @@
 
   h4 {
     margin: 0 0 0.5rem 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1e293b;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $dark-hover-color;
   }
 }
 
@@ -468,8 +389,8 @@
 }
 
 .previewDate {
-  font-size: 0.85rem;
-  color: #94a3b8;
+  font-size: 1rem;
+  color: $dark-border-color;
 }
 
 .previewComment {
@@ -483,32 +404,28 @@
   label {
     display: block;
     margin-bottom: 0.75rem;
-    font-weight: 500;
-    color: #1e293b;
-    font-size: 0.95rem;
+    font-weight: 600;
+    color: $light-color;
+    font-size: 1rem;
   }
 
   textarea {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.95rem;
+    border: 1px solid $info-color;
+    @include radius(8px);
+    font-size: 1.2rem;
     resize: vertical;
     min-height: 120px;
-    transition: all 0.3s ease;
-
-    &:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
+    @include transition(0.3s);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
   }
 }
 
 .modalFooter {
   padding: 1.25rem 1.5rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid $dark-text-primary;
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
@@ -516,39 +433,19 @@
 
 .saveBtn,
 .cancelBtn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  @include actionModal;
 }
 
 .saveBtn {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-
-  &:hover {
-    background-color: #2563eb;
-  }
+  @include modalSaveBtn;
 }
 
 .cancelBtn {
-  background-color: #f5f7fa;
-  color: #1e293b;
-  border: none;
-
-  &:hover {
-    background-color: #e2e8f0;
-  }
+  @include modalCancelBtn;
 }
 
 // Responsive styles
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .reviewsHeader {
     flex-direction: column;
     align-items: flex-start;

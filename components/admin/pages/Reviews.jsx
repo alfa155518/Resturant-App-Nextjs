@@ -101,8 +101,6 @@ export default function Reviews() {
 
 
       <div className={styles.dashboardContent}>
-
-
         <motion.div
           className={styles.reviewsContainer}
           initial={{ opacity: 0, y: 20 }}
@@ -110,8 +108,15 @@ export default function Reviews() {
           transition={{ duration: 0.5 }}
         >
           <div className={styles.reviewsHeader}>
-            <h2>Customer Reviews</h2>
-            <div className={styles.reviewActions}>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className={styles.sectionName}
+            >
+              Customer Reviews
+            </motion.h2>
+            <div className={styles.reviewHeaderActions}>
               <div className={styles.searchBar}>
                 <FiSearch className={styles.searchIcon} />
                 <input
@@ -119,14 +124,18 @@ export default function Reviews() {
                   placeholder="Search reviews..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  name='search'
+                  autoComplete='search'
                 />
               </div>
 
               <div className={styles.filterContainer}>
-                <FiStar className={styles.filterIcon} />
+                <FiStar className={styles.filterIcon + " " + styles.starFilter} />
                 <select
                   value={ratingFilter}
                   onChange={(e) => setRatingFilter(e.target.value)}
+                  name='ratingFilter'
+                  autoComplete='ratingFilter'
                 >
                   <option value="All">All Ratings</option>
                   <option value="5">5 Stars</option>
@@ -142,6 +151,8 @@ export default function Reviews() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
+                  name='statusFilter'
+                  autoComplete='statusFilter'
                 >
                   <option value="All">All Status</option>
                   <option value="Published">Published</option>
@@ -294,12 +305,15 @@ export default function Reviews() {
                   </div>
 
                   <div className={styles.replyForm}>
-                    <label>Your Reply</label>
+                    <label htmlFor="replyText">Your Reply</label>
                     <textarea
                       value={replyText}
                       onChange={(e) => setReplyText(e.target.value)}
                       placeholder="Write your reply here..."
                       rows="5"
+                      name='replyText'
+                      autoComplete='replyText'
+                      id='replyText'
                     ></textarea>
                   </div>
                 </div>
