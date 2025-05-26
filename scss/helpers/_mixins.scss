@@ -48,6 +48,14 @@
   -o-transform: rotate($deg);
 }
 
+@mixin scale($scale) {
+  transform: scale($scale);
+  -webkit-transform: scale($scale);
+  -moz-transform: scale($scale);
+  -ms-transform: scale($scale);
+  -o-transform: scale($scale);
+}
+
 // Grid Items to responsive
 @mixin gridItems($value) {
   display: grid;
@@ -459,6 +467,7 @@
       border-color: $info-color;
       color: $white-color;
     }
+    @content;
   }
 }
 

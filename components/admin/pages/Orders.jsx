@@ -27,7 +27,7 @@ export default function Orders() {
   const [editingOrder, setEditingOrder] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const initialDisplayCount = 5;
-  const displayedOrders = showAll ? orders : orders.slice(0, initialDisplayCount);
+  // const displayedOrders = showAll ? orders : orders.slice(0, initialDisplayCount);
 
   const toggleView = () => {
     setShowAll(!showAll);
@@ -60,6 +60,8 @@ export default function Orders() {
 
     return matchesSearch && matchesStatus;
   });
+
+  const displayedOrders = showAll ? filteredOrders : filteredOrders.slice(0, initialDisplayCount);
 
   // Handle order status change
   const handleStatusChange = (orderId, newStatus) => {

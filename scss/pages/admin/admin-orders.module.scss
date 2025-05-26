@@ -265,8 +265,12 @@
     border-bottom: none;
   }
 }
+
 .viewAll {
-  @include viewAllButton;
+  @include viewAllButton {
+    background-color: $dark-hover-color;
+    color: $white-color;
+  }
 }
 
 .orderSummary {
