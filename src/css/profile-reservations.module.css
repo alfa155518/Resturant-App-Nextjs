@@ -369,6 +369,8 @@
   align-items: center;
   z-index: 1000;
   padding: 1rem;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
 }
 
 .modalContent {
