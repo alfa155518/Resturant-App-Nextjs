@@ -1,211 +1,179 @@
-// Settings Page Styles
+@import '../../helpers/mixins';
+@import '../../helpers/variables';
 
+// Settings Page Layout
 .adminDashboard {
   display: flex;
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background-color: $dark-hover-color;
+  color: $white-color;
 }
 
 .dashboardContent {
   flex: 1;
-  padding: 0;
+  padding: 2rem;
   overflow-x: hidden;
 }
 
 .settingsContainer {
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .settingsHeader {
-  margin-bottom: 1.5rem;
-}
-
-.settingsHeader h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin: 0;
+  margin-bottom: 2.5rem;
+  position: relative;
+  @include adminSectionHeader;
 }
 
 .settingsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  gap: 1.5rem;
+  @include gridItems(350px) {
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
 }
 
+// Cards
 .settingsCard {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  @include dark-card {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+    border: 1px solid rgba($primary-color, 0.1);
+    height: 100%;
+    &:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+  }
 }
 
 .cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  @include flex-center {
+    justify-content: space-between;
+  }
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba($dark-text-secondary, 0.2);
+
+  h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $light-color;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    svg {
+      color: $primary-color;
+      font-size: 2rem;
+    }
+  }
 }
 
-.cardHeader h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1e293b;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cardHeader h3 svg {
-  color: #3b82f6;
-}
-
+// Buttons
 .editBtn,
+.saveBtn,
 .cancelBtn {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.75rem;
-  border-radius: 6px;
-  border: none;
-  font-size: 0.85rem;
-  font-weight: 500;
+  @include flex-center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  @include radius(6px);
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.editBtn {
-  background-color: #f1f5f9;
-  color: #3b82f6;
-}
-
-.editBtn:hover {
-  background-color: #e0f2fe;
+  @include transition(0.2s);
+  border: none;
+  outline: none;
+  &:hover {
+    @include translateY(-5px);
+  }
+  background-color: rgba($info-color, 0.1);
+  color: $nature-light-color;
 }
 
 .cancelBtn {
-  background-color: #f1f5f9;
-  color: #64748b;
+  background-color: rgba($danger-color, 0.1);
+  color: $danger-color;
+
+  &:hover {
+    background-color: rgba($danger-color, 0.2);
+  }
 }
 
-.cancelBtn:hover {
-  background-color: #f1f5f9;
-  color: #ef4444;
+// Form Elements
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-/* Info content styles */
+.formGroup {
+  @include formGroup;
+  .toggleLabel {
+    &::before {
+      bottom: 1px !important;
+    }
+  }
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+// Info Display
 .infoContent,
 .userContent {
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .infoItem {
   display: flex;
-  margin-bottom: 1rem;
-  align-items: flex-start;
-}
-
-.infoItem:last-child {
-  margin-bottom: 0;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .infoLabel {
-  width: 180px;
-  font-weight: 500;
-  color: #64748b;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: $nature-light-color;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.infoLabel svg {
-  color: #3b82f6;
-}
-
 .infoValue {
-  flex: 1;
-  color: #1e293b;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: $secondary-color;
+  word-break: break-word;
 }
 
-/* Hours content styles */
-.hoursContent {
-  padding: 1.5rem;
-}
-
-.hourRow {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.hourRow:last-child {
-  border-bottom: none;
-}
-
-.dayLabel {
-  font-weight: 500;
-  color: #1e293b;
-}
-
-.timeRange {
-  color: #475569;
-}
-
-.closedLabel {
-  color: #ef4444;
-  font-style: italic;
-}
-
-/* Payment methods styles */
-.paymentMethodsContent {
-  padding: 1.5rem;
-}
-
-.paymentMethod {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.paymentMethod:last-child {
-  border-bottom: none;
-}
-
-.paymentMethodName {
-  font-weight: 500;
-  color: #1e293b;
-}
-
-/* Toggle switch styles */
+// Toggle Switch
 .toggleSwitch {
   position: relative;
   display: inline-block;
-  width: 46px;
+  width: 50px;
   height: 24px;
-}
 
-.toggleInput {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 
-.toggleInput:checked + .toggleLabel {
-  background-color: #3b82f6;
-}
+    &:checked + .toggleLabel {
+      background-color: $primary-color;
 
-.toggleInput:checked + .toggleLabel:before {
-  transform: translateX(22px);
-}
-
-.toggleInput:focus + .toggleLabel {
-  box-shadow: 0 0 1px #3b82f6;
+      &::before {
+        @include translateX(26px);
+      }
+    }
+  }
 }
 
 .toggleLabel {
@@ -215,242 +183,247 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #cbd5e1;
-  transition: 0.4s;
-  border-radius: 24px;
+  background-color: $dark-border-color;
+  @include transition(0.4s);
+  @include radius(34px);
+
+  &::before {
+    position: absolute;
+    content: '';
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: $white-color;
+    @include transition(0.4s);
+    @include radius(50%);
+  }
 }
 
-.toggleLabel:before {
-  position: absolute;
-  content: '';
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
+// Status Badges
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  @include radius(20px);
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  &.enabled {
+    background-color: rgba($success-color, 0.15);
+    color: $success-color;
+  }
+
+  &.disabled {
+    background-color: rgba($danger-color, 0.15);
+    color: $danger-color;
+  }
 }
 
-/* Notification styles */
-.notificationContent {
-  padding: 1.5rem;
-}
-
-.notificationGroup {
-  margin-bottom: 1.5rem;
-}
-
-.notificationGroup:last-child {
-  margin-bottom: 0;
-}
-
-.notificationGroupTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin: 0 0 1rem 0;
-}
-
-.notificationSetting {
+// Hours Section
+.hoursContent {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
   padding: 0.5rem 0;
 }
 
-.notificationLabel {
-  color: #475569;
-}
-
-/* Form styles */
-.formWrapper {
-  padding: 1.5rem;
-}
-
-.formGroup {
-  margin-bottom: 1.25rem;
-}
-
-.formGroup:last-child {
-  margin-bottom: 0;
-}
-
-.formLabel {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #1e293b;
-  font-size: 0.95rem;
-}
-
-.formInput,
-.formSelect,
-.formTextarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-}
-
-.formInput:focus,
-.formSelect:focus,
-.formTextarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-}
-
-.formTextarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.formSelect {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem;
-}
-
-.formRow {
+.hourRow {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0;
-}
-
-.formRow .formGroup {
-  flex: 1;
-}
-
-.formActions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1.5rem;
-}
-
-.saveBtn {
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  @include radius(8px);
+  @include transition(0.2s);
+
+  &:nth-child(odd) {
+    background-color: rgba($info-color, 0.1);
+  }
+
+  &:nth-child(even) {
+    background-color: rgba($info-color, 0.2);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0.25rem;
+  }
+}
+
+.dayLabel {
+  color: $info-color;
+  font-size: 1.2rem;
+  font-weight: 700;
+  min-width: 120px;
+}
+
+.timeRange {
+  color: $white-color;
+  font-family: monospace;
+  font-size: 1.2rem;
+  background: $info-color;
+  padding: 0.25rem 0.75rem;
+  @include radius(4px);
+}
+
+.closedLabel {
+  color: $danger-color;
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background: rgba($danger-color, 0.1);
+  padding: 0.25rem 0.75rem;
+  @include radius(4px);
+  font-size: 1.2rem;
 }
 
-.saveBtn:hover {
-  background-color: #2563eb;
-}
-
-/* Hours edit form */
+// Edit Mode Styles
 .hourInputRow {
   display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba($info-color, 0.1);
+  @include radius(8px);
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba($info-color, 0.05);
 
-.hourInputRow:last-child {
-  margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .hourInputs {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-center {
+    justify-content: space-between;
+  }
+  gap: 1rem;
+  width: 100%;
 }
 
 .timeInputs {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
+  gap: 0.75rem;
+  flex: 1;
 
-.timeInput {
-  width: 120px;
+  input[type='time'] {
+    background: $dark-border-color;
+    border: 1px solid $info-color;
+    color: $white-color;
+    padding: 0.5rem 0.75rem;
+    @include radius(6px);
+    font-size: 1.1rem;
+    width: 120px;
+    @include transition(0.2s);
+    /* For WebKit/Blink browsers */
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+
+    /* For Firefox */
+    &::-moz-calendar-picker-indicator {
+      filter: invert(1);
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      outline: none;
+
+      &::-webkit-calendar-picker-indicator,
+      &::-moz-calendar-picker-indicator {
+        opacity: 1;
+        color: $info-color;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &::-webkit-calendar-picker-indicator,
+      &::-moz-calendar-picker-indicator {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
 
 .timeSeparator {
-  color: #64748b;
+  color: $white-color;
+  font-size: 1.1rem;
+  font-weight: bold;
+  min-width: 30px;
+  text-align: center;
 }
 
 .closedToggle {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-left: auto;
+
+  input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    + .toggleLabel {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      background-color: rgba($danger-color, 0.3);
+      @include radius(34px);
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &::before {
+        content: '';
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        @include transition(0.3s);
+        @include radius(50%);
+      }
+    }
+
+    &:checked + .toggleLabel {
+      background-color: $primary-color;
+
+      &::before {
+        @include translateX(20px);
+      }
+    }
+
+    &:disabled + .toggleLabel {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .toggleLabelText {
+    font-size: 1.2rem;
+    color: $white-color;
+    margin-left: 0.5rem;
+    white-space: nowrap;
+  }
 }
 
-.closedCheckbox {
-  width: 16px;
-  height: 16px;
-}
-
-.closedLabel {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #64748b;
-}
-
-/* Toggle option in form */
-.toggleOption {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Status badge */
-.statusBadge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-align: center;
-}
-
-.enabled {
-  background-color: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
-}
-
-.disabled {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
-}
-
-/* Responsive styles */
+// Responsive adjustments
 @media (max-width: 768px) {
-  .settingsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .infoItem {
+  .hourRow {
     flex-direction: column;
-  }
-
-  .infoLabel {
-    width: 100%;
-    margin-bottom: 0.25rem;
-  }
-
-  .formRow {
-    flex-direction: column;
-    gap: 0;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .hourInputs {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .timeInputs {
@@ -459,6 +432,103 @@
   }
 
   .closedToggle {
-    margin-top: 0.5rem;
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
   }
+}
+
+// Payment Methods
+.paymentMethodsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.paymentMethod {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $nature-light-color;
+}
+
+.paymentMethodName {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $white-color;
+}
+
+// Notifications
+.notificationContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.notificationGroup {
+  border-bottom: 1px solid rgba($dark-border-color, 0.1);
+  padding-bottom: 1.5rem;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.notificationGroupTitle {
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+  color: $white-color;
+  font-weight: 600;
+}
+
+.notificationSetting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $nature-light-color;
+}
+
+.notificationLabel {
+  font-size: 1.2rem;
+  color: $white-color;
+}
+
+// Responsive Adjustments
+@media (width <= 992px) {
+  .settingsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (width <= 768px) {
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardContent {
+    padding: 1rem;
+  }
+
+  .settingsCard {
+    padding: 1.25rem;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    @include translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    @include translateY(0);
+  }
+}
+
+.animateFadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
 }

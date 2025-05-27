@@ -126,7 +126,14 @@ export default function Settings() {
           transition={{ duration: 0.5 }}
         >
           <div className={styles.settingsHeader}>
-            <h2>Settings</h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className={styles.sectionName}
+            >
+              Settings
+            </motion.h2>
           </div>
 
           <div className={styles.settingsGrid}>
@@ -186,53 +193,65 @@ export default function Settings() {
               ) : (
                 <form className={styles.formWrapper} onSubmit={handleRestaurantInfoSubmit}>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Restaurant Name</label>
-                    <input className={styles.formInput}
+                    <label htmlFor="restaurantName" className={styles.formLabel}>Restaurant Name</label>
+                    <input id="restaurantName" className={styles.formInput}
                       type="text"
                       value={restaurantInfo.name}
                       onChange={(e) => setRestaurantInfo({ ...restaurantInfo, name: e.target.value })}
+                      required
+                      name='restaurant-name'
                     />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Address</label>
-                    <input className={styles.formInput}
+                    <label htmlFor="restaurantAddress" className={styles.formLabel}>Address</label>
+                    <input id="restaurantAddress" className={styles.formInput}
                       type="text"
                       value={restaurantInfo.address}
                       onChange={(e) => setRestaurantInfo({ ...restaurantInfo, address: e.target.value })}
+                      required
+                      name='restaurant-address'
                     />
                   </div>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label className={styles.formLabel}>Phone</label>
-                      <input className={styles.formInput}
+                      <label htmlFor="restaurantPhone" className={styles.formLabel}>Phone</label>
+                      <input id="restaurantPhone" className={styles.formInput}
                         type="text"
                         value={restaurantInfo.phone}
                         onChange={(e) => setRestaurantInfo({ ...restaurantInfo, phone: e.target.value })}
+                        required
+                        name='restaurant-phone'
                       />
                     </div>
                     <div className={styles.formGroup}>
-                      <label className={styles.formLabel}>Email</label>
-                      <input className={styles.formInput}
+                      <label htmlFor="restaurantEmail" className={styles.formLabel}>Email</label>
+                      <input id="restaurantEmail" className={styles.formInput}
                         type="email"
                         value={restaurantInfo.email}
                         onChange={(e) => setRestaurantInfo({ ...restaurantInfo, email: e.target.value })}
+                        required
+                        name='restaurant-email'
                       />
                     </div>
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Website</label>
-                    <input className={styles.formInput}
+                    <label htmlFor="restaurantWebsite" className={styles.formLabel}>Website</label>
+                    <input id="restaurantWebsite" className={styles.formInput}
                       type="text"
                       value={restaurantInfo.website}
                       onChange={(e) => setRestaurantInfo({ ...restaurantInfo, website: e.target.value })}
+                      required
+                      name='restaurant-website'
                     />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Description</label>
-                    <textarea className={styles.formTextarea}
+                    <label htmlFor="restaurantDescription" className={styles.formLabel}>Description</label>
+                    <textarea id="restaurantDescription" className={styles.formTextarea}
                       value={restaurantInfo.description}
                       onChange={(e) => setRestaurantInfo({ ...restaurantInfo, description: e.target.value })}
                       rows="3"
+                      required
+                      name='restaurant-description'
                     ></textarea>
                   </div>
                   <div className={styles.formActions}>
@@ -290,28 +309,36 @@ export default function Settings() {
                       <span className={styles.dayLabel}>{hours.day}</span>
                       <div className={styles.hourInputs}>
                         <div className={styles.timeInputs}>
-                          <input className={styles.formInput}
+                          <input id={`open-${index}`} className={styles.formInput}
                             type="time"
                             value={hours.open}
                             onChange={(e) => updateHours(index, 'open', e.target.value)}
                             disabled={hours.closed}
+                            required
+                            autoComplete={`open-${index}`}
+                            name={`open-${index}`}
                           />
                           <span className={styles.timeSeparator}>to</span>
-                          <input className={styles.formInput}
+                          <input id={`close-${index}`} className={styles.formInput}
                             type="time"
                             value={hours.close}
                             onChange={(e) => updateHours(index, 'close', e.target.value)}
                             disabled={hours.closed}
+                            required
+                            autoComplete={`close-${index}`}
+                            name={`close-${index}`}
                           />
                         </div>
                         <div className={styles.closedToggle}>
-                          <input className={styles.formInput}
+                          <input id={`closed-${index}`} className={styles.formInput}
                             type="checkbox"
-                            id={`closed-${index}`}
                             checked={hours.closed}
                             onChange={(e) => updateHours(index, 'closed', e.target.checked)}
+                            required
+                            autoComplete={`closed-${index}`}
+                            name={`closed-${index}`}
                           />
-                          <label className={styles.toggleLabel} htmlFor={`closed-${index}`}>Closed</label>
+                          <label className={styles.toggleLabel} htmlFor={`closed-${index}`}></label>
                         </div>
                       </div>
                     </div>
@@ -346,6 +373,9 @@ export default function Settings() {
                         id={`payment-${method.id}`}
                         checked={method.enabled}
                         onChange={() => togglePaymentMethod(method.id)}
+                        required
+                        autoComplete={`payment-${method.id}`}
+                        name={`payment-${method.id}`}
                       />
                       <label className={styles.toggleLabel} htmlFor={`payment-${method.id}`}></label>
                     </div>
@@ -376,6 +406,9 @@ export default function Settings() {
                         id="newOrder"
                         checked={notificationSettings.newOrder}
                         onChange={() => toggleNotification('newOrder')}
+                        required
+                        autoComplete='new-order'
+                        name='new-order'
                       />
                       <label className={styles.toggleLabel} htmlFor="newOrder"></label>
                     </div>
@@ -388,6 +421,9 @@ export default function Settings() {
                         id="orderStatus"
                         checked={notificationSettings.orderStatus}
                         onChange={() => toggleNotification('orderStatus')}
+                        required
+                        autoComplete='order-status'
+                        name='order-status'
                       />
                       <label className={styles.toggleLabel} htmlFor="orderStatus"></label>
                     </div>
@@ -404,6 +440,9 @@ export default function Settings() {
                         id="newReservation"
                         checked={notificationSettings.newReservation}
                         onChange={() => toggleNotification('newReservation')}
+                        required
+                        autoComplete='new-reservation'
+                        name='new-reservation'
                       />
                       <label className={styles.toggleLabel} htmlFor="newReservation"></label>
                     </div>
@@ -416,6 +455,9 @@ export default function Settings() {
                         id="reservationReminder"
                         checked={notificationSettings.reservationReminder}
                         onChange={() => toggleNotification('reservationReminder')}
+                        required
+                        autoComplete='reservation-reminder'
+                        name='reservation-reminder'
                       />
                       <label className={styles.toggleLabel} htmlFor="reservationReminder"></label>
                     </div>
@@ -432,6 +474,9 @@ export default function Settings() {
                         id="newReview"
                         checked={notificationSettings.newReview}
                         onChange={() => toggleNotification('newReview')}
+                        required
+                        autoComplete='new-review'
+                        name='new-review'
                       />
                       <label className={styles.toggleLabel} htmlFor="newReview"></label>
                     </div>
@@ -444,6 +489,9 @@ export default function Settings() {
                         id="lowInventory"
                         checked={notificationSettings.lowInventory}
                         onChange={() => toggleNotification('lowInventory')}
+                        required
+                        autoComplete='low-inventory'
+                        name='low-inventory'
                       />
                       <label className={styles.toggleLabel} htmlFor="lowInventory"></label>
                     </div>
@@ -456,6 +504,9 @@ export default function Settings() {
                         id="dailySummary"
                         checked={notificationSettings.dailySummary}
                         onChange={() => toggleNotification('dailySummary')}
+                        required
+                        autoComplete='daily-summary'
+                        name='daily-summary'
                       />
                       <label className={styles.toggleLabel} htmlFor="dailySummary"></label>
                     </div>
@@ -468,6 +519,9 @@ export default function Settings() {
                         id="weeklySummary"
                         checked={notificationSettings.weeklySummary}
                         onChange={() => toggleNotification('weeklySummary')}
+                        required
+                        autoComplete='weekly-summary'
+                        name='weekly-summary'
                       />
                       <label className={styles.toggleLabel} htmlFor="weeklySummary"></label>
                     </div>
@@ -480,6 +534,9 @@ export default function Settings() {
                         id="marketingEmails"
                         checked={notificationSettings.marketingEmails}
                         onChange={() => toggleNotification('marketingEmails')}
+                        required
+                        autoComplete='marketing-emails'
+                        name='marketing-emails'
                       />
                       <label className={styles.toggleLabel} htmlFor="marketingEmails"></label>
                     </div>
@@ -554,26 +611,37 @@ export default function Settings() {
               ) : (
                 <form className={styles.formWrapper} onSubmit={handleUserSettingsSubmit}>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Name</label>
+                    <label htmlFor="name" className={styles.formLabel}>Name</label>
                     <input className={styles.formInput}
                       type="text"
+                      id="name"
                       value={userSettings.name}
                       onChange={(e) => setUserSettings({ ...userSettings, name: e.target.value })}
+                      required
+                      name='name'
+                      autoComplete='name'
                     />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Email</label>
+                    <label htmlFor="email" className={styles.formLabel}>Email</label>
                     <input className={styles.formInput}
                       type="email"
+                      id="email"
                       value={userSettings.email}
                       onChange={(e) => setUserSettings({ ...userSettings, email: e.target.value })}
+                      required
+                      name='email'
+                      autoComplete='email'
                     />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Role</label>
+                    <label htmlFor="role" className={styles.formLabel}>Role</label>
                     <select className={styles.formSelect}
                       value={userSettings.role}
                       onChange={(e) => setUserSettings({ ...userSettings, role: e.target.value })}
+                      required
+                      name='role'
+                      id='role'
                     >
                       <option value="Restaurant Manager">Restaurant Manager</option>
                       <option value="Admin">Admin</option>
@@ -581,16 +649,19 @@ export default function Settings() {
                     </select>
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Password</label>
+                    <label htmlFor="password" className={styles.formLabel}>Password</label>
                     <input className={styles.formInput}
                       type="password"
+                      id="password"
                       value={userSettings.password}
                       onChange={(e) => setUserSettings({ ...userSettings, password: e.target.value })}
+                      required
+                      name='password'
                     />
                   </div>
                   <div className={styles.formGroup}>
                     <div className={styles.toggleOption}>
-                      <label className={styles.formLabel}>Two-Factor Authentication</label>
+                      <label htmlFor="twoFactorAuth" className={styles.formLabel}>Two-Factor Authentication</label>
                       <div className={styles.toggleSwitch}>
                         <input
                           className={styles.closedCheckbox}
@@ -598,6 +669,8 @@ export default function Settings() {
                           id="twoFactorAuth"
                           checked={userSettings.twoFactorAuth}
                           onChange={(e) => setUserSettings({ ...userSettings, twoFactorAuth: e.target.checked })}
+                          required
+                          name='two-factor-auth'
                         />
                         <label className={styles.toggleLabel} htmlFor="twoFactorAuth"></label>
                       </div>
@@ -605,7 +678,7 @@ export default function Settings() {
                   </div>
                   <div className={styles.formGroup}>
                     <div className={styles.toggleOption}>
-                      <label className={styles.formLabel}>Email Notifications</label>
+                      <label htmlFor="emailNotifications" className={styles.formLabel}>Email Notifications</label>
                       <div className={styles.toggleSwitch}>
                         <input
                           className={styles.closedCheckbox}
@@ -613,6 +686,8 @@ export default function Settings() {
                           id="emailNotifications"
                           checked={userSettings.emailNotifications}
                           onChange={(e) => setUserSettings({ ...userSettings, emailNotifications: e.target.checked })}
+                          required
+                          name='email-notifications'
                         />
                         <label className={styles.toggleLabel} htmlFor="emailNotifications"></label>
                       </div>
@@ -620,7 +695,7 @@ export default function Settings() {
                   </div>
                   <div className={styles.formGroup}>
                     <div className={styles.toggleOption}>
-                      <label className={styles.formLabel}>Push Notifications</label>
+                      <label htmlFor="pushNotifications" className={styles.formLabel}>Push Notifications</label>
                       <div className={styles.toggleSwitch}>
                         <input
                           className={styles.closedCheckbox}
@@ -628,6 +703,8 @@ export default function Settings() {
                           id="pushNotifications"
                           checked={userSettings.pushNotifications}
                           onChange={(e) => setUserSettings({ ...userSettings, pushNotifications: e.target.checked })}
+                          required
+                          name='push-notifications'
                         />
                         <label className={styles.toggleLabel} htmlFor="pushNotifications"></label>
                       </div>
