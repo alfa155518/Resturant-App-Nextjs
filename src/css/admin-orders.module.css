@@ -172,7 +172,7 @@
 }
 
 .ordersTableContainer {
-  background-color: white;
+  background-color: #1f1f1f;
   border-radius: 12px;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
@@ -212,10 +212,10 @@
   border-bottom: none;
 }
 .ordersTable tr:hover {
-  background-color: #e0e0e0;
+  background-color: #2c2c2c;
 }
 .ordersTable td {
-  color: #2c2c2c;
+  color: #f5f0e9;
   font-size: 1.1rem;
 }
 

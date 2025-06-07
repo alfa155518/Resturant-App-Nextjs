@@ -1,0 +1,503 @@
+.teamContainer {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.teamHeader {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.teamHeader h1 {
+  font-size: 2.25rem;
+  color: #9f643c;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.teamHeader p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.teamActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: #1f1f1f;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.searchContainer {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+.searchContainer .searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+}
+.searchContainer .searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background-color: #1e1e1e;
+}
+.searchContainer .searchInput:focus {
+  outline: none;
+  border-color: #9f643c;
+  box-shadow: 0 0 0 2px rgba(159, 100, 60, 0.2);
+}
+.filterButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.filterButtons .filterButton {
+  padding: 0.6rem 1.25rem;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.filterButtons .filterButton:hover {
+  background: rgba(159, 100, 60, 0.05);
+  border-color: rgba(159, 100, 60, 0.3);
+  color: #9f643c;
+}
+.filterButtons .filterButton.active {
+  background: #9f643c;
+  border-color: #9f643c;
+  color: white;
+}
+
+.addButton {
+  background: #9f643c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.addButton:hover {
+  background: #815131;
+  transform: translateY(-1px);
+}
+.addButton:active {
+  transform: translateY(0);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.teamCard {
+  background: #1f1f1f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.teamCard.inactive {
+  opacity: 0.8;
+}
+.teamCard.inactive .memberImage::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+.teamCard .memberImage {
+  position: relative;
+  height: 180px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.teamCard .memberImage .avatar {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.teamCard .memberImage .avatarPlaceholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9f643c;
+  border: 3px solid rgba(159, 100, 60, 0.2);
+}
+.teamCard .memberImage .statusBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+.teamCard .memberImage .statusBadge.active {
+  background: rgba(34, 197, 94, 0.9);
+}
+.teamCard .memberInfo {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.teamCard .memberInfo h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+}
+.teamCard .memberInfo .position {
+  color: #9f643c;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+.teamCard .memberInfo .department {
+  background: rgba(159, 100, 60, 0.1);
+  color: #9f643c;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  align-self: flex-start;
+}
+.teamCard .memberInfo .contactInfo {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.teamCard .memberInfo .contactInfo .contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+}
+.teamCard .memberInfo .contactInfo .contactItem .contactIcon {
+  color: #9f643c;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+.teamCard .memberInfo .actionButtons {
+  margin-top: auto;
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #333333;
+}
+.teamCard .memberInfo .actionButtons button {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.teamCard .memberInfo .actionButtons button.editButton {
+  background: rgba(159, 100, 60, 0.1);
+  color: #9f643c;
+  border: 1px solid rgba(159, 100, 60, 0.3);
+}
+.teamCard .memberInfo .actionButtons button.editButton:hover {
+  background: rgba(159, 100, 60, 0.2);
+  border-color: #9f643c;
+}
+.teamCard .memberInfo .actionButtons button.deleteButton {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+.teamCard .memberInfo .actionButtons button.deleteButton:hover {
+  background: rgba(231, 76, 60, 0.2);
+  border-color: #e74c3c;
+}
+
+.noResults {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: #1f1f1f;
+  border-radius: 12px;
+}
+.noResults p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: #1f1f1f;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+.modalContent h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem;
+  padding: 1.5rem 1.5rem 0;
+}
+.modalContent .memberForm {
+  padding: 0 1.5rem 1.5rem;
+}
+.modalContent .formGroup {
+  margin-bottom: 1.25rem;
+}
+.modalContent .formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.modalContent .formGroup input,
+.modalContent .formGroup select,
+.modalContent .formGroup textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+.modalContent .formGroup input:focus,
+.modalContent .formGroup select:focus,
+.modalContent .formGroup textarea:focus {
+  outline: none;
+  border-color: #9f643c;
+  box-shadow: 0 0 0 2px rgba(159, 100, 60, 0.2);
+}
+.modalContent .formGroup input::-moz-placeholder, .modalContent .formGroup select::-moz-placeholder, .modalContent .formGroup textarea::-moz-placeholder {
+  color: #c7c7c7;
+}
+.modalContent .formGroup input::placeholder,
+.modalContent .formGroup select::placeholder,
+.modalContent .formGroup textarea::placeholder {
+  color: #c7c7c7;
+}
+.modalContent .formGroup select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+}
+.modalContent .formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 500px) {
+  .modalContent .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+.modalContent .uploadContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.modalContent .uploadContainer .fileInput {
+  display: none;
+}
+.modalContent .uploadContainer .uploadButton {
+  background: #9f643c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.modalContent .uploadContainer .uploadButton:hover {
+  background: #8a5734;
+}
+.modalContent .uploadContainer .fileName {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modalContent .formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+.modalContent .formActions button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modalContent .formActions button.cancelButton {
+  background: transparent;
+  border: 1px solid #333333;
+}
+.modalContent .formActions button.cancelButton:hover {
+  background: #1e1e1e;
+  border-color: #c7c7c7;
+}
+.modalContent .formActions button.saveButton {
+  background: #9f643c;
+  color: white;
+  border: none;
+}
+.modalContent .formActions button.saveButton:hover {
+  background: #8a5734;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .teamActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .searchContainer {
+    max-width: 100%;
+  }
+  .filterButtons {
+    justify-content: center;
+  }
+  .addButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .teamContainer {
+    padding: 1.25rem;
+  }
+  .teamHeader {
+    margin-bottom: 1.5rem;
+  }
+  .teamHeader h1 {
+    font-size: 1.8rem;
+  }
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Animation Classes */
+.fadeIn {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.slideIn {
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(159, 100, 60, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(159, 100, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(159, 100, 60, 0);
+  }
+}

@@ -25,7 +25,7 @@
 }
 
 .ordersTableContainer {
-  background-color: white;
+  background-color: $card-color;
   @include radius(12px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   overflow: hidden;
@@ -60,12 +60,12 @@
     }
 
     &:hover {
-      background-color: $dark-text-primary;
+      background-color: $dark-hover-color;
     }
   }
 
   td {
-    color: $dark-hover-color;
+    color: $nature-light-color;
     font-size: 1.1rem;
   }
 }

@@ -34,14 +34,23 @@ export default function MenuItems() {
   const [categoryFilter, setCategoryFilter] = useState('All');
   const [showAddItemModal, setShowAddItemModal] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+
   const [newItem, setNewItem] = useState({
     name: '',
     category: '',
     price: '',
     description: '',
     image: '',
-    featured: false,
-    available: true
+    image_public_id: '',
+    calories: 0,
+    rating: 3.0,
+    prepTime: '15 min',
+    dietary: [],
+    ingredients: [],
+    stock: 5,
+    available: true,
+    popular: false,
+    featured: false
   });
 
   // Filter menu items based on search term and category filter
@@ -342,6 +351,90 @@ export default function MenuItems() {
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
+                      <label htmlFor="calories">Calories</label>
+                      <input
+                        type="number"
+                        value={newItem.calories}
+                        onChange={(e) => setNewItem({ ...newItem, calories: parseInt(e.target.value) })}
+                        name='calories'
+                        id='calories'
+                        min="0"
+                        placeholder="Calories"
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label htmlFor="stock">Stock</label>
+                      <input
+                        type="number"
+                        value={newItem.stock}
+                        onChange={(e) => setNewItem({ ...newItem, stock: parseInt(e.target.value) })}
+                        name='stock'
+                        id='stock'
+                        min="0"
+                        placeholder="Stock"
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="rating">Rating</label>
+                    <input
+                      type="number"
+                      value={newItem.rating}
+                      onChange={(e) => setNewItem({ ...newItem, rating: parseFloat(e.target.value) })}
+                      name='rating'
+                      id='rating'
+                      min="1"
+                      max="5"
+                      step="0.1"
+                      placeholder="Rating (1-5)"
+                    />
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="prepTime">Prep Time</label>
+                    <input
+                      type="text"
+                      value={newItem.prepTime}
+                      onChange={(e) => setNewItem({ ...newItem, prepTime: e.target.value })}
+                      name='prepTime'
+                      id='prepTime'
+                      placeholder="e.g., 15 min"
+                    />
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="dietary">Dietary Information</label>
+                    <textarea
+                      value={JSON.stringify(newItem.dietary, null, 2)}
+                      onChange={(e) => {
+                        try {
+                          setNewItem({ ...newItem, dietary: JSON.parse(e.target.value) });
+                        } catch (error) {
+                          console.error('Invalid JSON:', error);
+                        }
+                      }}
+                      name='dietary'
+                      id='dietary'
+                      placeholder="Enter dietary information">
+                    </textarea>
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="ingredients">Ingredients</label>
+                    <textarea
+                      value={JSON.stringify(newItem.ingredients, null, 2)}
+                      onChange={(e) => setNewItem({ ...newItem, ingredients: JSON.parse(e.target.value) })}
+                      name='ingredients'
+                      id='ingredients'
+                      placeholder="Enter ingredients as JSON array"
+                      rows="4"
+                    />
+                  </div>
+
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
                       <div className={styles.checkboxGroup}>
                         <input
                           type="checkbox"
@@ -366,6 +459,20 @@ export default function MenuItems() {
                           autoComplete='available'
                         />
                         <label htmlFor="available">Available</label>
+                      </div>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <div className={styles.checkboxGroup}>
+                        <input
+                          type="checkbox"
+                          id="popular"
+                          checked={newItem.popular}
+                          onChange={(e) => setNewItem({ ...newItem, popular: e.target.checked })}
+                          name='popular'
+                          autoComplete='popular'
+                        />
+                        <label htmlFor="popular">Popular Item</label>
                       </div>
                     </div>
                   </div>

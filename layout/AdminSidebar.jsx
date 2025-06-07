@@ -84,6 +84,17 @@ export default function AdminSidebar({ isCollapsed = false, toggleSidebar }) {
               </Link>
             </motion.li>
             <motion.li
+              className={isActive('/admin/team') ? styles.active : ''}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <Link href="/admin/team">
+                <FiUsers className={styles.menuIcon} />
+                {!isCollapsed && <span>Team</span>}
+              </Link>
+            </motion.li>
+            <motion.li
               className={isActive('/admin/reservations') ? styles.active : ''}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
