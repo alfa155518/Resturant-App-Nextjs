@@ -16,7 +16,6 @@ export async function userCheckoutProducts() {
       cache: "no-store",
     },
   });
-
   const products = await response.json();
   return products;
 }

@@ -151,7 +151,7 @@ export function UserProvider({ children }) {
   }, [pathname, needsRefresh]);
 
   // Filter Reservations
-  const filteredReservations = userReservations.filter((reservation) => {
+  const filteredReservations = userReservations?.filter((reservation) => {
     if (activeFilterReservation === "all") return true;
     return reservation.status === activeFilterReservation;
   });

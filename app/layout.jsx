@@ -9,6 +9,9 @@ import { MenuProvider } from "@/store/MenuProvider";
 import { TeamProvider } from "@/store/TeamProvider";
 import { UserProvider } from "@/store/UserProvider";
 import { CartProvider } from "@/store/CartProvider";
+import { RestaurantSettingsProvider } from "@/store/RestaurantSettings";
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const roboto = Roboto({
   variable: "--font-roboto-sans",
@@ -32,19 +35,23 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} antialiased`}
         suppressHydrationWarning>
-        <UserProvider>
-          <MenuProvider>
-            <CartProvider>
-              <NavBar />
-              <TeamProvider>
-                <main>{children}</main>
-              </TeamProvider>
-              <Footer />
-            </CartProvider>
-          </MenuProvider>
-          <NotificationContainer />
-          <ScrollToTopButton />
-        </UserProvider>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <RestaurantSettingsProvider>
+            <UserProvider>
+              <MenuProvider>
+                <CartProvider>
+                  <NavBar />
+                  <TeamProvider>
+                    <main>{children}</main>
+                  </TeamProvider>
+                  <Footer />
+                </CartProvider>
+              </MenuProvider>
+              <NotificationContainer />
+              <ScrollToTopButton />
+            </UserProvider>
+          </RestaurantSettingsProvider>
+        </SkeletonTheme>
       </body>
     </html>
   );

@@ -343,6 +343,109 @@
   gap: 1rem;
 }
 
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.logoContainer .logoPreview {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(159, 100, 60, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.logoContainer .logoPreview:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.logoContainer .logoImage {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.logoContainer .logoPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  background-color: rgba(159, 100, 60, 0.05);
+  border: 2px dashed rgba(159, 100, 60, 0.3);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.logoContainer .logoPlaceholder:hover {
+  background-color: rgba(159, 100, 60, 0.1);
+  border-color: #9f643c;
+}
+.logoContainer .logoPlaceholder .logoIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: rgba(159, 100, 60, 0.5);
+}
+
+.logoUploadContainer {
+  margin-bottom: 2rem;
+}
+.logoUploadContainer .fileInput {
+  display: none;
+}
+.logoUploadContainer .logoUpload {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed rgba(159, 100, 60, 0.3);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: rgba(159, 100, 60, 0.05);
+  margin: 0 auto;
+}
+.logoUploadContainer .logoUpload:hover {
+  border-color: #9f643c;
+  background-color: rgba(159, 100, 60, 0.1);
+  transform: translateY(-2px);
+}
+.logoUploadContainer .logoUpload .logoPreviewImage {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.logoUploadContainer .uploadPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+.logoUploadContainer .uploadPlaceholder svg {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #9f643c;
+}
+.logoUploadContainer .uploadPlaceholder span {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.logoUploadContainer .uploadPlaceholder small {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .infoContent,
 .userContent {
   display: flex;
@@ -542,6 +645,7 @@
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   gap: 1rem;
   width: 100%;
 }

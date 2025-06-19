@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaUser, FaLock, FaBell, FaCamera} from 'react-icons/fa';
+import { FaUser, FaBell, FaCamera, FaLock } from 'react-icons/fa';
 import Image from 'next/image';
 import styles from '../../../../src/css/profile-settings.module.css';
 import SendButton from '@/components/ui/SendButton';
@@ -12,7 +12,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 
 export default function ProfileSettings({ user }) {
-  const { avatar="/images/default-reviewer.webp", email="", name="", phone="" } = user || {}
+  const { avatar = "/images/default-reviewer.webp", email = "", name = "", phone = "" } = user || {}
   const [activeSection, setActiveSection] = useState('personal');
 
   // Custom hook for profile settings

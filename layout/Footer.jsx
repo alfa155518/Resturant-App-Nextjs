@@ -4,9 +4,12 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 import styles from '../src/css/footer.module.css';
+import { useContext } from 'react';
+import { RestaurantSettingsContext } from '@/store/RestaurantSettings';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { restaurantInfo } = useContext(RestaurantSettingsContext);
 
   return (
     <footer className={styles.footer}>
@@ -14,42 +17,42 @@ export default function Footer() {
         <div className={styles.container}>
           <div className={styles.footerGrid}>
             {/* Logo and About */}
-            <motion.div 
+            <motion.div
               className={styles.footerColumn}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.footerLogo}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Image 
-                  src="/images/logo.webp" 
-                  alt="Restaurant Logo" 
-                  width={150} 
+                <Image
+                  src="/images/logo.webp"
+                  alt="Restaurant Logo"
+                  width={150}
                   height={60}
                   priority
                 />
               </motion.div>
-              <motion.p 
+              <motion.p
                 className={styles.footerAbout}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                Experience the perfect blend of tradition and innovation with our 
+                Experience the perfect blend of tradition and innovation with our
                 exceptional cuisine, warm atmosphere, and impeccable service.
               </motion.p>
               <div className={styles.socialLinks}>
                 {[FaFacebookF, FaTwitter, FaInstagram, FaYoutube].map((Icon, index) => (
-                  <motion.a 
+                  <motion.a
                     key={index}
-                    href={["https://facebook.com", "https://twitter.com", "https://instagram.com", "https://youtube.com"][index]} 
-                    className={styles.socialIcon} 
+                    href={["https://facebook.com", "https://twitter.com", "https://instagram.com", "https://youtube.com"][index]}
+                    className={styles.socialIcon}
                     aria-label={["Facebook", "Twitter", "Instagram", "YouTube"][index]}
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
@@ -65,14 +68,14 @@ export default function Footer() {
             </motion.div>
 
             {/* Quick Links */}
-            <motion.div 
+            <motion.div
               className={styles.footerColumn}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <motion.h3 
+              <motion.h3
                 className={styles.footerHeading}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -83,7 +86,7 @@ export default function Footer() {
               </motion.h3>
               <ul className={styles.footerLinks}>
                 {["Home", "Menu", "About Us", "Reservations", "Gallery", "Contact"].map((item, index) => (
-                  <motion.li 
+                  <motion.li
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -101,14 +104,14 @@ export default function Footer() {
             </motion.div>
 
             {/* Opening Hours */}
-            <motion.div 
+            <motion.div
               className={styles.footerColumn}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <motion.h3 
+              <motion.h3
                 className={styles.footerHeading}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -124,7 +127,7 @@ export default function Footer() {
                   { day: "Sunday", hours: "10:00 AM - 9:00 PM" },
                   { special: "* Special holiday hours may apply" }
                 ].map((item, index) => (
-                  <motion.li 
+                  <motion.li
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -146,14 +149,14 @@ export default function Footer() {
             </motion.div>
 
             {/* Contact Info */}
-            <motion.div 
+            <motion.div
               className={styles.footerColumn}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <motion.h3 
+              <motion.h3
                 className={styles.footerHeading}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -164,11 +167,11 @@ export default function Footer() {
               </motion.h3>
               <ul className={styles.contactInfo}>
                 {[
-                  { Icon: FaMapMarkerAlt, text: "123 Gourmet Street, Culinary District, City" },
-                  { Icon: FaPhone, text: "+1 (555) 123-4567" },
-                  { Icon: FaEnvelope, text: "info@yourrestaurant.com" }
+                  { Icon: FaMapMarkerAlt, text: restaurantInfo.address },
+                  { Icon: FaPhone, text: restaurantInfo.phone },
+                  { Icon: FaEnvelope, text: restaurantInfo.email }
                 ].map((item, index) => (
-                  <motion.li 
+                  <motion.li
                     key={index}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -181,7 +184,7 @@ export default function Footer() {
                   </motion.li>
                 ))}
               </ul>
-              <motion.div 
+              <motion.div
                 className={styles.newsletterForm}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -190,16 +193,16 @@ export default function Footer() {
               >
                 <h4>Subscribe to our newsletter</h4>
                 <div className={styles.formGroup}>
-                  <motion.input 
-                    type="email" 
-                    placeholder="ahmedhassob@gmial.com" 
+                  <motion.input
+                    type="email"
+                    placeholder="ahmedhassob@gmial.com"
                     required
                     name='"email'
                     autoComplete='email'
                     className={styles.emailInput}
                     whileFocus={{ scale: 1.02 }}
                   />
-                  <motion.button 
+                  <motion.button
                     className={styles.subscribeBtn}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -212,8 +215,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      
-      <motion.div 
+
+      <motion.div
         className={styles.footerBottom}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -227,7 +230,7 @@ export default function Footer() {
             </p>
             <div className={styles.footerBottomLinks}>
               {["Privacy Policy", "Terms of Service", "Sitemap"].map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 0 }}

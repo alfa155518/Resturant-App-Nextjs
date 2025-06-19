@@ -11,12 +11,12 @@ import styles from "../src/css/navbar.module.css";
 import { usePathname } from "next/navigation";
 import { UserContext } from "@/store/UserProvider";
 import { CartContext } from "@/store/CartProvider";
+import { RestaurantSettingsContext } from "@/store/RestaurantSettings";
 
 export default function NavBar() {
   const pathname = usePathname();
   const isCurrentPathAdmin = pathname.startsWith('/admin');
-
-  // Return null if we're in the admin section
+  const { restaurantInfo } = useContext(RestaurantSettingsContext);
   if (isCurrentPathAdmin) return null;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -83,7 +83,7 @@ export default function NavBar() {
         whileTap={{ scale: 0.95 }}>
         <Link href="/">
           <Image
-            src="/images/logo.webp"
+            src={restaurantInfo.logo || "/images/logo.webp"}
             alt="logo"
             width={60}
             height={60}

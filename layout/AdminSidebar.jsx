@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FiHome, FiMenu, FiUsers, FiShoppingBag, FiSettings, FiCalendar, FiMessageSquare, FiPieChart, FiLogOut, FiEdit } from 'react-icons/fi';
+import { PiUsersThree } from "react-icons/pi";
 import styles from '../src/css/admin-sidebar.module.css';
 
 export default function AdminSidebar({ isCollapsed = false, toggleSidebar }) {
@@ -90,7 +91,7 @@ export default function AdminSidebar({ isCollapsed = false, toggleSidebar }) {
               transition={{ delay: 0.4 }}
             >
               <Link href="/admin/team">
-                <FiUsers className={styles.menuIcon} />
+                <PiUsersThree className={styles.menuIcon} />
                 {!isCollapsed && <span>Team</span>}
               </Link>
             </motion.li>

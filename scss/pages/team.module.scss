@@ -1,6 +1,5 @@
-@import "../helpers/variables";
-@import "../helpers/mixins";
-
+@import '../helpers/variables';
+@import '../helpers/mixins';
 
 .teamContainer {
   max-width: 1200px;
@@ -46,7 +45,7 @@
     }
 
     @media (width <=480px) {
-      @include gridItems(200px)
+      @include gridItems(200px);
     }
   }
 }
