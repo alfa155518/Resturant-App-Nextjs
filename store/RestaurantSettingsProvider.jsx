@@ -4,13 +4,13 @@ import { getNotificationSettings, getOperatingHours, getPaymentMethods, getResta
 import { useRouter } from 'next/navigation';
 import { createContext, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-// Create the context
+
 export const RestaurantSettingsContext = createContext();
 
 
-// Provider component
 export function RestaurantSettingsProvider({ children }) {
 
+    // states
     const [restaurantInfo, setRestaurantInfo] = useState([]);
     const [operatingHours, setOperatingHours] = useState([]);
     const [paymentMethods, setPaymentMethods] = useState([]);
@@ -28,8 +28,7 @@ export function RestaurantSettingsProvider({ children }) {
         // }
     );
 
-
-
+    // refresh state
     const [needsRefresh, setNeedsRefresh] = useState(false);
     const router = useRouter();
 

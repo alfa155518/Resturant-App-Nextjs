@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { FiSave, FiX, FiEdit2, FiUser } from 'react-icons/fi';
 import styles from '../../../src/css/admin-settings.module.css';
 import { useContext } from 'react';
-import { RestaurantSettingsContext } from '@/store/RestaurantSettings';
+import { RestaurantSettingsContext } from '@/store/RestaurantSettingsProvider';
 import SettingsInfo from '@/app/(pages)/admin/settings/Info';
 import OperatingHours from '@/app/(pages)/admin/settings/OperatingHours';
 import PaymentMethods from '@/app/(pages)/admin/settings/PaymentMethods';

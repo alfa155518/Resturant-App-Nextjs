@@ -11,7 +11,9 @@ import LoadingSpinner from './ui/LoadingSpinner';
 
 export default function FeatureDishes() {
   const { menuDishes } = useContext(MenuContext) || [];
-  const featuredDishes = menuDishes?.data?.dishes.slice(0, 6);
+  let featuredDishes = menuDishes?.data?.dishes;
+  featuredDishes = featuredDishes?.filter(dish => dish.featured);
+  console.log(featuredDishes)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -80,11 +82,11 @@ export default function FeatureDishes() {
                 <h3 className={styles.dishTitle}>{dish.name}</h3>
                 <p>{dish.description}</p>
 
-                <div className={styles.ingredients}>
-                  {dish.ingredients.map((ingredient, index) => (
+                {/* <div className={styles.ingredients}>
+                  {dish?.ingredients?.map((ingredient, index) => (
                     <span key={index} className={styles.ingredient}>{ingredient}</span>
                   ))}
-                </div>
+                </div> */}
 
                 <motion.button
                   className={styles.orderBtn}

@@ -9,7 +9,7 @@ import { MenuProvider } from "@/store/MenuProvider";
 import { TeamProvider } from "@/store/TeamProvider";
 import { UserProvider } from "@/store/UserProvider";
 import { CartProvider } from "@/store/CartProvider";
-import { RestaurantSettingsProvider } from "@/store/RestaurantSettings";
+import { RestaurantSettingsProvider } from "@/store/RestaurantSettingsProvider";
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 

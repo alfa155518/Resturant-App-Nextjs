@@ -2,7 +2,7 @@
 
 import { createContext, useState, useEffect } from 'react';
 import { getMenu } from '@/actions/menu';
-
+import { useRouter } from 'next/navigation';
 // Create the context
 export const MenuContext = createContext();
 
@@ -11,15 +11,16 @@ export const MenuContext = createContext();
 export function MenuProvider({ children }) {
   const [menuDishes, setMenuDishes] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const router = useRouter();
 
   // Fetch menu data
   useEffect(() => {
     async function fetchMenuData() {
-      
+
       try {
         const data = await getMenu(pageNumber);
         setMenuDishes(data);
-        
+
         // Process menu items to add missing properties
         if (data?.data?.dishes) {
           data.data.dishes.forEach(item => {
@@ -34,7 +35,7 @@ export function MenuProvider({ children }) {
         console.error('Failed to fetch menu:', err);
       }
     }
-    
+
     fetchMenuData();
   }, [pageNumber]);
 

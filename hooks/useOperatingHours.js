@@ -1,4 +1,4 @@
-import { RestaurantSettingsContext } from "@/store/RestaurantSettings";
+import { RestaurantSettingsContext } from "@/store/RestaurantSettingsProvider";
 import { useContext, useState } from "react";
 
 export default function useOperatingHours() {

@@ -1,4 +1,4 @@
-import { RestaurantSettingsContext } from "@/store/RestaurantSettings";
+import { RestaurantSettingsContext } from "@/store/RestaurantSettingsProvider";
 import { useContext, useRef, useState } from "react";
 
 

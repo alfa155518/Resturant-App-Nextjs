@@ -11,7 +11,7 @@ import styles from "../src/css/navbar.module.css";
 import { usePathname } from "next/navigation";
 import { UserContext } from "@/store/UserProvider";
 import { CartContext } from "@/store/CartProvider";
-import { RestaurantSettingsContext } from "@/store/RestaurantSettings";
+import { RestaurantSettingsContext } from "@/store/RestaurantSettingsProvider";
 
 export default function NavBar() {
   const pathname = usePathname();

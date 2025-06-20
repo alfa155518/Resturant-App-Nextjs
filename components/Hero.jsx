@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "../src/css/hero.module.css";
-import { RestaurantSettingsContext } from "@/store/RestaurantSettings";
+import { RestaurantSettingsContext } from "@/store/RestaurantSettingsProvider";
 import { useContext } from "react";
 
 export default function Hero() {

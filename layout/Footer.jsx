@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 import styles from '../src/css/footer.module.css';
 import { useContext } from 'react';
-import { RestaurantSettingsContext } from '@/store/RestaurantSettings';
+import { RestaurantSettingsContext } from '@/store/RestaurantSettingsProvider';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
