@@ -1,348 +1,257 @@
 @import '../../helpers/mixins';
 @import '../../helpers/variables';
 
-// Color Variables
-$primary-color: #9f643c;
-$secondary-color: #3c829f;
-$accent-one-color: #3c9f64;
-$accent-tow-color: #9f8b3c;
-$nature-light-color: #f5f0e9;
-$white-color: #ffffff;
-$optional-color: #643c9f;
-$light-color: #ff7e5f;
-$gold-color: #ffd700;
-$success-color: #2ecc71;
-$warning-color: #f39c12;
-$danger-color: #e74c3c;
-$info-color: #3498db;
-$nature-dark-color: #4a3f35;
-$card-color: #1f1f1f;
-$light-dark-color: rgba(0, 0, 0, 0.5);
-$dark-bg-primary: #121212;
-$dark-bg-secondary: #1e1e1e;
-$dark-text-primary: #e0e0e0;
-$dark-text-secondary: #a0a0a0;
-$dark-border-color: #333333;
-$dark-hover-color: #2c2c2c;
+%button {
+  padding: 0.5rem 1rem;
+  @include radius(4px);
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  @include transition(0.2s);
 
-// Derived Variables
-$bg-color: $dark-bg-secondary;
-$border-color: $dark-border-color;
-$text-primary: $dark-text-primary;
-$text-secondary: $dark-text-secondary;
-$text-muted: lighten($dark-text-secondary, 15%);
-$error-color: $danger-color;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
 
-.teamContainer {
-  padding: 2rem;
+%button-primary {
+  @extend %button;
+  background: $primary-color;
+  color: $white-color;
+
+  &:hover:not(:disabled) {
+    background: darken($primary-color, 10%);
+    @include translateY(-1px);
+  }
+}
+
+%button-outline {
+  @extend %button;
+  background: transparent;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+
+  &:hover:not(:disabled) {
+    background: rgba($primary-color, 0.1);
+  }
+}
+
+.adminDashboard {
+  background-color: $dark-hover-color;
+  min-height: 100vh;
+  padding: 1rem;
+  color: $dark-text-primary;
+}
+
+.dashboardContent {
   max-width: 1400px;
   margin: 0 auto;
-  color: $text-primary;
+}
+
+.teamContainer {
+  background: $dark-hover-color;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid $dark-border-color;
 }
 
 .teamHeader {
-  margin-bottom: 2.5rem;
-  text-align: left;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid $border-color;
-
-  h1 {
-    font-size: 1.75rem;
-    color: $text-primary;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-
-  p {
-    color: $text-secondary;
-    margin: 0;
-  }
-
-  p {
-    font-size: 1.1rem;
-    // color: $text-secondary;
-    margin: 0;
-  }
+  @include adminSectionHeader;
 }
 
-.teamActions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  background: $card-color;
-  padding: 1.25rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.searchContainer {
-  position: relative;
-  flex: 1;
-  min-width: 250px;
-  max-width: 400px;
-
-  .searchIcon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    // color: $text-secondary;
-    font-size: 1.1rem;
-  }
-
-  .searchInput {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 3rem;
-    // border: 1px solid $border-color;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    background-color: #1e1e1e; // $bg-color
-    // color: $text-primary;
-
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
-    }
-
-    &::placeholder {
-      // color: $text-muted;
-    }
-  }
-}
-
-.filterButtons {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-
-  .filterButton {
-    padding: 0.6rem 1.25rem;
-    // border: 1px solid $border-color;
-    background: transparent;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    // color: $text-secondary;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    &:hover {
-      background: rgba($primary-color, 0.05);
-      border-color: rgba($primary-color, 0.3);
-      color: $primary-color;
-    }
-
-    &.active {
-      background: $primary-color;
-      border-color: $primary-color;
-      color: white;
-    }
-  }
-}
-
-.addButton {
-  background: $primary-color;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.7rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
+.primaryButton {
+  @extend %button-primary;
   white-space: nowrap;
-
-  &:hover {
-    background: darken($primary-color, 8%);
-    transform: translateY(-1px);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
 }
 
 .teamGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  @include gridItems(300px) {
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (width <= 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .teamCard {
-  background: $card-color;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  // border: 1px solid $border-color;
+  @include dark-card {
+    border: 1px solid $dark-border-color;
+  }
+
+  .memberHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
 
   &.inactive {
-    opacity: 0.8;
+    opacity: 0.7;
+    position: relative;
 
-    .memberImage::after {
-      content: '';
+    &::after {
+      content: 'INACTIVE';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
+      top: 1rem;
+      right: -2rem;
+      background: $danger-color;
+      color: white;
+      padding: 0.25rem 2rem;
+      @include rotate(45deg);
+      font-size: 0.75rem;
+      font-weight: bold;
     }
   }
 
   .memberImage {
     position: relative;
-    height: 180px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    height: 200px;
+    background: rgba($dark-bg-primary, 0.1);
+    @include flex-center;
 
     .avatar {
-      width: 100%;
-      height: 100%;
+      width: 120px;
+      height: 120px;
+      @include radius(50%);
       object-fit: cover;
+      border: 4px solid $white-color;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .avatarPlaceholder {
       width: 120px;
       height: 120px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: $primary-color;
-      border: 3px solid rgba($primary-color, 0.2);
+      @include radius(50%);
+      background: rgba($dark-bg-primary, 0.2);
+      @include flex-center;
+      color: $dark-text-primary;
     }
 
     .statusBadge {
       position: absolute;
-      top: 1rem;
+      bottom: 1rem;
       right: 1rem;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: capitalize;
-      background: rgba(0, 0, 0, 0.6);
+      background: $success-color;
       color: white;
-      backdrop-filter: blur(4px);
+      padding: 0.25rem 0.75rem;
+      @include radius(20px);
+      font-size: 1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
 
-      &.active {
-        background: rgba(34, 197, 94, 0.9);
+      &.inactive {
+        background: $danger-color !important;
+      }
+      &::before {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
+        @include radius(50%);
+        background: $white-color;
       }
     }
   }
 
   .memberInfo {
     padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    border-top: 1px solid $dark-border-color;
 
     h3 {
       margin: 0 0 0.5rem;
-      font-size: 1.4rem;
-      // color: $text-primary;
-    }
-
-    .position {
-      color: $primary-color;
+      color: $light-color;
+      font-size: 1.5rem;
       font-weight: 600;
-      margin: 0 0 0.5rem;
-      font-size: 1rem;
     }
 
-    .department {
-      background: rgba($primary-color, 0.1);
-      color: $primary-color;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      display: inline-block;
-      margin-bottom: 1.2rem;
-      align-self: flex-start;
+    .role,
+    .salary,
+    .hireDate,
+    .email {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: $nature-light-color;
+      margin: 0.25rem 0;
+      font-size: 1.2rem;
+
+      .infoIcon {
+        color: $primary-color;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+    .role {
+      color: $info-color;
+      font-weight: bold;
+      font-size: 1.5rem;
     }
 
     .contactInfo {
       margin: 1rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
+      padding: 1rem 0;
+      border-top: 1px solid $dark-border-color;
+      border-bottom: 1px solid $dark-border-color;
 
       .contactItem {
         display: flex;
         align-items: center;
-        gap: 0.7rem;
-        // color: $text-secondary;
-        font-size: 0.9rem;
+        gap: 0.5rem;
+        color: $dark-text-secondary;
+        font-size: 1rem;
+        font-weight: 800;
+        margin: 0.5rem 0;
 
         .contactIcon {
-          color: $primary-color;
-          font-size: 1rem;
-          opacity: 0.8;
+          color: $info-color;
+          font-size: 1.2rem;
+          font-weight: bold;
         }
       }
     }
 
     .actionButtons {
-      margin-top: auto;
       display: flex;
       gap: 0.75rem;
-      padding-top: 1rem;
-      border-top: 1px solid #333333; // $border-color
+      margin-top: 1rem;
 
       button {
         flex: 1;
-        padding: 0.6rem;
-        border-radius: 6px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+        padding: 0.5rem;
+        border: none;
+        @include radius(4px);
+        font-size: 1.2rem;
+        font-weight: 700;
         cursor: pointer;
-        transition: all 0.2s ease;
+        @include flex-center;
+        gap: 0.5rem;
+        @include transition(0.2s);
 
         &.editButton {
-          background: rgba($primary-color, 0.1);
-          color: $primary-color;
-          border: 1px solid rgba($primary-color, 0.3);
+          background: rgba($dark-text-primary, 0.1);
+          color: $dark-text-primary;
 
           &:hover {
-            background: rgba($primary-color, 0.2);
-            border-color: $primary-color;
+            background: rgba($dark-text-primary, 0.2);
           }
         }
 
         &.deleteButton {
-          background: rgba($error-color, 0.1);
-          color: $error-color;
-          border: 1px solid rgba($error-color, 0.3);
+          background: rgba($danger-color, 0.1);
+          color: $danger-color;
 
           &:hover {
-            background: rgba($error-color, 0.2);
-            border-color: $error-color;
+            background: rgba($danger-color, 0.2);
           }
         }
       }
@@ -350,396 +259,209 @@ $error-color: $danger-color;
   }
 }
 
-.noResults {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 3rem 2rem;
-  background: $card-color;
-  border-radius: 12px;
-  // border: 1px dashed $border-color;
-
-  p {
-    // color: $text-secondary;
-    font-size: 1.1rem;
-    margin: 0;
-  }
-}
-
-/* Modal Styles */
+// Modal Styles
 .modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
+  @include fixedOverlay;
 }
 
 .modalContent {
-  background: $bg-color;
-  border-radius: 12px;
+  background: $card-color;
+  @include radius(0.8rem);
   width: 100%;
-  max-width: 500px;
-  border: 1px solid $border-color;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
-  h2 {
-    font-size: 1.5rem;
-    // color: $text-primary;
-    margin: 0 0 1.5rem;
-    padding: 1.5rem 1.5rem 0;
+  .modalHeader {
+    @include flex-between {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid $dark-border-color;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: $light-color;
+    }
+
+    .closeButton {
+      @include close-button-top-model {
+        position: relative;
+        top: 0;
+        font-size: 1.5rem;
+      }
+    }
   }
 
-  .memberForm {
-    padding: 0 1.5rem 1.5rem;
-  }
+  .modalBody {
+    padding: 1.5rem;
 
-  .avatarUpload {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1.5rem;
+    .memberForm {
+      @include formGroup;
+    }
 
-    .avatarPreview {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid $border-color;
-      margin-bottom: 1.25rem;
-      background-color: darken($bg-color, 3%);
+    .formRow {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      transition: all 0.3s ease;
+      gap: 1rem;
 
-      &:hover {
-        border-color: $primary-color;
-        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+      @media (width <=768px) {
+        flex-direction: column;
+        gap: 1rem;
       }
 
-      .avatarImage {
+      .formGroup {
+        flex: 1;
+        margin-bottom: 0;
+      }
+    }
+
+    .avatarUpload {
+      @include flex-center;
+      flex-direction: column;
+      margin: 1rem 0;
+
+      .avatarPreview {
+        width: 150px;
+        height: 150px;
+        @include radius(50%);
+        background: rgba($primary-color, 0.1);
+        @include flex-center;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        position: relative;
+        border: 2px dashed rgba($primary-color, 0.3);
+
+        .avatarImage {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .avatarPlaceholder {
+          color: $primary-color;
+          font-size: 2.5rem;
+        }
+      }
+
+      .uploadControls {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-      }
+        max-width: 200px;
 
-      .avatarPlaceholder {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $text-secondary;
-
-        svg {
-          width: 3.5rem;
-          height: 3.5rem;
-          opacity: 0.6;
-        }
-      }
-    }
-
-    .uploadControls {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-
-      .fileInput {
-        display: none;
-      }
-
-      .uploadButton,
-      .linkButton {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1.1rem;
-        border: 1px solid $border-color;
-        border-radius: 0.5rem;
-        background-color: darken($bg-color, 2%);
-        color: $text-primary;
-        font-size: 0.9rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        white-space: nowrap;
-
-        &:hover {
-          background-color: $dark-hover-color;
-          border-color: darken($border-color, 5%);
-        }
-
-        &:active {
-          transform: translateY(1px);
-        }
-
-        svg {
-          width: 1rem;
-          height: 1rem;
-          flex-shrink: 0;
-        }
-      }
-
-      .uploadButton {
-        background-color: $primary-color;
-        border-color: $primary-color;
-        color: white;
-
-        &:hover {
-          background-color: darken($primary-color, 5%);
-          border-color: darken($primary-color, 5%);
-        }
-      }
-    }
-  }
-
-  .formGroup {
-    margin-bottom: 1.25rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: $text-primary;
-      font-size: 0.95rem;
-
-      &[required]::after {
-        content: ' *';
-        color: $danger-color;
-      }
-    }
-
-    input[type='text'],
-    input[type='email'],
-    input[type='number'],
-    input[type='date'],
-    select,
-    textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid $border-color;
-      border-radius: 0.5rem;
-      background-color: darken($bg-color, 3%);
-      color: $text-primary;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-
-      &:focus {
-        outline: none;
-        border-color: $primary-color;
-        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
-      }
-
-      &::placeholder {
-        color: $text-secondary;
-        opacity: 0.7;
-      }
-    }
-
-    select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 1rem;
-      padding-right: 2.5rem;
-      cursor: pointer;
-    }
-
-    .checkboxContainer {
-      display: flex;
-      align-items: center;
-      position: relative;
-      padding-left: 2rem;
-      margin-top: 1rem;
-      cursor: pointer;
-      user-select: none;
-
-      input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-
-        &:checked ~ .checkmark {
-          background-color: $primary-color;
-          border-color: $primary-color;
-
-          &::after {
-            display: block;
-          }
-        }
-      }
-
-      .checkmark {
-        position: absolute;
-        left: 0;
-        height: 1.25rem;
-        width: 1.25rem;
-        background-color: darken($bg-color, 5%);
-        border: 1px solid $border-color;
-        border-radius: 0.25rem;
-        transition: all 0.2s ease;
-
-        &::after {
-          content: '';
-          position: absolute;
+        .fileInput {
           display: none;
-          left: 0.45rem;
-          top: 0.2rem;
-          width: 0.3rem;
-          height: 0.6rem;
-          border: solid white;
-          border-width: 0 2px 2px 0;
-          transform: rotate(45deg);
         }
-      }
 
-      &:hover input ~ .checkmark {
-        border-color: $primary-color;
+        .uploadButton {
+          @extend %button-outline;
+          width: 100%;
+          justify-content: center;
+          padding: 0.5rem;
+          font-size: 1.2rem;
+          font-weight: 800;
+        }
       }
     }
-  }
 
-  .formActions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid $border-color;
+    .formActions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
 
-    button {
-      padding: 0.7rem 1.5rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-
-      &.cancelButton {
-        background: transparent;
-        border: 1px solid #333333; // $border-color
-        // color: $text-secondary;
-
-        &:hover {
-          background: #1e1e1e; // $bg-color
-          border-color: #c7c7c7; // $text-muted
-        }
+      .cancelButton,
+      .saveButton {
+        @extend %button-outline;
+        font-size: 1.2rem;
+        font-weight: 800;
       }
 
-      &.saveButton {
-        background: $primary-color;
-        color: white;
-        border: none;
-
-        &:hover {
-          background: #8a5734; // darken($primary-color, 8%)
+      .saveButton {
+        &:disabled {
+          background: lighten($primary-color, 20%);
+          cursor: not-allowed;
         }
       }
     }
   }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .teamActions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
-  .searchContainer {
-    max-width: 100%;
-  }
-
-  .filterButtons {
-    justify-content: center;
-  }
-
-  .addButton {
-    width: 100%;
-    justify-content: center;
-  }
+// Toggle Switch
+.toggleSwitch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0;
 }
 
-@media (max-width: 768px) {
-  .teamContainer {
-    padding: 1.25rem;
-  }
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 
-  .teamHeader {
-    margin-bottom: 1.5rem;
+  &:checked + .toggleSlider {
+    background-color: $primary-color;
 
-    h1 {
-      font-size: 1.8rem;
+    &::before {
+      transform: translateX(24px);
     }
   }
 
-  .teamGrid {
-    grid-template-columns: 1fr;
+  &:focus + .toggleSlider {
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.3);
   }
 }
 
-/* Animation Classes */
-.fadeIn {
-  animation: fadeIn 0.3s ease forwards;
-}
+.toggleSlider {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+  background-color: $dark-border-color;
+  border-radius: 34px;
+  transition: all 0.3s ease;
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.slideIn {
-  animation: slideIn 0.4s ease-out forwards;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
+  &::before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
   }
 }
 
-.pulse {
-  animation: pulse 2s infinite;
+.toggleLabel {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: $dark-text-primary;
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba($primary-color, 0.4);
+// Loading state
+.noResults {
+  font-size: 1.2rem;
+  font-weight: 800;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: $dark-text-secondary;
+
+  p {
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba($primary-color, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba($primary-color, 0);
+
+  button {
+    @extend %button-primary;
+    margin: 0 auto;
   }
 }

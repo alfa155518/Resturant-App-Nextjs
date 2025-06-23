@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Skeleton from 'react-loading-skeleton';
 export default function Item({ styles, filteredItems, startEditingItem, toggleFeatured, toggleAvailability, deleteItem }) {
 
+    // Skeleton loading
     if (!filteredItems || filteredItems.length === 0) {
         return (
             Array.from({ length: 25 }).map((_, index) => (

@@ -1,9 +1,8 @@
 
-
 import { motion } from 'framer-motion';
 import { FiX, FiCheck, FiDollarSign, FiUpload } from 'react-icons/fi';
 import { useRef, useState, useEffect } from 'react';
-export default function ModalEditItem({ styles, editingItem, setEditingItem, saveEditedItem, menu }) {
+export default function ModalEditItem({ styles, editingItem, setEditingItem, saveEditedItem, categories }) {
     const fileInputRef = useRef(null);
     const [imagePreview, setImagePreview] = useState('');
 
@@ -78,9 +77,9 @@ export default function ModalEditItem({ styles, editingItem, setEditingItem, sav
                                     id='category'
                                 // autoComplete='category'
                                 >
-                                    {menu?.items?.map(item => (
-                                        <option key={item.id} value={item.category}>
-                                            {item.category}
+                                    {categories.map((item, index) => (
+                                        <option key={index} value={item}>
+                                            {item}
                                         </option>
                                     ))}
                                 </select>

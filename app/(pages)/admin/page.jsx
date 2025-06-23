@@ -1,9 +1,9 @@
-'use client';
-
-import React from 'react';
 import AdminDashboard from '@/components/admin/Dashboard';
 
-// // import styles from '../../../src/css/about.module.css';
+export const metadata = {
+  title: 'Admin Dashboard | Gourmet Haven Restaurant',
+  description: 'Admin dashboard for Gourmet Haven Restaurant management',
+};
 
 export default function AdminPage() {
   return (

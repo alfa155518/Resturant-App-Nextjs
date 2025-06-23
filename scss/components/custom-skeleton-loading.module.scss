@@ -1,0 +1,11 @@
+@import '../helpers/mixins';
+
+.containerNotFound {
+  @include gridItems(250px) {
+    gap: 20px;
+  }
+}
+
+.notFoundCard {
+  @include dark-card;
+}

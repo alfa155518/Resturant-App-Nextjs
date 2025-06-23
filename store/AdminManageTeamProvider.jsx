@@ -1,86 +1,82 @@
 "use client"
 
-import { addItem, deleteItem, getMenu, updateMenu } from '@/actions/adminMenu';
+import { getTeamMembers, addTeamMember, updateTeamMember, deleteTeamMember } from '@/actions/adminTeam';
 import { useRouter } from 'next/navigation';
 import { createContext, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-export const AdminMenuContext = createContext();
+export const AdminManageTeamContext = createContext();
 
-export function AdminMenuProvider({ children }) {
-    const [menu, setMenu] = useState([]);
+export function AdminManageTeamProvider({ children }) {
+    // State
+    const [teamMembers, setTeamMembers] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(false);
-    const [pageNumber, setPageNumber] = useState(1);
     const router = useRouter();
 
     // Fetch menu data
     useEffect(() => {
         async function handelMenuData() {
-            const items = await getMenu(pageNumber);
+            const items = await getTeamMembers();
             if (items.status === "error") {
                 toast.error(items.message);
                 return;
             }
-            setMenu(items.data);
+            setTeamMembers(items.data);
         }
         handelMenuData();
         router.refresh();
-    }, [needsRefresh, pageNumber]);
+    }, [needsRefresh]);
 
-    // Update menu item
-    const handelUpdateMenu = async (itemId, data) => {
-        const updatedData = await updateMenu(itemId, data);
+    // Update team member
+    const handelUpdateTeamMember = async (member) => {
+        const updatedData = await updateTeamMember(member);
         if (updatedData.status === "error") {
             toast.error(updatedData.message);
             return;
         }
         if (updatedData.status === "success") {
             toast.success(updatedData.message);
+            setNeedsRefresh(!needsRefresh);
         }
-        setMenu(updatedData.data);
-        setNeedsRefresh(!needsRefresh);
     };
 
-    // Add new menu item
-    const handelAddItem = async (data) => {
-        const addedData = await addItem(data);
+
+    // Add team member
+    const handelAddTeamMember = async (member) => {
+        const addedData = await addTeamMember(member);
         if (addedData.status === "error") {
             toast.error(addedData.message);
             return;
         }
         if (addedData.status === "success") {
             toast.success(addedData.message);
+            setNeedsRefresh(!needsRefresh);
         }
-        setMenu(addedData.data);
-        setNeedsRefresh(!needsRefresh);
     };
 
-    // Delete menu item
-    const handelDeleteItem = async (itemId) => {
-        const deletedData = await deleteItem(itemId);
+    // Delete team member
+    const handelDeleteTeamMember = async (id) => {
+        const deletedData = await deleteTeamMember(id);
         if (deletedData.status === "error") {
             toast.error(deletedData.message);
             return;
         }
         if (deletedData.status === "success") {
             toast.success(deletedData.message);
+            setNeedsRefresh(!needsRefresh);
         }
-        setMenu(deletedData.data);
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Context value
     const value = {
-        menu,
-        handelUpdateMenu,
-        handelAddItem,
-        handelDeleteItem,
-        setPageNumber,
-    };
+        teamMembers,
+        setTeamMembers,
+        handelAddTeamMember,
+        handelUpdateTeamMember,
+        handelDeleteTeamMember,
+    }
     return (
-        <AdminMenuContext.Provider value={value}>
+        <AdminManageTeamContext.Provider value={value}>
             {children}
-        </AdminMenuContext.Provider>
-    );
+        </AdminManageTeamContext.Provider>
+    )
 }
-
-

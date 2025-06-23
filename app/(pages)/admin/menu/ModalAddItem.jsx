@@ -1,10 +1,8 @@
 
-
 import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { FiX, FiCheck, FiDollarSign, FiUpload } from 'react-icons/fi';
-export default function ModalAddItem({ styles, showAddItemModal, setShowAddItemModal, newItem, setNewItem, menu, submitAddItem }) {
-
+export default function ModalAddItem({ styles, showAddItemModal, setShowAddItemModal, newItem, setNewItem, categories, submitAddItem }) {
 
     const fileInputRef = useRef(null);
     const [imagePreview, setImagePreview] = useState('');
@@ -83,9 +81,9 @@ export default function ModalAddItem({ styles, showAddItemModal, setShowAddItemM
                                     autoComplete='category'
                                 >
                                     <option value="" disabled>Select category</option>
-                                    {menu?.items?.map(item => (
-                                        <option key={item.id} value={item.category}>
-                                            {item.category}
+                                    {categories.map((item, index) => (
+                                        <option key={index} value={item}>
+                                            {item}
                                         </option>
                                     ))}
                                 </select>
@@ -225,7 +223,7 @@ export default function ModalAddItem({ styles, showAddItemModal, setShowAddItemM
 
                                 name='dietary'
                                 id='dietary'
-                                placeholder='Enter dietary information like "Gluten-free", "Dairy-free", "Vegan", "Vegetarian" etc.'
+                                placeholder='Enter dietary information like Gluten-free, Dairy-free, Vegan, Vegetarian etc.'
                                 className={styles.textarea}
                             />
                         </div>
@@ -238,7 +236,7 @@ export default function ModalAddItem({ styles, showAddItemModal, setShowAddItemM
 
                                 name='ingredients'
                                 id='ingredients'
-                                placeholder='Enter ingredients like "ingredient1", "ingredient2" etc.'
+                                placeholder='Enter ingredients like ingredient1, ingredient2 etc.'
                                 rows="4"
                                 className={styles.textarea}
                             />

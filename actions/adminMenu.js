@@ -106,6 +106,5 @@ export async function deleteItem(itemId) {
         },
     });
     const result = await response.json();
-    console.log(result)
     return result;
 }
