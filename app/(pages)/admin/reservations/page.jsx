@@ -1,6 +1,5 @@
 import React from 'react';
 import ReservationsPage from '@/components/admin/pages/Reservations';
-import { Metadata } from 'next';
 import styles from '../../../../src/css/about.module.css';
 
 

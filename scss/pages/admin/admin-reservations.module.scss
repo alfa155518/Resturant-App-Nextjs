@@ -30,52 +30,6 @@
   flex-wrap: wrap;
 }
 
-.dateFilter {
-  position: relative;
-
-  input {
-    padding: 0.6rem 1rem 0.6rem 2.5rem;
-    border: 1px solid $info-color;
-    @include radius(8px);
-    background-color: $dark-hover-color;
-    font-size: 1.1rem;
-    min-width: 160px;
-    cursor: pointer;
-    @include transition(0.3s);
-
-    // Remove default icon in WebKit browsers
-    &::-webkit-calendar-picker-indicator {
-      display: none;
-      -webkit-appearance: none;
-    }
-
-    // Remove default icon in Firefox
-    &::-moz-calendar-picker-indicator {
-      display: none;
-    }
-
-    // Remove default icon in Edge
-    &::-ms-clear {
-      display: none;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
-  }
-
-  .filterIcon {
-    position: absolute;
-    left: 0.8rem;
-    top: 50%;
-    @include translateY(-50%);
-    color: $info-color;
-    pointer-events: none;
-  }
-}
-
 .reservationsContent {
   display: flex;
   flex-direction: column;
@@ -115,9 +69,9 @@
 }
 
 .reservationCount {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: $light-color;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .reservationsTableContainer {
@@ -137,8 +91,8 @@
 
   th {
     color: #1e293b;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: bold;
+    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     background-color: $dark-text-primary;
@@ -173,7 +127,7 @@
   }
   font-size: 1.2rem;
   gap: 0.5rem;
-  font-weight: 500;
+  font-weight: 800;
   color: #1e293b;
 
   .timeIcon,
@@ -193,8 +147,9 @@
 }
 
 .emailText {
-  color: $nature-light-color;
-  font-size: 1rem;
+  color: $light-color;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .requestsCell {
@@ -214,7 +169,7 @@
   padding: 0.25rem 0.75rem;
   @include radius(20px);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 800;
   text-align: center;
   min-width: 100px;
 
@@ -237,14 +192,13 @@
 .actionBtns {
   @include actionTableBtns {
     justify-content: center;
-  }
+    .editBtn {
+      color: #f59e0b;
+    }
 
-  .editBtn:hover {
-    color: #f59e0b;
-  }
-
-  .deleteBtn:hover {
-    color: #ef4444;
+    .deleteBtn {
+      color: #ef4444;
+    }
   }
 }
 
@@ -403,7 +357,6 @@
   }
 
   .searchBar,
-  .dateFilter,
   .filterContainer {
     width: 100%;
     margin-bottom: 0.5rem;

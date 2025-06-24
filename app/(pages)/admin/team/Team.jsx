@@ -54,7 +54,7 @@ const Team = () => {
   // If no team members are found, show a loading skeleton
   if (!teamMembers || teamMembers.length === 0) {
     return (
-      <CustomSkeletonLoading />
+      <CustomSkeletonLoading count={10} height={250} />
     );
   }
 

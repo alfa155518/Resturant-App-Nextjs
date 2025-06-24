@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
-import styles from '@/scss/pages/success-reservation.module.scss';
+// import styles from '@/scss/pages/success-reservation.module.scss';
+import styles from '../../../../src/css/success-reservation.module.css';
 import Link from 'next/link';
 import { FaGift, FaTag, FaBirthdayCake, FaHome, FaClipboardList, FaCreditCard, FaCalendarAlt, FaClock, FaUsers, FaMoneyBillWave, FaTable, FaCheckCircle, FaRegClock, FaDownload } from 'react-icons/fa';
 import { verifyPaymentSession } from '@/actions/profile';

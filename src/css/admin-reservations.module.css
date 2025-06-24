@@ -178,55 +178,6 @@
   flex-wrap: wrap;
 }
 
-.dateFilter {
-  position: relative;
-}
-.dateFilter input {
-  padding: 0.6rem 1rem 0.6rem 2.5rem;
-  border: 1px solid #3498db;
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  background-color: #2c2c2c;
-  font-size: 1.1rem;
-  min-width: 160px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-}
-.dateFilter input::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-}
-.dateFilter input::-moz-calendar-picker-indicator {
-  display: none;
-}
-.dateFilter input::-ms-clear {
-  display: none;
-}
-.dateFilter input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-}
-.dateFilter .filterIcon {
-  position: absolute;
-  left: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  color: #3498db;
-  pointer-events: none;
-}
-
 .reservationsContent {
   display: flex;
   flex-direction: column;
@@ -265,9 +216,9 @@
 }
 
 .reservationCount {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #ff7e5f;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .reservationsTableContainer {
@@ -286,8 +237,8 @@
 }
 .reservationsTable th {
   color: #1e293b;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: bold;
+  font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   background-color: #e0e0e0;
@@ -324,7 +275,7 @@
   align-items: center;
   font-size: 1.2rem;
   gap: 0.5rem;
-  font-weight: 500;
+  font-weight: 800;
   color: #1e293b;
 }
 .timeCell .timeIcon,
@@ -345,8 +296,9 @@
 }
 
 .emailText {
-  color: #f5f0e9;
-  font-size: 1rem;
+  color: #ff7e5f;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .requestsCell {
@@ -370,7 +322,7 @@
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 800;
   text-align: center;
   min-width: 100px;
 }
@@ -414,10 +366,10 @@
 .actionBtns button:hover {
   background-color: #edf2f7;
 }
-.actionBtns .editBtn:hover {
+.actionBtns .editBtn {
   color: #f59e0b;
 }
-.actionBtns .deleteBtn:hover {
+.actionBtns .deleteBtn {
   color: #ef4444;
 }
 
@@ -692,7 +644,6 @@
     justify-content: space-between;
   }
   .searchBar,
-  .dateFilter,
   .filterContainer {
     width: 100%;
     margin-bottom: 0.5rem;
