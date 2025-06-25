@@ -6,9 +6,9 @@ import EditReservationModal from '@/app/(pages)/admin/reservations/EditReservati
 import NotFoundReservations from '@/app/(pages)/admin/reservations/NotFoundReservations';
 import useAdminReservations from '@/hooks/useAdminReservations';
 import GroupReservations from '@/app/(pages)/admin/reservations/GroupReservations';
-import styles from '../../../src/css/admin-reservations.module.css';
+import styles from '../../../../src/css/admin-reservations.module.css';
 
-export default function Reservations() {
+export default function ReservationsContent() {
 
   // Use Admin Reservations Custom Hook
   const [

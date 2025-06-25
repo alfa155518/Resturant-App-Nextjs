@@ -1,5 +1,5 @@
 import React from 'react';
-import ReservationsPage from '@/components/admin/pages/Reservations';
+import ReservationsContent from '@/app/(pages)/admin/reservations/ReservationsContent';
 import styles from '../../../../src/css/about.module.css';
 
 
@@ -11,7 +11,7 @@ export const metadata = {
 export default function AdminReservationsPage() {
   return (
     <div className={styles.adminPageWrapper}>
-      <ReservationsPage />
+      <ReservationsContent />
     </div>
   );
 }

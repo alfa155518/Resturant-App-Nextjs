@@ -1,24 +1,31 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiStar, FiEdit2, FiTrash2, FiX, FiCheck, FiMessageSquare, FiUser, FiCalendar } from 'react-icons/fi';
 import styles from '../../../src/css/admin-reviews.module.css';
+import { AdminManageReviewsContext } from '@/store/AdminManageReviews';
+import ConfirmationDialog from '@/components/ui/ConfirmationDialog';
+
 
 export default function Reviews() {
+
+  const { reviews, handelUpdateReview, handelDeleteReview } = useContext(AdminManageReviewsContext);
+
+
   // Sample reviews data
-  const [reviews, setReviews] = useState([
-    { id: 1, customer: 'John Smith', email: 'john.smith@example.com', rating: 5, comment: 'Absolutely amazing experience! The food was exceptional and the service was impeccable.', date: '2025-05-01', status: 'Published', reply: '' },
-    { id: 2, customer: 'Emily Johnson', email: 'emily.j@example.com', rating: 4, comment: 'Great food and atmosphere. Will definitely come back again.', date: '2025-04-28', status: 'Published', reply: 'Thank you for your kind words, Emily! We look forward to serving you again soon.' },
-    { id: 3, customer: 'Michael Brown', email: 'michael.brown@example.com', rating: 5, comment: 'The chef\'s special was out of this world. Highly recommend!', date: '2025-04-25', status: 'Published', reply: '' },
-    { id: 4, customer: 'Sarah Davis', email: 'sarah.d@example.com', rating: 3, comment: 'Food was good but service was a bit slow. Would give another chance.', date: '2025-04-20', status: 'Published', reply: 'We appreciate your feedback, Sarah. We\'re working on improving our service speed and hope to provide a better experience next time.' },
-    { id: 5, customer: 'David Wilson', email: 'david.w@example.com', rating: 5, comment: 'Best Italian food in town! The pasta dishes are authentic and delicious.', date: '2025-04-18', status: 'Published', reply: '' },
-    { id: 6, customer: 'Jennifer Lee', email: 'jennifer.l@example.com', rating: 2, comment: 'Disappointed with my meal. The steak was overcooked and the sides were cold.', date: '2025-04-15', status: 'Hidden', reply: 'We\'re very sorry to hear about your experience, Jennifer. We\'d like to make it right. Please contact our manager at manager@restaurant.com.' },
-    { id: 7, customer: 'Robert Taylor', email: 'robert.t@example.com', rating: 5, comment: 'The wine selection is impressive and the sommelier was very knowledgeable.', date: '2025-04-10', status: 'Published', reply: '' },
-    { id: 8, customer: 'Lisa Anderson', email: 'lisa.a@example.com', rating: 4, comment: 'Lovely ambiance and great cocktails. Food was delicious too.', date: '2025-04-05', status: 'Published', reply: '' },
-    { id: 9, customer: 'James Martin', email: 'james.m@example.com', rating: 1, comment: 'Terrible experience. Will not be returning.', date: '2025-04-01', status: 'Hidden', reply: '' },
-    { id: 10, customer: 'Patricia White', email: 'patricia.w@example.com', rating: 5, comment: 'The desserts are to die for! Especially the chocolate souffle.', date: '2025-03-28', status: 'Published', reply: 'Thank you, Patricia! Our pastry chef will be delighted to hear that.' },
-  ]);
+  // const [reviews, setReviews] = useState([
+  //   { id: 1, customer: 'John Smith', email: 'john.smith@example.com', rating: 5, comment: 'Absolutely amazing experience! The food was exceptional and the service was impeccable.', date: '2025-05-01', status: 'Published', reply: '' },
+  //   { id: 2, customer: 'Emily Johnson', email: 'emily.j@example.com', rating: 4, comment: 'Great food and atmosphere. Will definitely come back again.', date: '2025-04-28', status: 'Published', reply: 'Thank you for your kind words, Emily! We look forward to serving you again soon.' },
+  //   { id: 3, customer: 'Michael Brown', email: 'michael.brown@example.com', rating: 5, comment: 'The chef\'s special was out of this world. Highly recommend!', date: '2025-04-25', status: 'Published', reply: '' },
+  //   { id: 4, customer: 'Sarah Davis', email: 'sarah.d@example.com', rating: 3, comment: 'Food was good but service was a bit slow. Would give another chance.', date: '2025-04-20', status: 'Published', reply: 'We appreciate your feedback, Sarah. We\'re working on improving our service speed and hope to provide a better experience next time.' },
+  //   { id: 5, customer: 'David Wilson', email: 'david.w@example.com', rating: 5, comment: 'Best Italian food in town! The pasta dishes are authentic and delicious.', date: '2025-04-18', status: 'Published', reply: '' },
+  //   { id: 6, customer: 'Jennifer Lee', email: 'jennifer.l@example.com', rating: 2, comment: 'Disappointed with my meal. The steak was overcooked and the sides were cold.', date: '2025-04-15', status: 'Hidden', reply: 'We\'re very sorry to hear about your experience, Jennifer. We\'d like to make it right. Please contact our manager at manager@restaurant.com.' },
+  //   { id: 7, customer: 'Robert Taylor', email: 'robert.t@example.com', rating: 5, comment: 'The wine selection is impressive and the sommelier was very knowledgeable.', date: '2025-04-10', status: 'Published', reply: '' },
+  //   { id: 8, customer: 'Lisa Anderson', email: 'lisa.a@example.com', rating: 4, comment: 'Lovely ambiance and great cocktails. Food was delicious too.', date: '2025-04-05', status: 'Published', reply: '' },
+  //   { id: 9, customer: 'James Martin', email: 'james.m@example.com', rating: 1, comment: 'Terrible experience. Will not be returning.', date: '2025-04-01', status: 'Hidden', reply: '' },
+  //   { id: 10, customer: 'Patricia White', email: 'patricia.w@example.com', rating: 5, comment: 'The desserts are to die for! Especially the chocolate souffle.', date: '2025-03-28', status: 'Published', reply: 'Thank you, Patricia! Our pastry chef will be delighted to hear that.' },
+  // ]);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [ratingFilter, setRatingFilter] = useState('All');
@@ -27,11 +34,11 @@ export default function Reviews() {
   const [replyText, setReplyText] = useState('');
 
   // Filter reviews based on search term, rating and status filters
-  const filteredReviews = reviews.filter(review => {
+  const filteredReviews = reviews?.filter(review => {
     const matchesSearch =
-      review.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      review.comment.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      review.email.toLowerCase().includes(searchTerm.toLowerCase());
+      review.client_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      review.review?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      review.client_email?.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesRating = ratingFilter === 'All' || review.rating === parseInt(ratingFilter);
     const matchesStatus = statusFilter === 'All' || review.status === statusFilter;
@@ -41,47 +48,58 @@ export default function Reviews() {
 
   // Delete review
   const deleteReview = (reviewId) => {
-    if (window.confirm('Are you sure you want to delete this review?')) {
-      setReviews(reviews.filter(review => review.id !== reviewId));
-      if (selectedReview && selectedReview.id === reviewId) {
-        setSelectedReview(null);
+    const confirmDelete = ConfirmationDialog({
+      message: `Are you sure you want to delete this review?`,
+      onConfirm: () => {
+        handelDeleteReview(reviewId);
+      },
+      confirmText: 'Delete',
+      confirmButtonStyle: {
+        background: '#ff4444',
+      },
+      cancelButtonStyle: {
+        background: '#6c757d',
       }
+    });
+    confirmDelete.show();
+    if (selectedReview && selectedReview.id === reviewId) {
+      setSelectedReview(null);
     }
   };
 
   // Toggle review status (Published/Hidden)
   const toggleReviewStatus = (reviewId) => {
-    setReviews(reviews.map(review =>
-      review.id === reviewId ?
-        { ...review, status: review.status === 'Published' ? 'Hidden' : 'Published' } :
-        review
-    ));
+    let reviewData = {
+      status: reviews.find(review => review.id === reviewId).status === 'Published' ? 'Hidden' : 'Published',
+      reply: reviews.find(review => review.id === reviewId).reply,
+    }
+    handelUpdateReview(reviewId, reviewData);
   };
 
   // Open reply modal
   const openReplyModal = (review) => {
     setSelectedReview(review);
-    setReplyText(review.reply);
+    setReplyText(review.reply || '');
   };
 
   // Save reply
   const saveReply = () => {
-    setReviews(reviews.map(review =>
-      review.id === selectedReview.id ?
-        { ...review, reply: replyText } :
-        review
-    ));
+    let reviewData = {
+      status: reviews.find(review => review.id === selectedReview.id).status,
+      reply: replyText,
+    }
+    handelUpdateReview(selectedReview.id, reviewData);
     setSelectedReview(null);
     setReplyText('');
   };
 
   // Calculate average rating
-  const averageRating = reviews.length > 0 ?
+  const averageRating = reviews?.length > 0 ?
     (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1) :
     0;
 
   // Count reviews by rating
-  const ratingCounts = reviews.reduce((counts, review) => {
+  const ratingCounts = reviews?.reduce((counts, review) => {
     counts[review.rating] = (counts[review.rating] || 0) + 1;
     return counts;
   }, {});
@@ -167,7 +185,7 @@ export default function Reviews() {
               <div className={styles.ratingNumber}>{averageRating}</div>
               <div className={styles.ratingStars}>
                 {renderStars(Math.round(averageRating))}
-                <p>{reviews.length} reviews</p>
+                <p>{reviews?.length} reviews</p>
               </div>
             </div>
 
@@ -179,7 +197,7 @@ export default function Reviews() {
                     <div
                       className={styles.ratingBarFill}
                       style={{
-                        width: `${reviews.length > 0 ? (ratingCounts[rating] || 0) / reviews.length * 100 : 0}%`
+                        width: `${reviews?.length > 0 ? (ratingCounts[rating] || 0) / reviews.length * 100 : 0}%`
                       }}
                     ></div>
                   </div>
@@ -204,8 +222,8 @@ export default function Reviews() {
                       <FiUser />
                     </div>
                     <div>
-                      <h4>{review.customer}</h4>
-                      <p className={styles.reviewerEmail}>{review.email}</p>
+                      <h4>{review.client_name}</h4>
+                      <p className={styles.reviewerEmail}>{review.client_email}</p>
                     </div>
                   </div>
                   <div className={styles.reviewMeta}>
@@ -213,13 +231,13 @@ export default function Reviews() {
                       {renderStars(review.rating)}
                     </div>
                     <div className={styles.reviewDate}>
-                      <FiCalendar /> {review.date}
+                      <FiCalendar /> {review.created_at ? new Date(review.created_at).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) : ''}
                     </div>
                   </div>
                 </div>
 
                 <div className={styles.reviewContent}>
-                  <p>{review.comment}</p>
+                  <p>{review.review}</p>
                 </div>
 
                 {review.reply && (
@@ -294,14 +312,14 @@ export default function Reviews() {
                   <div className={styles.reviewPreview}>
                     <div className={styles.previewHeader}>
                       <div>
-                        <h4>{selectedReview.customer}</h4>
+                        <h4>{selectedReview.client_name}</h4>
                         <div className={styles.previewRating}>
                           {renderStars(selectedReview.rating)}
-                          <span className={styles.previewDate}>{selectedReview.date}</span>
+                          <span className={styles.previewDate}>{selectedReview.created_at ? new Date(selectedReview.created_at).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) : ''}</span>
                         </div>
                       </div>
                     </div>
-                    <p className={styles.previewComment}>{selectedReview.comment}</p>
+                    <p className={styles.previewComment}>{selectedReview.review.review}</p>
                   </div>
 
                   <div className={styles.replyForm}>

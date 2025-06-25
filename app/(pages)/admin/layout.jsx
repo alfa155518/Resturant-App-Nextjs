@@ -4,6 +4,7 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import { AdminMenuProvider } from '@/store/AdminMenuProvider';
 import { AdminManageTeamProvider } from '@/store/AdminManageTeamProvider';
 import { AdminManagementReservationsProvider } from '@/store/AdminManagementReservationsProvider';
+import { AdminManageReviewsProvider } from '@/store/AdminManageReviews';
 
 
 export default function AdminPageLayout({ children }) {
@@ -12,9 +13,11 @@ export default function AdminPageLayout({ children }) {
       <RestaurantSettingsProvider>
         <AdminManageTeamProvider>
           <AdminManagementReservationsProvider>
-            <AdminMenuProvider>
-              <AdminLayout>{children}</AdminLayout>
-            </AdminMenuProvider>
+            <AdminManageReviewsProvider>
+              <AdminMenuProvider>
+                <AdminLayout>{children}</AdminLayout>
+              </AdminMenuProvider>
+            </AdminManageReviewsProvider>
           </AdminManagementReservationsProvider>
         </AdminManageTeamProvider>
       </RestaurantSettingsProvider>
