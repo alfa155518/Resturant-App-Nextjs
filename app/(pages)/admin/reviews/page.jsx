@@ -1,6 +1,5 @@
 import React from 'react';
 import ReviewsPage from '@/app/(pages)/admin/reviews/Reviews';
-import { Metadata } from 'next';
 import styles from '../../../../src/css/about.module.css';
 
 
