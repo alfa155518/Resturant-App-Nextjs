@@ -13,7 +13,6 @@ export default function FeatureDishes() {
   const { menuDishes } = useContext(MenuContext) || [];
   let featuredDishes = menuDishes?.data?.dishes;
   featuredDishes = featuredDishes?.filter(dish => dish.featured);
-  console.log(featuredDishes)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -82,11 +81,31 @@ export default function FeatureDishes() {
                 <h3 className={styles.dishTitle}>{dish.name}</h3>
                 <p>{dish.description}</p>
 
-                {/* <div className={styles.ingredients}>
-                  {dish?.ingredients?.map((ingredient, index) => (
-                    <span key={index} className={styles.ingredient}>{ingredient}</span>
-                  ))}
-                </div> */}
+                <div className={styles.ingredients}>
+                  {(() => {
+                    try {
+                      // Try to parse as JSON first
+                      const parsed = typeof dish?.ingredients === 'string' && dish.ingredients.startsWith('[')
+                        ? JSON.parse(dish.ingredients)
+                        : dish?.ingredients?.split(',').map(i => i.trim());
+
+                      // Ensure we have an array and filter out empty strings
+                      const ingredients = Array.isArray(parsed)
+                        ? parsed.filter(i => i && i.trim() !== '')
+                        : [];
+
+                      return ingredients.map((ingredient, index) => (
+                        <span key={index} className={styles.ingredient}>{ingredient}</span>
+                      ));
+                    } catch (e) {
+                      // If parsing fails, try to handle as comma-separated string
+                      const ingredients = dish?.ingredients?.split(',').map(i => i.trim()).filter(i => i) || [];
+                      return ingredients.map((ingredient, index) => (
+                        <span key={index} className={styles.ingredient}>{ingredient}</span>
+                      ));
+                    }
+                  })()}
+                </div>
 
                 <motion.button
                   className={styles.orderBtn}

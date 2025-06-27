@@ -63,15 +63,23 @@ export default function Dish({
 
         <p className={styles.description}>{item.description}</p>
 
-        {item.dietary && item.dietary.length > 0 && (
-          <div className={styles.dietaryTags}>
-            {item.dietary.map((tag) => (
-              <span key={tag} className={styles.dietaryTag}>
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {(() => {
+          const dietaryItems = typeof item?.dietary === 'string' 
+            ? item.dietary.split(',').map(tag => tag.trim())
+            : Array.isArray(item?.dietary) 
+              ? item.dietary 
+              : [];
+          
+          return dietaryItems.length > 0 && (
+            <div className={styles.dietaryTags}>
+              {dietaryItems.map((tag) => (
+                <span key={tag} className={styles.dietaryTag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          );
+        })()}
 
         <div className={styles.actionButtons}>
           <motion.button

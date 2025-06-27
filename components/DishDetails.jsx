@@ -11,7 +11,6 @@ export default function DishDetails({
   handelAddFavoriteProduct,
 }) {
   const { handleAddToCart, setAttributes } = useContext(CartContext);
-  console.log(favoriteProducts);
 
   return (
     <AnimatePresence>
@@ -81,32 +80,47 @@ export default function DishDetails({
                 {selectedItem.description}
               </p>
 
-              {selectedItem.dietary && selectedItem.dietary.length > 0 && (
-                <div className={styles.modalSection}>
-                  <h3>Dietary Information</h3>
-                  <div className={styles.dietaryTags}>
-                    {selectedItem.dietary.map((tag) => (
-                      <span key={tag} className={styles.dietaryTag}>
-                        {tag}
-                      </span>
-                    ))}
+              {(() => {
+                const dietaryList = typeof selectedItem?.dietary === 'string' 
+                  ? selectedItem.dietary.split(',').map(item => item.trim())
+                  : Array.isArray(selectedItem?.dietary)
+                    ? selectedItem.dietary
+                    : [];
+                
+                return dietaryList.length > 0 && (
+                  <div className={styles.modalSection}>
+                    <h3>Dietary Information</h3>
+                    <div className={styles.dietaryTags}>
+                      {dietaryList.map((tag, index) => (
+                        <span key={`${tag}-${index}`} className={styles.dietaryTag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })()}
 
-              {selectedItem.ingredients &&
-                selectedItem.ingredients.length > 0 && (
+              {(() => {
+                const ingredientsList = typeof selectedItem?.ingredients === 'string' 
+                  ? selectedItem.ingredients.split(',').map(item => item.trim())
+                  : Array.isArray(selectedItem?.ingredients)
+                    ? selectedItem.ingredients
+                    : [];
+                
+                return ingredientsList.length > 0 && (
                   <div className={styles.modalSection}>
                     <h3>Ingredients</h3>
                     <ul className={styles.ingredientsList}>
-                      {selectedItem.ingredients.map((ingredient) => (
-                        <li key={ingredient} className={styles.ingredientItem}>
+                      {ingredientsList.map((ingredient, index) => (
+                        <li key={`${ingredient}-${index}`} className={styles.ingredientItem}>
                           {ingredient}
                         </li>
                       ))}
                     </ul>
                   </div>
-                )}
+                );
+              })()}
 
               <div className={styles.modalSection}>
                 <h3>Customize Your Order</h3>

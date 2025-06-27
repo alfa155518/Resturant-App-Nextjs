@@ -5,6 +5,8 @@ import { AdminMenuProvider } from '@/store/AdminMenuProvider';
 import { AdminManageTeamProvider } from '@/store/AdminManageTeamProvider';
 import { AdminManagementReservationsProvider } from '@/store/AdminManagementReservationsProvider';
 import { AdminManageReviewsProvider } from '@/store/AdminManageReviews';
+import { AdminManagementCustomersProvider } from '@/store/AdminManagementCustomersProvider';
+
 
 
 export default function AdminPageLayout({ children }) {
@@ -15,7 +17,9 @@ export default function AdminPageLayout({ children }) {
           <AdminManagementReservationsProvider>
             <AdminManageReviewsProvider>
               <AdminMenuProvider>
-                <AdminLayout>{children}</AdminLayout>
+                <AdminManagementCustomersProvider>
+                  <AdminLayout>{children}</AdminLayout>
+                </AdminManagementCustomersProvider>
               </AdminMenuProvider>
             </AdminManageReviewsProvider>
           </AdminManagementReservationsProvider>

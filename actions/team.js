@@ -7,11 +7,10 @@ export async function allTeamMember(pageNumber = 1) {
     headers: {
       'Content-Type': 'application/json',
     },
-    cache: 'force-cache',
+    next: {
+      cache: "no-store",
+    },
   });
-
-  if (!response.ok) {
-    console.log(response);
-  }
-  return response.json();
+  const team = await response.json()
+  return team;
 }

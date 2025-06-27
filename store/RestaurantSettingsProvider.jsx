@@ -36,10 +36,11 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelRestaurantSettingsInfo() {
             const data = await getRestaurantSettingsInfo();
-            if (data.status === "error") {
-                toast.error(data.message);
-                return;
-            }
+            // if (data?.status === "error") {
+            //     console.log(data);
+            //     toast.error(data.message);
+            //     return;
+            // }
             setRestaurantInfo(data);
         }
         handelRestaurantSettingsInfo();
@@ -64,10 +65,10 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelOperatingHours() {
             const data = await getOperatingHours();
-            if (data.status === "error") {
-                toast.error(data.message);
-                return;
-            }
+            // if (data.status === "error") {
+            //     toast.error(data.message);
+            //     return;
+            // }
             setOperatingHours(data);
         }
         handelOperatingHours();
@@ -92,10 +93,10 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelPaymentMethods() {
             const data = await getPaymentMethods();
-            if (data.status === "error") {
-                toast.error(data.message);
-                return;
-            }
+            // if (data.status === "error") {
+            //     toast.error(data.message);
+            //     return;
+            // }
             setPaymentMethods(data);
         }
         handelPaymentMethods();
@@ -119,10 +120,10 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelNotificationSettings() {
             const response = await getNotificationSettings();
-            if (response.status === "error") {
-                toast.error(response.message);
-                return;
-            }
+            // if (response.status === "error") {
+            //     toast.error(response.message);
+            //     return;
+            // }
             // Only update if we have the data
             if (response.data) {
                 setNotificationSettings(response.data);

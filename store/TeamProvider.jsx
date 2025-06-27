@@ -2,7 +2,7 @@
 
 import { allTeamMember } from '@/actions/team';
 import { createContext, useState, useEffect } from 'react';
-
+import { toast } from 'react-toastify';
 
 // Create the context
 export const TeamContext = createContext();
@@ -16,8 +16,12 @@ export function TeamProvider({ children }) {
 
     useEffect(() => {
         async function fetchTeamMembers() {
-            const { data } = await allTeamMember(pageNumber);
-            setTeamMembers(data);
+            const teamMembers = await allTeamMember(pageNumber);
+            if (teamMembers.status === "error") {
+                toast.error(teamMembers.message);
+                return;
+            }
+            setTeamMembers(teamMembers.data);
         }
         fetchTeamMembers();
     }, [pageNumber])

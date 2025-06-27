@@ -6,6 +6,9 @@ export async function getMenu(pageNumber = 1) {
     const res = await fetch(`${apiUrl}/menu?page=${pageNumber}`, {
       method: 'GET',
       headers: { 'Accept': 'application/json' },
+      next: {
+        cache: "no-store",
+      },
     });
     if (!res.ok) throw new Error(`Failed to fetch menu: ${res.status} - ${res.statusText}`);
     return await res.json();
