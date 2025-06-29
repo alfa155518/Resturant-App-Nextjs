@@ -30,7 +30,7 @@ export default function Footer() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Image
-                  src="/images/logo.webp"
+                  src={restaurantInfo.logo || "/images/logo.webp"}
                   alt="Restaurant Logo"
                   width={150}
                   height={60}

@@ -1,5 +1,5 @@
-@import "../helpers/mixins";
-@import "../helpers/variables";
+@import '../helpers/mixins';
+@import '../helpers/variables';
 
 @mixin transition($duration: 0.3s) {
   transition: all $duration ease;
@@ -32,7 +32,7 @@
 
   .headerImageContainer {
     // padding: 5rem 0;
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -190,24 +190,11 @@
     display: inline-block;
     margin-top: 1rem;
   }
-}
 
-.formMessage {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border-radius: 8px;
-  font-weight: 500;
-
-  &.success {
-    background-color: rgba(#4caf50, 0.1);
-    color: #4caf50;
-    border: 1px solid rgba(#4caf50, 0.3);
-  }
-
-  &.error {
-    background-color: rgba(#f44336, 0.1);
-    color: #f44336;
-    border: 1px solid rgba(#f44336, 0.3);
+  &.loading {
+    cursor: not-allowed;
+    opacity: 0.7;
+    pointer-events: none;
   }
 }
 
@@ -226,7 +213,6 @@
   background-color: $card-color;
   @include radius(12px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  ;
   @include transition(0.3s);
   border: 1px solid rgba($primary-color, 0.2);
 
@@ -290,7 +276,7 @@
   padding: 1.8rem;
   background-color: $card-color;
   @include radius(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba($primary-color, 0.2);
 
   h3 {
@@ -381,7 +367,7 @@
   .mapContainer {
     @include radius(12px);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 5px solid $card-color;
   }
 }
