@@ -1,6 +1,5 @@
 import React from 'react';
-import OrdersPage from '@/components/admin/pages/Orders';
-import { Metadata } from 'next';
+import OrdersContent from '@/app/(pages)/admin/orders/OrdersContent';
 import styles from '../../../../src/css/about.module.css';
 
 export const metadata = {
@@ -11,7 +10,7 @@ export const metadata = {
 export default function AdminOrdersPage() {
   return (
     <div className={styles.adminPageWrapper}>
-      <OrdersPage />
+      <OrdersContent />
     </div>
   );
 }

@@ -6,8 +6,8 @@ import styles from '../../../../src/css/admin-customers.module.css';
 import EditModalCustomer from '@/app/(pages)/admin/customers/EditModalCustomer';
 import CustomerDetails from '@/app/(pages)/admin/customers/CustomerDetails';
 import CustomersTable from '@/app/(pages)/admin/customers/CustomersTable';
-import CustomSkeletonLoading from '@/components/CustomSkeletonLoading';
 import useAdminManageCustomers from '@/hooks/useAdminManageCustomers';
+import Skeleton from 'react-loading-skeleton';
 
 export default function CustomersContent() {
   const [
@@ -34,10 +34,7 @@ export default function CustomersContent() {
   // skeleton loading customers
   if (!customers || customers.length === 0) {
     return (
-      <CustomSkeletonLoading
-        count={5}
-        height={300}
-      />
+      <Skeleton count={3} height={100} />
     )
   }
   return (

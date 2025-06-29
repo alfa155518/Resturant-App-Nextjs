@@ -219,6 +219,31 @@
   font-size: 1.1rem;
 }
 
+.customerName,
+.itemCount,
+.orderTotal,
+.orderTime {
+  font-size: 1.2rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.customerName {
+  color: #3498db !important;
+}
+
+.orderTime {
+  color: #ff7e5f !important;
+}
+
+.itemCount {
+  color: #f39c12 !important;
+}
+
+.orderTotal {
+  color: #ffd700 !important;
+}
+
 .statusBadge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
@@ -227,12 +252,12 @@
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
   min-width: 100px;
 }
-.statusBadge.processing {
+.statusBadge.pending {
   background-color: rgba(52, 152, 219, 0.15);
   color: #3498db;
 }
@@ -447,52 +472,6 @@
   background-color: #3498db;
   border-color: #3498db;
   color: #ffffff;
-}
-
-.orderSummary {
-  background-color: #e0e0e0;
-  padding: 1rem 1.25rem;
-  border-radius: 0.8rem;
-  -webkit-border-radius: 0.8rem;
-  -moz-border-radius: 0.8rem;
-  -ms-border-radius: 0.8rem;
-  -o-border-radius: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.summaryRow {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  color: #4a3f35;
-  font-size: 1.2rem;
-}
-.summaryRow.totalRow {
-  border-top: 1px solid var(--border-color);
-  margin-top: 0.5rem;
-  padding-top: 0.75rem;
-  font-weight: 600;
-  color: #9f643c;
-  font-size: 1.3rem;
-}
-
-.orderNotes h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #121212;
-  margin: 0 0 0.5rem 0;
-}
-.orderNotes p {
-  margin: 0;
-  padding: 0.75rem 1rem;
-  background-color: #ffffff;
-  border-radius: 0.8rem;
-  -webkit-border-radius: 0.8rem;
-  -moz-border-radius: 0.8rem;
-  -ms-border-radius: 0.8rem;
-  -o-border-radius: 0.8rem;
-  color: #2c2c2c;
-  font-size: 1.1rem;
 }
 
 .modalFooter {
@@ -734,12 +713,12 @@
 }
 
 .cancelBtn {
-  background-color: #f5f7fa;
-  color: #1e293b;
+  background-color: #ff7e5f;
+  color: #ffffff;
   border: none;
 }
 .cancelBtn:hover {
-  background-color: #edf2f7;
+  background-color: #e74c3c;
 }
 
 @media (width <= 768px) {
@@ -757,10 +736,6 @@
   .ordersTable {
     display: block;
     overflow-x: auto;
-  }
-  .modalFooter {
-    flex-direction: column;
-    align-items: flex-start;
   }
   .statusActions {
     flex-direction: column;

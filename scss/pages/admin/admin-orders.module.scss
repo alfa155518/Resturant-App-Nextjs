@@ -69,17 +69,37 @@
     font-size: 1.1rem;
   }
 }
+.customerName,
+.itemCount,
+.orderTotal,
+.orderTime {
+  font-size: 1.2rem;
+  font-weight: 900;
+  margin: 0;
+}
+.customerName {
+  color: $info-color !important;
+}
+.orderTime {
+  color: $light-color !important;
+}
+.itemCount {
+  color: $warning-color !important;
+}
+.orderTotal {
+  color: $gold-color !important;
+}
 
 .statusBadge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   @include radius(20px);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
   min-width: 100px;
 
-  &.processing {
+  &.pending {
     background-color: rgba($info-color, 0.15);
     color: $info-color;
   }
@@ -258,48 +278,6 @@
   }
 }
 
-.orderSummary {
-  background-color: $dark-text-primary;
-  padding: 1rem 1.25rem;
-  @include radius(0.8rem);
-  margin-bottom: 1.5rem;
-}
-
-.summaryRow {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  color: $nature-dark-color;
-  font-size: 1.2rem;
-
-  &.totalRow {
-    border-top: 1px solid var(--border-color);
-    margin-top: 0.5rem;
-    padding-top: 0.75rem;
-    font-weight: 600;
-    color: $primary-color;
-    font-size: 1.3rem;
-  }
-}
-
-.orderNotes {
-  h4 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: $dark-bg-primary;
-    margin: 0 0 0.5rem 0;
-  }
-
-  p {
-    margin: 0;
-    padding: 0.75rem 1rem;
-    background-color: $white-color;
-    @include radius(0.8rem);
-    color: $dark-hover-color;
-    font-size: 1.1rem;
-  }
-}
-
 .modalFooter {
   padding: 1.25rem 1.5rem;
   border-top: 1px solid var(--border-color);
@@ -469,12 +447,12 @@
 }
 
 .cancelBtn {
-  background-color: #f5f7fa;
-  color: #1e293b;
+  background-color: $light-color;
+  color: $white-color;
   border: none;
 
   &:hover {
-    background-color: #edf2f7;
+    background-color: $danger-color;
   }
 }
 
@@ -497,11 +475,6 @@
   .ordersTable {
     display: block;
     overflow-x: auto;
-  }
-
-  .modalFooter {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .statusActions {

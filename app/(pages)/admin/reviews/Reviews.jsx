@@ -8,6 +8,7 @@ import ReplayModal from '@/app/(pages)/admin/reviews/ReplayModal';
 import ReviewsContent from '@/app/(pages)/admin/reviews/ReviewsContent';
 import ReviewsStatus from '@/app/(pages)/admin/reviews/ReviewsStatus';
 import useAdminManageReviews from '@/hooks/useAdminManageReviews';
+import Skeleton from 'react-loading-skeleton';
 
 
 export default function Reviews() {
@@ -48,7 +49,11 @@ export default function Reviews() {
   // Show skeleton loading if reviews are not loaded
   if (!reviews || reviews.length === 0) {
     return (
-      <CustomSkeletonLoading count={10} height={250} />
+      <>
+        <Skeleton count={1} height={150} />
+        <p className='pt-5'></p>
+        <CustomSkeletonLoading count={10} height={250} />
+      </>
     )
   }
 

@@ -1,12 +1,12 @@
 "use client";
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter } from 'react-icons/fi';
-import CustomSkeletonLoading from '@/components/CustomSkeletonLoading';
 import EditReservationModal from '@/app/(pages)/admin/reservations/EditReservationModal';
 import NotFoundReservations from '@/app/(pages)/admin/reservations/NotFoundReservations';
 import useAdminReservations from '@/hooks/useAdminReservations';
 import GroupReservations from '@/app/(pages)/admin/reservations/GroupReservations';
 import styles from '../../../../src/css/admin-reservations.module.css';
+import Skeleton from 'react-loading-skeleton';
 
 export default function ReservationsContent() {
 
@@ -28,7 +28,7 @@ export default function ReservationsContent() {
   // Skeleton Loading
   if (!reservations || reservations.length === 0) {
     return (
-      <CustomSkeletonLoading count={5} height={400} />
+      <Skeleton count={3} height={100} />
     );
   }
 
