@@ -43,8 +43,8 @@
 }
 
 .subtitle {
-  color: #94a3b8;
-  font-size: 0.9375rem;
+  color: #f5f0e9;
+  font-size: 1.2rem;
   line-height: 1.5;
 }
 
@@ -119,32 +119,6 @@
   transform: none;
 }
 
-.resendContainer {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
-  color: #94a3b8;
-}
-
-.resendButton {
-  background: none;
-  border: none;
-  color: #60a5fa;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  margin-left: 0.5rem;
-  transition: all 0.2s ease;
-}
-.resendButton:hover {
-  background: rgba(96, 165, 250, 0.1);
-}
-.resendButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .error {
   color: #f87171;
   font-size: 0.875rem;
@@ -157,25 +131,6 @@
   font-size: 0.875rem;
   margin-top: 0.5rem;
   text-align: center;
-}
-
-/* Background animation elements */
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
-  filter: blur(40px);
-  will-change: transform;
 }
 
 /* QR Code Section */
@@ -271,16 +226,17 @@
 }
 
 .switchMethod {
+  color: #f39c12;
+  font-size: 1.3rem;
+  font-weight: 900;
   margin-top: 1.5rem;
-  font-size: 0.875rem;
-  color: #94a3b8;
   text-align: center;
 }
 
 .textButton {
   background: none;
   border: none;
-  color: #60a5fa;
+  color: #3498db;
   font-weight: 500;
   cursor: pointer;
   padding: 0.25rem 0.5rem;

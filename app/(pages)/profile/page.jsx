@@ -13,13 +13,13 @@ import ProfileSettings from './ProfileSettings/page';
 import { UserContext } from '@/store/UserProvider';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import TowFactorAuth from './TowFactorAuth/page';
+import { disableTwoFactorAuth } from '@/actions/auth';
+import { toast } from 'react-toastify';
 
 
 export default function Profile() {
   const { user, submitLogout, isLoading } = useContext(UserContext);
   const [activeTab, setActiveTab] = useState('profile');
-
-
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -128,6 +128,29 @@ export default function Profile() {
                 >
                   <FaLock /> 2FA
                 </motion.button>
+                {
+                  user?.google2fa_secret && (
+                    <motion.button
+                      className={styles.logoutButton + " " + (isLoading ? styles.loading : "")}
+                      onClick={async () => {
+                        const data = await disableTwoFactorAuth()
+                        if (data.status === 'success') {
+                          toast.success(data.message);
+                          setActiveTab('profile');
+                        }
+                        if (data.status === 'error') {
+                          toast.error(data.message);
+                        }
+                      }}
+                      variants={fadeIn}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      disabled={isLoading}
+                    >
+                      <FaLock /> Delete 2FA
+                    </motion.button>
+                  )
+                }
                 <motion.button
                   className={styles.logoutButton + " " + (isLoading ? styles.loading : "")}
                   onClick={(e) => submitLogout(e)}
