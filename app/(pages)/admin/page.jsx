@@ -1,4 +1,4 @@
-import AdminDashboard from '@/components/admin/Dashboard';
+import AdminDashboard from '@/app/(pages)/admin/Dashboard';
 
 export const metadata = {
   title: 'Admin Dashboard | Gourmet Haven Restaurant',

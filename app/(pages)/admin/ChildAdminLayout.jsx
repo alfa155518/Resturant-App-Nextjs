@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from 'react';
-import styles from '../../scss/pages/admin/admin-layout.module.scss';
+import styles from '../../../src/css/admin-layout.module.css';
 import AdminSidebar from '@/layout/AdminSidebar';
 import AdminHeader from '@/layout/AdminHeader';
 
-export default function AdminLayout({ children }) {
+export default function ChildAdminLayout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleSidebar = () => {

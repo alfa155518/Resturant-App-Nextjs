@@ -14,7 +14,6 @@ export default function ProfileFavorites() {
 
   // Custom Hook Profile Favorites
   const {
-    loading,
     searchTerm,
     setSearchTerm,
     activeCategory,
@@ -25,13 +24,19 @@ export default function ProfileFavorites() {
     fadeIn
   } = useProfileFavorites();
 
-  if (loading) {
+  if (!filteredFavorites || filteredFavorites.length === 0) {
     return (
-      <div className={styles.loadingContainer}>
-        <FaSpinner className={styles.spinner} />
-        <p>Loading your favorites...</p>
+      <div className={styles.emptyState}>
+        <FaHeart className={styles.emptyIcon} />
+        <h3>No favorites found</h3>
+        <p>
+          {searchTerm
+            ? `No favorites match your search for "${searchTerm}"`
+            : `You don't have any ${activeCategory !== 'all' ? activeCategory : ''} favorites yet.`
+          }
+        </p>
       </div>
-    );
+    )
   }
 
   return (
@@ -69,18 +74,7 @@ export default function ProfileFavorites() {
         </div>
       </div>
 
-      {!filteredFavorites || filteredFavorites.length === 0 ? (
-        <div className={styles.emptyState}>
-          <FaHeart className={styles.emptyIcon} />
-          <h3>No favorites found</h3>
-          <p>
-            {searchTerm
-              ? `No favorites match your search for "${searchTerm}"`
-              : `You don't have any ${activeCategory !== 'all' ? activeCategory : ''} favorites yet.`
-            }
-          </p>
-        </div>
-      ) : (
+      {filteredFavorites.length > 0 && (
         <div className={styles.favoritesList}>
           {filteredFavorites.map((item, index) => {
             const product = item.product;
@@ -94,7 +88,7 @@ export default function ProfileFavorites() {
               >
                 <div className={styles.favoriteImageContainer}>
                   <Image
-                    src={product.image}
+                    src={product.image || '/images/default-favorite.png'}
                     alt={product.name}
                     width={300}
                     height={200}

@@ -1,5 +1,5 @@
 import React from 'react';
-import SettingsPage from '../../../../components/admin/pages/Settings';
+import SettingsPage from '../../../../admin/pages/Settings';
 import { Metadata } from 'next';
 import styles from '../../../../src/css/about.module.css';
 

@@ -18,9 +18,7 @@ export default function ReservationCard({ styles, filteredReservations, handelCa
 
     const [payingReservationId, setPayingReservationId] = useState(null);
     async function handelCheckReservationSession(id, name, description, image, reservationId, time, guests) {
-
         try {
-
             setPayingReservationId(reservationId);
             const formData = {
                 id: id,
@@ -47,10 +45,9 @@ export default function ReservationCard({ styles, filteredReservations, handelCa
     }
 
 
-
     return (
         <div className={styles.reservationsList}>
-            {filteredReservations.map((reservation, index) => (
+            {filteredReservations?.map((reservation, index) => (
                 <motion.div
                     key={reservation.id}
                     className={styles.reservationCard}

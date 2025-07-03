@@ -7,7 +7,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 // Change Password
 export async function changePassword(formData) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
 
 
   const serverFormData = new FormData();
@@ -46,7 +46,7 @@ export async function changePassword(formData) {
 // Change Personal Data
 export async function changePersonalData(formData) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
 
   const serverFormData = new FormData();
   serverFormData.append('name', formData['name']);
@@ -80,7 +80,7 @@ export async function changePersonalData(formData) {
 // Enable Two Factor Auth
 export async function enableTwoFactorAuth() {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
 
   const response = await fetch(`${apiUrl}/auth/enable-2fa`, {
     method: "GET",
@@ -96,7 +96,7 @@ export async function enableTwoFactorAuth() {
 // Verify Two Factor Auth
 export async function verifyTwoFactorAuth(verificationCode) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
 
   const response = await fetch(`${apiUrl}/auth/verify-2fa`, {
     method: "POST",
@@ -122,7 +122,7 @@ export async function verifyTwoFactorAuth(verificationCode) {
 // Disable Two Factor Auth
 export async function disableTwoFactorAuth() {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
 
   const response = await fetch(`${apiUrl}/auth/disable-2fa`, {
     method: "DELETE",

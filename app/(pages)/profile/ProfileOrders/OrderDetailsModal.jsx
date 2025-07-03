@@ -26,9 +26,8 @@ export default function OrderDetailsModal({ styles }) {
           <div className={styles.modalHeader}>
             <h3>Order Details</h3>
             <div
-              className={`${styles.orderStatus} ${
-                styles[selectedOrder.checkout.payment_status]
-              }`}>
+              className={`${styles.orderStatus} ${styles[selectedOrder.checkout.payment_status]
+                }`}>
               {getStatusIcon(selectedOrder.checkout.payment_status)}
               <span>
                 {getStatusText(selectedOrder.checkout.payment_status)}
@@ -80,7 +79,7 @@ export default function OrderDetailsModal({ styles }) {
                     <div className={styles.itemCol}>
                       <div className={styles.itemImageLarge}>
                         <Image
-                          src={item.image}
+                          src={item.image || '/images/default-order.png'}
                           alt={item.product_name}
                           width={80}
                           height={80}

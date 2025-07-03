@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
-import { FaSpinner } from "react-icons/fa";
+import { FaSpinner, FaShoppingBag } from "react-icons/fa";
 import styles from "../../../../src/css/profile-orders.module.css";
 import { UserContext } from "@/store/UserProvider";
 import OrderControls from "./OrderControls";
@@ -13,7 +13,7 @@ export default function ProfileOrders() {
   const [loading, setLoading] = useState(true);
 
   // user Context
-  const { checkoutHistory, setCheckoutHistory } = useContext(UserContext);
+  const { checkoutHistory, setCheckoutHistory, searchTerm, activeFilter } = useContext(UserContext);
 
   // Simulate API loading delay
   useEffect(() => {
@@ -37,6 +37,21 @@ export default function ProfileOrders() {
         <p>Loading your orders...</p>
       </div>
     );
+  }
+
+  if (!checkoutHistory || checkoutHistory.items?.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <FaShoppingBag className={styles.emptyIcon} />
+        <h3>No orders found</h3>
+        <p>
+          {searchTerm
+            ? `No orders match your search for "${searchTerm}"`
+            : `You don't have any ${activeFilter !== "all" ? activeFilter : ""
+            } orders yet.`}
+        </p>
+      </div>
+    )
   }
 
   return (

@@ -1,9 +1,0 @@
-.ordersChartContainer {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-}
-.ordersChartContainer .ordersChartCanvas {
-  width: 100% !important;
-  height: 100% !important;
-}/*# sourceMappingURL=OrdersChart.module.css.map */

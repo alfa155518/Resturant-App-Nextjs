@@ -60,6 +60,9 @@ export function UserProvider({ children }) {
         setUser([]);
         setUserToken(null);
         toast.success(data.message);
+        Cookies.remove("userToken");
+        Cookies.remove("paymentDetails");
+        Cookies.remove("user");
         setTimeout(() => {
           router.push("/register");
         }, 2000);

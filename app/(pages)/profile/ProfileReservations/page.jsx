@@ -62,6 +62,19 @@ export default function ProfileReservations() {
     );
   }
 
+  if (!filteredReservations || filteredReservations.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <FaCalendarAlt className={styles.emptyIcon} />
+        <h3>No reservations found</h3>
+        <p>
+          You don't have any {activeFilterReservation !== "all" ? activeFilterReservation : ""}{" "}
+          reservations yet.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       className={styles.reservationsContainer}
@@ -72,17 +85,7 @@ export default function ProfileReservations() {
       {/* * Filter Reservations * */}
       <FilterReservationButtons styles={styles} activeFilterReservation={activeFilterReservation} setActiveFilterReservation={setActiveFilterReservation} />
       {/* * Filter Reservations * */}
-      {filteredReservations?.length === 0 ? (
-        <div className={styles.emptyState}>
-          <FaCalendarAlt className={styles.emptyIcon} />
-          <h3>No reservations found</h3>
-          <p>
-            You don't have any {activeFilterReservation !== "all" ? activeFilterReservation : ""}{" "}
-            reservations yet.
-          </p>
-        </div>
-      ) : (
-        // * Reservation Card *
+      {filteredReservations?.length > 0 && (
         <ReservationCard styles={styles} filteredReservations={filteredReservations} handelCancelReservation={handelCancelReservation} openDetailsReservationModal={openDetailsReservationModal} getStatusIcon={getStatusIcon} />
       )}
       {/* Details Modal */}

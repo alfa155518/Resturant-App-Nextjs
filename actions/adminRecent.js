@@ -1,7 +1,9 @@
 'use server'
+
 import { cookies } from "next/headers";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const adminApiUrl = process.env.NEXT_PUBLIC_ADMIN_API_URL;
+
 // Get User Token
 async function getCookieStore() {
     const cookieStore = await cookies();
@@ -9,16 +11,13 @@ async function getCookieStore() {
     return userToken;
 }
 
-// Contact Us
-export async function contactUs(formData) {
+export default async function getRecentItems() {
     const userToken = await getCookieStore();
-    const response = await fetch(`${apiUrl}/contact`, {
-        method: "POST",
+    const response = await fetch(`${adminApiUrl}/recent`, {
         headers: {
             Authorization: `Bearer ${userToken}`,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
         next: {
             cache: "no-store",
         },

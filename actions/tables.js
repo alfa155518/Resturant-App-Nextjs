@@ -6,7 +6,6 @@ export async function tablesData(pageNumber = 1) {
     headers: {
       "Content-Type": "application/json",
     },
-    // cache: 'force-cache',
   });
 
   if (!response.ok) {

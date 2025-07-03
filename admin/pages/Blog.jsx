@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiCalendar, FiUser, FiImage, FiEye, FiTag, FiSave } from 'react-icons/fi';
-import styles from '../../../src/css/admin-blog.module.css';
+import styles from '../../src/css/admin-blog.module.css';
 
 export default function Blog() {
   // Sample blog posts data
@@ -670,7 +670,7 @@ export default function Blog() {
               transition={{ duration: 0.3 }}
               onClick={() => setShowPreviewModal(false)}
             >
-              <motion.div 
+              <motion.div
                 className={styles.previewModal}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -693,10 +693,10 @@ export default function Blog() {
                       <img src={previewPost.image} alt={previewPost.title} />
                     </div>
                   )}
-                  
+
                   <div className={styles.previewBody}>
                     <h1 className={styles.previewTitle}>{previewPost.title}</h1>
-                    
+
                     <div className={styles.previewMeta}>
                       <span className={styles.previewAuthor}>
                         <FiUser /> {previewPost.author}
@@ -708,12 +708,12 @@ export default function Blog() {
                         <FiTag /> {previewPost.category}
                       </span>
                     </div>
-                    
-                    <div 
+
+                    <div
                       className={styles.previewText}
                       dangerouslySetInnerHTML={{ __html: previewPost.content }}
                     />
-                    
+
                     {Array.isArray(previewPost.tags) && previewPost.tags.length > 0 && (
                       <div className={styles.previewTags}>
                         {previewPost.tags.map((tag, index) => (

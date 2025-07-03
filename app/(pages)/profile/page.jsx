@@ -3,12 +3,11 @@
 import { useState, useContext } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaUser, FaCalendarAlt, FaHeart, FaCreditCard, FaCog, FaSignOutAlt, FaHistory, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLock } from 'react-icons/fa';
+import { FaUser, FaCalendarAlt, FaHeart, FaCog, FaSignOutAlt, FaHistory, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLock } from 'react-icons/fa';
 import styles from '../../../src/css/profile.module.css';
 import ProfileReservations from './ProfileReservations/page';
 import ProfileOrders from './ProfileOrders/page';
 import ProfileFavorites from './ProfileFavorites/page';
-import ProfileBilling from './ProfileBilling/page';
 import ProfileSettings from './ProfileSettings/page';
 import { UserContext } from '@/store/UserProvider';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
@@ -58,9 +57,7 @@ export default function Profile() {
                   className={styles.profileImage}
                   priority
                 />
-                {user.role !== 'customer' && (
-                  <span className={styles.roleBadge}>{user.role}</span>
-                )}
+                <span className={styles.roleBadge}>{user.role}</span>
               </div>
               <div className={styles.profileInfo}>
                 <h1>{user.name}</h1>
@@ -106,13 +103,6 @@ export default function Profile() {
                   variants={fadeIn}
                 >
                   <FaHeart /> Favorites
-                </motion.button>
-                <motion.button
-                  className={`${styles.navButton} ${activeTab === 'billing' ? styles.active : ''}`}
-                  onClick={() => setActiveTab('billing')}
-                  variants={fadeIn}
-                >
-                  <FaCreditCard /> Billing & Payments
                 </motion.button>
                 <motion.button
                   className={`${styles.navButton} ${activeTab === 'settings' ? styles.active : ''}`}
@@ -227,7 +217,6 @@ export default function Profile() {
                 {activeTab === 'reservations' && <ProfileReservations />}
                 {activeTab === 'orders' && <ProfileOrders />}
                 {activeTab === 'favorites' && <ProfileFavorites />}
-                {activeTab === 'billing' && <ProfileBilling />}
                 {activeTab === 'settings' && <ProfileSettings user={user} />}
                 {activeTab === 'twoFa' && <TowFactorAuth />}
               </motion.div>

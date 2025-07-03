@@ -5,7 +5,7 @@ const adminApiUrl = process.env.NEXT_PUBLIC_ADMIN_API_URL;
 // Get User Token
 async function getCookieStore() {
     const cookieStore = await cookies();
-    const userToken = cookieStore.get("userToken").value;
+    const userToken = cookieStore.get("userToken")?.value;
     return userToken;
 }
 

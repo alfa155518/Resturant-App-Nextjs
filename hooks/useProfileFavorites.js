@@ -1,24 +1,16 @@
 "use client";
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from '@/store/UserProvider';
 
 export default function useProfileFavorites() {
-  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const { favoriteProducts, handelRemoveFavoriteProduct } = useContext(UserContext);
 
-  useEffect(() => {
-    // Set loading state while we wait for favoriteProducts to be populated
-    if (favoriteProducts && favoriteProducts.length > 0) {
-      setLoading(false);
-    }
-  }, [favoriteProducts]);
-
   // Convert favoriteProducts to array if it's an object with numeric keys
-  const favoriteProductsArray = Array.isArray(favoriteProducts) 
-    ? favoriteProducts 
+  const favoriteProductsArray = Array.isArray(favoriteProducts)
+    ? favoriteProducts
     : Object.values(favoriteProducts || {});
 
   // Extract unique categories from favorite products
@@ -56,7 +48,6 @@ export default function useProfileFavorites() {
   };
 
   return {
-    loading,
     searchTerm,
     setSearchTerm,
     activeCategory,

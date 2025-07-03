@@ -13,7 +13,7 @@ export async function addProductInCart(formData) {
   serverFormData.append("attributes", formData["attributes"]);
 
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
 
   const response = await fetch(`${apiUrl}/cart`, {
     method: "POST",
@@ -36,7 +36,7 @@ export async function addProductInCart(formData) {
 // Retrieve To product in Cart
 export async function getCartItems() {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   try {
     const res = await fetch(`${apiUrl}/cart`, {
       method: "GET",
@@ -64,7 +64,7 @@ export async function getCartItems() {
 // Update Product quantity
 export async function updateQuantity(productId, quantity) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/cart/${productId}`, {
     method: "PATCH",
     headers: {
@@ -85,7 +85,7 @@ export async function updateQuantity(productId, quantity) {
 // Remove Product From Cart
 export async function removeItem(productId) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/cart/${productId}`, {
     method: "DELETE",
     headers: {
@@ -103,7 +103,7 @@ export async function removeItem(productId) {
 // Proceed To Checkout
 export async function ProceedToCheckout(cartItems) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/payment`, {
     method: "POST",
     headers: {
@@ -126,7 +126,7 @@ export async function ProceedToCheckout(cartItems) {
 // verify Payment
 export async function verifyPayment(sessionId) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(
     `${apiUrl}/payment/verify?session_id=${sessionId}`,
     {

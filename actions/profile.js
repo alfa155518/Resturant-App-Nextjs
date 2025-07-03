@@ -6,7 +6,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 // User Checkout Products
 export async function userCheckoutProducts() {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/checkouts/products`, {
     headers: {
       Authorization: `Bearer ${userToken}`,
@@ -24,8 +24,14 @@ export async function userCheckoutProducts() {
 // Reserve Table
 export async function reserveTable(clientData, id) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
-
+  const userToken = cookieStore.get("userToken")?.value;
+  // Check if user is authenticated
+  if (!userToken) {
+    return {
+      status: 'error',
+      errors: ['You must be Logged In']
+    };
+  }
   const serverFormData = new FormData();
 
   serverFormData.append("arrival_day", clientData["day"]);
@@ -46,7 +52,6 @@ export async function reserveTable(clientData, id) {
   });
 
   const data = await response.json();
-  console.log(data);
   return data;
 }
 
@@ -54,7 +59,7 @@ export async function reserveTable(clientData, id) {
 // Reservations
 export async function reservations() {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/reservations`, {
     headers: {
       Authorization: `Bearer ${userToken}`,
@@ -71,7 +76,7 @@ export async function reservations() {
 // Cancel Reservation
 export async function cancelReservation(id) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/reservations/${id}`, {
     method: "DELETE",
     headers: {
@@ -101,7 +106,7 @@ export async function checkReservationSession(clientData) {
   serverFormData.append("guest_count", clientData.guest_count);
 
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
 
   const response = await fetch(`${apiUrl}/checkouts/reservation`, {
     method: "POST",
@@ -121,7 +126,7 @@ export async function checkReservationSession(clientData) {
 export async function verifyPaymentSession(sessionId, reservationId) {
 
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(
     `${apiUrl}/checkouts/reservation/verify?session_id=${sessionId}`,
     {
@@ -141,7 +146,7 @@ export async function verifyPaymentSession(sessionId, reservationId) {
 // Get Favorite Products
 export async function getFavoriteProducts() {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/favoriteProducts`, {
     headers: {
       Authorization: `Bearer ${userToken}`,
@@ -158,8 +163,7 @@ export async function getFavoriteProducts() {
 // Add Favorite Product
 export async function addFavoriteProduct(productId) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
-  console.log(productId);
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/favoriteProducts`, {
     method: "POST",
     headers: {
@@ -181,7 +185,7 @@ export async function addFavoriteProduct(productId) {
 // Remove Favorite Product
 export async function removeFavoriteProduct(productId) {
   const cookieStore = await cookies();
-  const userToken = cookieStore.get("userToken").value;
+  const userToken = cookieStore.get("userToken")?.value;
   const response = await fetch(`${apiUrl}/favoriteProducts/${productId}`, {
     method: "DELETE",
     headers: {

@@ -1,4 +1,5 @@
-import AdminLayout from '@/components/admin/AdminLayout';
+
+import ChildAdminLayout from '@/app/(pages)/admin/ChildAdminLayout';
 import { RestaurantSettingsProvider } from '@/store/RestaurantSettingsProvider';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { AdminMenuProvider } from '@/store/AdminMenuProvider';
@@ -7,6 +8,7 @@ import { AdminManagementReservationsProvider } from '@/store/AdminManagementRese
 import { AdminManageReviewsProvider } from '@/store/AdminManageReviews';
 import { AdminManagementCustomersProvider } from '@/store/AdminManagementCustomersProvider';
 import { AdminManageOrdersProvider } from '@/store/AdminManageOrdersProvider';
+import { AdminManageRecentProvider } from '@/store/AdminManageRecentProvider';
 
 
 
@@ -20,7 +22,9 @@ export default function AdminPageLayout({ children }) {
               <AdminMenuProvider>
                 <AdminManagementCustomersProvider>
                   <AdminManageOrdersProvider>
-                    <AdminLayout>{children}</AdminLayout>
+                    <AdminManageRecentProvider>
+                      <ChildAdminLayout>{children}</ChildAdminLayout>
+                    </AdminManageRecentProvider>
                   </AdminManageOrdersProvider>
                 </AdminManagementCustomersProvider>
               </AdminMenuProvider>

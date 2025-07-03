@@ -3,35 +3,21 @@ import { motion } from "framer-motion";
 import { UserContext } from "@/store/UserProvider";
 import Image from "next/image";
 import {
-  FaShoppingBag,
   FaCalendarAlt,
   FaClock,
   FaMoneyBillWave,
 } from "react-icons/fa";
 export default function OrderHistoryContent({ styles }) {
   const {
-    searchTerm,
     openOrderDetails,
     getStatusText,
     filteredOrders,
-    activeFilter,
     getStatusIcon,
-    checkoutHistory,
   } = useContext(UserContext);
 
-  return checkoutHistory.items?.length === 0 ? (
-    <div className={styles.emptyState}>
-      <FaShoppingBag className={styles.emptyIcon} />
-      <h3>No orders found</h3>
-      <p>
-        {searchTerm
-          ? `No orders match your search for "${searchTerm}"`
-          : `You don't have any ${
-              activeFilter !== "all" ? activeFilter : ""
-            } orders yet.`}
-      </p>
-    </div>
-  ) : (
+
+
+  return (
     <div className={styles.ordersList}>
       {filteredOrders?.map((order, index) => (
         <motion.div
@@ -60,9 +46,8 @@ export default function OrderHistoryContent({ styles }) {
               </div>
             </div>
             <div
-              className={`${styles.orderStatus} ${
-                styles[order.checkout.payment_status]
-              }`}>
+              className={`${styles.orderStatus} ${styles[order.checkout.payment_status]
+                }`}>
               {getStatusIcon(order.checkout.payment_status)}
               <span>{getStatusText(order.checkout.payment_status)}</span>
             </div>
@@ -73,7 +58,7 @@ export default function OrderHistoryContent({ styles }) {
             <div className={styles.orderItem}>
               <div className={styles.itemImage}>
                 <Image
-                  src={order.image}
+                  src={order.image || '/images/default-order.png'}
                   alt={order.product_name}
                   width={70}
                   height={70}
@@ -114,5 +99,5 @@ export default function OrderHistoryContent({ styles }) {
         </motion.div>
       ))}
     </div>
-  );
+  )
 }
