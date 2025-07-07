@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .adminDashboard {
   display: flex;
   min-height: 100vh;
@@ -274,6 +275,121 @@
 .published {
   background-color: #f5f0e9;
   color: #2ecc71;
+}
+
+.postMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  color: #f5f0e9;
+  align-items: center;
+}
+.postMeta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+.postMeta span svg {
+  color: #f39c12;
+  font-size: 1.1rem;
+}
+.postMeta span:not(:last-child)::after {
+  content: "•";
+  margin-left: 1rem;
+  color: rgba(159, 100, 60, 0.5);
+}
+@media (max-width: 576px) {
+  .postMeta {
+    font-size: 0.85rem;
+    gap: 0.75rem;
+  }
+  .postMeta span:not(:last-child)::after {
+    margin-left: 0.75rem;
+  }
+}
+
+.postReactions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(44, 44, 44, 0.1);
+}
+.postReactions .reactionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(44, 44, 44, 0.05);
+  border: 1px solid rgba(44, 44, 44, 0.1);
+  border-radius: 20px;
+  color: #9f643c;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+.postReactions .reactionButton:hover {
+  background: rgba(44, 44, 44, 0.1);
+  transform: translateY(-1px);
+}
+.postReactions .reactionButton.active {
+  background: rgba(159, 100, 60, 0.1);
+  border-color: rgba(159, 100, 60, 0.2);
+  color: #9f643c;
+}
+.postReactions .reactionButton svg {
+  font-size: 1rem;
+}
+.postReactions .reactionButton:first-child.active {
+  color: #2ecc71;
+  background: rgba(46, 204, 113, 0.1);
+  border-color: rgba(46, 204, 113, 0.2);
+}
+.postReactions .reactionButton:last-child.active {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+  border-color: rgba(231, 76, 60, 0.2);
+}
+
+.viewAllComments {
+  display: inline-block;
+  color: #f5f0e9;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  margin: 1rem auto 0;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  background: rgba(159, 100, 60, 0.1);
+  border: 1px solid rgba(159, 100, 60, 0.3);
+  color: #9f643c;
+  align-self: center;
+  outline: none;
+  width: auto;
+  min-width: 200px;
+}
+.viewAllComments:hover {
+  background: rgba(159, 100, 60, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.viewAllComments:active {
+  transform: translateY(0);
 }
 
 .draft {

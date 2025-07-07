@@ -2,72 +2,357 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiSearch, FiFilter, FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiCalendar, FiUser, FiImage, FiEye, FiTag, FiSave } from 'react-icons/fi';
+import { FiSearch, FiFilter, FiPlus, FiEdit2, FiTrash2, FiX, FiCheck, FiCalendar, FiUser, FiImage, FiEye, FiTag, FiSave, FiMessageSquare, FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 import styles from '../../src/css/admin-blog.module.css';
 
 export default function Blog() {
+  // State to track which posts have expanded comments
+  const [expandedComments, setExpandedComments] = useState({});
+
+  // Toggle comments visibility for a post
+  const toggleComments = (postId) => {
+    setExpandedComments(prev => ({
+      ...prev,
+      [postId]: !prev[postId]
+    }));
+  };
+
+  // Handle like action
+  const handleLike = (postId) => {
+    setBlogPosts(prevPosts =>
+      prevPosts.map(post => {
+        if (post.id !== postId) return post;
+
+        const isLiked = post.likes.includes(currentUserId);
+        const isDisliked = post.dislikes.includes(currentUserId);
+
+        let newLikes = [...post.likes];
+        let newDislikes = [...post.dislikes];
+
+        if (isLiked) {
+          // Remove like if already liked
+          newLikes = newLikes.filter(id => id !== currentUserId);
+        } else {
+          // Add like
+          newLikes = [...newLikes, currentUserId];
+          // Remove from dislikes if previously disliked
+          if (isDisliked) {
+            newDislikes = newDislikes.filter(id => id !== currentUserId);
+          }
+        }
+
+        return {
+          ...post,
+          likes: newLikes,
+          dislikes: newDislikes
+        };
+      })
+    );
+  };
+
+  // Handle dislike action
+  const handleDislike = (postId) => {
+    setBlogPosts(prevPosts =>
+      prevPosts.map(post => {
+        if (post.id !== postId) return post;
+
+        const isLiked = post.likes.includes(currentUserId);
+        const isDisliked = post.dislikes.includes(currentUserId);
+
+        let newLikes = [...post.likes];
+        let newDislikes = [...post.dislikes];
+
+        if (isDisliked) {
+          // Remove dislike if already disliked
+          newDislikes = newDislikes.filter(id => id !== currentUserId);
+        } else {
+          // Add dislike
+          newDislikes = [...newDislikes, currentUserId];
+          // Remove from likes if previously liked
+          if (isLiked) {
+            newLikes = newLikes.filter(id => id !== currentUserId);
+          }
+        }
+
+        return {
+          ...post,
+          likes: newLikes,
+          dislikes: newDislikes
+        };
+      })
+    );
+  };
+
   // Sample blog posts data
+  const [currentUserId] = useState(1); // This would typically come from your auth context
+
   const [blogPosts, setBlogPosts] = useState([
     {
       id: 1,
-      title: 'Seasonal Menu: Spring Delights',
-      excerpt: 'Discover our new spring menu featuring fresh, seasonal ingredients and innovative dishes.',
-      content: '<p>Spring has arrived, and with it comes a bounty of fresh, seasonal ingredients that inspire our chefs to create innovative and delightful dishes.</p><p>Our new spring menu celebrates the vibrant flavors of the season, featuring locally-sourced produce, tender spring vegetables, and aromatic herbs.</p><p>From our delicate asparagus risotto to our succulent lamb with mint pesto, each dish is crafted to showcase the best of spring\'s offerings.</p><p>Join us for a culinary journey through the season\'s finest ingredients and experience the freshness and vitality of spring on your plate.</p>',
-      image: '/images/blog/blog-1.1.webp',
-      author: 'Chef Maria Rodriguez',
-      publishDate: '2025-04-15',
-      category: 'Menu Updates',
-      tags: ['spring', 'seasonal', 'fresh ingredients'],
-      status: 'Published'
+      likes: [1, 2, 3],
+      dislikes: [4],
+      title: "Seasonal Menu: Spring Delights",
+      excerpt: "Discover our new spring menu featuring fresh, seasonal ingredients and innovative dishes.",
+      content: "<p>Spring has arrived, and with it comes a bounty of fresh, seasonal ingredients that inspire our chefs to create innovative and delightful dishes.</p><p>Our new spring menu celebrates the vibrant flavors of the season, featuring locally-sourced produce, tender spring vegetables, and aromatic herbs.</p><p>From our delicate asparagus risotto to our succulent lamb with mint pesto, each dish is crafted to showcase the best of spring's offerings.</p><p>Join us for a culinary journey through the season's finest ingredients and experience the freshness and vitality of spring on your plate.</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570614/blogs/Seasonal-Menu-Spring-Delights_kuxz4o.webp",
+      author: "Chef Maria Rodriguez",
+      publishDate: "2025-04-15",
+      category: "Menu Updates",
+      tags: ["spring", "seasonal", "fresh ingredients"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "John Doe", content: "The spring menu is absolutely amazing! The lamb with mint pesto was to die for.", date: "2025-04-16T14:30:00Z" },
+        { id: 2, name: "Sarah Johnson", content: "Can’t wait to try the new asparagus risotto next week!", date: "2025-04-17T09:15:00Z" },
+        { id: 3, name: "Sarah Johnson", content: "Can’t wait to try the new asparagus risotto next week!", date: "2025-04-17T09:15:00Z" },
+        { id: 4, name: "Sarah Johnson", content: "Can’t wait to try the new asparagus risotto next week!", date: "2025-04-17T09:15:00Z" },
+        { id: 5, name: "Sarah Johnson", content: "Can’t wait to try the new asparagus risotto next week!", date: "2025-04-17T09:15:00Z" }
+      ]
     },
     {
       id: 2,
-      title: 'Behind the Scenes: Meet Our Pastry Chef',
-      excerpt: 'Get to know the creative mind behind our delectable desserts and pastries.',
-      content: '<p>In this exclusive behind-the-scenes look, we introduce you to the creative genius behind our award-winning desserts, Pastry Chef Thomas Laurent.</p><p>With over 15 years of experience in some of the world\'s most prestigious kitchens, Chef Thomas brings a unique blend of classical technique and innovative vision to our dessert menu.</p><p>"Dessert should be a memorable finale to the dining experience," says Chef Thomas. "I aim to create desserts that surprise and delight, while honoring traditional flavors."</p><p>His signature chocolate soufflé has become our most requested dessert, with its perfectly crisp exterior and molten, velvety center.</p><p>Join us for dinner and experience the magic of Chef Thomas\'s creations for yourself.</p>',
-      image: '/images/chief.webp',
-      author: 'Emma Thompson',
-      publishDate: '2025-04-02',
-      category: 'Staff Spotlight',
-      tags: ['pastry', 'desserts', 'chef interview'],
-      status: 'Published'
+      likes: [5, 6],
+      dislikes: [7],
+      title: "Summer Cocktails: Refreshing New Drinks",
+      excerpt: "Beat the heat with our new summer cocktail menu, crafted with fresh fruits and bold flavors.",
+      content: "<p>Summer is here, and our mixologists have been hard at work creating a lineup of refreshing cocktails to keep you cool.</p><p>From our zesty citrus mojito to our tropical mango margarita, each drink is designed to complement the warm weather with vibrant, fresh flavors.</p><p>We’ve sourced the juiciest fruits and paired them with premium spirits to elevate your summer dining experience.</p><p>Visit us this week to sip on these refreshing creations!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570615/blogs/Summer-Cocktails-Refreshing-New-Drinks_njf3w7.webp",
+      author: "Mixologist James Carter",
+      publishDate: "2025-06-01",
+      category: "Beverages",
+      tags: ["summer", "cocktails", "refreshing"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Emily Chen", content: "The mango margarita is a game-changer! So refreshing!", date: "2025-06-02T17:45:00Z" },
+        { id: 2, name: "Michael Lee", content: "Loved the citrus mojito, perfect for summer evenings.", date: "2025-06-03T12:20:00Z" }
+      ]
     },
     {
       id: 3,
-      title: 'Wine Pairing: Enhancing Your Dining Experience',
-      excerpt: 'Learn the art of wine pairing from our sommelier to elevate your meal.',
-      content: '<p>The right wine can transform a great meal into an unforgettable dining experience. In this guide, our head sommelier James Wilson shares his expertise on the art of wine pairing.</p><p>"Wine pairing isn\'t about rigid rules," James explains. "It\'s about finding harmonious combinations that enhance both the food and the wine."</p><p>For lighter dishes like our seafood selections, James recommends crisp white wines such as Sauvignon Blanc or Albariño. Their bright acidity complements the delicate flavors of the sea.</p><p>With our robust meat dishes, bold red wines like Cabernet Sauvignon or Syrah create a perfect balance, their tannins cutting through the richness of the meat.</p><p>Don\'t be afraid to experiment and discover your own perfect pairings. Our staff is always happy to offer recommendations based on your preferences and meal selection.</p>',
-      image: '/images/auhers/auther-1.webp',
-      author: 'James Wilson',
-      publishDate: '2025-03-20',
-      category: 'Wine & Beverages',
-      tags: ['wine', 'pairing', 'sommelier tips'],
-      status: 'Published'
+      likes: [8, 9, 10],
+      dislikes: [1, 11],
+      title: "Fall Harvest: New Seasonal Dishes",
+      excerpt: "Our fall menu highlights the rich, warm flavors of the season with hearty dishes.",
+      content: "<p>As the leaves turn, our kitchen embraces the cozy flavors of fall with a new menu inspired by the harvest.</p><p>Think roasted root vegetables, savory pumpkin soups, and our signature apple cider-glazed pork.</p><p>Each dish is crafted to bring warmth and comfort to your dining experience, using ingredients sourced from local farms.</p><p>Join us to savor the essence of autumn!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570610/blogs/New-Seasonal-Dishes_c81mwl.webp",
+      author: "Chef Liam Thompson",
+      publishDate: "2025-09-10",
+      category: "Menu Updates",
+      tags: ["fall", "harvest", "seasonal"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Anna Patel", content: "The pumpkin soup was incredible! Perfect for fall.", date: "2025-09-11T10:00:00Z" }
+      ]
     },
     {
       id: 4,
-      title: 'Upcoming Event: Summer Barbecue Festival',
-      excerpt: 'Join us for a weekend of grilling, music, and summer fun in our garden.',
-      content: '<p>We\'re excited to announce our first annual Summer Barbecue Festival, taking place in our garden terrace on June 15-16, 2025.</p><p>This two-day event will feature a variety of grilling stations where our chefs will showcase different barbecue techniques from around the world, from American slow-smoked brisket to Argentine asado and Japanese yakitori.</p><p>Live music from local bands will create the perfect summer atmosphere, while our mixologists will be serving up refreshing cocktails designed specifically for the event.</p><p>Tickets are $75 per person and include food tastings from all stations and two complimentary drinks. Space is limited, so we recommend booking early to avoid disappointment.</p>',
-      image: '/images/offers/autumn-risotto.webp',
-      author: 'Event Team',
-      publishDate: '2025-05-10',
-      category: 'Events',
-      tags: ['summer', 'barbecue', 'festival', 'event'],
-      status: 'Draft'
+      likes: [12, 13],
+      dislikes: [14, 15, 16],
+      title: "Winter Warmers: Cozy Comfort Foods",
+      excerpt: "Warm up this winter with our hearty, soul-warming dishes designed for cold days.",
+      content: "<p>Winter calls for comfort, and our new menu delivers with rich, hearty dishes that warm the soul.</p><p>From our slow-braised beef stew to our creamy truffle macaroni, every bite is crafted to bring coziness to your table.</p><p>We’ve also introduced a hot spiced mulled wine to pair perfectly with these dishes.</p><p>Come in from the cold and enjoy a meal that feels like a warm hug!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570609/blogs/Cozy-Comfort-Foods_uvdyrj.webp",
+      author: "Chef Olivia Grant",
+      publishDate: "2025-12-01",
+      category: "Menu Updates",
+      tags: ["winter", "comfort food", "hearty"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "David Kim", content: "The beef stew was amazing, but the mulled wine stole the show!", date: "2025-12-02T19:10:00Z" },
+        { id: 2, name: "Lisa Wong", content: "Not a fan of the truffle mac, but the stew was great.", date: "2025-12-03T08:50:00Z" }
+      ]
     },
     {
       id: 5,
-      title: 'Sustainable Practices in Our Kitchen',
-      excerpt: 'Discover how we\'re reducing our environmental footprint through sustainable kitchen practices.',
-      content: '<p>At Gourmet Haven, we\'re committed to reducing our environmental impact through sustainable practices in every aspect of our operation.</p><p>Our journey toward sustainability begins with sourcing. We partner with local farmers who practice sustainable agriculture, reducing food miles and supporting our local economy.</p><p>In the kitchen, we\'ve implemented a comprehensive waste reduction program. Vegetable scraps become flavorful stocks, while unavoidable food waste is composted and returned to the farms that supply our produce.</p><p>We\'ve also invested in energy-efficient equipment and water-saving technologies, significantly reducing our resource consumption.</p><p>These efforts not only benefit the environment but also enhance the quality and flavor of our dishes. When ingredients are fresh, local, and produced with care, you can taste the difference.</p>',
-      image: '/images/gallery/restaurant-interior.webp',
-      author: 'Chef Daniel Park',
-      publishDate: '2025-03-05',
-      category: 'Sustainability',
-      tags: ['eco-friendly', 'sustainable', 'local sourcing'],
-      status: 'Published'
+      likes: [17, 18, 19, 20],
+      dislikes: [21],
+      title: "Farm-to-Table: Our Local Sourcing Story",
+      excerpt: "Learn about our commitment to sourcing ingredients from local farms and producers.",
+      content: "<p>At our restaurant, we believe in supporting local farmers and bringing the freshest ingredients to your plate.</p><p>Our farm-to-table philosophy ensures that every dish is made with care, using produce, meats, and dairy from nearby farms.</p><p>From crisp greens to succulent meats, every ingredient tells a story of quality and sustainability.</p><p>Join us to experience the difference that local sourcing makes!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570613/blogs/Our-Local-Sourcing-Story_fsnqkf.webp",
+      author: "Manager Sarah Brooks",
+      publishDate: "2025-03-20",
+      category: "Sustainability",
+      tags: ["farm-to-table", "local", "sustainability"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Rachel Green", content: "Love knowing my food comes from local farms!", date: "2025-03-21T11:25:00Z" }
+      ]
     },
+    {
+      id: 6,
+      likes: [22, 23],
+      dislikes: [],
+      title: "Vegan Delights: New Plant-Based Menu",
+      excerpt: "Explore our new vegan menu, packed with bold flavors and creative dishes.",
+      content: "<p>We’re excited to introduce our new vegan menu, designed to delight plant-based diners and foodies alike.</p><p>From our creamy cashew-based pasta to our roasted vegetable quinoa bowl, every dish is bursting with flavor.</p><p>We’ve worked closely with local producers to ensure every ingredient is fresh and sustainable.</p><p>Come try our vegan creations and discover a new favorite!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570610/blogs/New-Plant-Based-Menu_eef3cd.webp",
+      author: "Chef Emma Davis",
+      publishDate: "2025-05-05",
+      category: "Menu Updates",
+      tags: ["vegan", "plant-based", "healthy"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Tom Nguyen", content: "The quinoa bowl is my new go-to! So flavorful!", date: "2025-05-06T13:40:00Z" },
+        { id: 2, name: "Clara Smith", content: "Finally, a vegan menu that doesn’t compromise on taste!", date: "2025-05-07T09:00:00Z" }
+      ]
+    },
+    {
+      id: 7,
+      likes: [24, 25, 26, 27],
+      dislikes: [28],
+      title: "Wine Pairing Nights: A Taste of Elegance",
+      excerpt: "Join us for exclusive wine pairing evenings with our curated menu.",
+      content: "<p>Elevate your dining experience with our monthly wine pairing nights, where our sommelier pairs exquisite wines with a curated menu.</p><p>Each course is thoughtfully designed to complement the wine’s unique profile, from crisp whites to bold reds.</p><p>Our next event features a five-course tasting menu with wines from renowned vineyards.</p><p>Reserve your spot for an evening of elegance and flavor!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570609/blogs/A-Taste-of-Elegance_v7jman.webp",
+      author: "Sommelier Claire Dubois",
+      publishDate: "2025-07-12",
+      category: "Events",
+      tags: ["wine", "pairing", "events"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Mark Evans", content: "The wine pairing was fantastic! Can’t wait for the next one.", date: "2025-07-13T20:15:00Z" }
+      ]
+    },
+    {
+      id: 8,
+      likes: [29, 30],
+      dislikes: [31],
+      title: "Behind the Scenes: Meet Our Chefs",
+      excerpt: "Get to know the talented chefs behind our innovative dishes.",
+      content: "<p>Our kitchen is powered by a team of passionate chefs who bring creativity and expertise to every dish.</p><p>From classically trained culinary artists to innovative flavor creators, our team is dedicated to making your dining experience unforgettable.</p><p>Learn about their inspirations, training, and favorite dishes in this exclusive feature.</p><p>Come meet the faces behind the food!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570609/blogs/Meet-Our-Chefs_sqdd5x.webp",
+      author: "Editor Jane Miller",
+      publishDate: "2025-02-10",
+      category: "Our Team",
+      tags: ["chefs", "behind the scenes", "culinary"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Laura Brown", content: "Loved learning about the chefs! So much talent.", date: "2025-02-11T15:30:00Z" }
+      ]
+    },
+    {
+      id: 9,
+      likes: [32, 33, 34, 35],
+      dislikes: [],
+      title: "Dessert Dreams: New Sweet Creations",
+      excerpt: "Indulge in our new dessert menu, featuring decadent treats for every sweet tooth.",
+      content: "<p>Our pastry chefs have outdone themselves with our new dessert menu, designed to satisfy every sweet craving.</p><p>From our silky chocolate mousse to our tangy lemon tart, each dessert is a work of art.</p><p>Pair your treat with one of our specialty coffees or dessert wines for the perfect finish.</p><p>Come indulge in a sweet escape!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570610/blogs/New-Sweet-Creations_wb5hzs.webp",
+      author: "Pastry Chef Sophie Lee",
+      publishDate: "2025-08-20",
+      category: "Menu Updates",
+      tags: ["desserts", "sweets", "pastry"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Sophie Carter", content: "The lemon tart was divine! Perfect balance of flavors.", date: "2025-08-21T16:50:00Z" },
+        { id: 2, name: "James Wilson", content: "Chocolate mousse was a bit too rich for me, but beautifully made.", date: "2025-08-22T10:10:00Z" }
+      ]
+    },
+    {
+      id: 10,
+      likes: [36, 37, 38, 39],
+      dislikes: [40],
+      title: "Sustainable Seafood: Ocean-Friendly Choices",
+      excerpt: "Discover our new seafood menu, sourced sustainably from responsible fisheries.",
+      content: "<p>We’re committed to protecting our oceans, which is why our new seafood menu features only sustainably sourced fish and shellfish.</p><p>From our grilled wild-caught salmon to our seared scallops, each dish is both delicious and environmentally responsible.</p><p>We work with certified fisheries to ensure every bite supports ocean health.</p><p>Dive into our new menu today!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570613/blogs/Ocean-Friendly-Choices_aiaw3y.webp",
+      author: "Chef Noah Adams",
+      publishDate: "2025-06-15",
+      category: "Sustainability",
+      tags: ["seafood", "sustainability", "ocean-friendly"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Ella Foster", content: "The scallops were amazing, and I love the sustainability focus!", date: "2025-06-16T18:20:00Z" }
+      ]
+    },
+    {
+      id: 11,
+      likes: [41, 42],
+      dislikes: [43, 44, 45],
+      title: "Brunch Bliss: New Weekend Menu",
+      excerpt: "Start your weekend with our new brunch menu, packed with bold flavors.",
+      content: "<p>Weekends just got tastier with our new brunch menu, featuring both classic and innovative dishes.</p><p>From fluffy pancakes with seasonal berries to our savory avocado toast with poached eggs, there’s something for everyone.</p><p>Pair your meal with our signature mimosas or freshly brewed coffee.</p><p>Join us for a brunch experience like no other!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570612/blogs/New-Weekend-Menu_iq9mw5.webp",
+      author: "Chef Mia Clark",
+      publishDate: "2025-04-25",
+      category: "Menu Updates",
+      tags: ["brunch", "weekend", "breakfast"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Chris Taylor", content: "The pancakes were fluffy perfection!", date: "2025-04-26T11:00:00Z" },
+        { id: 2, name: "Kelly Adams", content: "Avocado toast was good, but a bit overpriced.", date: "2025-04-27T09:30:00Z" }
+      ]
+    },
+    {
+      id: 12,
+      likes: [46, 47],
+      dislikes: [],
+      title: "Craft Beer Pairings: A New Experience",
+      excerpt: "Explore our new craft beer pairings, curated to complement our bold dishes.",
+      content: "<p>We’ve partnered with local breweries to bring you a unique craft beer pairing experience.</p><p>From hoppy IPAs to smooth stouts, each beer is selected to enhance the flavors of our dishes, like our spicy chicken sliders or smoked brisket.</p><p>Our beer experts are here to guide you through the pairings for a perfect meal.</p><p>Raise a glass to great food and great brews!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570609/blogs/Craft-Beer-Pairings-A-New-Experience_d5spfo.webp",
+      author: "Beer Expert Ryan Patel",
+      publishDate: "2025-07-25",
+      category: "Beverages",
+      tags: ["craft beer", "pairings", "local"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Sam Rivera", content: "The IPA with the sliders was a match made in heaven!", date: "2025-07-26T19:00:00Z" }
+      ]
+    },
+    {
+      id: 13,
+      likes: [48, 49, 50],
+      dislikes: [51],
+      title: "Kids’ Menu: Fun and Flavorful Options",
+      excerpt: "Our new kids’ menu is designed to please even the pickiest eaters.",
+      content: "<p>Dining with the family? Our new kids’ menu is packed with fun, flavorful options that kids will love.</p><p>From mini gourmet burgers to cheesy pasta bakes, every dish is made with fresh ingredients and kid-friendly flavors.</p><p>We’ve also added healthy sides like carrot sticks and fruit cups.</p><p>Bring the whole family for a meal everyone will enjoy!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570609/blogs/Kids-Menu-Fun-and-Flavorful-Options_imgtqa.webp",
+      author: "Chef Lily Evans",
+      publishDate: "2025-03-15",
+      category: "Menu Updates",
+      tags: ["kids", "family", "healthy"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Megan Hall", content: "My kids loved the mini burgers! Great options.", date: "2025-03-16T12:45:00Z" }
+      ]
+    },
+    {
+      id: 14,
+      likes: [52, 53, 54],
+      dislikes: [55],
+      title: "Cooking Classes: Learn from Our Chefs",
+      excerpt: "Join our new cooking classes and learn to cook like a pro with our chefs.",
+      content: "<p>Want to elevate your cooking skills? Our new cooking classes offer hands-on lessons with our talented chefs.</p><p>Learn techniques for everything from pasta-making to dessert artistry, using fresh, seasonal ingredients.</p><p>Classes are open to all skill levels, and you’ll leave with new recipes and confidence.</p><p>Sign up today for a fun, flavorful experience!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570609/blogs/Learn-from-Our-Chefs_hoofry.webp",
+      author: "Chef Daniel Kim",
+      publishDate: "2025-05-30",
+      category: "Events",
+      tags: ["cooking classes", "learn", "culinary"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Grace Lee", content: "The pasta-making class was so much fun! Learned a lot.", date: "2025-05-31T14:20:00Z" },
+        { id: 2, name: "Ethan Moore", content: "Can’t wait for the dessert class next month!", date: "2025-06-01T10:15:00Z" }
+      ]
+    },
+    {
+      id: 15,
+      likes: [62, 63],
+      dislikes: [64, 65, 66],
+      title: "Holiday Feasts: Special Menus for the Season",
+      excerpt: "Celebrate the holidays with our special menus, perfect for festive gatherings.",
+      content: "<p>The holiday season is upon us, and we’re excited to unveil our special holiday menus.</p><p>From roasted turkey with all the trimmings to our decadent yule log dessert, each dish is crafted to bring joy to your celebrations.</p><p>We’re also offering festive cocktails and mocktails to toast the season.</p><p>Book your holiday gathering with us today!</p>",
+      image: "https://res.cloudinary.com/duumkzqwx/image/upload/v1751570615/blogs/Special-Menus-for-the-Season_y10itb.webp",
+      author: "Chef Isabella Wong",
+      publishDate: "2025-11-15",
+      category: "Menu Updates",
+      tags: ["holidays", "festive", "celebration"],
+      status: "Published",
+      comments: [
+        { id: 1, name: "Olivia Scott", content: "The holiday menu looks amazing! Already booked our table.", date: "2025-11-16T13:30:00Z" },
+        { id: 2, name: "Henry Davis", content: "The yule log dessert was a highlight of our meal!", date: "2025-11-17T09:40:00Z" }
+      ]
+    }
   ]);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -113,7 +398,8 @@ export default function Blog() {
       ...newPost,
       id: blogPosts.length + 1,
       publishDate: new Date().toISOString().split('T')[0],
-      tags: tagsArray
+      tags: tagsArray,
+      comments: []
     };
 
     setBlogPosts([...blogPosts, postToAdd]);
@@ -280,15 +566,6 @@ export default function Blog() {
                 <div className={styles.blogContent}>
                   <h3 className={styles.blogTitle}>{post.title}</h3>
 
-                  <div className={styles.blogMeta}>
-                    <span className={styles.blogAuthor}>
-                      <FiUser /> {post.author}
-                    </span>
-                    <span className={styles.blogDate}>
-                      <FiCalendar /> {formatDate(post.publishDate)}
-                    </span>
-                  </div>
-
                   <p className={styles.blogExcerpt}>{post.excerpt}</p>
 
                   <div className={styles.blogCategory}>
@@ -300,6 +577,75 @@ export default function Blog() {
                       <span key={index} className={styles.tagBadge}>{tag}</span>
                     ))}
                   </div>
+
+                  {/* <div className={styles.commentsSection}>
+                    <div className={styles.commentsHeader}>
+                      <FiMessageSquare className={styles.commentIcon} />
+                      <span>{post.comments.length} {post.comments.length === 1 ? 'Comment' : 'Comments'}</span>
+                    </div>
+
+                    <div className={styles.commentsList}>
+                      {post.comments.slice(0, expandedComments[post.id] ? post.comments.length : 2).map(comment => (
+                        <div key={comment.id} className={styles.commentItem}>
+                          <div className={styles.commentHeader}>
+                            <div className={styles.commentId}>#{comment.id}</div>
+                            <div className={styles.commentAuthor}>
+                              <span>{comment.name}</span>
+                            </div>
+                            <div className={styles.commentDate}>
+                              {new Date(comment.date).toLocaleString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              })}
+                            </div>
+                          </div>
+                          <div className={styles.commentContent}>
+                            {comment.content}
+                          </div>
+                        </div>
+                      ))}
+                      {post.comments.length > 2 && (
+                        <button 
+                          className={styles.viewAllComments}
+                          onClick={() => toggleComments(post.id)}
+                        >
+                          {expandedComments[post.id] 
+                            ? 'Hide comments' 
+                            : `View all ${post.comments.length} comments`}
+                        </button>
+                      )}
+                    </div>
+                  </div> */}
+
+                  <div className={styles.postFooter}>
+                    <div className={styles.postMeta}>
+                      <span><FiCalendar /> {formatDate(post.publishDate)}</span>
+                      <span><FiUser /> {post.author}</span>
+                      <span><FiMessageSquare /> {post.comments.length} comments</span>
+                    </div>
+                    <div className={styles.postReactions}>
+                      <button
+                        className={`${styles.reactionButton} ${post.likes.includes(currentUserId) ? styles.active : ''}`}
+                        onClick={() => handleLike(post.id)}
+                        aria-label="Like this post"
+                      >
+                        <FiThumbsUp />
+                        <span>{post.likes.length}</span>
+                      </button>
+                      <button
+                        className={`${styles.reactionButton} ${post.dislikes.includes(currentUserId) ? styles.active : ''}`}
+                        onClick={() => handleDislike(post.id)}
+                        aria-label="Dislike this post"
+                      >
+                        <FiThumbsDown />
+                        <span>{post.dislikes.length}</span>
+                      </button>
+                    </div>
+                  </div>
+
                 </div>
 
                 <div className={styles.blogActions}>
@@ -636,8 +982,8 @@ export default function Blog() {
                         id="status"
                         className={styles.formSelect}
                       >
-                        <option value="Draft">Draft</option>
-                        <option value="Published">Published</option>
+                        <option value="draft">Draft</option>
+                        <option value="published">Published</option>
                       </select>
                     </div>
                   </form>

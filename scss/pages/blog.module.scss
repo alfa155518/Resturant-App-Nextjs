@@ -1,78 +1,74 @@
-@import "../helpers/mixins";
-@import "../helpers/variables";
+@import '../helpers/variables';
+@import '../helpers/mixins';
 
-
-
-@mixin flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-
-
+// Blog Container
 .blogContainer {
-  min-height: 100vh;
+  @include section-padding;
+  background-color: $dark-hover-color;
   color: $nature-light-color;
-  padding: 4rem 2rem;
-  
-  @media (width <= 768px) {
-    padding: 2rem 1rem;
-  }
+  min-height: 100vh;
+  padding-top: 6rem;
 }
 
+// Blog Header
 .blogHeader {
   @include sectionHeader;
 }
 
+// Blog Content Layout
 .blogContent {
   display: grid;
-  grid-template-columns: 1fr 350px;
+  grid-template-columns: 1fr;
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  
-  @media (width <= 1024px) {
-    grid-template-columns: 1fr;
+
+  @media (width >= 1024px) {
+    grid-template-columns: 1fr 300px;
   }
 }
 
+// Main Content Area
 .mainContent {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  width: 100%;
+}
+
+// Search and Filter
+.searchContainer {
+  margin-bottom: 2rem;
+  background: $dark-bg-card;
+  @include radius(12px);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .searchBar {
   position: relative;
-  margin-bottom: 1rem;
-  
-  input {
-    width: 100%;
-    padding: 1rem 1rem 1rem 3rem;
-    @include radius(50px);
-    border: none;
-    background-color: rgba($card-color, 0.8);
-    color: $nature-light-color;
-    font-size: 1.2rem;
-    
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba($primary-color, 0.5);
-    }
-    
-    &::placeholder {
-      color: rgba($nature-light-color, 0.6);
-    }
-  }
-  
+  margin-bottom: 1.5rem;
+
   .searchIcon {
     position: absolute;
     left: 1rem;
     top: 50%;
     @include translateY(-50%);
-    color: $primary-color;
+    color: $nature-light-color;
+  }
+
+  .searchInput {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 3rem;
+    background: $dark-bg-secondary;
+    border: 1px solid $dark-border-color;
+    @include radius(8px);
+    color: $white-color;
     font-size: 1.2rem;
+    @include transition(0.2s);
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
   }
 }
 
@@ -80,362 +76,440 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
-  
+
   .categoryButton {
     padding: 0.5rem 1rem;
-    @include radius(50px);
-    border: 1px solid rgba($primary-color, 0.3);
-    background-color: transparent;
+    background: $dark-bg-secondary;
+    border: 1px solid $dark-border-color;
+    @include radius(20px);
     color: $nature-light-color;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    @include transition(0.3s);
-    
+    @include transition(0.2s);
+
     &:hover {
-      background-color: rgba($primary-color, 0.1);
+      background: $dark-hover-color;
+      color: $white-color;
     }
-    
+
     &.active {
-      background-color: $primary-color;
+      background: $primary-color;
       color: $white-color;
       border-color: $primary-color;
     }
   }
 }
 
+// Blog Grid
 .blogGrid {
-  @include gridItems(300px) {
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  @media (width >= 640px) {
+    grid-template-columns: repeat(2, 1fr);
   }
-  @media (width <= 768px) {
-    grid-template-columns: 1fr;
+
+  @media (width >= 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width >= 1280px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
+// Blog Card
 .blogCard {
-  background-color: $card-color;
-  @include radius(12px);
+  @include dark-card;
   overflow: hidden;
-  @include card-shadow;
-  border: 1px solid rgba($primary-color, 0.1);
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
-.blogImageContainer {
-  position: relative;
-  height: 200px;
-  overflow: hidden;
-}
-
-.blogImage {
-  object-fit: cover;
-  @include transition(0.3s);
-  
-  .blogCard:hover & {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    -o-transform: scale(1.05);
-}
-}
-
-.blogCategory {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 2;
-  
-  span {
-    background: linear-gradient(90deg, $primary-color, $accent-tow-color);
-    color: $white-color;
-    padding: 0.3rem 0.8rem;
-    @include radius(50px);
-    font-size: 0.8rem;
-    font-weight: 600;
+  &:hover {
+    @include translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
-}
 
-.blogInfo {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  
-  h2 {
-    font-size: 1.3rem;
-    margin: 0.5rem 0;
-    color: $light-color;
-    font-size: 1.5rem;
-    font-weight: 800;
-    line-height: 1.4;
-  }
-  
-  p {
-    color: $nature-light-color;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    flex-grow: 1;
-  }
-}
-
-.blogMeta {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.8rem;
-  color: rgba($nature-light-color, 0.6);
-  margin-bottom: 0.5rem;
-  
-  span {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 1.1rem;
-  }
-}
-
-.blogTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  
-  .tag {
-    font-size: 1.1rem;
-    padding: 0.2rem 0.5rem;
-    @include radius(50px);
-    background-color: rgba($primary-color, 0.1);
-    color: rgba($nature-light-color, 0.8);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-}
-
-.readMoreLink {
-  align-self: flex-start;
-  color: #1a8fe3;
-  font-weight: 700;
-  position: relative;
-  padding-bottom: 2px;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #1a8fe3;
-    @include transition(0.3s);
-  }
-  
-  &:hover:after {
+  .cardImage {
+    position: relative;
     width: 100%;
-  }
-  &:hover {
-    color: #3ba9ff;
-  }
-}
+    padding-top: 60%; // 3:2 aspect ratio
+    overflow: hidden;
 
-.loadMoreContainer {
-  text-align: center;
-  margin-top: 2rem;
-}
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      @include transition(0.5s);
+    }
 
-.loadMoreButton {
-  background: linear-gradient(90deg, $primary-color, $accent-tow-color);
-  color: $white-color;
-  border: none;
-  padding: 0.8rem 2rem;
-  @include radius(50px);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  @include transition(0.3s);
-  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
-  
-  &:hover {
-    box-shadow: 0 6px 20px rgba($primary-color, 0.5);
-  }
-}
+    &:hover img {
+      @include scale(1.05);
+    }
 
-.noResults {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 3rem;
-  background-color: rgba($card-color, 0.5);
-  border-radius: 12px;
-  
-  h3 {
-    color: $light-color;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    .categoryBadge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: $warning-color;
+      color: $white-color;
+      padding: 0.25rem 0.75rem;
+      @include radius(20px);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
   }
-  
-  p {
-    color: $nature-light-color;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-}
 
-.sidebar {
-  @media (width <= 1024px) {
-    @include gridItems(300px) {
-      gap: 2rem;
+  .cardContent {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .postMeta {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+      color: $nature-light-color;
+
+      .metaItem {
+        display: flex;
+        align-items: center;
+
+        .metaIcon {
+          margin-right: 0.35rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .metaDivider {
+        margin: 0 0.5rem;
+        color: $white-color;
+      }
+    }
+
+    .postTitle {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+      font-weight: 600;
+
+      a {
+        color: $danger-color;
+        text-decoration: none;
+        @include transition(0.2s);
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .postExcerpt {
+      color: $white-color;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+
+      .tag {
+        display: flex;
+        align-items: center;
+        background: $primary-color;
+        color: $nature-light-color;
+        cursor: pointer;
+        padding: 0.25rem 0.75rem;
+        @include radius(20px);
+        font-size: 1rem;
+        font-weight: 600;
+        @include transition(0.2s);
+
+        &:hover {
+          @include translateY(-2px);
+        }
+
+        .tagIcon {
+          margin-right: 0.25rem;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .interactions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid $dark-text-primary;
+
+      .interactionButton {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: none;
+        border: none;
+        color: $white-color;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        @include transition(0.2s);
+
+        .icon {
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          color: $white-color;
+        }
+
+        &.liked {
+          color: $danger-color;
+        }
+
+        &.disliked {
+          color: $info-color;
+        }
+      }
+
+      .commentCount {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: $white-color;
+        font-size: 1.1rem;
+
+        .icon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .readMore {
+      display: inline-block;
+      margin-top: 1rem;
+      color: $primary-color;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 1.1rem;
+      @include transition(0.2s);
+
+      &:hover {
+        color: lighten($primary-color, 10%);
+        text-decoration: underline;
+      }
     }
   }
 }
 
-.sidebarSection {
-  background-color: $card-color;
+// Load More Button
+.loadMoreContainer {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+
+  .loadMore {
+    padding: 0.75rem 2rem;
+    background: $primary-color;
+    color: $white-color;
+    border: none;
+    @include radius(30px);
+    font-weight: 600;
+    cursor: pointer;
+    @include transition(0.3s);
+    box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+
+    &:hover {
+      background: darken($primary-color, 10%);
+      @include translateY(-2px);
+      box-shadow: 0 6px 20px rgba($primary-color, 0.4);
+    }
+
+    &:active {
+      @include translateY(0);
+    }
+  }
+}
+
+// No Results
+.noResults {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: $dark-bg-card;
+  @include radius(12px);
+
+  h3 {
+    color: $white-color;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  p {
+    color: $light-color;
+    font-size: 1.1rem;
+  }
+}
+
+// Sidebar
+.sidebar {
+  display: none;
+
+  @media (width >= 1024px) {
+    display: block;
+  }
+}
+
+.sidebarWidget {
+  background: $dark-bg-card;
   @include radius(12px);
   padding: 1.5rem;
   margin-bottom: 2rem;
-  border: 1px solid rgba($primary-color, 0.1);
-  
-  h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1.2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  .widgetTitle {
     color: $white-color;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid $dark-border-color;
     position: relative;
-    padding-bottom: 0.5rem;
-    
-    &:after {
+
+    &::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -2px;
       left: 0;
       width: 50px;
       height: 2px;
-      background: linear-gradient(90deg, $primary-color, $accent-tow-color);
+      background: $primary-color;
     }
   }
-}
 
-.popularPosts {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.popularPost {
-  display: flex;
-  gap: 1rem;
-  
-  .popularPostImage {
-    flex-shrink: 0;
-    
-    img {
-      @include radius(8px);
-    }
+  .widgetText {
+    color: $nature-light-color;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
   }
-  
-  .popularPostInfo {
-    h4 {
-      font-size: 1.3rem;
-      margin: 0 0 0.3rem;
-      color: $white-color;
-      line-height: 1.4;
-    }
-    
-    span {
-      font-size: 1.1rem;
-      color: rgba($nature-light-color,0.8);
-    }
-  }
-}
 
-.categoryList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  
-  li {
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-bottom: 1px solid rgba($light-color, 0.1);
-    &:last-child {
-      border-bottom: none;
-    }
-    
-    button {
+  // Category List
+  .categoryList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .categoryItem {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid $dark-border-color;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
-      padding: 0.8rem 0;
-      background: transparent;
-      border: none;
       color: $nature-light-color;
-      text-align: left;
       cursor: pointer;
-      @include transition(0.3s);
-      
+      @include transition(0.2s);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
       &:hover {
         color: $primary-color;
+        padding-left: 0.5rem;
       }
-      
-      span {
-        background-color: rgba($primary-color, 0.1);
+
+      &.active {
         color: $primary-color;
-        padding: 0.2rem 0.5rem;
-        @include radius(50px);
+        font-weight: 600;
+      }
+
+      .categoryCount {
+        background: $dark-bg-secondary;
+        color: $warning-color;
+        padding: 0.25rem 0.5rem;
+        @include radius(10px);
         font-size: 1rem;
       }
     }
   }
-}
 
-.newsletterForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  
-  input {
-    color: $nature-light-color;
-    font-size: 1.2rem;
-    padding: 0.8rem 1rem;
-    @include radius(8px);
-    border: 1px solid rgba($primary-color, 0.3);
-    background-color: rgba($card-color, 0.5);
-    
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-    }
-  }
-  
-  button {
-    background: linear-gradient(90deg, $primary-color, $accent-tow-color);
-    color: $white-color;
-    border: none;
-    padding: 0.8rem;
-    @include radius(8px);
-    font-weight: 600;
-    cursor: pointer;
-    @include transition(0.3s);
-    
-    &:hover {
-      opacity: 0.9;
-    }
-  }
-}
-
-@media (width <= 480px) {
-  .blogHeader {
-    h1 {
-      font-size: 2.2rem;
-    }
-  }
-  
-  .blogMeta {
-    flex-direction: column;
+  // Tag Cloud
+  .tagCloud {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
+
+    .tag {
+      background: $primary-color;
+      color: $white-color;
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      @include radius(20px);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      @include transition(0.2s);
+    }
+  }
+
+  // Subscribe Form
+  .subscribeForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .emailInput {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: $dark-bg-secondary;
+      border: 1px solid $nature-light-color;
+      @include radius(8px);
+      color: $white-color;
+      font-size: 1.1rem;
+      @include transition(0.3s);
+
+      &::placeholder {
+        color: $nature-light-color;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      }
+    }
+
+    .subscribeButton {
+      width: 100%;
+      padding: 0.8rem;
+      background: $info-color;
+      color: $white-color;
+      border: none;
+      @include radius(8px);
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+      @include transition(0.3s);
+
+      &:hover {
+        background: darken($info-color, 10%);
+      }
+    }
   }
 }
