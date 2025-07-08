@@ -9,6 +9,7 @@ import { AdminManageReviewsProvider } from '@/store/AdminManageReviews';
 import { AdminManagementCustomersProvider } from '@/store/AdminManagementCustomersProvider';
 import { AdminManageOrdersProvider } from '@/store/AdminManageOrdersProvider';
 import { AdminManageRecentProvider } from '@/store/AdminManageRecentProvider';
+import { AdminBlogProvider } from '@/store/AdminManagementBlogProvider';
 
 
 
@@ -23,7 +24,9 @@ export default function AdminPageLayout({ children }) {
                 <AdminManagementCustomersProvider>
                   <AdminManageOrdersProvider>
                     <AdminManageRecentProvider>
-                      <ChildAdminLayout>{children}</ChildAdminLayout>
+                      <AdminBlogProvider>
+                        <ChildAdminLayout>{children}</ChildAdminLayout>
+                      </AdminBlogProvider>
                     </AdminManageRecentProvider>
                   </AdminManageOrdersProvider>
                 </AdminManagementCustomersProvider>

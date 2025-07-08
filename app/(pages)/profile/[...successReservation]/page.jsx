@@ -8,10 +8,12 @@ import styles from '../../../../src/css/success-reservation.module.css';
 import Link from 'next/link';
 import { FaGift, FaTag, FaBirthdayCake, FaHome, FaClipboardList, FaCreditCard, FaCalendarAlt, FaClock, FaUsers, FaMoneyBillWave, FaTable, FaCheckCircle, FaRegClock, FaDownload } from 'react-icons/fa';
 import { verifyPaymentSession } from '@/actions/profile';
-import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { paymentSuccessReservation } from './paymentSuccessReservation';
+import { Suspense } from 'react';
 
-export default function SuccessReservation() {
+function SuccessReservationContent() {
     const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
     const [paymentDetailsReservation, setPaymentDetailsReservation] = useState(null);
     const [paymentDetailsArray, setPaymentDetailsArray] = useState([]); // Store array of payments

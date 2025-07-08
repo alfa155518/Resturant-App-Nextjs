@@ -11,14 +11,15 @@ import {
 
 import Cookies from "js-cookie";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, Suspense } from "react";
 import { toast } from "react-toastify";
 
 // Create the context
 export const CartContext = createContext();
 
 // Provider component
-export function CartProvider({ children }) {
+// This is the actual CartProvider logic
+function CartProviderContent({ children }) {
   let user = Cookies.get("user") || 1;
   const [cartItems, setCartItems] = useState([]);
   const { id } = JSON.parse(user);
@@ -211,5 +212,19 @@ export function CartProvider({ children }) {
     handelProceedCheckout,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={value}>
+      {children}
+    </CartContext.Provider>
+  );
+}
+
+export function CartProvider({ children }) {
+  return (
+    <Suspense fallback={<div>Loading cart...</div>}>
+      <CartProviderContent>
+        {children}
+      </CartProviderContent>
+    </Suspense>
+  );
 }

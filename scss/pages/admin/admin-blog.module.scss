@@ -98,87 +98,6 @@
   background-color: $nature-light-color;
   color: $success-color;
 }
-
-// Comments Section
-// .commentsSection {
-//   margin-top: 1.5rem;
-//   padding-top: 1rem;
-//   border-top: 1px solid rgba($dark-hover-color, 0.1);
-
-//   .commentsHeader {
-//     display: flex;
-//     align-items: center;
-//     gap: 0.5rem;
-//     margin-bottom: 0.8rem;
-//     color: $nature-light-color;
-//     font-size: 1.1rem;
-//     font-weight: 800;
-
-//     .commentIcon {
-//       color: $primary-color;
-//     }
-//   }
-// }
-
-// .commentsList {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.75rem;
-// }
-
-// .commentItem {
-//   background: rgba($dark-text-secondary, 0.05);
-//   border-radius: 6px;
-//   padding: 0.75rem;
-//   @include transition(0.2s);
-//   border-left: 2px solid $primary-color;
-
-//   &:hover {
-//     @include translateY(-2px);
-//   }
-// }
-
-// .commentHeader {
-//   @include flex-between;
-//   margin-bottom: 0.5rem;
-//   flex-wrap: wrap;
-//   gap: 0.5rem;
-
-//   .commentId {
-//     font-size: 1rem;
-//     font-weight: 600;
-//     color: $light-color;
-//     background: rgba($primary-color, 0.1);
-//     padding: 0.15rem 0.5rem;
-//     @include radius(10px);
-//   }
-
-//   .commentAuthor {
-//     font-size: 1.1rem;
-//     font-weight: bold;
-//     color: $warning-color;
-//     margin-right: auto;
-//     padding-left: 0.5rem;
-//   }
-
-//   .commentDate {
-//     color: $info-color;
-//     font-size: 1rem;
-//     font-weight: bold;
-//     padding: 0.15rem 0.5rem;
-//     @include radius(10px);
-//   }
-// }
-
-// .commentContent {
-//   color: $nature-light-color;
-//   font-size: 1rem;
-//   font-weight: 800;
-//   line-height: 1.5;
-//   margin-top: 1rem;
-//   padding-left: 0.5rem;
-// }
-
 // Post metadata
 .postMeta {
   display: flex;
@@ -232,38 +151,30 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.4rem 0.8rem;
-    background: rgba($dark-hover-color, 0.05);
-    border: 1px solid rgba($dark-hover-color, 0.1);
-    border-radius: 20px;
+    background: rgba($primary-color, 0.1);
+    border: 1px solid rgba($primary-color, 0.2);
+    @include radius(20px);
     color: $primary-color;
     font-size: 0.85rem;
     font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    @include transition(0.2s);
     outline: none;
 
     &:hover {
       background: rgba($dark-hover-color, 0.1);
-      transform: translateY(-1px);
+      @include translateY(-2px);
     }
-
-    &.active {
-      background: rgba($primary-color, 0.1);
-      border-color: rgba($primary-color, 0.2);
-      color: $primary-color;
-    }
-
     svg {
       font-size: 1rem;
     }
 
-    &:first-child.active {
+    &:first-child {
       color: $success-color;
       background: rgba($success-color, 0.1);
       border-color: rgba($success-color, 0.2);
     }
 
-    &:last-child.active {
+    &:last-child {
       color: $danger-color;
       background: rgba($danger-color, 0.1);
       border-color: rgba($danger-color, 0.2);
@@ -292,12 +203,12 @@
 
   &:hover {
     background: rgba($primary-color, 0.2);
-    transform: translateY(-2px);
+    @include translateY(-2px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   &:active {
-    transform: translateY(0);
+    @include translateY(0);
   }
 }
 

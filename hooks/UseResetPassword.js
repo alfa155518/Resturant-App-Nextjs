@@ -1,14 +1,19 @@
-
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { resetPasswordAction } from "@/actions/user";
 import { toast } from "react-toastify";
-export default function UseResetPassword() {
+import { Suspense } from "react";
+
+export function useResetPasswordContent() {
+  // This is the actual hook logic
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     token: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const searchParams = useSearchParams();
 
@@ -28,9 +33,11 @@ export default function UseResetPassword() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const data = await resetPasswordAction(formData);
       if (data.error) {
+        setError(data.errorMessage);
         toast.error(data.errorMessage);
       }
       if (data.user) {
@@ -40,12 +47,14 @@ export default function UseResetPassword() {
         }, 2000);
       }
     } catch (error) {
+      setError(error.error);
       toast.error(error.error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-
-   // Animation variants
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -68,14 +77,43 @@ export default function UseResetPassword() {
     }
   };
 
-
   return {
     formData,
-    searchParams,
     handleChange,
     handleSubmit,
+    isLoading,
+    error,
     containerVariants,
     itemVariants
   }
+}
 
+export default function UseResetPassword() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordWrapper />
+    </Suspense>
+  );
+}
+
+function ResetPasswordWrapper() {
+  const {
+    formData,
+    handleChange,
+    handleSubmit,
+    isLoading,
+    error,
+    containerVariants,
+    itemVariants
+  } = useResetPasswordContent();
+
+  return {
+    formData,
+    handleChange,
+    handleSubmit,
+    isLoading,
+    error,
+    containerVariants,
+    itemVariants
+  };
 }
