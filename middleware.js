@@ -7,7 +7,6 @@ import { cookies } from "next/headers";
 export async function middleware(req) {
     const cookieStore = await cookies();
     const userToken = cookieStore.get("userToken")?.value;
-    // console.log(req);
     if (!userToken) {
         return NextResponse.redirect(new URL('/register', req.url));
     }

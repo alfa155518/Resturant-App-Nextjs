@@ -139,7 +139,6 @@ export async function verifyPaymentSession(sessionId, reservationId) {
     }
   );
   const data = await response.json();
-  console.log(data);
   return data;
 }
 
@@ -178,7 +177,6 @@ export async function addFavoriteProduct(productId) {
     },
   });
   const favoriteProducts = await response.json();
-  console.log(favoriteProducts);
   return favoriteProducts;
 }
 
@@ -196,7 +194,6 @@ export async function removeFavoriteProduct(productId) {
       cache: "no-store",
     },
   });
-  console.log(response);
   const favoriteProducts = await response.json();
   return favoriteProducts;
 }

@@ -1,6 +1,6 @@
 "use client";
-import { motion ,AnimatePresence} from 'framer-motion';
-import { useState,Suspense } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, Suspense } from 'react';
 import Image from 'next/image';
 import styles from '../../../src/css/services.module.css';
 import { FaUtensils, FaGlassCheers, FaBirthdayCake, FaUsers } from 'react-icons/fa';
@@ -89,8 +89,6 @@ export default function Services() {
   const handleContactSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Contact form submitted:', contactForm);
-    alert('Thank you for your interest! We will contact you soon.');
     setShowContactModal(false);
     setContactForm({
       name: '',
@@ -143,7 +141,7 @@ export default function Services() {
               <h2>{service.title}</h2>
               <p>{service.description}</p>
             </div>
-            <motion.div 
+            <motion.div
               className={styles.serviceImage}
               animate={{
                 opacity: activeService === service.id ? 0.3 : 1,
@@ -151,7 +149,7 @@ export default function Services() {
               }}
               transition={{ duration: 0.3 }}
             >
-           <Image
+              <Image
                 src={service.image}
                 alt={service.title}
                 fill
@@ -163,7 +161,7 @@ export default function Services() {
                 quality={80}
               />
             </motion.div>
-            <motion.div 
+            <motion.div
               className={styles.overlay}
               animate={{
                 opacity: activeService === service.id ? 0.7 : 0.5
@@ -192,14 +190,14 @@ export default function Services() {
       </motion.div>
       <AnimatePresence>
         {showContactModal && (
-             <Suspense fallback={<div className={styles.modalLoading}>Loading...</div>}>
+          <Suspense fallback={<div className={styles.modalLoading}>Loading...</div>}>
             <motion.div
               className={styles.modalBackdrop}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowContactModal(false)}
-              />
+            />
             <motion.div
               className={styles.contactModal}
               initial={{ scale: 0.9, opacity: 0 }}
@@ -233,7 +231,7 @@ export default function Services() {
                     onChange={handleContactInputChange}
                     required
                     autoComplete='email'
-                    />
+                  />
                 </div>
                 <div className={styles.formGroup}>
                   <label htmlFor="phone">Phone Number</label>
@@ -256,7 +254,7 @@ export default function Services() {
                     onChange={handleContactInputChange}
                     required
                     autoComplete='service'
-                    >
+                  >
                     <option value="">Select a service</option>
                     {services.map(service => (
                       <option key={service.id} value={service.title}>
@@ -284,7 +282,7 @@ export default function Services() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label='Send Message'
-                    >
+                  >
                     Send Message
                   </motion.button>
                   <motion.button
@@ -293,13 +291,13 @@ export default function Services() {
                     onClick={() => setShowContactModal(false)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    >
+                  >
                     Cancel
                   </motion.button>
                 </div>
               </form>
             </motion.div>
-                    </Suspense>
+          </Suspense>
         )}
       </AnimatePresence>
     </div>

@@ -23,6 +23,20 @@ export async function allBlog() {
     return result;
 }
 
+// Get Single Blog
+export async function getSingleBlog(blogId) {
+    const response = await fetch(`${apiUrl}/blogs/${blogId}`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        next: {
+            cache: "no-store",
+        },
+    });
+    const result = await response.json();
+    return result;
+}
+
 
 // Like Blog
 export async function likeBlog(blogId) {
@@ -51,6 +65,30 @@ export async function dislikeBlog(blogId) {
             Authorization: `Bearer ${userToken}`,
             'Content-Type': 'application/json',
         },
+        next: {
+            cache: "no-store",
+        },
+    });
+    const result = await response.json();
+    return result;
+}
+
+
+// add comment
+export async function addComment(blogId, formData) {
+    const userToken = await getCookieStore();
+
+    const serverData = new FormData();
+    serverData.set("blog_id", blogId);
+    serverData.set("comment", formData.comment);
+    serverData.set("name", formData.name);
+
+    const response = await fetch(`${apiUrl}/blogs/comment`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${userToken}`,
+        },
+        body: serverData,
         next: {
             cache: "no-store",
         },

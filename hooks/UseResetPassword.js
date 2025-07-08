@@ -30,7 +30,6 @@ export default function UseResetPassword() {
     e.preventDefault();
     try {
       const data = await resetPasswordAction(formData);
-      console.log(data);
       if (data.error) {
         toast.error(data.errorMessage);
       }

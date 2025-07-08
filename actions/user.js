@@ -74,7 +74,6 @@ export async function forgetPasswordAction(email) {
   try {
     const serverFormData = new FormData();
     serverFormData.append('email', email);
-    console.log(serverFormData);
     const response = await fetch(`${apiUrl}/auth/forget-password`, {
       method: "POST",
       body: serverFormData,

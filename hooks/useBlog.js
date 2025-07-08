@@ -42,7 +42,4 @@ export default function useBlog(blogPosts) {
         filteredPosts,
         loadMore
     };
-
-
-
 }

@@ -43,7 +43,6 @@ export const paymentSuccessReservation = async (
 
         // Verify new payment
         const data = await verifyPaymentSession(sessionId, reservationId);
-        console.log('Payment verification response:', data);
 
         if (data.status === 'error') {
             toast.error(data.message);

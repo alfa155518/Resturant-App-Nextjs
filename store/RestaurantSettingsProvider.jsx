@@ -14,19 +14,7 @@ export function RestaurantSettingsProvider({ children }) {
     const [restaurantInfo, setRestaurantInfo] = useState([]);
     const [operatingHours, setOperatingHours] = useState([]);
     const [paymentMethods, setPaymentMethods] = useState([]);
-    const [notificationSettings, setNotificationSettings] = useState([]
-        //     {
-        //     new_order: false,
-        //     order_status: false,
-        //     new_reservation: false,
-        //     reservation_reminder: false,
-        //     new_review: false,
-        //     low_inventory: false,
-        //     daily_summary: false,
-        //     weekly_summary: false,
-        //     marketing_emails: false
-        // }
-    );
+    const [notificationSettings, setNotificationSettings] = useState([]);
 
     // refresh state
     const [needsRefresh, setNeedsRefresh] = useState(false);
@@ -36,11 +24,6 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelRestaurantSettingsInfo() {
             const data = await getRestaurantSettingsInfo();
-            // if (data?.status === "error") {
-            //     console.log(data);
-            //     toast.error(data.message);
-            //     return;
-            // }
             setRestaurantInfo(data);
         }
         handelRestaurantSettingsInfo();
@@ -65,10 +48,6 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelOperatingHours() {
             const data = await getOperatingHours();
-            // if (data.status === "error") {
-            //     toast.error(data.message);
-            //     return;
-            // }
             setOperatingHours(data);
         }
         handelOperatingHours();
@@ -93,10 +72,6 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelPaymentMethods() {
             const data = await getPaymentMethods();
-            // if (data.status === "error") {
-            //     toast.error(data.message);
-            //     return;
-            // }
             setPaymentMethods(data);
         }
         handelPaymentMethods();
@@ -120,10 +95,6 @@ export function RestaurantSettingsProvider({ children }) {
     useEffect(() => {
         async function handelNotificationSettings() {
             const response = await getNotificationSettings();
-            // if (response.status === "error") {
-            //     toast.error(response.message);
-            //     return;
-            // }
             // Only update if we have the data
             if (response.data) {
                 setNotificationSettings(response.data);

@@ -26,7 +26,6 @@ export async function getReviews() {
         },
     });
     const reviews = await response.json();
-    // console.log(reviews);
     return reviews;
 }
 
