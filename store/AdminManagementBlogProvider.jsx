@@ -1,8 +1,7 @@
 "use client"
 
 
-import { addNewBlog, getAllBlog } from '@/actions/adminBlog';
-import { useRouter } from 'next/navigation';
+import { addNewBlog, deleteBlog, getAllBlog, updateBlog } from '@/actions/adminBlog';
 import { createContext, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
@@ -11,11 +10,30 @@ export const AdminBlogContext = createContext();
 
 
 export function AdminBlogProvider({ children }) {
+    // state
     const [blogPosts, setBlogPosts] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [needsRefresh, setNeedsRefresh] = useState(false);
-    const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState('All');
+    const [statusFilter, setStatusFilter] = useState('All');
+    const [showAddPostModal, setShowAddPostModal] = useState(false);
+    const [showEditPostModal, setShowEditPostModal] = useState(false);
+    const [showPreviewModal, setShowPreviewModal] = useState(false);
+    const [currentPost, setCurrentPost] = useState(null);
+    const [previewPost, setPreviewPost] = useState(null);
+    const [newPost, setNewPost] = useState({
+        title: '',
+        excerpt: '',
+        content: '',
+        image: '',
+        author_name: '',
+        category: '',
+        tags: '',
+        status: 'published'
+    });
 
+    // get all blogs
     useEffect(() => {
         async function fetchBlogs() {
             const blogs = await getAllBlog();
@@ -35,6 +53,7 @@ export function AdminBlogProvider({ children }) {
         const result = await addNewBlog(newBlog);
         if (result.status === "error") {
             toast.error(result.message);
+            setIsSubmitting(false);
             return;
         }
 
@@ -43,12 +62,58 @@ export function AdminBlogProvider({ children }) {
         setIsSubmitting(false);
     };
 
+    // Update Blog
+    const handleUpdateBlog = async (postId, updatedBlog) => {
+        setIsSubmitting(true);
+        const result = await updateBlog(postId, updatedBlog);
+        if (result.status === "error") {
+            toast.error(result.message);
+            setIsSubmitting(false);
+            return;
+        }
+        toast.success(result.message);
+        setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(false);
+    };
+
+    // Delete Blog
+    const handleDeleteBlog = async (postId) => {
+        setIsSubmitting(true);
+        const result = await deleteBlog(postId);
+        if (result.status === "error") {
+            toast.error(result.message);
+            setIsSubmitting(false);
+            return;
+        }
+        toast.success(result.message);
+        setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(false);
+    };
     // Context value
     const value = {
         blogPosts,
-        setBlogPosts,
         handleAddNewBlog,
+        handleUpdateBlog,
+        handleDeleteBlog,
         isSubmitting,
+        searchTerm,
+        categoryFilter,
+        statusFilter,
+        showAddPostModal,
+        showEditPostModal,
+        showPreviewModal,
+        currentPost,
+        previewPost,
+        newPost,
+        setSearchTerm,
+        setCategoryFilter,
+        setStatusFilter,
+        setShowAddPostModal,
+        setShowEditPostModal,
+        setShowPreviewModal,
+        setCurrentPost,
+        setPreviewPost,
+        setNewPost
     };
 
     return (

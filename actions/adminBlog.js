@@ -42,8 +42,6 @@ export async function addNewBlog(newPost) {
     serverData.set("tags", newPost.tags);
     serverData.set("status", newPost.status);
 
-    console.log(serverData);
-
     const response = await fetch(`${adminApiUrl}/blogs`, {
         method: "POST",
         headers: {
@@ -55,7 +53,51 @@ export async function addNewBlog(newPost) {
         },
     });
     const result = await response.json();
-    console.log(result);
     return result;
 }
 
+// Update Blog
+export async function updateBlog(postId, updatedPost) {
+    const userToken = await getCookieStore();
+
+    const serverData = new FormData();
+    serverData.set("title", updatedPost.title);
+    serverData.set("excerpt", updatedPost.excerpt);
+    serverData.set("content", updatedPost.content);
+    serverData.set("image", updatedPost.image);
+    serverData.set("author_name", updatedPost.author_name);
+    serverData.set("category", updatedPost.category);
+    serverData.set("tags", updatedPost.tags);
+    serverData.set("status", updatedPost.status);
+    serverData.set("_method", "PATCH");
+
+    const response = await fetch(`${adminApiUrl}/blogs/${postId}`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${userToken}`,
+        },
+        body: serverData,
+        next: {
+            cache: "no-store",
+        },
+    });
+    const result = await response.json();
+    return result;
+}
+
+
+// Delete Blog
+export async function deleteBlog(postId) {
+    const userToken = await getCookieStore();
+    const response = await fetch(`${adminApiUrl}/blogs/${postId}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${userToken}`,
+        },
+        next: {
+            cache: "no-store",
+        },
+    });
+    const result = await response.json();
+    return result;
+}

@@ -89,7 +89,11 @@ export default function BlogsCard({ styles, filteredPosts, handlePreviewPost, st
                         </button>
                         <button
                             className={styles.deleteBtn}
-                            onClick={() => handleDeletePost(post.id)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleDeletePost(post.id);
+                            }}
                             title="Delete Post"
                         >
                             <FiTrash2 />

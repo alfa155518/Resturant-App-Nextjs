@@ -2,7 +2,43 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FiX, FiImage, FiSave } from 'react-icons/fi';
+import { useRef, useEffect, useState } from 'react';
 export default function EditBlogModal({ styles, currentPost, setCurrentPost, setShowEditPostModal, handleEditPost }) {
+    const fileInputRef = useRef(null);
+    const [imagePreview, setImagePreview] = useState('');
+
+    // Set initial preview if image is a URL
+    useEffect(() => {
+        if (currentPost?.image && typeof currentPost.image === 'string') {
+            setImagePreview(currentPost.image);
+        }
+        return () => {
+            // Cleanup object URL to prevent memory leaks
+            if (imagePreview && imagePreview.startsWith('blob:')) {
+                URL.revokeObjectURL(imagePreview);
+            }
+        };
+    }, [currentPost?.image]);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            // Create preview URL
+            const previewUrl = URL.createObjectURL(file);
+            setImagePreview(previewUrl);
+
+            // Update the current post with the file
+            setCurrentPost(prev => ({
+                ...prev,
+                image: file, // Store the file object
+                imageUrl: previewUrl // Store preview URL for display
+            }));
+        }
+    };
+
+    const triggerFileInput = () => {
+        fileInputRef.current.click();
+    };
     return (
         <motion.div
             className={styles.modalOverlay}
@@ -121,13 +157,37 @@ export default function EditBlogModal({ styles, currentPost, setCurrentPost, set
                                     id="image"
                                     className={styles.formInput}
                                 />
-                                <button className={styles.uploadBtn}>
-                                    <FiImage /> Upload
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    id="image-upload"
+                                    accept="image/*"
+                                    style={{ display: 'none' }}
+                                    onChange={handleImageChange}
+                                />
+                                <button
+                                    type="button"
+                                    className={styles.uploadBtn}
+                                    onClick={triggerFileInput}
+                                >
+                                    <FiImage /> Choose Image
                                 </button>
                             </div>
-                            {currentPost.image && (
+                            {imagePreview && (
                                 <div className={styles.imagePreview}>
-                                    <Image src={currentPost.image || "/images/default-favorite.png"} alt={currentPost.title} priority width={250} height={250} />
+                                    <Image
+                                        src={imagePreview}
+                                        alt={currentPost.title || 'Preview'}
+                                        width={250}
+                                        height={250}
+                                        style={{ objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
+                                        onLoad={() => {
+                                            // Revoke the object URL to free up memory
+                                            if (imagePreview.startsWith('blob:')) {
+                                                URL.revokeObjectURL(imagePreview);
+                                            }
+                                        }}
+                                    />
                                 </div>
                             )}
                         </div>
@@ -142,6 +202,7 @@ export default function EditBlogModal({ styles, currentPost, setCurrentPost, set
                                 id="status"
                                 className={styles.formSelect}
                             >
+                                <option value="" disabled>Select Status</option>
                                 <option value="draft">Draft</option>
                                 <option value="published">Published</option>
                             </select>
@@ -157,8 +218,12 @@ export default function EditBlogModal({ styles, currentPost, setCurrentPost, set
                         Cancel
                     </button>
                     <button
+                        type="button"
                         className={styles.saveBtn}
-                        onClick={handleEditPost}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleEditPost(currentPost.id);
+                        }}
                     >
                         <FiSave /> Update Post
                     </button>

@@ -187,8 +187,9 @@ export default function AddBlogModal({ styles, newPost, setNewPost, setShowAddPo
                                     id="status"
                                     className={styles.formSelect}
                                 >
-                                    <option value="Draft">Draft</option>
+                                    <option value="" disabled>Select Status</option>
                                     <option value="Published">Published</option>
+                                    <option value="Draft">Draft</option>
                                 </select>
                             </div>
                         </form>

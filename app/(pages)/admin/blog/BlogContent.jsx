@@ -1,123 +1,57 @@
 "use client";
 
-import { useContext, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiPlus } from 'react-icons/fi';
-import styles from '../../src/css/admin-blog.module.css';
-import { AdminBlogContext } from '@/store/AdminManagementBlogProvider';
 import AddBlogModal from '@/app/(pages)/admin/blog/AddBlogModal';
 import EditBlogModal from '@/app/(pages)/admin/blog/EditBlogModal';
 import BlogPreview from '@/app/(pages)/admin/blog/BlogPreview';
 import BlogsCard from '@/app/(pages)/admin/blog/BlogsCard';
+import OverlayOfLoading from '@/components/OverlayOfLoading';
+import styles from '../../../../src/css/admin-blog.module.css';
+import CustomSkeletonLoading from '@/components/CustomSkeletonLoading';
+import useAdminManageBlogs from '@/hooks/useAdminManageBlogs';
 
-export default function Blog() {
-  const { blogPosts, setBlogPosts, handleAddNewBlog, isSubmitting } = useContext(AdminBlogContext);
+export default function BlogContent() {
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('All');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [showAddPostModal, setShowAddPostModal] = useState(false);
-  const [showEditPostModal, setShowEditPostModal] = useState(false);
-  const [showPreviewModal, setShowPreviewModal] = useState(false);
-  const [currentPost, setCurrentPost] = useState(null);
-  const [previewPost, setPreviewPost] = useState(null);
-  const [newPost, setNewPost] = useState({
-    title: '',
-    excerpt: '',
-    content: '',
-    image: '',
-    author_name: '',
-    category: '',
-    tags: '',
-    status: 'Draft'
-  });
+  // Use Admin Manage Blogs Custom Hook
+  const [
+    categories,
+    filteredPosts,
+    handlePreviewPost,
+    startEditingPost,
+    handleAddPost,
+    handleEditPost,
+    handleDeletePost,
+    showAddPostModal,
+    showEditPostModal,
+    showPreviewModal,
+    currentPost,
+    previewPost,
+    newPost,
+    setSearchTerm,
+    setCategoryFilter,
+    setStatusFilter,
+    setShowAddPostModal,
+    setShowEditPostModal,
+    setShowPreviewModal,
+    setCurrentPost,
+    setNewPost,
+    isSubmitting,
+    blogPosts,
+    statusFilter,
+    categoryFilter,
+    searchTerm,
+  ] = useAdminManageBlogs();
 
-  // Unique categories from blog posts
-  const categories = [...new Set(blogPosts.map(post => post.category))];
+  // Show Loading When Submitting
+  if (isSubmitting) {
+    return <OverlayOfLoading isLoading={isSubmitting} message="Submitting..." />
+  }
 
-  // Filter blog posts based on search term, category, and status filters
-  const filteredPosts = useMemo(() => {
-    return blogPosts.filter(post => {
-      const matchesSearch =
-        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.author_name.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesCategory = categoryFilter === 'All' || post.category === categoryFilter;
-      const matchesStatus = statusFilter === 'All' || post.status === statusFilter;
-
-      return matchesSearch && matchesCategory && matchesStatus;
-    });
-  }, [blogPosts, searchTerm, categoryFilter, statusFilter]);
-
-  // Add new blog post
-  const handleAddPost = () => {
-    const tagsArray = newPost.tags.split(',').map(tag => tag.trim());
-
-    const postToAdd = {
-      ...newPost,
-      created_at: new Date().toISOString().split('T')[0],
-      updated_at: new Date().toISOString().split('T')[0],
-      tags: tagsArray,
-    };
-
-    handleAddNewBlog(postToAdd);
-    setShowAddPostModal(false);
-    // setNewPost({
-    //   title: '',
-    //   excerpt: '',
-    //   content: '',
-    //   image: '',
-    //   author_name: '',
-    //   category: '',
-    //   tags: '',
-    //   status: 'Draft'
-    // });
-  };
-
-  // Edit blog post
-  const handleEditPost = () => {
-    let updatedPost = { ...currentPost };
-
-    // Convert tags string to array if it's a string
-    if (typeof updatedPost.tags === 'string') {
-      updatedPost.tags = updatedPost.tags.split(',').map(tag => tag.trim());
-    }
-
-    setBlogPosts(blogPosts.map(post =>
-      post.id === updatedPost.id ? updatedPost : post
-    ));
-
-    setShowEditPostModal(false);
-    setCurrentPost(null);
-  };
-
-  // Delete blog post
-  const handleDeletePost = (postId) => {
-    if (window.confirm('Are you sure you want to delete this blog post?')) {
-      setBlogPosts(blogPosts.filter(post => post.id !== postId));
-    }
-  };
-
-  // Preview a blog post
-  const handlePreviewPost = (post) => {
-    setPreviewPost(post);
-    setShowPreviewModal(true);
-  };
-
-  // Start editing a post
-  const startEditingPost = (post) => {
-    // Convert tags array to comma-separated string for editing
-    const postForEdit = {
-      ...post,
-      tags: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags
-    };
-
-    setCurrentPost(postForEdit);
-    setShowEditPostModal(true);
-  };
-
-
+  // Show Skeleton When No Data
+  if (!blogPosts || blogPosts.length === 0) {
+    return <CustomSkeletonLoading count={8} height={200} />
+  }
 
   return (
     <div className={styles.adminDashboard}>
@@ -190,6 +124,7 @@ export default function Blog() {
               </button>
             </div>
           </div>
+          {/* Blogs Card */}
           <BlogsCard styles={styles} filteredPosts={filteredPosts} handlePreviewPost={handlePreviewPost} startEditingPost={startEditingPost} handleDeletePost={handleDeletePost} />
 
           {/* Add New Post Modal */}
