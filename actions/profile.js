@@ -198,4 +198,23 @@ export async function removeFavoriteProduct(productId) {
   return favoriteProducts;
 }
 
+// Add Review
+export async function addReview(reviewData) {
+  const cookieStore = await cookies();
+  const userToken = cookieStore.get("userToken")?.value;
+  const response = await fetch(`${apiUrl}/reviews`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reviewData),
+    next: {
+      cache: "no-store",
+    },
+  });
+  const review = await response.json();
+  return review;
+}
+
 

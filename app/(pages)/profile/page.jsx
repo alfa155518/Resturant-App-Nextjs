@@ -3,7 +3,7 @@
 import { useState, useContext } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaUser, FaCalendarAlt, FaHeart, FaCog, FaSignOutAlt, FaHistory, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLock } from 'react-icons/fa';
+import { FaUser, FaCalendarAlt, FaHeart, FaCog, FaSignOutAlt, FaHistory, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLock, FaStar } from 'react-icons/fa';
 import styles from '../../../src/css/profile.module.css';
 import ProfileReservations from './ProfileReservations/page';
 import ProfileOrders from './ProfileOrders/page';
@@ -14,6 +14,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import TowFactorAuth from './TowFactorAuth/page';
 import { disableTwoFactorAuth } from '@/actions/auth';
 import { toast } from 'react-toastify';
+import AddReview from './AddReview/page';
 
 
 export default function Profile() {
@@ -110,6 +111,13 @@ export default function Profile() {
                   variants={fadeIn}
                 >
                   <FaCog /> Account Settings
+                </motion.button>
+                <motion.button
+                  className={`${styles.navButton} ${activeTab === 'addReview' ? styles.active : ''}`}
+                  onClick={() => setActiveTab('addReview')}
+                  variants={fadeIn}
+                >
+                  <FaStar /> Add Review
                 </motion.button>
                 <motion.button
                   className={`${styles.navButton} ${activeTab === 'twoFa' ? styles.active : ''}`}
@@ -217,6 +225,7 @@ export default function Profile() {
                 {activeTab === 'reservations' && <ProfileReservations />}
                 {activeTab === 'orders' && <ProfileOrders />}
                 {activeTab === 'favorites' && <ProfileFavorites />}
+                {activeTab === 'addReview' && <AddReview />}
                 {activeTab === 'settings' && <ProfileSettings user={user} />}
                 {activeTab === 'twoFa' && <TowFactorAuth />}
               </motion.div>

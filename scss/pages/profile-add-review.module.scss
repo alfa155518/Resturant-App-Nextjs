@@ -1,0 +1,128 @@
+@import '../helpers/variables';
+@import '../helpers/mixins';
+
+// Container styles
+.reviewContainer {
+  margin: 2rem auto;
+  padding: 2rem;
+  background: $dark-bg-secondary;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: $dark-text-primary;
+
+  h1 {
+    color: $warning-color;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: $light-color;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ratingContainer {
+  text-align: center;
+  margin-bottom: 1rem;
+
+  p {
+    color: $dark-text-primary;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: $gold-color;
+  @include transition(0.3s);
+
+  &:hover {
+    @include scale(1.1);
+  }
+}
+
+.radioInput {
+  display: none;
+}
+
+.formGroup {
+  @include formGroup;
+}
+
+.submitButton {
+  @include flex-center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: $primary-color;
+  color: white;
+  border: none;
+  @include radius(50px);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(0.3s);
+  margin: 1rem auto 0;
+  min-width: 200px;
+
+  &:hover:not(:disabled) {
+    background: darken($primary-color, 10%);
+    @include translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active:not(:disabled) {
+    @include translateY(1px);
+  }
+
+  &:disabled {
+    background: $dark-border-color;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  svg {
+    font-size: 1rem;
+  }
+}
+
+// Responsive styles
+@media (max <= 768px) {
+  .reviewContainer {
+    margin: 1rem;
+    padding: 1.5rem;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  .star {
+    font-size: 2rem;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}
