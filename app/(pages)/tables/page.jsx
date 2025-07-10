@@ -10,6 +10,8 @@ import useTables from "@/hooks/useTables";
 import ReservationTableForm from "@/components/ReservationTableForm";
 import TableModel from "@/components/TableModel";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import OverlayOfLoading from "@/components/OverlayOfLoading";
+import CustomSkeletonLoading from "@/components/CustomSkeletonLoading";
 
 export default function Tables() {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -47,6 +49,12 @@ export default function Tables() {
     setShowModal(true);
   };
 
+
+  if (!tables || tables.length === 0) {
+    return <>
+      <CustomSkeletonLoading count={15} height={250} />
+    </>
+  }
 
 
   return (

@@ -2,6 +2,7 @@ import { useState } from "react";
 export default function useSingleBlog(setFormData) {
     // Share Options
     const [showShareOptions, setShowShareOptions] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Handle Comment Form
     const handleChange = (e) => {
@@ -16,6 +17,8 @@ export default function useSingleBlog(setFormData) {
     return {
         showShareOptions,
         setShowShareOptions,
-        handleChange
+        handleChange,
+        isSubmitting,
+        setIsSubmitting
     };
 }

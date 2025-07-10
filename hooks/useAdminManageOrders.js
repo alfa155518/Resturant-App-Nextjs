@@ -5,7 +5,7 @@ import ConfirmationDialog from "@/components/ui/ConfirmationDialog";
 
 export default function useAdminManageOrders() {
     // Admin Manage Orders Context
-    const { orders, handleUpdateOrder, handleDeleteOrder } = useContext(AdminManageOrdersContext);
+    const { orders, handleUpdateOrder, handleDeleteOrder, isSubmitting } = useContext(AdminManageOrdersContext);
 
     // States
     const [searchTerm, setSearchTerm] = useState('');
@@ -96,5 +96,6 @@ export default function useAdminManageOrders() {
         setStatusFilter,
         setShowOrderDetails,
         setEditingOrder,
+        isSubmitting,
     }
 }

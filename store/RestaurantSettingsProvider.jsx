@@ -15,6 +15,7 @@ export function RestaurantSettingsProvider({ children }) {
     const [operatingHours, setOperatingHours] = useState([]);
     const [paymentMethods, setPaymentMethods] = useState([]);
     const [notificationSettings, setNotificationSettings] = useState([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // refresh state
     const [needsRefresh, setNeedsRefresh] = useState(false);
@@ -32,16 +33,21 @@ export function RestaurantSettingsProvider({ children }) {
 
     // Update restaurant settings info
     const handelUpdateRestaurantSettingsInfo = async (data) => {
-        const updatedData = await updateRestaurantSettingsInfo(data);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updateRestaurantSettingsInfo(data);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            setRestaurantInfo(updatedData);
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+            }
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        setRestaurantInfo(updatedData);
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-        }
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Get Operating Hours
@@ -56,16 +62,21 @@ export function RestaurantSettingsProvider({ children }) {
 
     // Update Operating Hours
     const handelUpdateOperatingHours = async (data) => {
-        const updatedData = await updateOperatingHours(data);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updateOperatingHours(data);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+            }
+            setOperatingHours(updatedData.data);
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-        }
-        setOperatingHours(updatedData.data);
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Get Payment Methods
@@ -80,15 +91,20 @@ export function RestaurantSettingsProvider({ children }) {
 
     // Update Payment Methods
     const handelUpdatePaymentMethods = async (data) => {
-        const updatedData = await updatePaymentMethods(data);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updatePaymentMethods(data);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+            }
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-        }
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Get Notification Settings
@@ -106,15 +122,20 @@ export function RestaurantSettingsProvider({ children }) {
 
     // Update Notification Settings
     const handelUpdateNotificationSettings = async (data) => {
-        const updatedData = await updateNotificationSettings(data);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updateNotificationSettings(data);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+            }
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-        }
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Context value
@@ -131,6 +152,7 @@ export function RestaurantSettingsProvider({ children }) {
         notificationSettings,
         setNotificationSettings,
         handelUpdateNotificationSettings,
+        isSubmitting,
     };
 
     return (

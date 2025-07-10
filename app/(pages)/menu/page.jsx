@@ -12,6 +12,7 @@ import Dish from "@/components/Dish";
 import useMenu from "@/hooks/useMenu";
 import styles from "../../../src/css/menu.module.css";
 import Pagination from "@/components/ui/pagination";
+import CustomSkeletonLoading from "@/components/CustomSkeletonLoading";
 
 
 export default function Menu() {
@@ -40,6 +41,11 @@ export default function Menu() {
 
   // Popular Dishes Data with safe fallback
   const popularItems = dishes.filter((item) => item.popular);
+
+  if (!menuDishes || menuDishes.length === 0) {
+    return <CustomSkeletonLoading count={15} height={250} />;
+  }
+
   return (
     <section className={styles.menuPage}>
       <motion.div

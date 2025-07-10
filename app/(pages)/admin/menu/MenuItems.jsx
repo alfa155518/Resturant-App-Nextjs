@@ -8,6 +8,7 @@ import ModalAddItem from '@/app/(pages)/admin/menu/ModalAddItem';
 import ModalEditItem from '@/app/(pages)/admin/menu/ModalEditItem';
 import useAdminMenu from '@/hooks/useAdminMenu';
 import Skeleton from 'react-loading-skeleton';
+import OverlayOfLoading from '@/components/OverlayOfLoading';
 
 export default function MenuItems() {
 
@@ -32,7 +33,13 @@ export default function MenuItems() {
     submitAddItem,
     deleteItem,
     toggleFeatured,
-    toggleAvailability] = useAdminMenu();
+    toggleAvailability, isSubmitting] = useAdminMenu();
+
+  // Overlay of any action
+  if (isSubmitting) {
+    return <OverlayOfLoading />
+  }
+
 
   return (
     <div className={styles.adminDashboard}>

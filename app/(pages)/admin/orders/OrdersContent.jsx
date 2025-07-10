@@ -7,19 +7,27 @@ import EditOrderModal from '@/app/(pages)/admin/orders/EditOrderModal';
 import OrdersDetails from '@/app/(pages)/admin/orders/OrdersDetails';
 import OrdersTable from '@/app/(pages)/admin/orders/OrdersTable';
 import useAdminManageOrders from '@/hooks/useAdminManageOrders';
+import OverlayOfLoading from '@/components/OverlayOfLoading';
 
 import styles from '../../../../src/css/admin-orders.module.css';
 
 export default function OrdersContent() {
 
   // Custom Hook For Admin Manage Orders
-  const { orders, initialDisplayCount, searchTerm, statusFilter, selectedOrder, showOrderDetails, editingOrder, showAll, displayedOrders, toggleView, viewOrderDetails, startEditingOrder, saveEditedOrder, deleteOrder, setSearchTerm, setStatusFilter, setShowOrderDetails, setEditingOrder } = useAdminManageOrders();
+  const { orders, initialDisplayCount, searchTerm, statusFilter, selectedOrder, showOrderDetails, editingOrder, showAll, displayedOrders, toggleView, viewOrderDetails, startEditingOrder, saveEditedOrder, deleteOrder, setSearchTerm, setStatusFilter, setShowOrderDetails, setEditingOrder, isSubmitting } = useAdminManageOrders();
 
 
   // Loading Status When No Orders Found
   if (!orders || orders.length === 0) {
     return (
       <Skeleton height={100} count={3} />
+    )
+  }
+
+  // Loading Status When Orders Are Being Updating Or Deleting
+  if (isSubmitting) {
+    return (
+      <OverlayOfLoading />
     )
   }
 

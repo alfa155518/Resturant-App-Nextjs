@@ -10,6 +10,7 @@ export function AdminManageTeamProvider({ children }) {
     // State
     const [teamMembers, setTeamMembers] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
     // Fetch menu data
@@ -28,41 +29,56 @@ export function AdminManageTeamProvider({ children }) {
 
     // Update team member
     const handelUpdateTeamMember = async (member) => {
-        const updatedData = await updateTeamMember(member);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
-        }
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-            setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updateTeamMember(member);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+                setNeedsRefresh(!needsRefresh);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
 
     // Add team member
     const handelAddTeamMember = async (member) => {
-        const addedData = await addTeamMember(member);
-        if (addedData.status === "error") {
-            toast.error(addedData.message);
-            return;
-        }
-        if (addedData.status === "success") {
-            toast.success(addedData.message);
-            setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(true);
+        try {
+            const addedData = await addTeamMember(member);
+            if (addedData.status === "error") {
+                toast.error(addedData.message);
+                return;
+            }
+            if (addedData.status === "success") {
+                toast.success(addedData.message);
+                setNeedsRefresh(!needsRefresh);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     // Delete team member
     const handelDeleteTeamMember = async (id) => {
-        const deletedData = await deleteTeamMember(id);
-        if (deletedData.status === "error") {
-            toast.error(deletedData.message);
-            return;
-        }
-        if (deletedData.status === "success") {
-            toast.success(deletedData.message);
-            setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(true);
+        try {
+            const deletedData = await deleteTeamMember(id);
+            if (deletedData.status === "error") {
+                toast.error(deletedData.message);
+                return;
+            }
+            if (deletedData.status === "success") {
+                toast.success(deletedData.message);
+                setNeedsRefresh(!needsRefresh);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -73,6 +89,7 @@ export function AdminManageTeamProvider({ children }) {
         handelAddTeamMember,
         handelUpdateTeamMember,
         handelDeleteTeamMember,
+        isSubmitting,
     }
     return (
         <AdminManageTeamContext.Provider value={value}>

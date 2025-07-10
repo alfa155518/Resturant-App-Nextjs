@@ -15,6 +15,7 @@ export default function Cart() {
     containerVariants,
     itemVariants,
     handelProceedCheckout,
+    isSubmitting,
   } = useContext(CartContext);
 
   // State for promo code
@@ -66,6 +67,7 @@ export default function Cart() {
   // Empty cart check
   const isCartEmpty = cartItems.length === 0;
 
+
   return (
     <div className={styles.cartPageContainer}>
       <motion.div
@@ -78,9 +80,8 @@ export default function Cart() {
           <p>
             {isCartEmpty
               ? "Your cart is empty"
-              : `${cartItems.length} item ${
-                  cartItems.length > 1 ? "s" : ""
-                } in your cart`}
+              : `${cartItems.length} item ${cartItems.length > 1 ? "s" : ""
+              } in your cart`}
           </p>
         </div>
       </motion.div>
@@ -164,6 +165,7 @@ export default function Cart() {
                         }}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        disabled={item.quantity >= item.product.stock}
                         aria-label="Increase quantity">
                         <FaPlus />
                       </motion.button>
@@ -230,16 +232,14 @@ export default function Cart() {
                   <h3>Delivery Options</h3>
                   <div className={styles.deliveryOptionButtons}>
                     <button
-                      className={`${styles.deliveryOptionBtn} ${
-                        deliveryOption === "delivery" ? styles.active : ""
-                      }`}
+                      className={`${styles.deliveryOptionBtn} ${deliveryOption === "delivery" ? styles.active : ""
+                        }`}
                       onClick={() => handleDeliveryOptionChange("delivery")}>
                       Delivery (${deliveryFee.toFixed(2)})
                     </button>
                     <button
-                      className={`${styles.deliveryOptionBtn} ${
-                        deliveryOption === "pickup" ? styles.active : ""
-                      }`}
+                      className={`${styles.deliveryOptionBtn} ${deliveryOption === "pickup" ? styles.active : ""
+                        }`}
                       onClick={() => handleDeliveryOptionChange("pickup")}>
                       Pickup (Free)
                     </button>
@@ -295,8 +295,9 @@ export default function Cart() {
                   className={styles.checkoutBtn}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => handelProceedCheckout()}>
-                  Proceed to Checkout
+                  onClick={() => handelProceedCheckout()}
+                  disabled={isSubmitting}>
+                  {isSubmitting ? "Processing..." : "Proceed to Checkout"}
                 </motion.button>
 
                 <div className={styles.paymentMethods}>

@@ -9,6 +9,7 @@ export const AdminManageReservationsContext = createContext();
 export function AdminManagementReservationsProvider({ children }) {
     const [reservations, setReservations] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
     // Fetch menu data
@@ -28,28 +29,38 @@ export function AdminManagementReservationsProvider({ children }) {
 
     // Update Reservation
     const handelUpdateReservation = async (reservationId, reservationData) => {
-        const updatedData = await updateReservation(reservationId, reservationData);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
-        }
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-            setReservations(updatedData.data);
-            setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updateReservation(reservationId, reservationData);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+                setReservations(updatedData.data);
+                setNeedsRefresh(!needsRefresh);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     // Delete Reservation
     const handelDeleteReservation = async (reservationId) => {
-        const deletedData = await deleteReservation(reservationId);
-        if (deletedData.status === "error") {
-            toast.error(deletedData.message);
-            return;
-        }
-        if (deletedData.status === "success") {
-            toast.success(deletedData.message);
-            setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(true);
+        try {
+            const deletedData = await deleteReservation(reservationId);
+            if (deletedData.status === "error") {
+                toast.error(deletedData.message);
+                return;
+            }
+            if (deletedData.status === "success") {
+                toast.success(deletedData.message);
+                setNeedsRefresh(!needsRefresh);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -58,6 +69,7 @@ export function AdminManagementReservationsProvider({ children }) {
         reservations,
         handelUpdateReservation,
         handelDeleteReservation,
+        isSubmitting,
     }
 
     return (

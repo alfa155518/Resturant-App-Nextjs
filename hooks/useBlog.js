@@ -40,6 +40,6 @@ export default function useBlog(blogPosts) {
         visiblePosts,
         categories,
         filteredPosts,
-        loadMore
+        loadMore,
     };
 }

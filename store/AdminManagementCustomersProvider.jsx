@@ -8,8 +8,9 @@ export function AdminManagementCustomersProvider({ children }) {
     // states
     const [customers, setCustomers] = useState([]);
     const [selectedCustomer, setSelectedCustomer] = useState(null);
-    const router = useRouter();
     const [needRefresh, setNeedRefresh] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const router = useRouter();
 
     // get customers
     useEffect(() => {
@@ -38,24 +39,34 @@ export function AdminManagementCustomersProvider({ children }) {
 
     // update customer
     const handelUpdateCustomer = async (customerId, customerData) => {
-        const data = await updateCustomer(customerId, customerData);
-        if (data.status === "error") {
-            toast.error(data.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const data = await updateCustomer(customerId, customerData);
+            if (data.status === "error") {
+                toast.error(data.message);
+                return;
+            }
+            toast.success(data.message);
+            setNeedRefresh(!needRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        toast.success(data.message);
-        setNeedRefresh(!needRefresh);
     }
 
     // delete customer
     const handelDeleteCustomer = async (customerId) => {
-        const data = await deleteCustomer(customerId);
-        if (data.status === "error") {
-            toast.error(data.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const data = await deleteCustomer(customerId);
+            if (data.status === "error") {
+                toast.error(data.message);
+                return;
+            }
+            toast.success(data.message);
+            setNeedRefresh(!needRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        toast.success(data.message);
-        setNeedRefresh(!needRefresh);
     }
 
     // Context value
@@ -65,6 +76,7 @@ export function AdminManagementCustomersProvider({ children }) {
         getSingleCustomer,
         handelUpdateCustomer,
         handelDeleteCustomer,
+        isSubmitting,
     };
 
     return (

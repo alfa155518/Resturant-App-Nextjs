@@ -11,6 +11,7 @@ export function AdminManageOrdersProvider({ children }) {
     const [orders, setOrders] = useState([]);
     const router = useRouter();
     const [needRefresh, setNeedRefresh] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // get orders
     useEffect(() => {
@@ -28,24 +29,34 @@ export function AdminManageOrdersProvider({ children }) {
 
     // update order
     const handleUpdateOrder = async (orderId, orderData) => {
-        const data = await updateOrder(orderId, orderData);
-        if (data.status === "error") {
-            toast.error(data.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const data = await updateOrder(orderId, orderData);
+            if (data.status === "error") {
+                toast.error(data.message);
+                return;
+            }
+            toast.success(data.message);
+            setNeedRefresh(!needRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        toast.success(data.message);
-        setNeedRefresh(!needRefresh);
     };
 
     // delete single order
     const handleDeleteOrder = async (orderId) => {
-        const data = await deleteOrder(orderId);
-        if (data.status === "error") {
-            toast.error(data.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const data = await deleteOrder(orderId);
+            if (data.status === "error") {
+                toast.error(data.message);
+                return;
+            }
+            toast.success(data.message);
+            setNeedRefresh(!needRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        toast.success(data.message);
-        setNeedRefresh(!needRefresh);
     };
 
     // Context value
@@ -54,13 +65,8 @@ export function AdminManageOrdersProvider({ children }) {
         setOrders,
         handleUpdateOrder,
         handleDeleteOrder,
-    }), [orders, handleUpdateOrder, handleDeleteOrder]);
-    // const contextValue = {
-    //     orders,
-    //     setOrders,
-    //     handleUpdateOrder,
-    //     handleDeleteOrder,
-    // };
+        isSubmitting,
+    }), [orders, handleUpdateOrder, handleDeleteOrder, isSubmitting]);
 
 
     return (

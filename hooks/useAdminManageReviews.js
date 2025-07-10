@@ -6,7 +6,7 @@ import { useContext, useState, useMemo } from "react";
 export default function useAdminManageReviews() {
 
     // Admin Manage Reviews Context
-    const { reviews, handelUpdateReview, handelDeleteReview } = useContext(AdminManageReviewsContext);
+    const { reviews, handelUpdateReview, handelDeleteReview, isSubmitting } = useContext(AdminManageReviewsContext);
 
     // States
     const [searchTerm, setSearchTerm] = useState('');
@@ -112,6 +112,7 @@ export default function useAdminManageReviews() {
         setSelectedReview,
         setReplyText,
         saveReply,
+        isSubmitting,
     ]
 
 }

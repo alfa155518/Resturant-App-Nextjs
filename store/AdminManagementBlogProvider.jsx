@@ -50,44 +50,53 @@ export function AdminBlogProvider({ children }) {
     // Add New Blog
     const handleAddNewBlog = async (newBlog) => {
         setIsSubmitting(true);
-        const result = await addNewBlog(newBlog);
-        if (result.status === "error") {
-            toast.error(result.message);
-            setIsSubmitting(false);
-            return;
-        }
+        try {
+            const result = await addNewBlog(newBlog);
+            if (result.status === "error") {
+                toast.error(result.message);
+                setIsSubmitting(false);
+                return;
+            }
 
-        toast.success(result.message);
-        setNeedsRefresh(!needsRefresh);
-        setIsSubmitting(false);
+            toast.success(result.message);
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Update Blog
     const handleUpdateBlog = async (postId, updatedBlog) => {
         setIsSubmitting(true);
-        const result = await updateBlog(postId, updatedBlog);
-        if (result.status === "error") {
-            toast.error(result.message);
+        try {
+            const result = await updateBlog(postId, updatedBlog);
+            if (result.status === "error") {
+                toast.error(result.message);
+                setIsSubmitting(false);
+                return;
+            }
+            toast.success(result.message);
+            setNeedsRefresh(!needsRefresh);
+        } finally {
             setIsSubmitting(false);
-            return;
         }
-        toast.success(result.message);
-        setNeedsRefresh(!needsRefresh);
-        setIsSubmitting(false);
     };
 
     // Delete Blog
     const handleDeleteBlog = async (postId) => {
         setIsSubmitting(true);
-        const result = await deleteBlog(postId);
-        if (result.status === "error") {
-            toast.error(result.message);
+        try {
+            const result = await deleteBlog(postId);
+            if (result.status === "error") {
+                toast.error(result.message);
+                setIsSubmitting(false);
+                return;
+            }
+            toast.success(result.message);
+            setNeedsRefresh(!needsRefresh);
+        } finally {
             setIsSubmitting(false);
-            return;
         }
-        toast.success(result.message);
-        setNeedsRefresh(!needsRefresh);
-        setIsSubmitting(false);
     };
     // Context value
     const value = {

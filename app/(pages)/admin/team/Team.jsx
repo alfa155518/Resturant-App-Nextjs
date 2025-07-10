@@ -8,6 +8,7 @@ import TeamModal from '@/app/(pages)/admin/team/TeamModal';
 import useAdminManageTeam from '@/hooks/useAdminManageTeam';
 import CustomSkeletonLoading from '@/components/CustomSkeletonLoading';
 import MemberCard from '@/app/(pages)/admin/team/MemberCard';
+import OverlayOfLoading from '@/components/OverlayOfLoading';
 
 
 const Team = () => {
@@ -30,7 +31,7 @@ const Team = () => {
     setFormData,
     getFormValues,
     handleFileChange,
-    handleSubmit, roles, teamGridVariants, teamMemberVariants] = useAdminManageTeam();
+    handleSubmit, roles, isSubmitting, teamGridVariants, teamMemberVariants] = useAdminManageTeam();
 
 
   // Clean up object URL on unmount
@@ -56,6 +57,10 @@ const Team = () => {
     return (
       <CustomSkeletonLoading count={10} height={250} />
     );
+  }
+
+  if (isSubmitting) {
+    return <OverlayOfLoading />
   }
 
   return (

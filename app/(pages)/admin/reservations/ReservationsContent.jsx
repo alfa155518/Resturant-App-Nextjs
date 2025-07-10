@@ -7,6 +7,7 @@ import useAdminReservations from '@/hooks/useAdminReservations';
 import GroupReservations from '@/app/(pages)/admin/reservations/GroupReservations';
 import styles from '../../../../src/css/admin-reservations.module.css';
 import Skeleton from 'react-loading-skeleton';
+import OverlayOfLoading from '@/components/OverlayOfLoading';
 
 export default function ReservationsContent() {
 
@@ -23,6 +24,7 @@ export default function ReservationsContent() {
     saveEditedReservation,
     deleteReservation,
     groupedReservations,
+    isSubmitting,
   ] = useAdminReservations();
 
   // Skeleton Loading
@@ -30,6 +32,11 @@ export default function ReservationsContent() {
     return (
       <Skeleton count={3} height={100} />
     );
+  }
+
+  // Overlay of Loading
+  if (isSubmitting) {
+    return <OverlayOfLoading />;
   }
 
   return (

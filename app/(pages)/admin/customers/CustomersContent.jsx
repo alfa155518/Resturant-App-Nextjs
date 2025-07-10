@@ -8,6 +8,7 @@ import CustomerDetails from '@/app/(pages)/admin/customers/CustomerDetails';
 import CustomersTable from '@/app/(pages)/admin/customers/CustomersTable';
 import useAdminManageCustomers from '@/hooks/useAdminManageCustomers';
 import Skeleton from 'react-loading-skeleton';
+import OverlayOfLoading from '@/components/OverlayOfLoading';
 
 export default function CustomersContent() {
   const [
@@ -19,6 +20,7 @@ export default function CustomersContent() {
     editingCustomer,
     showCustomerDetails,
     filteredCustomers,
+    isSubmitting,
 
     // Actions
     setSearchTerm,
@@ -37,6 +39,14 @@ export default function CustomersContent() {
       <Skeleton count={3} height={100} />
     )
   }
+
+  // overlay loading of actions
+  if (isSubmitting) {
+    return (
+      <OverlayOfLoading />
+    )
+  }
+
   return (
     <motion.div
       className={styles.customersContainer}

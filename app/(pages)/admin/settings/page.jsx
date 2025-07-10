@@ -1,7 +1,6 @@
 import React from 'react';
-import SettingsPage from '../../../../admin/pages/Settings';
-import { Metadata } from 'next';
-import styles from '../../../../src/css/about.module.css';
+import SettingsContent from './SettingsContent';
+import styles from '../../../../src/css/admin-settings.module.css';
 
 
 export const metadata = {
@@ -12,7 +11,7 @@ export const metadata = {
 export default function AdminSettingsPage() {
   return (
     <div className={styles.adminPageWrapper}>
-      <SettingsPage />
+      <SettingsContent />
     </div>
   );
 }

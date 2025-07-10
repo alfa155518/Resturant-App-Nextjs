@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 export default function useAdminReservations() {
 
     // Admin Management Reservations Context
-    const { reservations, handelUpdateReservation, handelDeleteReservation } = useContext(AdminManageReservationsContext);
+    const { reservations, handelUpdateReservation, handelDeleteReservation, isSubmitting } = useContext(AdminManageReservationsContext);
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('All');
     const [editingReservation, setEditingReservation] = useState(null);
@@ -90,6 +90,7 @@ export default function useAdminReservations() {
         saveEditedReservation,
         deleteReservation,
         groupedReservations,
+        isSubmitting,
     ]
 
 }

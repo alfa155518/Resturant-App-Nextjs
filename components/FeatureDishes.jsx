@@ -6,11 +6,13 @@ import { FaStar, FaHeart } from 'react-icons/fa';
 import styles from '../src/css/feature-dishes.module.css';
 import SectionName from './ui/SectionName';
 import { MenuContext } from '@/store/MenuProvider';
-import LoadingSpinner from './ui/LoadingSpinner';
+import CustomSkeletonLoading from './CustomSkeletonLoading';
 
 
 export default function FeatureDishes() {
   const { menuDishes } = useContext(MenuContext) || [];
+
+
   let featuredDishes = menuDishes?.data?.dishes;
   featuredDishes = featuredDishes?.filter(dish => dish.featured);
   const containerVariants = {
@@ -33,7 +35,7 @@ export default function FeatureDishes() {
   };
 
   if (!featuredDishes) {
-    return <LoadingSpinner />;
+    return <CustomSkeletonLoading count={5} height={250} />;
   }
 
   return (

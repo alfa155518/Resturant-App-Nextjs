@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { reserveTable } from "@/actions/profile";
 import { toast } from "react-toastify";
 
-export default function useTables(setIsFormVisible, onTableSelect) {
+export default function useTables(setIsFormVisible, onTableSelect, setIsSubmitting) {
 
   const [tables, setTables] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -12,6 +12,7 @@ export default function useTables(setIsFormVisible, onTableSelect) {
   const [showModal, setShowModal] = useState(false);
   const [modalTable, setModalTable] = useState(null);
   const [needsRefresh, setNeedsRefresh] = useState(false);
+
   const router = useRouter();
   const pathname = usePathname();
   useEffect(() => {
@@ -163,6 +164,6 @@ export default function useTables(setIsFormVisible, onTableSelect) {
     reservationFormState,
     handleInputChange,
     handelReserveTable,
-    closeReservationForm,
+    closeReservationForm
   ]
 }

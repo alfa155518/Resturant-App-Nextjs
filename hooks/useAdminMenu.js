@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 
 export default function useAdminMenu() {
     // Admin Menu Context
-    const { menu, handelUpdateMenu, setPageNumber, handelAddItem, handelDeleteItem } = useContext(AdminMenuContext);
+    const { menu, handelUpdateMenu, setPageNumber, handelAddItem, handelDeleteItem, isSubmitting } = useContext(AdminMenuContext);
 
     // states
     const [searchTerm, setSearchTerm] = useState('');
@@ -152,6 +152,7 @@ export default function useAdminMenu() {
         submitAddItem,
         deleteItem,
         toggleFeatured,
-        toggleAvailability
+        toggleAvailability,
+        isSubmitting
     ]
 }

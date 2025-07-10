@@ -3,7 +3,7 @@ import { AdminManagementCustomersContext } from '@/store/AdminManagementCustomer
 import ConfirmationDialog from '@/components/ui/ConfirmationDialog';
 export default function useAdminManageCustomers() {
     // admin customers context
-    const { customers, selectedCustomer, getSingleCustomer, handelUpdateCustomer, handelDeleteCustomer } = useContext(AdminManagementCustomersContext);
+    const { customers, selectedCustomer, getSingleCustomer, handelUpdateCustomer, handelDeleteCustomer, isSubmitting } = useContext(AdminManagementCustomersContext);
 
     // states
     const [searchTerm, setSearchTerm] = useState('');
@@ -98,6 +98,7 @@ export default function useAdminManageCustomers() {
         editingCustomer,
         showCustomerDetails,
         filteredCustomers,
+        isSubmitting,
 
         // Actions
         setSearchTerm,

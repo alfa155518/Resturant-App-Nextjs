@@ -22,7 +22,7 @@ export default function SingleBlog() {
   const params = useParams();
 
   // Blog Context
-  const { userId, blogPost, blogPosts, setBlogPostId, handleLikeBlog, handleDislikeBlog, setRelatedPosts, relatedPosts, handleCommentSubmit, isSubmitting, formData, setFormData } = useContext(BlogContext);
+  const { userId, blogPost, blogPosts, setBlogPostId, handleLikeBlog, handleDislikeBlog, setRelatedPosts, relatedPosts, handleCommentSubmit, formData, setFormData, isSubmitting } = useContext(BlogContext);
 
   // Single Blog Custom Hook
   const { showShareOptions, setShowShareOptions, handleChange } = useSingleBlog(setFormData);

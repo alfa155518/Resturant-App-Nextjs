@@ -8,6 +8,7 @@ import Pagination from '@/components/ui/pagination';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import useTeam from '@/hooks/useTeam';
 import TeamModel from '@/components/TeamModel';
+import CustomSkeletonLoading from '@/components/CustomSkeletonLoading';
 
 export default function Team() {
   const [showModal, setShowModal] = useState(false);
@@ -18,6 +19,10 @@ export default function Team() {
     setPageNumber,
     containerVariants,
     itemVariants] = useTeam()
+
+  if (!teamMembers || teamMembers.length === 0) {
+    return <CustomSkeletonLoading count={10} height={250} />;
+  }
 
   return (
     <div className={styles.teamContainer}>
@@ -95,7 +100,7 @@ export default function Team() {
         </motion.button>
       </motion.div>
 
-        {/* Team Model */}
+      {/* Team Model */}
       {showModal && (
         <TeamModel
           showModal={showModal}

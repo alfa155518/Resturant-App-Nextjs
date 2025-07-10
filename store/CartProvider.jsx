@@ -24,12 +24,13 @@ function CartProviderContent({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const { id } = JSON.parse(user);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const [needsRefresh, setNeedsRefresh] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [attributes, setAttributes] = useState({
     extraSauce: 0,
     doublePortion: 0,
   });
+  const router = useRouter();
   const pathname = usePathname();
 
   // Save Payment Details in Cookies
@@ -116,9 +117,14 @@ function CartProviderContent({ children }) {
 
   // Go To Checkout
   const handelProceedCheckout = async () => {
-    const data = await ProceedToCheckout(cartItems);
-    toast.error(data.message);
-    window.location.href = data.data.url;
+    setIsSubmitting(true);
+    try {
+      const data = await ProceedToCheckout(cartItems);
+      toast.error(data.message);
+      window.location.href = data.data.url;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // handel Success Payment
@@ -210,6 +216,7 @@ function CartProviderContent({ children }) {
     needsRefresh,
     router,
     handelProceedCheckout,
+    isSubmitting,
   };
 
   return (

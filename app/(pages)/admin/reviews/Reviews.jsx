@@ -9,6 +9,7 @@ import ReviewsContent from '@/app/(pages)/admin/reviews/ReviewsContent';
 import ReviewsStatus from '@/app/(pages)/admin/reviews/ReviewsStatus';
 import useAdminManageReviews from '@/hooks/useAdminManageReviews';
 import Skeleton from 'react-loading-skeleton';
+import OverlayOfLoading from '@/components/OverlayOfLoading';
 
 
 export default function Reviews() {
@@ -32,6 +33,7 @@ export default function Reviews() {
     setSelectedReview,
     setReplyText,
     saveReply,
+    isSubmitting,
   ] = useAdminManageReviews();
 
   // Generate star rating display
@@ -55,6 +57,11 @@ export default function Reviews() {
         <CustomSkeletonLoading count={10} height={250} />
       </>
     )
+  }
+
+  // Show loading overlay while actions
+  if (isSubmitting) {
+    return <OverlayOfLoading />
   }
 
   return (

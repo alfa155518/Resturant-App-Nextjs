@@ -9,6 +9,7 @@ export const AdminManageReviewsContext = createContext();
 export function AdminManageReviewsProvider({ children }) {
     const [reviews, setReviews] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
     // Fetch menu data
@@ -27,27 +28,37 @@ export function AdminManageReviewsProvider({ children }) {
 
     // Update Review
     const handelUpdateReview = async (reviewId, reviewData) => {
-        const updatedData = await updateReview(reviewId, reviewData);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
-        }
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-            setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updateReview(reviewId, reviewData);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+                setNeedsRefresh(!needsRefresh);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     // Delete Review
     const handelDeleteReview = async (reviewId) => {
-        const deletedData = await deleteReview(reviewId);
-        if (deletedData.status === "error") {
-            toast.error(deletedData.message);
-            return;
-        }
-        if (deletedData.status === "success") {
-            toast.success(deletedData.message);
-            setNeedsRefresh(!needsRefresh);
+        setIsSubmitting(true);
+        try {
+            const deletedData = await deleteReview(reviewId);
+            if (deletedData.status === "error") {
+                toast.error(deletedData.message);
+                return;
+            }
+            if (deletedData.status === "success") {
+                toast.success(deletedData.message);
+                setNeedsRefresh(!needsRefresh);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -55,6 +66,7 @@ export function AdminManageReviewsProvider({ children }) {
         reviews,
         handelUpdateReview,
         handelDeleteReview,
+        isSubmitting,
     };
 
     return (

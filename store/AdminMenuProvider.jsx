@@ -10,6 +10,7 @@ export function AdminMenuProvider({ children }) {
     const [menu, setMenu] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
     // Fetch menu data
@@ -28,44 +29,59 @@ export function AdminMenuProvider({ children }) {
 
     // Update menu item
     const handelUpdateMenu = async (itemId, data) => {
-        const updatedData = await updateMenu(itemId, data);
-        if (updatedData.status === "error") {
-            toast.error(updatedData.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const updatedData = await updateMenu(itemId, data);
+            if (updatedData.status === "error") {
+                toast.error(updatedData.message);
+                return;
+            }
+            if (updatedData.status === "success") {
+                toast.success(updatedData.message);
+            }
+            setMenu(updatedData.data);
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        if (updatedData.status === "success") {
-            toast.success(updatedData.message);
-        }
-        setMenu(updatedData.data);
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Add new menu item
     const handelAddItem = async (data) => {
-        const addedData = await addItem(data);
-        if (addedData.status === "error") {
-            toast.error(addedData.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const addedData = await addItem(data);
+            if (addedData.status === "error") {
+                toast.error(addedData.message);
+                return;
+            }
+            if (addedData.status === "success") {
+                toast.success(addedData.message);
+            }
+            setMenu(addedData.data);
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        if (addedData.status === "success") {
-            toast.success(addedData.message);
-        }
-        setMenu(addedData.data);
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Delete menu item
     const handelDeleteItem = async (itemId) => {
-        const deletedData = await deleteItem(itemId);
-        if (deletedData.status === "error") {
-            toast.error(deletedData.message);
-            return;
+        setIsSubmitting(true);
+        try {
+            const deletedData = await deleteItem(itemId);
+            if (deletedData.status === "error") {
+                toast.error(deletedData.message);
+                return;
+            }
+            if (deletedData.status === "success") {
+                toast.success(deletedData.message);
+            }
+            setMenu(deletedData.data);
+            setNeedsRefresh(!needsRefresh);
+        } finally {
+            setIsSubmitting(false);
         }
-        if (deletedData.status === "success") {
-            toast.success(deletedData.message);
-        }
-        setMenu(deletedData.data);
-        setNeedsRefresh(!needsRefresh);
     };
 
     // Context value
@@ -75,6 +91,7 @@ export function AdminMenuProvider({ children }) {
         handelAddItem,
         handelDeleteItem,
         setPageNumber,
+        isSubmitting,
     };
     return (
         <AdminMenuContext.Provider value={value}>
