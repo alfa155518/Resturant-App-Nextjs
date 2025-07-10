@@ -14,6 +14,8 @@ A full-stack restaurant management application built with Next.js (frontend) and
 - 🛒 Shopping cart with real-time updates
 - 🔒 Secure checkout process
 - stripe payment integration
+- Blog system
+- contact system
 - 📱 Responsive design for all devices
 - 📱 Mobile-first approach
 
@@ -27,6 +29,8 @@ A full-stack restaurant management application built with Next.js (frontend) and
 - 👥 Customer management
 - 📱 Staff management
 - 📈 Business insights and reports
+- Blog management
+- Team management
 
 ## 🚀 Tech Stack
 
@@ -96,6 +100,27 @@ frontend/
 - Order history
 - Multiple payment methods
 - Email notifications
+
+### Reservation System
+
+- Real-time reservation tracking
+- Reservation history
+- Reservation management
+- Email notifications
+
+### Blog System
+
+- Blog posts with images
+- Comment system
+- Search and filter functionality
+
+### Team System
+
+- Team members management
+
+### Gallery System
+
+- Gallery with images
 
 ### Admin Dashboard
 
