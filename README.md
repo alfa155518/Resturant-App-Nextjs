@@ -131,6 +131,6 @@ frontend/
 
 ## 📧 Contact
 
-Your Name - [@ahmed_hassop](https://www.linkedin.com/in/ahmed-hassop/)
+LinkedIn - [@ahmed_hassop](https://www.linkedin.com/in/ahmed-hassop/)
 
 Project Link: [https://github.com/alfa155518/Resturant-App-Nextjs](https://github.com/alfa155518/Resturant-App-Nextjs)
